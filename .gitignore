@@ -1,0 +1,30 @@
+## partially copied from https://github.com/github/gitignore/blob/main/TeX.gitignore
+
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+# these rules might exclude image files for figures etc.
+# *.ps
+# *.eps
+# *.pdf
+
+## stop of copied things
+
+*.fdb_latexmk
+*.synctex.gz
+*.pdf
