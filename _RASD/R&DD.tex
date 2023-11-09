@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
 
 
 \title{R\&DD}
@@ -54,6 +56,57 @@ within the platform or by educators.
     \item \textbf{Allow Educators to create Badges}\\To reward Students for special achievement, Educators should be allowed to create Badges.
     \item \textbf{Allow Educators to evaluate Students}\\Scores, on top of the ones computed by the platform itself, can be assigned by the Educator.
 \end{enumerate}
+\section{Scope}
+An user should register to the platform as student or educator. The student see in his homepage the tournaments, his profile, and in other he has the possibility to search other users registered in the platform.
+The torunaments shown in the home page are described with a title and the programming language. In also the student can search other torunament in the platform. Clicking on a torunament, the student can see other details on that tournament: the deadline of inssubscription and
+the duration of the tournament, the minum and maximum number of student in a team for that torunament, the number of the battle composing the torunament. When he subscribe to a tournament, he has to soddisf the minum nuber pf the team so if he is the first component of the team subscribing to that 
+tournament he has to invite other student to the torunament if the minum number of student it is greater than one; the other student invited by the first one will register to the tournament by the invite.
+\\
+\\
+The platform should permit to Student and Educators to partecipate to tournaments of Code kata battle, receiving battle and tournament score and badges for the first category of user, and create tournament and battle, create badge for the second category of user.
+After the registration, the platform allow the subscription of a student to a tournament and to invite other students. The platform has to evaluate the code written by the students by automatic revision such as test passed, time of execution, security and realiability, and has to assign badges to the sutdent that have all the requrements of a badge suddisfied.
+The paltform should permit to an Educator, after it registration to the platform, to create torunamens, and if i is necessary, adding other educators to that tournament to be helped in the creation of the battles or in the manual evaluation of the code writtten by the students. The educator in others has the possibility to create badge with one or more rules that are 
+requirements that the students have to satisfied to receive that badge.
+\subsection{Phenomena}
+\begin{center}
+    \begin{table}
+        \rowcolors{3}{black!15}{white}
+        \begin{tabularx}{\textwidth}{| c| c| c|}
+            \hline
+            \rowcolor{blue!50}
+            Phenomenon                                                            & Who controls it? & Is shared? \\
+            \hline
+            User wants to improve his softwre developing skill                    & W                & N          \\
+            Educator wants to create a code kata battle                           & W                & N          \\
+            Educator wants to create a tournament                                 & W                & N          \\
+            Student forks the directory on GitHub                                 & W                & N          \\
+            Student creates a workflow Action on GitHub                           & W                & N          \\
+            Student push the file on GitHub repository                            & W                & N          \\
+            Student write code                                                    & W                & N          \\
+            User registers to CodeKataBattle                                      & W                & Y          \\
+            User logins in CodeKataBattle                                         & W                & Y          \\
+            User searchs for tournaments                                          & W                & Y          \\
+            User searchs for users                                                & W                & Y          \\
+            GitHub Action workflow notifies CodeKataBattle                        & W                & Y          \\
+            Educator creates tournament                                           & W                & Y          \\
+            Educator assigns optional scores to the students                      & W                & Y          \\
+            Educator grant access to other educators                              & W                & Y          \\
+            Educator creates battles                                              & W                & Y          \\
+            Educator create a badge                                               & W                & Y          \\
+            Student invites other student in a team                               & W                & Y          \\
+            Student subscribe to a tournament                                     & W                & Y          \\
+            Student gets notified of new tournament                               & M                & N          \\
+            Student gets notified of being invited to partecipate to team         & M                & N          \\
+            Educator gets notified of being invited to manage a tournament        & M                & N          \\
+            Student gets score                                                    & M                & N          \\
+            Student gets badge                                                    & M                & N          \\
+            Educator gets notified about student push                             & M                & N          \\
+
+            \hline
+        \end{tabularx}
+        \caption{phenomena table}
+    \end{table}
+\end{center}
 \subsection{Definitions}
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Platform}\\The all "Code Kata Battle" platform. This entity is inserted in order to rappresent system's behaviours in different situations, without explaining in details its implementation or workflow.
