@@ -1,28 +1,28 @@
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage{enumitem}
+%\documentclass{article}
+%\usepackage{graphicx} % Required for inserting images
+%\usepackage{enumitem}
 %\usepackage{tabularx}
 
-\usepackage{tabu}
-\usepackage{tabularx}
-\usepackage{ltablex}
-\usepackage{longtable}
-\usepackage{float} % To allow the use of H modifier in long tables
-\usepackage[table]{xcolor}
+%\usepackage{tabu}
+%\usepackage{tabularx}
+%\usepackage{ltablex}
+%\usepackage{longtable}
+%\usepackage{float} % To allow the use of H modifier in long tables
+%\usepackage[table]{xcolor}
 
 
-\title{R\&DD}
-\author{Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli}
-\date{A.A. 2023 - 2024}
+%\title{R\&DD}
+%\author{Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli}
+%\date{A.A. 2023 - 2024}
 
-\begin{document}
+%\begin{document}
 
-\maketitle
+%\maketitle
 
-\section{Introduction}
+%\section{Introduction}
 Being software development a subject based on technical skills and collaboration, CodeKataBattle is a platform that aims to help students improve their skills by training and competing in tournaments. 
-As hinted by the name, the inspiration for this platform comes from the world of Judo, where a "Kata" is an exercise, about some aspects of the sport, that gets repeated making little improvements at a time, with the goal to master it. 
-In fact the platform allows students to compare themselves with each other making little improvements at a time. 
+%As hinted by the name, the inspiration for this platform comes from the world of Judo, where a "Kata" is an exercise, about some aspects of the sport, that gets repeated making little improvements at a time, with the goal to master it. 
+The platform allows students to compare themselves with each other making little improvements at a time. 
 Students are supervised by educators during the whole experience in CodeKataBattle. 
 Educators create and supervise tournaments, and at the end of them award and grade students.
 \subsection{Purpose}
@@ -83,6 +83,7 @@ After the registration, the platform allows the subscription of a student to a t
 After creating a tournament, the platform allows Educators to invite other educators to help manage the tournament, create Battles and specific badges to be automatically assigned to Teams or students which activity satisfies some critera.
 The paltform should permit to an Educator, after it registration to the platform, to create torunamens, and if necessary, adding other educators to that tournament to be helped in the creation of the battles or in the manual evaluation of the code writtten by students. 
 The educator in others has the possibility to create badge with one or more criteria; the platform will automatically check the critera and assign badges to students who satisfy all of them.
+Code of all battles will be managed on a third party repository manager like "GitHub" or "GitLab", where Educators are able to upload battle code then students to modify it and the platform to run it.
 \subsection{Phenomena}
 \begin{center}
     \begin{table}[h]
@@ -124,7 +125,7 @@ The educator in others has the possibility to create badge with one or more crit
 \end{center}
 \subsection{Definitions}
 \begin{enumerate}[label=$\bullet$]
-    \item \textbf{Platform}\\The all "Code Kata Battle" platform. This entity is inserted in order to rappresent system's behaviours in different situations, without explaining in details its implementation or workflow.
+    \item \textbf{Platform}\\The complete "Code Kata Battle" platform. This entity is inserted in order to reppresent system's behaviours in different situations, without explaining in details its implementation or workflow.
     \item \textbf{User}\\It is the generic User, Educators or Students depending on specific situation. It would be prefered to other definitions to model common behaviours and scenarios within the other two entities.
     \item \textbf{Student}\\Student is one of the main actors. His/Her scope is to improve its coding skills using the Platform. It will interact with it in a proper way in order to have its work evaluated, to collaborate with other Students and to join Battles.
     \item \textbf{Educator}\\Educator is the other main actor of the Platform. His/Her scope is to create Tournaments and Battles in which Students can compete
@@ -132,14 +133,15 @@ The educator in others has the possibility to create badge with one or more crit
     \item \textbf{Group}\\The entity describes a set of Students, which are working in team on a single Battle, or of Educators, which creates Battles in a Tournament.
     \item \textbf{Badge}\\With Badges Students are rewarded for special achievements. This entity is introduced to gamify the platform.
     \item \textbf{Tournament}\\The Tournament is the context within Battles are created. A Tournament can hosts multiple Battles and rapresents the topic in which they take place.
-    \item \textbf{GitHub}\\GitHub's entity models the omonimous repository manager's interactions with "Code Kata Battle".
+    %\item \textbf{GitHub}\\GitHub's entity models the omonimous repository manager's interactions with "Code Kata Battle".
+    \item \textbf{Repository manager}\\The Repository manager is a third party system which manages all code involved in battles of all students of all tournaments.
     \item \textbf{Score}\\Throught Score the platform and/or an Educators evaluates Student's works. Each Student has its own Score history assigned, visible to other Students and Educators.
 \end{enumerate}
-\subsection{Abbreviations}
-\subsection{Acronymous}
+\subsection{Abbreviations and Acronyms}
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{CKB}\\CodeKataBattle, the name of the Platform.
+    \item \textbf{RepMan}\\Repository Manager
 \end{enumerate}
 \newpage
 \section{Overall Description}
-\end{document}
+%\end{document}
