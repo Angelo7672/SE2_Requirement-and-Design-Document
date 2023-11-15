@@ -1,65 +1,41 @@
-@startuml
+@startuml entityClassDiagram
 
-class RMP{
+scale 1024 width
+scale 768 height
 
-}
+skinparam linetype polyline
+'Hide circles defaultly present on the classes
+hide RMP circle
+hide Platform circle
+hide User circle
+hide Tournament circle
+hide Student circle
+hide Battle circle
+hide Educator circle
+hide Badge circle
+hide Score circle
+hide Team circle
 
-class Platform{
-
-}
-
-class User{
-
-}
-
-class Tournament{
-
-}
-
-
-class Student{
-
-}
-
-class Educator{
-
-}
-
-
-class Battle{
-
-}
-
-
-class Score{
-
-}
-
-
-class Badge{
-
-}
-
-
+'Define relations
 Platform "1" ---> "1" RMP
 
-Platform "1" ---> "0...n" Tournament
+Platform "1" --d-> "0...n" Tournament
 
-Tournament "1" o---- "0...n" Battle
+Tournament "1" o--d-- "0...n" Battle
 
-Platform "1" ---> "0...n" User
+Platform "1" --d-> "0...n" User
 
-User <|---- Student
+User <|--d-- Student
 
-User <|---- Educator
+User <|--d-- Educator
 
-Badge "0...n" ----> "1" Student
+Badge "0...n" --u--> "1" Student
 
-Badge "0...n" ----> "1" Educator
+Badge --u--> "1" Educator
 
-Score "1" ----> "1" Team
+Score "1" --u--> "1" Team
 
-Score "1" ----> "1" Platform
+Student "1...n" o-d--> "1" Team
 
-Student "1...n" o---> "1" Team
+Platform "1" -d---> "1" Score
 @enduml
