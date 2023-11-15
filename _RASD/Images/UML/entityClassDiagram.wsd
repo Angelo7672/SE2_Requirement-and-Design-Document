@@ -1,0 +1,65 @@
+@startuml
+
+class RMP{
+
+}
+
+class Platform{
+
+}
+
+class User{
+
+}
+
+class Tournament{
+
+}
+
+
+class Student{
+
+}
+
+class Educator{
+
+}
+
+
+class Battle{
+
+}
+
+
+class Score{
+
+}
+
+
+class Badge{
+
+}
+
+
+Platform "1" ---> "1" RMP
+
+Platform "1" ---> "0...n" Tournament
+
+Tournament "1" o---- "0...n" Battle
+
+Platform "1" ---> "0...n" User
+
+User <|---- Student
+
+User <|---- Educator
+
+Badge "0...n" ----> "1" Student
+
+Badge "0...n" ----> "1" Educator
+
+Score "1" ----> "1" Team
+
+Score "1" ----> "1" Platform
+
+Student "1...n" o---> "1" Team
+@enduml

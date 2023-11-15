@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1071px" preserveAspectRatio="none" style="width:436px;height:1071px;background:#FFFFFF;" version="1.1" viewBox="0 0 436 1071" width="436px" zoomAndPan="magnify"><defs/><g><!--MD5=[d403570e236b49771cd2b3a0d8b567fa]
+class RMP--><g id="elem_RMP"><rect fill="#F1F1F1" height="42.4883" id="RMP" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="35" x="23" y="210"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="26" y="228.5352">RMP</text><line style="stroke:#181818;stroke-width:0.5;" x1="24" x2="57" y1="236.4883" y2="236.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="24" x2="57" y1="244.4883" y2="244.4883"/></g><!--MD5=[99b8db98afdc2c8404e39242ef4c1e65]
+class Platform--><g id="elem_Platform"><rect fill="#F1F1F1" height="42.4883" id="Platform" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="218.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="221.5" y="25.5352">Platform</text><line style="stroke:#181818;stroke-width:0.5;" x1="219.5" x2="281.5" y1="33.4883" y2="33.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="219.5" x2="281.5" y1="41.4883" y2="41.4883"/></g><!--MD5=[3fd616f346a44cd59a91eb10b19e157c]
+class User--><g id="elem_User"><rect fill="#F1F1F1" height="42.4883" id="User" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="37" x="141" y="210"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="144" y="228.5352">User</text><line style="stroke:#181818;stroke-width:0.5;" x1="142" x2="177" y1="236.4883" y2="236.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="142" x2="177" y1="244.4883" y2="244.4883"/></g><!--MD5=[a4b4d324fd2684dbb9bd6a0eaf7882b2]
+class Tournament--><g id="elem_Tournament"><rect fill="#F1F1F1" height="42.4883" id="Tournament" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="91" x="261" y="210"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85" x="264" y="228.5352">Tournament</text><line style="stroke:#181818;stroke-width:0.5;" x1="262" x2="351" y1="236.4883" y2="236.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="262" x2="351" y1="244.4883" y2="244.4883"/></g><!--MD5=[d6181cb537bdc20c0a3007a98a56832d]
+class Student--><g id="elem_Student"><rect fill="#F1F1F1" height="42.4883" id="Student" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="59" x="157" y="474"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53" x="160" y="492.5352">Student</text><line style="stroke:#181818;stroke-width:0.5;" x1="158" x2="215" y1="500.4883" y2="500.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="158" x2="215" y1="508.4883" y2="508.4883"/></g><!--MD5=[56044dde1eb5c59443a17cac917b404f]
+class Battle--><g id="elem_Battle"><rect fill="#F1F1F1" height="42.4883" id="Battle" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="44" x="299.5" y="474"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="302.5" y="492.5352">Battle</text><line style="stroke:#181818;stroke-width:0.5;" x1="300.5" x2="342.5" y1="500.4883" y2="500.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="300.5" x2="342.5" y1="508.4883" y2="508.4883"/></g><!--MD5=[13db901a0ba030b4d05d79289b8a4617]
+class Educator--><g id="elem_Educator"><rect fill="#F1F1F1" height="42.4883" id="Educator" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67" x="7" y="474"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61" x="10" y="492.5352">Educator</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="73" y1="500.4883" y2="500.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="73" y1="508.4883" y2="508.4883"/></g><!--MD5=[71b0b6a13faa744342078bce19fa38f0]
+class Badge--><g id="elem_Badge"><rect fill="#F1F1F1" height="42.4883" id="Badge" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="48" x="82.5" y="819"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="85.5" y="837.5352">Badge</text><line style="stroke:#181818;stroke-width:0.5;" x1="83.5" x2="129.5" y1="845.4883" y2="845.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="83.5" x2="129.5" y1="853.4883" y2="853.4883"/></g><!--MD5=[107af66394bf1ebaa045812c9c475148]
+class Score--><g id="elem_Score"><rect fill="#F1F1F1" height="42.4883" id="Score" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="44" x="367.5" y="1022"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="370.5" y="1040.5352">Score</text><line style="stroke:#181818;stroke-width:0.5;" x1="368.5" x2="410.5" y1="1048.4883" y2="1048.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="368.5" x2="410.5" y1="1056.4883" y2="1056.4883"/></g><!--MD5=[dfb0845b8492ffe07b1ce50e003034d7]
+class Team--><g id="elem_Team"><rect fill="#F1F1F1" height="42.4883" id="Team" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="44" x="249.5" y="677"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="252.5" y="695.5352">Team</text><line style="stroke:#181818;stroke-width:0.5;" x1="250.5" x2="292.5" y1="703.4883" y2="703.4883"/><line style="stroke:#181818;stroke-width:0.5;" x1="250.5" x2="292.5" y1="711.4883" y2="711.4883"/></g><!--MD5=[047d7c9f9691b39fa10e838fa5898f32]
+link Platform to RMP--><g id="link_Platform_RMP"><path codeLine="15" d="M229.98,48.64 C190.15,86.76 102.71,170.46 62.06,209.36 " fill="none" id="Platform-to-RMP" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="58.9,212.39,68.1621,209.0412,62.5064,208.9267,62.6209,203.271,58.9,212.39" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="202.6705" y="56.4861">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="55.9659" y="199.3624">1</text></g><!--MD5=[c932a1f3fadad192b53d47c1c0cb5f91]
+link Platform to Tournament--><g id="link_Platform_Tournament"><path codeLine="17" d="M255.97,48.64 C266.13,85.11 287.92,163.31 299.28,204.07 " fill="none" id="Platform-to-Tournament" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="300.6,208.82,302.0348,199.0762,299.2566,204.0038,294.329,201.2256,300.6,208.82" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="250.6895" y="70.353">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="303.6162" y="199.1788">0...n</text></g><!--MD5=[f09bffe16023af39c0d45bebcd6e9ddb]
+reverse link Tournament to Battle--><g id="link_Tournament_Battle"><path codeLine="19" d="M308.46,266.16 C311.63,321.64 317.81,429.57 320.36,474.08 " fill="none" id="Tournament-backto-Battle" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="307.71,253.2,304.0592,259.4187,308.3953,265.1804,312.0461,258.9618,307.71,253.2" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="294.3205" y="273.4955">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="324.1376" y="463.2739">0...n</text></g><!--MD5=[0cdafcc0dad84b6396b2a91da681dfee]
+link Platform to User--><g id="link_Platform_User"><path codeLine="21" d="M241.61,48.64 C225.03,85.26 189.4,163.95 171.01,204.57 " fill="none" id="Platform-to-User" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="169.05,208.9,176.3987,202.3428,171.1072,204.3428,169.1071,199.0513,169.05,208.9" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="209.7635" y="70.353">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="138.8773" y="199.1788">0...n</text></g><!--MD5=[29fe19ce294944fa80f389ae9bd987a4]
+reverse link User to Student--><g id="link_User_Student"><path codeLine="23" d="M163.71,272.81 C169.59,329.86 180.04,431.29 184.45,474.08 " fill="none" id="User-backto-Student" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="156.77,273.81,161.68,253.2,170.7,272.38,156.77,273.81" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[4c949db311734d86ee8e1711d0c13e65]
+reverse link User to Educator--><g id="link_User_Educator"><path codeLine="25" d="M141.82,270.92 C116.08,327.6 69.2,430.81 49.55,474.08 " fill="none" id="User-backto-Educator" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="135.29,268.39,149.93,253.07,148.03,274.18,135.29,268.39" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[d0646bc71ac88a8b56336fb170f73849]
+reverse link Student to Badge--><g id="link_Student_Badge"><path codeLine="27" d="M180.45,521.95 C165.09,587.79 124.87,760.22 111.16,819.02 " fill="none" id="Student-backto-Badge" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="181.51,517.4,175.582,525.265,180.3815,522.271,183.3755,527.0706,181.51,517.4" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="171.2009" y="537.1648">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="80.4164" y="808.1963">0...n</text></g><!--MD5=[76c61fc2a9106be5f91697f9fa81ad49]
+reverse link Educator to Badge--><g id="link_Educator_Badge"><path codeLine="29" d="M45.49,521.95 C58.16,587.79 91.34,760.22 102.66,819.02 " fill="none" id="Educator-backto-Badge" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="44.62,517.41,42.3926,527.0037,45.5648,522.3199,50.2485,525.4921,44.62,517.41" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="36.0325" y="536.8178">1</text></g><!--MD5=[6cde0e8bac43a4babf900d8f29656284]
+reverse link Team to Score--><g id="link_Team_Score"><path codeLine="31" d="M280.43,724.95 C303.08,790.79 362.4,963.22 382.63,1022.02 " fill="none" id="Team-backto-Score" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="278.85,720.35,277.9988,730.162,280.4782,725.0775,285.5627,727.5569,278.85,720.35" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="275.3375" y="739.8178">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="371.4369" y="1011.1963">1</text></g><!--MD5=[be48bda4642920755749f14ad47e1056]
+link Student to Team--><g id="link_Student_Team"><path codeLine="33" d="M200.0708,528.0794 C200.0708,528.0794 241.86,626.92 257.64,664.22 " fill="none" id="Student-Team" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="262.57,675.89,262.7425,666.0427,260.6196,671.2861,255.3762,669.1632,262.57,675.89" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="260.6196" x2="257.51" y1="671.2861" y2="663.915"/><polygon fill="none" points="195.39,517.03,194.0473,524.115,200.0708,528.0794,201.4136,520.9944,195.39,517.03" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="156.255" y="537.353">1...n</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="251.3809" y="666.1788">1</text></g><!--MD5=[d2bd861b7135daeed1d15a1787e0e072]
+link Platform to Score--><g id="link_Platform_Score"><path codeLine="35" d="M282.09,45.65 C333.48,75.29 429.5,142.39 429.5,230 C429.5,230 429.5,230 429.5,841 C429.5,905 409.75,978.3 398.01,1016.23 " fill="none" id="Platform-to-Score" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="396.65,1020.56,403.1448,1013.1561,398.1365,1015.7861,395.5065,1010.7777,396.65,1020.56" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="290.2991" y="49.1293">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="388.9931" y="1011.1833">1</text></g><!--MD5=[a3204a06ded4d71eba21272c3c857199]
+@startuml
+
+'Hide circles defaultly present on the classes
+hide RMP circle
+hide Platform circle
+hide User circle
+hide Tournament circle
+hide Student circle
+hide Battle circle
+hide Educator circle
+hide Badge circle
+hide Score circle
+hide Team circle
+
+'Define relations
+Platform "1" - - -> "1" RMP
+
+Platform "1" - -d-> "0...n" Tournament
+
+Tournament "1" o- -d- - "0...n" Battle
+
+Platform "1" - -d-> "0...n" User
+
+User <|- -d- - Student
+
+User <|- -d- - Educator
+
+Badge "0...n" - -u- -> "1" Student
+
+Badge - -u- -> "1" Educator
+
+Score "1" - -u- -> "1" Team
+
+Student "1...n" o-d- -> "1" Team
+
+Platform "1" -d- - -> "1" Score
+@enduml
+
+@startuml
+
+hide RMP circle
+hide Platform circle
+hide User circle
+hide Tournament circle
+hide Student circle
+hide Battle circle
+hide Educator circle
+hide Badge circle
+hide Score circle
+hide Team circle
+
+Platform "1" - - -> "1" RMP
+
+Platform "1" - -d-> "0...n" Tournament
+
+Tournament "1" o- -d- - "0...n" Battle
+
+Platform "1" - -d-> "0...n" User
+
+User <|- -d- - Student
+
+User <|- -d- - Educator
+
+Badge "0...n" - -u- -> "1" Student
+
+Badge - -u- -> "1" Educator
+
+Score "1" - -u- -> "1" Team
+
+Student "1...n" o-d- -> "1" Team
+
+Platform "1" -d- - -> "1" Score
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: it
+Country: IT
+--></g></svg>
