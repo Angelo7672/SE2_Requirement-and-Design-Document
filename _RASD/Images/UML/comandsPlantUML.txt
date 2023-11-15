@@ -1,0 +1,28 @@
+@startuml nomeDelDiagramma
+
+'commento
+
+'rende le linee ortogonali
+skinparam linetype polyline 
+
+'dichiarazione delle classi senza il cerchietto in alto a sx nella classe (presente di default)
+
+hide nomeClasse circle
+
+'Dichiarare relazioni
+
+classe1 "#elementi/label" ---> "#elementi/label" classe2
+
+---d---> dispone il secondo elemento (a dx della freccia) sotto il primo
+---u---> " sopra il primo
+---r---> " a dx del primo
+---s---> " a sx del primo
+------|> definisce estensione
+------* definisce composizione
+------o definisce aggregazione
+....... linea tratteggiata
+------- senza freccie
+--[thickness = 1]--> definisce una linea più o meno spessa
+--[#color]--> colora la linea
+--[#color, thickness]--> per inserire più comandi insieme
+classe1 ---> classe2 : label   inserisce il label sulla freccia
