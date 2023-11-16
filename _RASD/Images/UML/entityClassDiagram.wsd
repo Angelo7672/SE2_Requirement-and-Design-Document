@@ -3,8 +3,20 @@
 scale 1024 width
 scale 768 height
 
-skinparam linetype polyline
+'skinparam linetype polyline
 'Hide circles defaultly present on the classes
+
+'component RMP 
+'component Platform 
+'component User 
+'component Tournament 
+'component Student
+'component Battle 
+'component Educator 
+'component Badge 
+'component Score 
+'component Team 
+
 hide RMP circle
 hide Platform circle
 hide User circle
@@ -17,25 +29,25 @@ hide Score circle
 hide Team circle
 
 'Define relations
-Platform "1" ---> "1" RMP : associated to
+Platform "1" --up-> "1" RMP : associated to
 
-Platform "1" --d-> "0...n" Tournament : containts
+Platform "1" --right--> "0...n" Tournament : containts
 
-Tournament "1" o--d-- "0...n" Battle : belongs to 
+Tournament "1" o-down-- "0...n" Battle : belongs to 
 
-Platform "1" --d-> "0...n" User
+Platform "1" -down--> "0...n" User
 
-User <|--d-- Student
+User <|--down-- Student
 
-User <|--d-- Educator
+User <|--down-- Educator
 
-Badge "0...n" --u--> "1" Student : wins
+Badge "0...n" --left--> "1" Student : wins
 
-Badge --u--> "1" Educator : creates
+Educator --left--> "1" Badge : creates
 
-Score "1" --u--> "1" Team : assigned to
+Score "1" -down--> "1" Team : assigned to
 
-Student "1...n" o-d--> "1" Team : belongs to
+Student "1...n" o--up--> "1" Team : belongs to
 
-Platform "1" -d---> "1" Score : calculates
+Platform "1" --left--> "1" Score : calculates
 @enduml
