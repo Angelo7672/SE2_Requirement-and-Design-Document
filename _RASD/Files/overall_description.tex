@@ -27,3 +27,32 @@ The repository manager platform is an online platform on which users can upload 
     an API (Application Programming Interface), techincally needed for the CKB platform to pull (download, get) code to be analized and scored.\\
     the possibility of running automatic actions (like GitHub's Workflows) that trigger once new changes are pushed to the RMP platform, needed to signal the platform to run tests on the code.
 \subsubsection{Sequence diagram}
+\subsubsection{Assoumptions}
+\begin{enumerate}[label=$\bullet$ \textbf{D\arabic*:}]
+    \item User has provided valid credentials - RMP handle, e-mail, name and surname
+    \item User is registered to the RMP platform
+    \item User has a functioning internet connection
+    \item User can locally work on project files
+    \item User use platform ethically
+    \item Educators correctly set the repositiory for each battle
+    \item Educators create tournaments adhequate for the platform
+    \item Educators allow Students to fork battle repository
+    \item Teams fork repository once for battle
+    \item Teams work on their forked repositories
+    \item Students don't allow stutents out of their team access to modify code in their repositiory
+    \item Students allow tournament educators access to their team repository
+    \item Teams declare coherent liks to their battle repositories
+    \item RMP is able to notify the platform once every push
+    \item RMP is able to reliably store battle source code
+    \item RMP API is accessible to third party applications
+    \item RMP bases itself on version control system
+\end{enumerate}
+\subsubsection{Constraints}
+\paragraph{Security Constraints}
+Given her nature, this platform is more vulnerable to security attacks then other ones. For this reason, especially in battle code evaluation, the platform needs to implement state of the art security policies in order to protect user data and safety.
+\paragraph{Privacy Polices}
+Personal user data and storic user data shall be stored and used only for legitimate use internal to the platform. Public to the platform user data has to be accessible only via the platfrm. Finally, none of the user data has to be used for commercial purposes and it's use has to be done in compliance with, to the user, local privacy policies. 
+\paragraph{Platform Limitations}
+User is required to use internet connection to access the platform, download code repository and upload code for evaluation. Out of these actions, Users can work on battles locally without the need of internet connections, if not specifically stated otherwise in the battle description.\\
+Battle computational size and complexity has to be sized in order to be feasible to be coded and executed locally by students.\\
+Platform does not allow for live code editing and execution, for this reason users have to be able to edit and run code locally.
