@@ -1,0 +1,100 @@
+@startuml
+state Tournament{
+    [*] --> Created: Creation
+
+    Created: - name setted
+
+    Created --> Setted: setting
+
+    Setted: - programming language
+    Setted: - max and min number of student per team
+    Setted: - duration
+    Setted: - deadline for subscription
+
+    state c <<choice>>
+
+    Setted --> c
+
+    c --> EducatorAdded: adding an other educator
+
+    EducatorAdded: - new educator in the tournament
+
+    c --> BattleCreated: creating a new battle
+
+    BattleCreated: - description available
+    BattleCreated: - code available
+    BattleCreated: - tests available
+    BattleCreated: - automatic evaluation parameter defined
+    BattleCreated: - [optional] manual evaluation parameter defined
+
+    c --> BadgeCreated: defining a new badge
+
+    BadgeCreated: - name satted
+    BadgeCreated: - rule/s defined
+
+    EducatorAdded --> BattleCreated: creating a new battle
+    BattleCreated --> EducatorAdded: adding an other educator
+    EducatorAdded --> BadgeCreated: defining a new badge
+    BadgeCreated --> EducatorAdded: adding an other educator
+    BattleCreated --> BadgeCreated: defining a new badge
+    BadgeCreated --> BattleCreated: creating a new battle
+
+    EducatorAdded --> Online: the torunament is online and available to students' subscription
+    BattleCreated --> Online: the torunament is online and available to students' subscription
+    BadgeCreated --> Online: the torunament is online and available to students' subscription
+
+    Online: - students subscribe to the tournament in teams
+
+    Online --> Started: deadline for subscription met
+
+    Started: - all the battles are now available
+    Started: - tournament score and rank now available
+
+    Started --> Battle
+
+    state Battle{
+        [*] --> OnlineB: RMP repo is now available
+
+        OnlineB: - students do the fork of the repo
+        OnlineB: - battle score available
+        OnlineB: - completation status available
+        OnlineB: - automatic evaluation always enabled
+
+        OnlineB --> ManualEvaluating: [optional] evaluation of an educator
+
+        ManualEvaluating: - an educator evaluate the code written
+
+        ManualEvaluating --> OnlineB
+        OnlineB --> Closed: duration of the tournament expired
+
+        Closed: - it is no more allowed to modify the code
+        Closed: - the battle score is ultimated
+
+        Closed --> [*]
+    }
+
+    Battle --> ClosedT: duration of the tournament expired
+
+    ClosedT: - it is no more possible complete battle
+    ClosedT: - tournament score and rank ultimated
+    ClosedT: - badges are assigned automatically
+
+    ClosedT --> [*]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
