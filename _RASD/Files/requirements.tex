@@ -39,10 +39,15 @@ Hardware limitations in the RASD context are refered to User's machine capabilit
 \subsection{Software System Attributes}
 
 \subsubsection{Reliability}
+The platform described in this document should be an always available Web App. Downtimes are meant to be as less as possible, and the overall system, in order to prevent evaluation, ranking, registration, search problems, should be designed with robustness in mind and with built in mechanisms to manage situations that could compromise informations, materials and commands assigned to the platform. All of this performed in a trasparent way to the Users as much as possibile.
 \subsubsection{Availability}
+The platform should be able as much as possible, 24/7, 365 days per year. The minimum availability rate shuould be 99\%. An inferior percentage could compromise educational activities potentially damaging students.
 \subsubsection{Security}
+Both Users' devices and servers comunications must always take place only via encrypted channels, using appropriate criptographic protolocs such as SSL. All operations and contributions to the platform, with the exception of automated tasks performed on server side comunicating with RMP, must be always explicitly approved by the Users.
 \subsubsection{Maintainability}
+In order to extend as much as possible the platform's life cycle it should be designed with modularity in mind. This approach will guarantee the interchanging of old modules to update or to substitute, possibly maintaing the same interfaces and core functionalities, at minimum cost.
 \subsubsection{Portability}
+The platform intended to be build would be used independetly by the OS provided with the machine. In fact CKB can be accesed simply using just a web browser, on which compatibility the developers should concentrate. On User side, it would be sufficient to guarantee portability to build the Web App using common internet standards and protocols to make it usable on any web broswer. About RPM portability, the platform should be provided with the right interfaces and modules to comunicate with the largest amount of RMPs available, in order to acquire and run code evaulating it.
 
 
 
