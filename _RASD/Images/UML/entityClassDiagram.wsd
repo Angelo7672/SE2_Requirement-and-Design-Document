@@ -3,7 +3,7 @@
 scale 1024 width
 scale 768 height
 
-'skinparam linetype polyline
+skinparam linetype polyline
 'Hide circles defaultly present on the classes
 
 'component RMP 
@@ -28,7 +28,7 @@ hide Badge circle
 hide Score circle
 hide Team circle
 
-'Define relations
+'Define relations>
 Platform "1" --up-> "1" RMP : associated to
 
 Platform "1" --right--> "0...n" Tournament : containts

@@ -12,33 +12,42 @@ Comunication Interfaces needed are the one necessary to access the internet. So 
 
 \subsection{Functional Requirements}
 \begin{enumerate}[label=$\bullet$ \textbf{R\arabic*:}]
-    \item CKB allows Users to register to the platform itself either as Student either Educator.
+    \item The platform allows Users to register to the platform itself either as Student either Educator.
     \item The platform allows registered Students to join a Battle.
     \item The platform allows registered Students to form Teams.
     \item The platform allows registered Students to invite other Students to join a Team.
-    \item CKB allows registerd Educators to create Tournaments.
-    \item CKB allows registered Educators to create Battles.
-    \item CKB allows registered Educators to create Badges.
+    \item The platform allows registerd Educators to create Tournaments.
+    \item The platform allows registered Educators to create Battles.
+    \item The platform allows registered Educators to create Badges.
     \item The plaftorm assigns a Score to Teams' work.
     \item The platform provides a Teams' ranking within a Tournament context.
     \item The plaform allows registered Educators to invite other Educators to join a Tournament.
-    \item CKB allows Users to search for other Users.
-    \item CKB interacts properly with different RMPs to acquire latest versions of code uploaded by related Teams. 
+    \item The platform allows Users to search for other Users.
+    \item The platform interacts properly with different RMPs to acquire latest versions of code uploaded by related Teams. 
+    \item The platform should be able to manage multiple requests at the same time
 \end{enumerate}
 \subsection{Performance Requirements}
+The platfrom, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all the same time. So, in order to satisfy all Requirements defined above, providing a good time response for each tasks, the Platform should have good time performance. Being a Web App, this implies a high concurrent programming implementation, to manage multiple requests at the same time, and a rapid related Data Storage System. 
 \subsection{Design Constraints}
 
 \subsubsection{Standard Compliance}
+First of all, the platform has to respect privacy standards, sucha as GDPR for EU countries or similar regulations, in order to protect personal informations provided by Users when they sign in, their code and identity across the Web App. It is also important to respect internet protocols standards and their rules, in order to make the app run and comunicate properly. Other standards are related to UI accessibility features and servers' power consumption. 
 \subsubsection{Hardware Limitations}
+Hardware limitations in the RASD context are refered to User's machine capabilities and server's limits. In fact, the devices used by both Students and Educators are constrained by memory capacity, CPU capabilities and GPU computational power. The first is essential to memorize the file to upload in RMP, run the software to access internet and to manage the Web App data itself. The second is fundamental to run the connection tasks and the site, receiving and elaborating inputs for the User and CKB's responses. Finally GPU is essential to render the platform UI. On server side, instead, is important for our App to have an organized storage to preserve all necessary data and enough computational power in our CPUs to manage multiple requests for each machine that compones CKB's server. In fact, to satify all possibile inputs from all possibile Users, formulating for each one a response, and meet requirements, is critical to have a multiple machine architecure on our servers. To complete, a multiple internet connection ports is fundamental, to make the platform available on the internet and make it capable of comunicate with Users and RMPs.
 \subsubsection{Any other constraint}
 
 \subsection{Software System Attributes}
 
 \subsubsection{Reliability}
+The platform described in this document should be an always available Web App. Downtimes are meant to be as less as possible, and the overall system, in order to prevent evaluation, ranking, registration, search problems, should be designed with robustness in mind and with built in mechanisms to manage situations that could compromise informations, materials and commands assigned to the platform. All of this performed in a trasparent way to the Users as much as possibile.
 \subsubsection{Availability}
+The platform should be able as much as possible, 24/7, 365 days per year. The minimum availability rate shuould be 99\%. An inferior percentage could compromise educational activities potentially damaging students.
 \subsubsection{Security}
+Both Users' devices and servers comunications must always take place only via encrypted channels, using appropriate criptographic protolocs such as SSL. All operations and contributions to the platform, with the exception of automated tasks performed on server side comunicating with RMP, must be always explicitly approved by the Users.
 \subsubsection{Maintainability}
+In order to extend as much as possible the platform's life cycle it should be designed with modularity in mind. This approach will guarantee the interchanging of old modules to update or to substitute, possibly maintaing the same interfaces and core functionalities, at minimum cost.
 \subsubsection{Portability}
+The platform intended to be build would be used independetly by the OS provided with the machine. In fact CKB can be accesed simply using just a web browser, on which compatibility the developers should concentrate. On User side, it would be sufficient to guarantee portability to build the Web App using common internet standards and protocols to make it usable on any web broswer. About RPM portability, the platform should be provided with the right interfaces and modules to comunicate with the largest amount of RMPs available, in order to acquire and run code evaulating it.
 
 
 
