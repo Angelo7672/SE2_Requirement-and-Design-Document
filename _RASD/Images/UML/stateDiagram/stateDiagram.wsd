@@ -1,100 +1,91 @@
 @startuml
-state Tournament{
-    [*] --> Created: Creation
+scale 1024 width
+scale 768 height
 
-    Created: - name setted
+skinparam linetype ortho
 
-    Created --> Setted: setting
+state TOURNAMENT{
+    [*] --> CREATED: Creation
 
-    Setted: - programming language
-    Setted: - max and min number of student per team
-    Setted: - duration
-    Setted: - deadline for subscription
+    CREATED: - name set
+
+    CREATED --> DEFINED: setting
+
+    DEFINED: - programming language/s set
+    DEFINED: - outline available
+    DEFINED: - max and min number of student per team set
+    DEFINED: - duration set
+    DEFINED: - deadline for subscription set
 
     state c <<choice>>
 
-    Setted --> c
+    DEFINED --> c
 
-    c --> EducatorAdded: adding an other educator
+    c --> EDUCATORADDED: adding educator
 
-    EducatorAdded: - new educator in the tournament
+    EDUCATORADDED: - new educator in the tournament
 
-    c --> BattleCreated: creating a new battle
+    c --> BATTLECREATED: creating battle
 
-    BattleCreated: - description available
-    BattleCreated: - code available
-    BattleCreated: - tests available
-    BattleCreated: - automatic evaluation parameter defined
-    BattleCreated: - [optional] manual evaluation parameter defined
+    BATTLECREATED: - description available
+    BATTLECREATED: - code available
+    BATTLECREATED: - tests available
+    BATTLECREATED: - automatic evaluation parameter defined
+    BATTLECREATED: - [optional] manual evaluation parameter defined
 
-    c --> BadgeCreated: defining a new badge
+    c --> BADGECREATED: defining badge
 
-    BadgeCreated: - name satted
-    BadgeCreated: - rule/s defined
+    BADGECREATED: - name set
+    BADGECREATED: - rule/s defined
 
-    EducatorAdded --> BattleCreated: creating a new battle
-    BattleCreated --> EducatorAdded: adding an other educator
-    EducatorAdded --> BadgeCreated: defining a new badge
-    BadgeCreated --> EducatorAdded: adding an other educator
-    BattleCreated --> BadgeCreated: defining a new badge
-    BadgeCreated --> BattleCreated: creating a new battle
+    EDUCATORADDED --> BATTLECREATED: creating battle
+    BATTLECREATED --> EDUCATORADDED: adding educator
+    EDUCATORADDED --> BADGECREATED: defining badge
+    BADGECREATED --> EDUCATORADDED: adding educator
+    BATTLECREATED --> BADGECREATED: defining badge
+    BADGECREATED --> BATTLECREATED: creating battle
 
-    EducatorAdded --> Online: the torunament is online and available to students' subscription
-    BattleCreated --> Online: the torunament is online and available to students' subscription
-    BadgeCreated --> Online: the torunament is online and available to students' subscription
+    EDUCATORADDED --> ONLINE: tournament publication
+    BATTLECREATED --> ONLINE: tournament publication
+    BADGECREATED --> ONLINE: tournament publication
 
-    Online: - students subscribe to the tournament in teams
+    ONLINE: - students subscribe to the tournament in teams
 
-    Online --> Started: deadline for subscription met
+    ONLINE --> STARTED: deadline for subscription met
 
-    Started: - all the battles are now available
-    Started: - tournament score and rank now available
+    STARTED: - all the battles are now available
+    STARTED: - tournament score and rank now available
 
-    Started --> Battle
+    STARTED --> BATTLE: battles online
 
-    state Battle{
-        [*] --> OnlineB: RMP repo is now available
+    state BATTLE{
+        [*] --> ACCESSIBLE: RMP repo online
 
-        OnlineB: - students do the fork of the repo
-        OnlineB: - battle score available
-        OnlineB: - completation status available
-        OnlineB: - automatic evaluation always enabled
+        ACCESSIBLE: - students do the fork of the repo
+        ACCESSIBLE: - battle score available
+        ACCESSIBLE: - completation status available
+        ACCESSIBLE: - automatic evaluation enabled
 
-        OnlineB --> ManualEvaluating: [optional] evaluation of an educator
+        ACCESSIBLE --> MANUALEVALUATED: [optional] educator's evaluation
 
-        ManualEvaluating: - an educator evaluate the code written
+        MANUALEVALUATED: - an educator evaluate the code written
 
-        ManualEvaluating --> OnlineB
-        OnlineB --> Closed: duration of the tournament expired
+        MANUALEVALUATED --> ACCESSIBLE
+        ACCESSIBLE --> CLOSED: deadline reached
 
-        Closed: - it is no more allowed to modify the code
-        Closed: - the battle score is ultimated
+        CLOSED: - it is no more possible modify the code
+        CLOSED: - the battle score is ultimated
 
-        Closed --> [*]
+        CLOSED --> [*]
     }
 
-    Battle --> ClosedT: duration of the tournament expired
+    BATTLE --> OFFLINE: deadline reached
 
-    ClosedT: - it is no more possible complete battle
-    ClosedT: - tournament score and rank ultimated
-    ClosedT: - badges are assigned automatically
+    OFFLINE: - it is no more possible complete battles
+    OFFLINE: - tournament score and rank are ultimated
+    OFFLINE: - badges are assigned automatically
 
-    ClosedT --> [*]
+    OFFLINE --> [*]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @enduml

@@ -1,6 +1,6 @@
 Computer Science is a field where theory and practice are thightly coupuled and both very important.
 Infact in theory it can be easily studied by reading books or following courses on specific topics, but in reality being able to practice the subject is the best way to consolidate studies from pure erudition to knowledge.
-Moreover coworking with other people becomes a moment of improving personal knowledge with other people experience.
+Moreover coworking with other people become a moment of improving personal knowledge with other people experience.
 But for some people be able to work with other people is difficult for a multitude of reasons i.e work, geography ect... 
 To help these people the CodeKataBattle platform aims to be a place where students can work in teams monitored by educators competing against other students programming code that gets scored and can be iteratively imporved, in order to reach the best score and win the tournament.
 \subsection{Product Perspective}
@@ -17,17 +17,22 @@ To help these people the CodeKataBattle platform aims to be a place where studen
     \item \textbf{Team wants to see how it is placed in the tournament}\\ Angelo, a student participating in a tournament in a team, wants to know how well they are doing. To do so he can log in to the platform and go to the page of the tournament, on which he can see the leaderboard where he can find the overall score of the team. Angelo can also check specific battles visiting their specific page where the related battle leaderboard is shown.
     \item \textbf{User wants to check out other user's profile}\\ Michael, a user of the platform, wants to find the profile of his friend Nick to checkout on him. He logs in to the website in which he can search for other users via a specic bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: user type, name, surname, RMP handle and badges.
 \end{enumerate}
-\subsection{Domain Model}
-\subsubsection{Class diagram}
-\usesvg{./Images/UML/entityClassDiagram.svg}
+\subsubsection{Domain Model}
+\paragraph{Class diagram}
+\usesvg{./Images/UML/classDiagram/entityClassDiagram.svg}
+
 \subsubsection{Repository Manager Platform}
 The Repository Manager Platform keeps the code of all battles of all tournaments of all teams. This can be a first or third party system that has to have some characteristic to be suitable to work on the CKB platform.\\
-The repository is a folder in which code is stored and managed by a verstion control system (like Git) in which the code is saved via commits, special "save" operation of multiple files that are asssociated with comments and can be reverted as needed.\\
+The repository is a folder in which code is stored and managed by a version control system (like Git) in which the code is saved via commits, special "save" operation of multiple files that are asssociated with comments and can be reverted as needed.\\
 The repository manager platform is an online platform on which users can upload code for sharing purposes, this can be GitHub or GitLab (the two most famous), and has to have two main functionalities:\\
-    an API (Application Programming Interface), techincally needed for the CKB platform to pull (download, get) code to be analized and scored.\\
+    an API (Application Programming Interface), technically needed for the CKB platform to pull (download, get) code to be analyzed and scored.\\
     the possibility of running automatic actions (like GitHub's Workflows) that trigger once new changes are pushed to the RMP platform, needed to signal the platform to run tests on the code.
-\subsubsection{Sequence diagram}
-\subsubsection{Assumptions}
+\paragraph{State diagram}
+
+\usesvg{./Images/UML/stateDiagram/stateDiagram.svg}
+The state diagram in figure describe the various states of the tournament and the battle.
+
+\subsection{Assumptions}
 \begin{enumerate}[label=$\bullet$ \textbf{D\arabic*:}]
     \item User has provided valid credentials - RMP handle, e-mail, name and surname
     \item User is registered to the RMP platform
@@ -40,7 +45,7 @@ The repository manager platform is an online platform on which users can upload 
     \item Educators allow Students to fork battle repository
     \item Teams fork repository once for battle
     \item Teams work on their forked repositories
-    \item Students don't allow stutents out of their team access to modify code in their repositiory
+    \item Students don't allow students out of their team access to modify code in their repositiory
     \item Students allow tournament educators access to their team repository
     \item Teams declare coherent liks to their battle repositories
     \item RMP is able to notify the platform once every push
@@ -48,7 +53,7 @@ The repository manager platform is an online platform on which users can upload 
     \item RMP API is accessible to third party applications
     \item RMP bases itself on version control system
 \end{enumerate}
-\subsubsection{Constraints}
+\subsection{Constraints}
 \paragraph{Security Constraints}
 Given her nature, this platform is more vulnerable to security attacks then other ones. For this reason, especially in battle code evaluation, the platform needs to implement state of the art security policies in order to protect user data and safety.
 \paragraph{Privacy Polices}

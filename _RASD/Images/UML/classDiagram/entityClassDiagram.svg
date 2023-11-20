@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="768.4474px" preserveAspectRatio="none" style="width:469px;height:768px;background:#FFFFFF;" version="1.1" viewBox="0 0 469 768" width="469.5431px" zoomAndPan="magnify"><defs/><g><!--MD5=[d403570e236b49771cd2b3a0d8b567fa]
+class RMP--><g id="elem_RMP"><rect fill="#F1F1F1" height="49.9426" id="RMP" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="41.2282" x="187.4236" y="8.0166"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="34.3568" x="190.8592" y="30.3865">RMP</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="188.5688" x2="227.5065" y1="39.6356" y2="39.6356"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="188.5688" x2="227.5065" y1="48.7974" y2="48.7974"/></g><!--MD5=[99b8db98afdc2c8404e39242ef4c1e65]
+class Platform--><g id="elem_Platform"><rect fill="#F1F1F1" height="49.9426" id="Platform" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="66.4232" x="174.8261" y="218.7384"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="59.5518" x="178.2617" y="241.1083">Platform</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="175.9713" x2="240.104" y1="250.3574" y2="250.3574"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="175.9713" x2="240.104" y1="259.5192" y2="259.5192"/></g><!--MD5=[3fd616f346a44cd59a91eb10b19e157c]
+class User--><g id="elem_User"><rect fill="#F1F1F1" height="49.9426" id="User" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="40.0829" x="187.9962" y="429.4601"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="33.2116" x="191.4319" y="451.8301">User</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="189.1414" x2="226.9339" y1="461.0791" y2="461.0791"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="189.1414" x2="226.9339" y1="470.241" y2="470.241"/></g><!--MD5=[a4b4d324fd2684dbb9bd6a0eaf7882b2]
+class Tournament--><g id="elem_Tournament"><rect fill="#F1F1F1" height="49.9426" id="Tournament" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="95.0538" x="343.7471" y="218.7384"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="88.1825" x="347.1827" y="241.1083">Tournament</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="344.8923" x2="437.6557" y1="250.3574" y2="250.3574"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="344.8923" x2="437.6557" y1="259.5192" y2="259.5192"/></g><!--MD5=[d6181cb537bdc20c0a3007a98a56832d]
+class Student--><g id="elem_Student"><rect fill="#F1F1F1" height="49.9426" id="Student" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="62.9875" x="9.3408" y="711.186"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="56.1161" x="12.7764" y="733.556">Student</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="10.486" x2="71.183" y1="742.805" y2="742.805"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="10.486" x2="71.183" y1="751.9668" y2="751.9668"/></g><!--MD5=[56044dde1eb5c59443a17cac917b404f]
+class Battle--><g id="elem_Battle"><rect fill="#F1F1F1" height="49.9426" id="Battle" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="48.0995" x="367.2242" y="429.4601"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="41.2282" x="370.6599" y="451.8301">Battle</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="368.3694" x2="414.1785" y1="461.0791" y2="461.0791"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="368.3694" x2="414.1785" y1="470.241" y2="470.241"/></g><!--MD5=[13db901a0ba030b4d05d79289b8a4617]
+class Educator--><g id="elem_Educator"><rect fill="#F1F1F1" height="49.9426" id="Educator" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="72.1493" x="289.9214" y="711.186"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="65.2779" x="293.3571" y="733.556">Educator</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="291.0666" x2="360.9255" y1="742.805" y2="742.805"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="291.0666" x2="360.9255" y1="751.9668" y2="751.9668"/></g><!--MD5=[71b0b6a13faa744342078bce19fa38f0]
+class Badge--><g id="elem_Badge"><rect fill="#F1F1F1" height="49.9426" id="Badge" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="53.8257" x="144.4776" y="711.186"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="46.9543" x="147.9132" y="733.556">Badge</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="145.6228" x2="197.158" y1="742.805" y2="742.805"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="145.6228" x2="197.158" y1="751.9668" y2="751.9668"/></g><!--MD5=[107af66394bf1ebaa045812c9c475148]
+class Score--><g id="elem_Score"><rect fill="#F1F1F1" height="49.9426" id="Score" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="49.2448" x="16.2121" y="218.7384"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="42.3734" x="19.6478" y="241.1083">Score</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="17.3573" x2="64.3117" y1="250.3574" y2="250.3574"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="17.3573" x2="64.3117" y1="259.5192" y2="259.5192"/></g><!--MD5=[dfb0845b8492ffe07b1ce50e003034d7]
+class Team--><g id="elem_Team"><rect fill="#F1F1F1" height="49.9426" id="Team" rx="2.8631" ry="2.8631" style="stroke:#181818;stroke-width:0.5726135278081969;" width="48.0995" x="16.7847" y="429.4601"/><text fill="#000000" font-family="sans-serif" font-size="16.0332" lengthAdjust="spacing" textLength="41.2282" x="20.2204" y="451.8301">Team</text><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="17.93" x2="63.739" y1="461.0791" y2="461.0791"/><line style="stroke:#181818;stroke-width:0.5726135278081969;" x1="17.93" x2="63.739" y1="470.241" y2="470.241"/></g><!--MD5=[efa33054ac982817b450d7e05140d45d]
+reverse link RMP to Platform--><g id="link_RMP_Platform"><path codeLine="31" d="M208.0377,64.5794 C208.0377,106.2198 208.0377,180.442 208.0377,218.6238 " fill="none" id="RMP-backto-Platform" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="208.0377,58.67,203.4567,68.977,208.0377,64.3961,212.6186,68.977,208.0377,58.67" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="89.3277" x="209.1829" y="144.8656">associated to</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="199.044" y="82.6672">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="198.8937" y="206.1797">1</text></g><!--MD5=[c932a1f3fadad192b53d47c1c0cb5f91]
+link Platform to Tournament--><g id="link_Platform_Tournament"><path codeLine="33" d="M241.6501,243.9334 C268.4713,243.9334 306.5844,243.9334 337.6201,243.9334 " fill="none" id="Platform-to-Tournament" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="343.7356,243.9334,333.4286,239.3525,338.0095,243.9334,333.4286,248.5143,343.7356,243.9334" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="60.697" x="262.1496" y="236.4838">containts</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="250.3499" y="239.0443">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="29.7759" x="304.7908" y="260.7964">0...n</text></g><!--MD5=[f09bffe16023af39c0d45bebcd6e9ddb]
+reverse link Tournament to Battle--><g id="link_Tournament_Battle"><path codeLine="35" d="M391.274,284.4515 C391.274,327.1112 391.274,393.8207 391.274,429.3456 " fill="none" id="Tournament-backto-Battle" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="none" points="391.274,269.3918,386.6931,276.2631,391.274,283.1345,395.8549,276.2631,391.274,269.3918" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="68.7136" x="392.4192" y="355.5874">belongs to</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="382.2804" y="293.389">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="29.7759" x="357.3108" y="416.9014">0...n</text></g><!--MD5=[0cdafcc0dad84b6396b2a91da681dfee]
+link Platform to User--><g id="link_Platform_User"><path codeLine="37" d="M208.0377,269.3918 C208.0377,307.6767 208.0377,381.8989 208.0377,423.4592 " fill="none" id="Platform-to-User" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="208.0377,429.3456,212.6186,419.0386,208.0377,423.6195,203.4567,419.0386,208.0377,429.3456" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="199.044" y="293.389">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="29.7759" x="174.0745" y="416.9014">0...n</text></g><!--MD5=[29fe19ce294944fa80f389ae9bd987a4]
+reverse link User to Student--><g id="link_User_Student"><path codeLine="39" d="M182.522,500.5558 C165.355,530.4806 142.084,570.6666 121.0004,605.8251 C98.8517,642.7701 72.4084,685.1321 56.1118,711.0371 " fill="none" id="User-backto-Student" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="none" points="175.7537,496.2498,194.0773,480.354,189.6682,504.2206,175.7537,496.2498" style="stroke:#181818;stroke-width:1.1452270556163937;"/></g><!--MD5=[4c949db311734d86ee8e1711d0c13e65]
+reverse link User to Educator--><g id="link_User_Educator"><path codeLine="41" d="M227.3233,501.4835 C252.6442,561.4705 296.1858,664.6211 315.8379,711.186 " fill="none" id="User-backto-Educator" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="none" points="219.822,504.3236,218.2989,480.1135,234.5955,498.0936,219.822,504.3236" style="stroke:#181818;stroke-width:1.1452270556163937;"/></g><!--MD5=[d0646bc71ac88a8b56336fb170f73849]
+reverse link Student to Badge--><g id="link_Student_Badge"><path codeLine="43" d="M78.2262,736.381 C99.2182,736.381 124.9629,736.381 144.0538,736.381 " fill="none" id="Student-backto-Badge" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="72.4428,736.381,82.7498,740.9619,78.1689,736.381,82.7498,731.8001,72.4428,736.381" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="29.7759" x="93.5149" y="728.9314">wins</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="81.5695" y="731.2735">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="29.7759" x="105.5691" y="753.8132">0...n</text></g><!--MD5=[f9def4d9ad84fcf4c99124ec5bf5d920]
+reverse link Badge to Educator--><g id="link_Badge_Educator"><path codeLine="45" d="M204.1668,736.381 C229.2816,736.381 263.8904,736.381 289.8183,736.381 " fill="none" id="Badge-backto-Educator" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="198.3261,736.381,208.6332,740.9619,204.0523,736.381,208.6332,731.8001,198.3261,736.381" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="49.2448" x="219.4899" y="728.9314">creates</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="207.4159" y="730.9459">1</text></g><!--MD5=[e4a7aa2e7416167effb971583e58d041]
+link Score to Team--><g id="link_Score_Team"><path codeLine="47" d="M40.8345,269.3918 C40.8345,307.6767 40.8345,381.8989 40.8345,423.4592 " fill="none" id="Score-to-Team" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="40.8345,429.3456,45.4154,419.0386,40.8345,423.6195,36.2536,419.0386,40.8345,429.3456" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="76.7302" x="41.9797" y="355.5874">assigned to</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="31.8409" y="293.389">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="31.6906" y="416.9014">1</text></g><!--MD5=[48fef26b6d3bbb1988e163149c12a73c]
+link Team to Student--><g id="link_Team_Student"><path codeLine="49" d="M40.8345,495.2763 C40.8345,548.5867 40.8345,697.4433 40.8345,697.4433 " fill="none" id="Team-Student" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="none" points="40.8345,711.186,45.4154,704.3146,40.8345,697.4433,36.2536,704.3146,40.8345,711.186" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="40.8345,480.1135,36.2536,490.4206,40.8345,485.8397,45.4154,490.4206,40.8345,480.1135" style="stroke:#181818;stroke-width:1.1452270556163937;"/><line style="stroke:#181818;stroke-width:1.1452270556163937;" x1="40.8345" x2="40.8345" y1="485.8397" y2="495.0015"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="68.7136" x="41.9797" y="601.8112">belongs to</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="31.8409" y="504.1108">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="29.7759" x="6.8714" y="698.774">1...n</text></g><!--MD5=[cc31ed2f1b5544b502a7d0becd1dc120]
+reverse link Score to Platform--><g id="link_Score_Platform"><path codeLine="51" d="M71.5037,243.9334 C100.6955,243.9334 144.5234,243.9334 174.597,243.9334 " fill="none" id="Score-backto-Platform" style="stroke:#181818;stroke-width:1.1452270556163937;"/><polygon fill="#181818" points="65.5027,243.9334,75.8097,248.5143,71.2288,243.9334,75.8097,239.3525,65.5027,243.9334" style="stroke:#181818;stroke-width:1.1452270556163937;"/><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="67.5684" x="86.3573" y="236.4838">calculates</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="74.6433" y="238.2798">1</text><text fill="#000000" font-family="sans-serif" font-size="14.888" lengthAdjust="spacing" textLength="8.0166" x="157.4523" y="238.9351">1</text></g><!--MD5=[919c95f267461d62ad0b7c30d3e11dfd]
+@startuml entityClassDiagram
+
+scale 1024 width
+scale 768 height
+
+'skinparam linetype polyline
+'Hide circles defaultly present on the classes
+
+'component RMP 
+'component Platform 
+'component User 
+'component Tournament 
+'component Student
+'component Battle 
+'component Educator 
+'component Badge 
+'component Score 
+'component Team 
+
+hide RMP circle
+hide Platform circle
+hide User circle
+hide Tournament circle
+hide Student circle
+hide Battle circle
+hide Educator circle
+hide Badge circle
+hide Score circle
+hide Team circle
+
+'Define relations
+Platform "1" - -up-> "1" RMP : associated to
+
+Platform "1" - -right- -> "0...n" Tournament : containts
+
+Tournament "1" o-down- - "0...n" Battle : belongs to 
+
+Platform "1" -down- -> "0...n" User
+
+User <|- -down- - Student
+
+User <|- -down- - Educator
+
+Badge "0...n" - -left- -> "1" Student : wins
+
+Educator - -left- -> "1" Badge : creates
+
+Score "1" -down- -> "1" Team : assigned to
+
+Student "1...n" o- -up- -> "1" Team : belongs to
+
+Platform "1" - -left- -> "1" Score : calculates
+@enduml
+
+@startuml entityClassDiagram
+
+scale 1024 width
+scale 768 height
+
+
+
+hide RMP circle
+hide Platform circle
+hide User circle
+hide Tournament circle
+hide Student circle
+hide Battle circle
+hide Educator circle
+hide Badge circle
+hide Score circle
+hide Team circle
+
+Platform "1" - -up-> "1" RMP : associated to
+
+Platform "1" - -right- -> "0...n" Tournament : containts
+
+Tournament "1" o-down- - "0...n" Battle : belongs to 
+
+Platform "1" -down- -> "0...n" User
+
+User <|- -down- - Student
+
+User <|- -down- - Educator
+
+Badge "0...n" - -left- -> "1" Student : wins
+
+Educator - -left- -> "1" Badge : creates
+
+Score "1" -down- -> "1" Team : assigned to
+
+Student "1...n" o- -up- -> "1" Team : belongs to
+
+Platform "1" - -left- -> "1" Score : calculates
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 19:01:30 CEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

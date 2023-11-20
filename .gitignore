@@ -35,7 +35,6 @@
 ## no compiled things
 *.pdf
 *.pdf_tex
-*.svg
 
 ## no garbage
 .DS_Store
