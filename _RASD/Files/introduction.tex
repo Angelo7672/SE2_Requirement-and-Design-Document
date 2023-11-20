@@ -1,24 +1,178 @@
-This document has been prepared to help you approaching Latex as a formatting tool for your Travlendar+ deliverables. This document suggests you a possible style and format for your deliverables and contains information about basic formatting commands in Latex. A good guide to Latex is available here \href{https://tobi.oetiker.ch/lshort/lshort.pdf}{https://tobi.oetiker.ch/lshort/lshort.pdf}, but you can find many other good references on the web. 
+\setlength{\leftmargini}{5em} % default 2.5em
+Being software development a subject based on technical skills and collaboration, CodeKataBattle is a platform that aims to help students improve their skills by training and competing in tournaments.
 
-Writing in Latex means writing textual files having a \texttt{.tex} extension and exploiting the Latex markup commands for formatting purposes. Your files then need to be compiled using the Latex compiler. Similarly to programming languages, you can find many editors that help you writing and compiling your latex code. Here \href{https://beebom.com/best-latex-editors/}{https://beebom.com/best-latex-editors/} you have a short oviewview of some of them. Feel free to choose the one you like.  
+The word "Kata" in Japanese, which denotes a meticulously planned pattern of martial arts moves meant to be practiced and repeated with the aim of mastering it, is where this platform got its inspiration, as the name suggests.\\ 
+\\
+Students can use the platform to compare themselves to one another while gradually improving little by little.
+Throughout the entire CodeKataBattle experience, students are under the guidance of educators.
 
-Include a subsection for each of the following items\footnote{By the way, what follows is the structure of an itemized list in Latex.}:
-\begin{itemize}
-\item
-Purpose: here we include the goals of the project
-\item
-Scope: here we include an analysis of the world and of the shared phenomena
-\item
-Definitions, Acronyms, Abbreviations
-\item
-Revision history
-\item
-Reference Documents 
-\item
-Document Structure
-\end{itemize}
-Below you see how to define the header for a subsection.
+Educators organize and oversee competitions, and afterward, they grade and award students.
+
+\subsection{Purpose}
+The platform's goal is to provide students with hands-on experience in software development.
+
+By applying their knowledge of one or more programming languages to solve puzzles or create whole products from scratch, users can hone their software development skills. Some test cases should be passed by the finished product.\\
+\\
+In order to consistently improve their code and adhere to the kata's philosophy, the students will compete against one another in teams.
+
+Ultimately, the platform's automated processes or educators assess the students' work, and the most deserving students may also receive special achievement badges.\\
+\\
+For educators and students, the platform ought to offer two different login options.
+
+Students will be able to take part in software development tournaments composed by battles, potentially as teams.
+
+Educators will design battles and tournaments for students instead, and they will also lay out the guidelines for earning badges that will be given to those who fulfill the requirements. Additionally, an educator involved in a tournament is 
+allowed to add additional educators to it, in order to assist with the development of the battles.\\
+\\
+Students and educators can look up and view the profiles of other users on the platform. When a student's profile is displayed, educators and students alike can view the badges that have been accrued.\\
+\\
+The platform will evaluate the code written by the students by automatic revision such as test passed, time of execution, security and realiability. Additionally also the educators could partecipate to the evaluation process of a code
+kata battle of a team of students.\\
+
+\subsubsection{Goals}
+\textbf{Platform Goals}
+\begin{enumerate}[label=$\bullet$ \textbf{GP\arabic*:}]
+    \item \textbf{Allow Users to subscribe to the platform}\\In order to interact with the platform and its Users, Students and Educators have to be allowed to register. The satisfaction of this goal will concent them to be identified.
+    \item \textbf{Allow Educators to create tournaments}\\Battles are fought within a Tournament context, which is created by an Educator. So it is a goal of the platform to allow them in this. 
+    \item \textbf{Allow Educators to invite other educators to manage tournaments}\\Allowing Educators to invite other Educators will empower them to create Battles within the Tournament context. 
+    \item \textbf{Allow Educators to create battles}\\Both Educator that created the Tournament and the ones invited should be allowed to create Battles. 
+    \item \textbf{Allow Educators to define badges}\\Badges are created to gamify the platform and encourage Students to do their best. Educators are allowed to create Badges using different criterias.
+    \item \textbf{Allow Educators to score students}\\In order to make Students conscient about their work Educators are allowed to assign scores on top of the one defined by the platform itself.
+    \item \textbf{Allow Students to get notificated about new tournaments}\\To concent Student to participate, they should be notified of new Tornaments created.
+    \item \textbf{Allow Students to subscribe to the tournament}\\To participate to the platform and being scored Students have to fight in "kata battles", which are defined within Tournament context.
+    \item \textbf{Allow Students to invite other Students to partecipate to a tournament}\\The purpose of the platform is to improve Students' coding skills. This is done even throught teams that Students have to be allowed to autonomously form. To do so, they should be able to search for other Students within the platform.
+\end{enumerate}
+\textbf{User Goals}
+    \begin{enumerate}[label=$\bullet$ \textbf{GU\arabic*:}]
+        \item \textbf{Allow Users to do the login}\\Registered Users to be identified should be allowed to login in the platform.
+        \item \textbf{Allow Users to search tournaments}\\Both Educators, to ask for access to Tournament in order to create Battles, and Students, to join them, Users should be allowed to search for Tournaments.
+        \item \textbf{Allow Users to search for other users}\\To collaborate with other Users, they have to be allowed to search for others, both Educators, to share Tournaments accesses and create Battles within it, and Students, to invite others to a Battle.
+    \end{enumerate}
+\textbf{Student Goals}
+\begin{enumerate}[label=$\bullet$ \textbf{GS\arabic*:}]
+    \item \textbf{Allow Students to compete each other}\\The principle behind the platform is to improve Students' skills, following "Kata Battle" mode. This implies Students to compete with each other on their own or in teams.
+    \item \textbf{Allow Students to be rewarded for special achievement}\\Students should be allowed to receive scores for their work. In addition to this special achievements are rewarded, according to criteria decided by Educators.
+    \item \textbf{Allow Students to form and work in team}\\To compete with each other Students can form teams. Working together they improve their collaboration skills.
+    \item \textbf{Allow Students to have works evaluated}\\To be conscious of the quality of their work, Students have to be allowed to be have their work evaluated.
+\end{enumerate}
+\textbf{Educator Goals}
+\begin{enumerate}[label=$\bullet$ \textbf{GE\arabic*:}]
+    \item \textbf{Allow Educators to create Tournament}\\Battles are created within a Tournament context, which Educators are allowed to create.
+    \item \textbf{Allow Educators to create Code Kata Battle}\\Educators, both the one that created the Tournament and the ones who join it, should be allowed to create Battles, within Students will compete.
+    \item \textbf{Allow Educators to create Badges}\\To reward Students for special achievement, Educators should be allowed to create Badges.
+    \item \textbf{Allow Educators to evaluate Students}\\Scores, on top of the ones computed by the platform itself, can be assigned by the Educator.
+\end{enumerate}
+
 \subsection{Scope}
-... Here you see a subsubsection
-\subsubsection{World Phenomena}
-%what you write here is a comment that is not shown in the final text
+The platform, which will be called CodeKataBattle, will have two user types: educators and students, and it will be reachable via a web server.
+
+Users of all types are able to view each other's profiles, and students' profiles display their earned badges.\\
+\\
+Tournaments can be made by educators, and this involves:
+\begin{enumerate}[label=$\bullet$]
+    \item the educator sets the programming language/s of the tournament
+    \item the educator inserts an outline of the competition and the instructions for the students
+    \item the educator creates the battle/s for the tournament:
+    \begin{itemize}
+        \item the educator optionally can upload a partial code for the battles
+        \item the educator uploads the test cases for the battle
+        \item the educator defines the modality of evaluation and if in this battle will be performed also a manual evaluation
+    \end{itemize}
+    \item the educator optionally can define badges with attached rules
+    \item the educator optionally can add other educators to the tournament to help in manual evaluations
+    \item the educator sets the deadline for subscribe to the tournament
+    \item the educator sets the duration of the tournament
+\end{enumerate}
+Educators optionally, in the tournaments where they are involved, can evaluate code written by the students in the battle.\\
+\\
+The main purpose of a student in the platform is to compete in tournament.\\
+Each student will have the opportunity to explore all the tournaments offered on the platform.
+
+A student could subscribe to a tournament by himself or by an invitation from a colleague. Optionally, during subscription to a tournament, a student can invite other students to join to it together in a team.\\
+\\
+The platform notifies all the participating students that the tournament has begun at the conclusion of the subscription period. The same thing, including the final rank position, at the conclusion of the competition.\\
+\\
+The scores, that students can receive, are split between the battle score for a single code kata battle and the tournament score, which is the total of all the battle scores.
+
+The platform should automatically assess the code that the students wrote and update the battle score after an automatic evaluation; if an educator-performed manual evaluation is available, the platform should also take that into account when calculating the 
+battle score.
+
+In other the platform at the end of the tournament assign to each student that satisfied the requirements, the correspondent badge.\\
+\\
+Code of all battles will be managed on a third party repository manager like "GitHub" or "GitLab", where Educators are able to upload battle code then students to modify it and the platform to run it.
+
+\subsubsection{Phenomena}
+\begin{center}
+    \begin{table}[h]
+        \rowcolors{3}{black!15}{white}
+        \begin{tabularx}{\textwidth}{| c| c| c|}
+            \hline
+            \rowcolor{blue!50}
+            Phenomenon                                                            & Who controls it? & Is shared? \\
+            \hline
+            User wants to improve his software developing skill                   & W                & N          \\
+            Educator wants to create a code kata battle                           & W                & N          \\
+            Educator wants to create a tournament                                 & W                & N          \\
+            Student forks the directory on repository manager platform            & W                & N          \\
+            Student creates a workflow Action on repository manager platform      & W                & N          \\
+            Student push the file on repository manager platform                  & W                & N          \\
+            Student write code                                                    & W                & N          \\
+            User registers to CodeKataBattle                                      & W                & Y          \\
+            User logins in CodeKataBattle                                         & W                & Y          \\
+            User searches for tournaments                                         & W                & Y          \\
+            User searches for users                                               & W                & Y          \\
+            Repository manager platform action workflow notifies CodeKataBattle   & W                & Y          \\
+            Educator creates tournament                                           & W                & Y          \\
+            Educator assigns optional manual evaluated scores to the students     & W                & Y          \\
+            Educator grants access to other educators                             & W                & Y          \\
+            Educator creates battles                                              & W                & Y          \\
+            Educator creates a badge                                              & W                & Y          \\
+            Student invites other student in a team                               & W                & Y          \\
+            Student subscribes to a tournament                                    & W                & Y          \\
+            Student gets notified of new tournament                               & M                & N          \\
+            Student gets notified of being invited to participate in a team       & M                & N          \\
+            Student gets notified of the end of a tournament                      & M                & N          \\
+            Educator gets notified of being invited to manage a tournament        & M                & N          \\
+            Student gets score                                                    & M                & N          \\
+            Student gets badge                                                    & M                & N          \\
+            Educator gets notified about student push                             & M                & N          \\
+            \hline
+        \end{tabularx}
+        \caption{phenomena table}
+    \end{table}
+\end{center}
+
+\subsection{Definitions}
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Platform}\\The complete "Code Kata Battle" platform. This entity is inserted in order to represent system's behaviors in different situations, without explaining in details its implementation or workflow.
+    \item \textbf{User}\\It is the generic User, Educators or Students depending on specific situation. It would be preferred to other definitions to model common behaviors and scenarios within the other two entities.
+    \item \textbf{Student}\\Student is one of the main actors. His/Her scope is to improve its coding skills using the Platform. It will interact with it properly in order to have its work evaluated, to collaborate with other Students and to join Battles.
+    \item \textbf{Educator}\\Educator is the other main actor of the Platform. His/Her scope is to create Tournaments and Battles in which Students can compete
+    \item \textbf{Battle}\\With this entity is described the single challenge Students have to face. It is the center around which all the platform is build, and only through it would be achieved by Students the goal to improve their skills.
+    \item \textbf{Group}\\The entity describes a set of Students, which are working in team on a single Battle, or of Educators, which creates Battles in a Tournament.
+    \item \textbf{Badge}\\With Badges Students are rewarded for special achievements. This entity is introduced to gamify the platform.
+    \item \textbf{Tournament}\\The Tournament is the context within Battles are created. A Tournament can host multiple Battles and represents the topic in which they take place.
+    \item \textbf{Repository manager platform}\\The Repository manager platform is a system which manages all code involved in battles of all students of all tournaments.
+    \item \textbf{Score}\\Through Score the platform and/or an Educator evaluates Student's works. Each Student has its own Score history assigned, visible to other Students and Educators.
+\end{enumerate}
+\subsection{Abbreviations and Acronyms}
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{CKB}\\CodeKataBattle, the name of the Platform.
+    \item \textbf{RMP}\\Repository Manager Platform
+\end{enumerate}
+
+\subsection{Revision History}
+
+\subsection{References}
+
+\subsection{Document Structure}
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Section 1: Introduction}\\
+    A synopsis of the issue and necessary features is provided in this section.\\
+    A list of definitions, acronyms, and abbreviations that appear in this document is also included.\\
+    Lastly, there is the document's changelog, which includes the list of revisions and their content, and the document structure, which outlines the primary goals of each section.
+    \item \textbf{Section 2: Overall Description}\\
+
+\end{enumerate}
+
+\newpage
