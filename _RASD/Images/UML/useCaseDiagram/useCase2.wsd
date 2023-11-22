@@ -1,0 +1,44 @@
+@startuml
+skinparam linetype polyline
+left to right direction
+
+:User: <<Human>>
+:Team:<<Human>>
+rectangle Users{
+    :Student:<<Human>>
+    :Educator:<<Human>>
+}
+
+rectangle Applications{
+    :CodeKataBattle: as CKB <<Application>>
+    :RMP: <<Application>>
+}
+usecase "Participate to a Tournament" as UC2
+usecase "Create a Tournament" as UC4
+usecase "Work on a Battle" as UC6
+usecase "Evaluates code" as UC7
+usecase "Consult rank" as UC8
+usecase "Search another User" as UC9
+
+
+Users --|> User: extends
+Student --> UC2
+Educator --> UC4
+UC2 --> CKB
+UC4 --> CKB
+Team --> UC6
+Student ...> Team : form
+User -> UC8
+User -> UC9
+UC9 -> CKB
+UC8 --> CKB
+UC6 ---> RMP: pushes code to
+
+CKB ---> UC8: returns the current rank
+UC8 -> User
+CKB --> RMP: pulls code from
+CKB --> UC7
+UC7 ...> UC8
+
+
+@enduml
