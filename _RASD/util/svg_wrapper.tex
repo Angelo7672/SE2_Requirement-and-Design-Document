@@ -1,9 +1,15 @@
 % arguments:
-% arg1 = svg path
+% arg1 = svg path, arg2 = size
 \newcommand{\usesvg}[1]{
-\sffamily
-\scriptsize
-\includesvg{#1}
-\normalsize
-\sfdefault
+\includesvg[inkscapelatex=false, width=0.8\textwidth, height=0.8\textheight,scale=0.25]{#1}
+}
+
+
+% arg1 = svg file path, arg2 = caption
+\newcommand{\useSvgWithCaption}[2]{
+    \begin{figure}[h]
+        \centering
+        \usesvg{#1}
+        \caption{#2}
+    \end{figure}
 }
