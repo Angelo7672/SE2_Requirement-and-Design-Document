@@ -1,15 +1,13 @@
 @startuml
-scale 1024 width
-scale 768 height
 
-skinparam linetype ortho
+
 
 state TOURNAMENT{
-    [*] --> CREATED: Creation
+    [*] -right-> CREATED: creation
 
     CREATED: - name set
 
-    CREATED --> DEFINED: setting
+    CREATED -right-> DEFINED: setting
 
     DEFINED: - programming language/s set
     DEFINED: - outline available
@@ -19,13 +17,13 @@ state TOURNAMENT{
 
     state c <<choice>>
 
-    DEFINED --> c
+    DEFINED -down-> c
 
-    c --> EDUCATORADDED: adding educator
+    c -down---> EDUCATORADDED: adding educator
 
     EDUCATORADDED: - new educator in the tournament
 
-    c --> BATTLECREATED: creating battle
+    c -left-> BATTLECREATED: creating battle
 
     BATTLECREATED: - description available
     BATTLECREATED: - code available
@@ -33,21 +31,21 @@ state TOURNAMENT{
     BATTLECREATED: - automatic evaluation parameter defined
     BATTLECREATED: - [optional] manual evaluation parameter defined
 
-    c --> BADGECREATED: defining badge
+    c -right-> BADGECREATED: defining badge
 
     BADGECREATED: - name set
     BADGECREATED: - rule/s defined
 
-    EDUCATORADDED --> BATTLECREATED: creating battle
-    BATTLECREATED --> EDUCATORADDED: adding educator
-    EDUCATORADDED --> BADGECREATED: defining badge
-    BADGECREATED --> EDUCATORADDED: adding educator
-    BATTLECREATED --> BADGECREATED: defining badge
-    BADGECREATED --> BATTLECREATED: creating battle
+    EDUCATORADDED -left-> BATTLECREATED: creating battle
+    BATTLECREATED -right-> EDUCATORADDED: adding educator
+    EDUCATORADDED -right-> BADGECREATED: defining badge
+    BADGECREATED -left-> EDUCATORADDED: adding educator
+    BATTLECREATED -right-> BADGECREATED: defining badge
+    BADGECREATED -left-> BATTLECREATED: creating battle
 
-    EDUCATORADDED --> ONLINE: tournament publication
-    BATTLECREATED --> ONLINE: tournament publication
-    BADGECREATED --> ONLINE: tournament publication
+    EDUCATORADDED -down-> ONLINE: tournament publication
+    BATTLECREATED -down-> ONLINE: tournament publication
+    BADGECREATED -down-> ONLINE: tournament publication
 
     ONLINE: - students subscribe to the tournament in teams
 
@@ -71,7 +69,7 @@ state TOURNAMENT{
         MANUALEVALUATED: - an educator evaluate the code written
 
         MANUALEVALUATED --> ACCESSIBLE
-        ACCESSIBLE --> CLOSED: deadline reached
+        ACCESSIBLE -right-> CLOSED: deadline reached
 
         CLOSED: - it is no more possible modify the code
         CLOSED: - the battle score is ultimated
@@ -79,13 +77,13 @@ state TOURNAMENT{
         CLOSED --> [*]
     }
 
-    BATTLE --> OFFLINE: deadline reached
+    BATTLE -right-> OFFLINE: deadline reached
 
     OFFLINE: - it is no more possible complete battles
     OFFLINE: - tournament score and rank are ultimated
     OFFLINE: - badges are assigned automatically
 
-    OFFLINE --> [*]
+    OFFLINE -right-> [*]
 }
 
 @enduml
