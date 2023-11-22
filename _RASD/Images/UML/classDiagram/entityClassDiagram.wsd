@@ -1,8 +1,4 @@
 @startuml entityClassDiagram
-
-scale 1024 width
-scale 768 height
-
 skinparam linetype polyline
 'Hide circles defaultly present on the classes
 

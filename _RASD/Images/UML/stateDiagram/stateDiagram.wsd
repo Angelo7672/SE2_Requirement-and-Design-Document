@@ -1,7 +1,5 @@
 @startuml
 
-
-
 state TOURNAMENT{
     [*] -right-> CREATED: creation
 
