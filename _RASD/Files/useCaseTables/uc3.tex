@@ -1,0 +1,53 @@
+\paragraph*{UC3}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & User invites other user to collaborate \\ 
+        Actors & Inviting user, invited user \\ 
+        Entry Condition & Inviting user knows email of invited user \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Inviting user clicks on "collaborate" button\\
+            2& System shows inviting user a form to fill with the email of the user he wants to invite\\
+            3& Inviting user clicks submit button\\
+            4& System sends invite e-mail notification to invited user\\
+            5& Invited user clicks on "Accept" button to accept invitation\\
+            6& Invited user clicks on "Decline" button to decline invitation, or ignores it\\
+        \end{tabu} \\
+        Exit Condition & If invited user accepts invitation, invited user can collaborate with inviting one, else as nothing happened\\
+        Exception & \begin{tabu}{X}
+            Invited user e-mail address can be: non existent, non registered, of user of different role. In this case Inviting user get's notified of the error via e-mail.
+        \end{tabu}  \\
+        Special Requirement & - \\ 
+    \end{tabu}
+\end{center}
+
+\paragraph*{UC3a}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Educator invites other educator to co-manage tournament\\ 
+        Actors & Inviting educator, invited educator \\ 
+        Entry Condition & Inviting educator is managing a tournament\\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Educator is in the managing page of the tournament\\
+            & Event flow follows father use case
+        \end{tabu} \\
+        Exit Condition & Invited Educator can manage the tournament\\
+        Exception & Same as UC3\\
+        Special Requirement & - \\ 
+    \end{tabu}
+\end{center}
+
+
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Student invites other student to participate in the tournament as a Team \\ 
+        Actors & Inviting student, invited student\\ 
+        Entry Condition & Inviting student is part of a team subscribed to a tournament \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Student is in the tournament detail page\\
+            & Follows UC3's event flow
+        \end{tabu} \\
+        Exit Condition & If incited student accepts invitation, invited user is part of inviting user's team\\
+        Exception & Same as UC3\\
+        Special Requirement & - \\ 
+    \end{tabu}
+\end{center}

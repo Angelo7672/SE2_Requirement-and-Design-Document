@@ -1,0 +1,51 @@
+\paragraph*{UC1}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & User signs in to the platfxxxxorm \\ 
+        Actors & User \\ 
+        Entry Condition & User has a valid e-mail address and valid RMP handle\\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& At Homepage click on "Sign in" button\\
+            2& System shows user the registration form\\
+            3& User fills form with data, caring to choose his role accrodingly\\
+            4& User clicks on "Submit" button \\
+            5& Platform saves submitted informations\\
+            6& latform sends e-mail confirmation link to user\\
+            7& User confirms e-mail by clicking confirmation e-mail\\
+        \end{tabu} \\
+        Exit Condition & User correctly registered in the platform, User needs to login to use the platform\\
+        Exception & User does not confirm e-mail address, Saved data will be deleted after some time.\\
+        Special Requirement & - \\ 
+    \end{tabu}
+\end{center}
+
+\paragraph*{UC1a}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Student signes in to the platform \\ 
+        Actors & Student \\ 
+        Entry Condition & Same as UC1 \\ 
+        Event Flow & Same as UC1 with exception of \newline \begin{tabu}{X X[50]}
+            3& Student choses student role while filling in form\\
+        \end{tabu} \\
+        Exit Condition & Same as UC1\\
+        Exception & Same as UC1\\
+        Special Requirement & Same as UC1\\ 
+    \end{tabu}
+\end{center}
+
+\paragraph*{UC1b}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Educator signes in to the platform \\ 
+        Actors & Educator \\ 
+        Entry Condition & Same as UC1 \\ 
+        Event Flow & Same as UC1 with exception of \newline \begin{tabu}{X X[50]}
+            3& Educator choses educator role while filling in form\\
+        \end{tabu} \\
+        Exit Condition & Same as UC1\\
+        Exception & Same as UC1\\
+        Special Requirement & Same as UC1\\ 
+    \end{tabu}
+\end{center}
+
