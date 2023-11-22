@@ -1,0 +1,33 @@
+@startuml
+skinparam linetype polyline
+left to right direction
+:User: <<Human>>
+:Student:<<Human>>
+:Educator:<<Human>>
+:Team:<<Human>>
+:RMP:<<Application>>
+:CodeKataBattle: as CKB <<Application>>
+usecase "Sign in" as UC1
+usecase "Sign in as Student" as UC1A
+usecase "Sign in as Educator" as UC1B
+usecase "Participate to a Tournament" as UC2
+usecase "Invite a User" as UC3
+usecase "Invite a friend to a Tournament" as UC3A
+usecase "Invite a colleage to a Tournament" as UC3B
+usecase "Create a Tournament" as UC4
+usecase "Work on a Battle" as UC6
+usecase "Evaluates code" as UC7
+usecase "Consult rank" as UC8
+usecase "Search another User" as UC9
+
+User -|> Student: extends
+User -|> Educator: extends
+Team -> Student: composed
+Educator -> UC1B
+Student -> UC1A
+UC1B -> UC1
+UC1A -> UC1
+UC1 -> CKB
+
+
+@enduml
