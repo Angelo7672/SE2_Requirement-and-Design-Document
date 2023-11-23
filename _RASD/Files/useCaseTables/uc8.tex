@@ -1,0 +1,18 @@
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Team gets code evaluated \\ 
+        Actors & RMP \\ 
+        Entry Condition & Team student upload update to RMP \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& RMP notifies KCB platform of update to repositiory\\
+            2& Platform creates new test envoroment instance\\
+            3& Platform inserts Team code inside newly created test enviroment\\
+            4& Platfrom runs tests inside enviroment\\
+            5& Test ends with score, score gets assigned to corresponding team\\
+            6& Platform updates team's torunament score\\
+        \end{tabu} \\
+        Exit Condition & Users are able to see newly created score inside battle leaderboards\\
+        Exception & Repository is not associated to any team of the tournament: tests are not run\\
+        Special Requirement & Automatic action is run shortly after new push to the RMP\\ 
+    \end{tabu}
+\end{center}
