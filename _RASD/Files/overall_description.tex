@@ -22,11 +22,23 @@ To help these people the CodeKataBattle platform aims to be a place where studen
 \useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagram.svg}{0.5}{0.5}{ciao}
 
 \subsubsection{Repository Manager Platform}
-The Repository Manager Platform keeps the code of all battles of all tournaments of all teams. This can be a first or third party system that has to have some characteristic to be suitable to work on the CKB platform.\\
-The repository is a folder in which code is stored and managed by a version control system (like Git) in which the code is saved via commits, special "save" operation of multiple files that are asssociated with comments and can be reverted as needed.\\
-The repository manager platform is an online platform on which users can upload code for sharing purposes, this can be GitHub or GitLab (the two most famous), and has to have two main functionalities:\\
-    an API (Application Programming Interface), technically needed for the CKB platform to pull (download, get) code to be analyzed and scored.\\
-    the possibility of running automatic actions (like GitHub's Workflows) that trigger once new changes are pushed to the RMP platform, needed to signal the platform to run tests on the code.
+The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:\\
+\begin{enumerate}
+    \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.
+    \item \textbf{Repository} A folder in which code is stored and managed by a version control system (VCS).
+    \item \textbf{Action} code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
+    \item \textbf{Commit} Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
+    \item \textbf{Push} Act in which commits are uploaded to the RMP Platform.
+    \item \textbf{Fork} Act of duplicating repositories created by others in a personal one
+\end{enumerate}
+RMP can be a first or third party system that is responsible of storing all Team code related to all battles of all torunaments, the code will be obtained only for test purposes and discarded shortly after score assignment. 
+To be useful to the platform the RMP needs to have some necessary functionalities like:
+\begin{enumerate}
+    \item RMP users can search for other RMP users by handle or e-mail
+    \item RMP users can collaborate on shared repositories
+    \item RMP allows to run actions and these can work with KCB platform's API, techincally needed to signal the platform of new pushes on the repository.
+    \item RMP has to 
+\end{enumerate}
 \paragraph{State diagram}
 \useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{1.0}{1.0}{Hallo}
 The state diagram in figure describe the various states of the tournament and the battle.
