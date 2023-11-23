@@ -1,0 +1,58 @@
+@startuml
+autonumber
+actor Student as S
+participant CKBWebApp as A
+entity CKBPlatform as P
+participant EmailProvider as E
+
+S--->A: logged in Student opens the WebApp
+
+A<---P: Student's infos
+deactivate P
+note left
+    the home page includes Tournament list
+end note
+S<---A: Student's home page
+activate A
+S--->A: scroll available Tournaments
+S<---A: more Tournaments
+S--->A: clicks the "See more" Button
+S<---A: more Tournaments displayed
+S--->A: clicks on Tournament entry to see details
+A--->P: requires more information about that specific Tournament
+activate P
+A<---P: Tournament's infos
+deactivate P
+S<---A: Tournament's info displayed
+deactivate A
+group if not interested
+    S--->A: clicks to hide details
+    activate A
+    S<---A: shows home page
+    deactivate A
+else 
+    S--->A: clicks on "Subscribe" button
+    activate A
+    A--->P: subscription request
+    activate P
+    group if Subscription deadline is passed
+        P--->A: error message
+        deactivate P
+        S<--A: error message
+        deactivate A
+    else
+        activate P
+        P--->P: creates Team with a single Student
+        P--->E: sends confirmation Email to the Student
+        deactivate P
+        activate E
+        A<---P: receive confirmation of subscription
+        activate A
+        E--->S: delivers Email to the Student
+        deactivate E
+        S--->A: access his/her home page
+        S<---A: shows confirmation message for the subscription
+        deactivate A
+    end
+end
+@enduml
