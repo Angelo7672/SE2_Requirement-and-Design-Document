@@ -1,0 +1,91 @@
+@startuml
+
+autonumber
+
+actor Alice
+participant EmailProvider as Email
+participant CKBWebApp as App
+entity CKBPlaform as Platform
+
+activate Alice
+Alice -> App: Access to platform website
+activate App
+App -> Platform: request login/sign in page
+activate Platform
+Platform -> App: login/sign in page
+deactivate Platform
+App -> Alice: login/sign in page
+Alice -> App: select sign in
+App -> Platform: request sign in page
+activate Platform
+Platform -> App: sign in page
+deactivate Platform
+App -> Alice: sign in page
+Alice -> App: select student
+App -> Platform: request student sign in page
+activate Platform
+Platform -> App: student sign in page
+deactivate Platform
+App -> Alice: student sign in page
+
+group Sign-in insert user info
+    Alice -> App: give name, surname, e-mail and RMP handle
+    App -> Platform: sign in name, surname, e-mail and RMP handle
+    activate Platform
+else e-mail already in use
+    Platform -> App: email already in use
+    App -> Alice: email already in use
+else e-mail accepted
+    Platform -> App: create a password
+    deactivate Platform
+    App -> Alice: create a password
+    Alice -> App: new password
+    App -> Platform: new password
+    activate Platform
+    Platform -> App: password accepted. Confirm registration on email submitted
+    Platform -> Email: send confirmation email
+    deactivate Platform
+    Email -> Alice: confirmation link
+    App -> Alice: password accepted. Confirm registration on email submitted
+    Alice -> Alice: click confirmation link
+end
+
+Alice -> App: request login page
+App -> Platform: request login page
+activate Platform
+Platform -> App: login page
+deactivate Platform
+App -> Alice: login page
+
+group Login
+    Alice -> App: email and password
+    App -> Platform: email and password
+    activate Platform
+else credential accepted
+    Platform -> App: credential accepted
+    App -> Alice: credential accepted
+else email/password not valid
+    Platform -> App: email/password not valid
+    deactivate Platform
+    App -> Alice: email/password not valid
+end
+
+Alice -> App: request home page
+App -> Platform: request home page
+activate Platform
+Platform -> App: home page
+deactivate Platform
+note right
+    in the home page are shown the lates tournaments
+end note
+App -> Alice: home page
+deactivate App
+deactivate Alice
+
+== A new tournament is created ==
+Platform -> Email: new tournament available + link
+activate Email
+Email -> Alice: new tournament available + link
+deactivate Email
+
+@enduml

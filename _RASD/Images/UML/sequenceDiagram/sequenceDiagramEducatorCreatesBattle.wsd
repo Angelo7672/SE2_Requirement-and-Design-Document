@@ -1,0 +1,43 @@
+@startuml
+
+autonumber
+
+actor Educator
+participant EmailProvider as Email
+participant CKBWebApp as App
+entity CKBPlaform as Platform
+
+activate Educator
+Educator -> App: Request tournament management page
+activate App
+App -> Platform: Request tournament management page
+activate Platform
+Platform -> App: Tournament management page
+deactivate Platform
+App -> Educator: Tournament management page
+deactivate App
+Educator -> App: Add battle
+activate App
+App -> Platform: Add battle
+activate Platform
+Platform -> App: Battle creation form
+deactivate Platform
+App -> Educator: Battle creation form
+deactivate App
+Educator -> App: Battle creation form filled with name, overview and RMP repo link
+activate App
+App -> Platform: Battle creation form filled with name, overview and RMP repo link
+activate Platform
+Platform -> Platform: Battle registered to tournament
+Platform -> Email: Battle creation confermation
+activate Email
+Platform -> App: Battle created
+deactivate Platform
+Email -> Educator: Battle creation confermation
+deactivate Email
+App -> Educator: Battle created
+deactivate App
+deactivate Educator
+
+
+@enduml
