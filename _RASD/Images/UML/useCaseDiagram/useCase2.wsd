@@ -34,7 +34,7 @@ UC9 -> CKB
 UC8 --> CKB
 UC6 ---> RMP: pushes code to
 
-CKB ---> UC8: returns the current rank
+CKB -> UC8: returns the current rank
 UC8 -> User
 CKB --> RMP: pulls code from
 CKB --> UC7

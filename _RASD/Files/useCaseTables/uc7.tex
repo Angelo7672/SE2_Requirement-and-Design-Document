@@ -1,0 +1,17 @@
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Student gets awarded with badge\\ 
+        Actors & Student \\ 
+        Entry Condition & Student is part of a team, and has contributed to team's repository \newline Tournament is ended \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& - System runs badge tests on all repositories\\
+            2& - Badge tests give a list of RMP handles and e-mail addresses to which assign corresponding badge\\
+            1& - System searches for corresponding accounts\\
+            1& - System assigns badges to each user found\\
+            1& - System sends e-mail notification to chosen students\\
+        \end{tabu} \\
+        Exit Condition & Random platform user can see badge in the spefific student profile page\\
+        Exception & Commit user data is wrong or does not correspond to CKB platform user: badge is not assigned to anyone \\
+        Special Requirement & Commit user data is consistent with CKB platform user data \\ 
+    \end{tabu}
+\end{center}

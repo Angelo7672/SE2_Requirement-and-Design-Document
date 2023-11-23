@@ -1,0 +1,20 @@
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Educator creates Badge \\ 
+        Actors & Educator \\ 
+        Entry Condition & Educator is managing a tournament \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Educator is in tournament management page\\
+            2& Educator clicks on "Add badge" button\\
+            3& Platform shows badge creation form to educator\\
+            4& Educator fills the form with badge image, description and test script\\
+            5& Educator clicks on "Submit" button\\
+            6& Platform checks badge test correctness\\
+            7& Platform registers badge creation\\
+            8& Platform sends a confirmation e-mail to educator\\
+        \end{tabu} \\
+        Exit Condition & Every user is able to see the existence of the badge in the tournament detail page\\
+        Exception & If test script isn't correct, badge information is dropped and a notification e-mail is sent to the educator describing the issue\\
+        Special Requirement & - \\ 
+    \end{tabu}
+\end{center}
