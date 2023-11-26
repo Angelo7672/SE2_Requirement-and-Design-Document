@@ -1,6 +1,10 @@
 @startuml
 
 state TOURNAMENT{
+    state "EDUCATOR ADDED" as EDUCATORADDED
+    state "BATTLE CREATED" as BATTLECREATED
+    state "BADGE CREATED" as BADGECREATED
+
     [*] -right-> CREATED: creation
 
     CREATED: - name set
@@ -55,6 +59,8 @@ state TOURNAMENT{
     STARTED --> BATTLE: battles online
 
     state BATTLE{
+        state "MANUAL EVALUATED" as MANUALEVALUATED
+
         [*] --> ACCESSIBLE: RMP repo online
 
         ACCESSIBLE: - students do the fork of the repo

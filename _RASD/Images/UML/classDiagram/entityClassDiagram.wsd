@@ -25,25 +25,25 @@ hide Score circle
 hide Team circle
 
 'Define relations>
-Platform "1" --up-> "1" RMP : associated to
+Battle "1" -right-> "1" RMP : associated to
 
-Platform "1" --right--> "0...n" Tournament : containts
+Platform "1" -right-> "0...n" Tournament : contains
 
-Tournament "1" o-down-- "0...n" Battle : belongs to 
+Tournament "1" o-down- "1...n" Battle : belongs to 
 
-Platform "1" -down--> "0...n" User
+Platform "1" -down-> "0...n" User : has
 
-User <|--down-- Student
+User <|-- Student
 
-User <|--down-- Educator
+User <|-- Educator
 
-Badge "0...n" --left--> "1" Student : wins
+Badge "0...n" <-left- "0...n" Student : achieve
 
-Educator --left--> "1" Badge : creates
+Educator "1" -left-> "0...n" Badge : creates
 
 Score "1" -down--> "1" Team : assigned to
 
-Student "1...n" o--up--> "1" Team : belongs to
+Student "1...n" -left-o "1" Team : belongs to
 
-Platform "1" --left--> "1" Score : calculates
+Platform "1" -left-> "1" Score : calculates
 @enduml
