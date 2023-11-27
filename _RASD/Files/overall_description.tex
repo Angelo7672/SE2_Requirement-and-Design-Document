@@ -1,6 +1,26 @@
 This section describes the perspective, functionalities, characteristics, and domain assumptions of CBK, which is a complete system.
 
 A RMP is needed, but all the modules needed for its execution are available.
+\\
+
+\subsubsection{Repository Manager Platform}
+The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:
+\begin{enumerate}
+    \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.
+    \item \textbf{Repository} A folder in which code is stored and managed by a version control system (VCS).
+    \item \textbf{Action} code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
+    \item \textbf{Commit} Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
+    \item \textbf{Push} Act in which commits are uploaded to the RMP Platform.
+    \item \textbf{Fork} Act of duplicating repositories created by others in a personal one
+\end{enumerate}
+RMP can be a first or third party system that is responsible for storing all Team code related to all battles of all tournaments, the code will be obtained only for test purposes and discarded shortly after score assignment. 
+To be useful to the platform the RMP needs to have some necessary functionalities like:
+\begin{enumerate}
+    \item RMP users can search for other RMP users by handle or e-mail
+    \item RMP users can collaborate on shared repositories
+    \item RMP allows running actions and these can work with KCB platform's API, technically needed to signal the platform of new pushes on the repository.
+    \item RMP has to 
+\end{enumerate}
 
 \subsection{Product Perspective}
 
@@ -46,6 +66,8 @@ A RMP is needed, but all the modules needed for its execution are available.
 
 \subsection{Further Details On The Shared Phenomena}
 
+Ne i tutor, ne quelli di cui ho mandato il documento sulg ruppo hanno messo questa parte
+
 \newpage
 
 \subsubsection{Domain Model}
@@ -54,10 +76,14 @@ A RMP is needed, but all the modules needed for its execution are available.
 This is an illustration of a high-level UML. The primary classes are described, along with the relationships that exist between them.
 \useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagram.svg}{0.65}{0.65}{High-level UML diagram with main classes}
 
+Forse e' ancora un scarno e manca l'API. Team ed educator vanno attacati a tournament?
+
+\newpage 
+
 \paragraph{State diagram}
 The different stages of the tournament and the battle are depicted in the state diagram in the figure.
-\newpage 
 \useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{1.0}{1.0}{State Diagram of the tournament and the battle}
+
 \newpage
 
 \subsection{Product Functions}
@@ -77,8 +103,15 @@ From the previous scenarios and the introduction above follow the Requirements.
     \item The platform interacts properly with different RMPs to acquire latest versions of code uploaded by related Teams. 
     \item The platform should be able to manage multiple requests at the same time
 \end{enumerate}
-\subsubsection{Create a Tournament}
-Only educators are able to use this function.\\
+
+\subsubsection{User Functions}
+
+\paragraph{Search for other user}
+Every user subscribed to the platform, can search other users by name in the search bar. If the user searched is a student, on his profile page are shown also the badge achieved.
+
+\subsubsection{Educator Functions}
+
+\paragraph{Create a Tournament}
 The page where the tournament creation is displayed is accessed by clicking a specific button on the homepage. 
 
 There, educators can enter the tournament's name, description, programming language/s, minimum and maximum number of students per team, subscription deadline, and duration.\\ 
@@ -87,8 +120,7 @@ After the educator clicks the "Create tournament" button, students are notified 
 When the deadline subscription is reached, the tournament begin.
 %\useSvgWithCaption{./Images/BPMN/createTournament.svg}{1.0}{1.0}{BPMN diagram of the creation of a tournament}
 
-\subsection{Create a Battle}
-Only educators are able to use this function.\\
+\paragraph{Create a Battle}
 In the dedicated manage page that is provided to the educators involved in a specific tournament, there is a "Create battle" button that an educator can use to create battles.
 
 After that the educator click on that button, he inserts in the battle creation page the name, a description, the link to the RMP directory (the RMP directory contains all the test cases of the battle
@@ -96,29 +128,54 @@ and in some case also some programming code already available) and set how the b
 the quality level of the sources, and optionally he could designate some points also to the manual evaluation. 
 
 In any case the sum of the points that a team could achieve from all this parameter must be 100.
-\useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a battle}
+%\useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a battle}
 
+\paragraph{Add an educator to a tournament}
+An educator can add another educator to a tournament once he is on the appropriate management tournament page. The educator's addition will support the manual assessment of the students' code.
+%\useSvgWithCaption{./Images/BPMN/addEducator.svg}{1.0}{1.0}{BPMN diagram of the addition of a new educator to the tournament}
 
-\subsubsection{Repository Manager Platform}
-The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:\\
-\begin{enumerate}
-    \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.
-    \item \textbf{Repository} A folder in which code is stored and managed by a version control system (VCS).
-    \item \textbf{Action} code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
-    \item \textbf{Commit} Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
-    \item \textbf{Push} Act in which commits are uploaded to the RMP Platform.
-    \item \textbf{Fork} Act of duplicating repositories created by others in a personal one
-\end{enumerate}
-RMP can be a first or third party system that is responsible of storing all Team code related to all battles of all torunaments, the code will be obtained only for test purposes and discarded shortly after score assignment. 
-To be useful to the platform the RMP needs to have some necessary functionalities like:
-\begin{enumerate}
-    \item RMP users can search for other RMP users by handle or e-mail
-    \item RMP users can collaborate on shared repositories
-    \item RMP allows to run actions and these can work with KCB platform's API, techincally needed to signal the platform of new pushes on the repository.
-    \item RMP has to 
-\end{enumerate}
+\paragraph{Create a badge}
+The tournament management page allows an educator to make a badge. To accomplish this, he must click the "Create a badge" button. This will open a creation form, which the educator must fill out with the name of the badge and the rule 
+or rules that the students must follow in order to receive the badge.
+%\useSvgWithCaption{./Images/BPMN/createBadge.svg}{1.0}{1.0}{BPMN diagram of the creation of a badge}
+
+\subsubsection{Student Functions}
+
+\paragraph{Search and subscribe to a tournament}
+A student can search for tournaments on the platform from his homepage. He can view the most recent tournaments added or search for them by name or programming language.
+
+He can subscribe to a tournament after selecting one, and each tournament has a minimum and maximum number of students signed up for each team. While it is occasionally possible to compete alone, one of CKB's goals is to teach 
+students how to write code in a team. As a result, students will most likely join a team when they subscribe to the tournament, and it's possible that he will invite some of his friends to join a team that he will name during the 
+subscription process.
+
+\paragraph{Accept an invitation from another student}
+A student can join to a tournament by an invitation of another student and compete together in a team.
+
+\paragraph{Complete a battle}
+A student can finish battles by clicking on the button of a particular battle from the tournament page once he has subscribed to it. Once the RMP directory has been configured with the fork and workflow action, he can write code 
+locally to pass the test cases that are included in the battle repository. The platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the battle score, that the student 
+can view from the battle page, each time he pushes code into the repository. Optionally, an educator might evaluate the written code as well.
 
 \subsection{User Characteristics}
+
+\subsubsection{User}
+A user is a normal person who intend to subscribe to CKB. It is able to access to the platform by web app from any type of device with an internet connection.
+
+Every user subscribed to the platform is able to search for other users using the search bar.
+
+\subsubsection{Educator}
+An educator is a user whose job it is to provide students with rewards and practice materials for software development.
+
+He designs coding battles and software development tournaments that simulate actual IT case problems for students. In addition, he evaluates their work optionally and creates a special badge for students who successfully complete 
+specific tasks.
+
+\subsubsection{Student}
+A subscriber to CKB who wants to hone his skills in one or more programming languages or who wants to practice developing software in a team is identified as a student.
+
+He can use the homepage to browse tournaments and subscribe to them, but he may also want to use the search bar to look up tournaments by name or just look them up by programming language. He has the option to invite other students
+to join him in a team that he will name in the subscription, or he can accept invitations to participate in tournaments.
+
+His team will be ranked in the tournament according to the total battle score they earn during the coding battle phase of the tournament.
 
 \subsection{Assumptions, Dependencies and Constraints}
 
@@ -130,14 +187,14 @@ To be useful to the platform the RMP needs to have some necessary functionalitie
     \item User has a functioning internet connection
     \item User can locally work on project files
     \item User use platform ethically
-    \item Educators correctly set the repositiory for each battle
-    \item Educators create tournaments adhequate for the platform
+    \item Educators correctly set the repository for each battle
+    \item Educators create tournaments adequate for the platform
     \item Educators allow Students to fork battle repository
     \item Teams fork repository once for battle
     \item Teams work on their forked repositories
-    \item Students don't allow students out of their team access to modify code in their repositiory
+    \item Students don't allow students out of their team access to modify code in their repository
     \item Students allow tournament educators access to their team repository
-    \item Teams declare coherent liks to their battle repositories
+    \item Teams declare coherent links to their battle repositories
     \item RMP is able to notify the platform once every push
     \item RMP is able to reliably store battle source code
     \item RMP API is accessible to third party applications
@@ -146,11 +203,13 @@ To be useful to the platform the RMP needs to have some necessary functionalitie
 
 \subsubsection{Dependencies}
 
+E' qui che dobbiamo parlare di RMP e dire che ci deve essere?
+
 \subsubsection{Constraints}
 \paragraph{Security Constraints}
-Given her nature, this platform is more vulnerable to security attacks then other ones. For this reason, especially in battle code evaluation, the platform needs to implement state of the art security policies in order to protect user data and safety.
+Given her nature, this platform is more vulnerable to security attacks than other ones. For this reason, especially in battle code evaluation, the platform needs to implement state of the art security policies in order to protect user data and safety.
 \paragraph{Privacy Polices}
-Personal user data and storic user data shall be stored and used only for legitimate use internal to the platform. Public to the platform user data has to be accessible only via the platfrm. Finally, none of the user data has to be used for commercial purposes and it's use has to be done in compliance with, to the user, local privacy policies. 
+Personal user data and storic user data shall be stored and used only for legitimate use internal to the platform. Public to the platform user data has to be accessible only via the platform. Finally, none of the user data has to be used for commercial purposes, and its use has to be done in compliance with, to the user, local privacy policies. 
 \paragraph{Platform Limitations}
 User is required to use internet connection to access the platform, download code repository and upload code for evaluation. Out of these actions, Users can work on battles locally without the need of internet connections, if not specifically stated otherwise in the battle description.\\
 Battle computational size and complexity has to be sized in order to be feasible to be coded and executed locally by students.\\
