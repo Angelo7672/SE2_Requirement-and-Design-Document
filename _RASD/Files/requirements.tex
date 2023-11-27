@@ -1,5 +1,3 @@
-\subsection{Use Cases}
-\input{Files/useCaseTables/useCaseTables}
 
 \subsection{External Interface Requirements}
 
@@ -14,21 +12,8 @@ Comunication Interfaces needed are the one necessary to access the internet. So 
 
 
 \subsection{Functional Requirements}
-\begin{enumerate}[label=$\bullet$ \textbf{R\arabic*:}]
-    \item The platform allows Users to register to the platform itself either as Student either Educator.
-    \item The platform allows registered Students to join a Battle.
-    \item The platform allows registered Students to form Teams.
-    \item The platform allows registered Students to invite other Students to join a Team.
-    \item The platform allows registerd Educators to create Tournaments.
-    \item The platform allows registered Educators to create Battles.
-    \item The platform allows registered Educators to create Badges.
-    \item The plaftorm assigns a Score to Teams' work.
-    \item The platform provides a Teams' ranking within a Tournament context.
-    \item The plaform allows registered Educators to invite other Educators to join a Tournament.
-    \item The platform allows Users to search for other Users.
-    \item The platform interacts properly with different RMPs to acquire latest versions of code uploaded by related Teams. 
-    \item The platform should be able to manage multiple requests at the same time
-\end{enumerate}
+Here follow Use Cases.
+\input{Files/useCaseTables/useCaseTables}
 \subsection{Performance Requirements}
 The platfrom, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all the same time. So, in order to satisfy all Requirements defined above, providing a good time response for each tasks, the Platform should have good time performance. Being a Web App, this implies a high concurrent programming implementation, to manage multiple requests at the same time, and a rapid related Data Storage System. 
 \subsection{Design Constraints}

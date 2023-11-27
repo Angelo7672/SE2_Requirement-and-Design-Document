@@ -37,6 +37,11 @@ A RMP is needed, but all the modules needed for its execution are available.
     of the tournament, on which he can see the leaderboard where he can find the overall tournament score of the team. Angelo can also check specific battles visiting their specific page where the related battle leaderboard is shown.
     \item \textbf{User wants to check out other user's profile}\\ Michael, a user of the platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other users 
     via a specific bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: user type, name, surname, RMP handle and badges.
+    \item \textbf{Educator wants to create a Battle}\\Jude is an Educator who manages a Tournament. Now she wants to challange her Students proposing them a Battle. Opened the CKB Web App, in her profile she reaches the page with 
+    the Tournaments she manages. Then, selected the one in which Jude wants to create a Battle, clicks on the "Create Battle" button. This brings her in a form to fill with the name of the Battle and the Students' RMP she wants to invite.
+    Completed the form, she clicks on the "Submit" button. Now, verified all information by the system, the new Battle is created.
+    \item \textbf{Educator wants to create a Badge}\\Beniamino is an Educator who wants to create a Badge for a Tournament he manages. Opend CKB's Web App, he accesses by his home page the one with the list of managed Tournaments.
+    He selects the one for which he intended to create the Badge and clicks "Add Badge" button. A form is presented to Beniamino who fills it with an image, a description and the test script. Submitted the form, after the routine system checks, the Badge is created.
 \end{enumerate}
 
 \subsection{Further Details On The Shared Phenomena}
@@ -56,7 +61,22 @@ The different stages of the tournament and the battle are depicted in the state 
 \newpage
 
 \subsection{Product Functions}
-
+From the previous scenarios and the introduction above follow the Requirements.
+\begin{enumerate}[label=$\bullet$ \textbf{R\arabic*:}]
+    \item The platform allows Users to register to the platform itself either as Student either Educator.
+    \item The platform allows registered Students to join a Battle.
+    \item The platform allows registered Students to form Teams.
+    \item The platform allows registered Students to invite other Students to join a Team.
+    \item The platform allows registerd Educators to create Tournaments.
+    \item The platform allows registered Educators to create Battles.
+    \item The platform allows registered Educators to create Badges.
+    \item The plaftorm assigns a Score to Teams' work.
+    \item The platform provides a Teams' ranking within a Tournament context.
+    \item The plaform allows registered Educators to invite other Educators to join a Tournament.
+    \item The platform allows Users to search for other Users.
+    \item The platform interacts properly with different RMPs to acquire latest versions of code uploaded by related Teams. 
+    \item The platform should be able to manage multiple requests at the same time
+\end{enumerate}
 \subsubsection{Create a Tournament}
 Only educators are able to use this function.\\
 The page where the tournament creation is displayed is accessed by clicking a specific button on the homepage. 
