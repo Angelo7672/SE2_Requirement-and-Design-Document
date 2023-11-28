@@ -3,12 +3,13 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Educator adds battle to tournament\\ 
         Actors & Educator \\ 
-        Entry Condition & Educator has prepared: \newline 
+        Entry Condition & 
+        Tournament is not started \newline 
+        Educator has prepared: \newline 
         \begin{tabu}{X X[50]}
             -& Repository to be available for teams to fork\\
             -& Repository containing evaluation test suite\\
-        \end{tabu} \newline 
-        Tournament is not started\\ 
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& Educator is in tournament management page\\
             2& Educator clicks on "Add battle" button\\
@@ -20,6 +21,8 @@
         \end{tabu} \\
         Exit Condition & Platform is ready to test battles and code is available for students to fork\\
         Exception & Wrong  battle creation is discarded and Educator notified via e-mail of error\\
-        Special Requirement & - \\ 
+        Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramEducatorCreatesBattle.svg}{1.0}{1.0}{UC5 Sequence Diagram - Educator adds a battle to the tournament}
+\clearpage
