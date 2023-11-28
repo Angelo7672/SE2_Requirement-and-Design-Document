@@ -1,0 +1,40 @@
+@startuml entityClassDiagramRMP
+'skinparam linetype polyline
+'Hide circles defaultly present on the classes
+
+'component RMP 
+'component Platform 
+'component User 
+'component Tournament 
+'component Student
+'component Battle 
+'component Educator 
+'component Team 
+
+hide RMP circle
+hide Platform circle
+hide User circle
+hide Student circle
+hide Battle circle
+hide Educator circle
+hide Team circle
+
+'Define relations>
+
+
+Platform "1" -right-> "0...n" User : has
+
+RMP -down-> Platform : notifies
+
+User <|-up- Student
+User <|-up- Educator
+User -left-> RMP : has handle
+
+Student "1...n" -up-o "1" Team : belongs to
+
+Educator -up-> Battle : creates
+
+Team -up-> RMP : has repo
+
+Battle "1" -up-> "1" RMP : associated to
+@enduml

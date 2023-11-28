@@ -1,60 +1,47 @@
-@startuml entityClassDiagram
+@startuml entityClassDiagramPlatform
 'skinparam linetype polyline
 'Hide circles defaultly present on the classes
 
-'component RMP 
 'component Platform 
 'component User 
 'component Tournament 
 'component Student
 'component Battle 
 'component Educator 
-'component Badge 
 'component Score 
 'component Team 
 
-hide RMP circle
 hide Platform circle
 hide User circle
 hide Tournament circle
 hide Student circle
 hide Battle circle
 hide Educator circle
-hide Badge circle
 hide Score circle
 hide Team circle
 
 'Define relations>
 
 
-Platform "1" -down-> "0...n" Tournament : contains
+Platform "1" -right-> "0...n" Tournament : contains
 Platform "1" -left-> "1" Score : calculates
 Platform "1" -down-> "0...n" User : has
 
-RMP -left-> Platform : notifies
-
 User <|-down- Student
 User <|-down- Educator
-User --> RMP : has handle
 
 Student "1...n" -down-o "1" Team : belongs to
-Student "0...n" -right-> "0...n" Badge : achieve
 
-Educator "1" -right-> "0...n" Badge : creates
 Educator -right-> Score : assigns
 Educator -right-> Tournament : manages
 Educator -right-> Battle : creates
 
 Tournament "1" o-down- "1...n" Battle : belongs to 
-Tournament -down-> Badge : has
 
 Team -down-> Tournament : partecipates to
-Team -down-> RMP : has repo
 Team -down-> Score : has
 
 Score -down-> Battle : corresponds to
-
-Battle "1" -down-> "1" RMP : associated to
 
 Score "1" --> "1" Team : assigned to
 @enduml
