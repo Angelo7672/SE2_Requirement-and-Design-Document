@@ -1,11 +1,11 @@
 \setlength{\leftmargini}{5em} % default 2.5em
 Computer Science is a field where theory and practice are tightly coupled and both very important. 
 
-In fact in theory it can be easily studied by reading books or following courses on specific topics, but in reality being able to practice the subject is the best way to consolidate studies from pure erudition to knowledge.\\
+In fact in theory it can be easily studied by reading books or following courses on specific topics, but in reality being able to practice the subject is the best way to consolidate studies from pure erudition to useful knowledge.\\
 \\
 Being software development a subject based on technical skills and collaboration, CodeKataBattle is a platform that aims to help students improve their skills by training and competing in tournaments.
 
-The word "Kata" in Japanese, which denotes a meticulously planned pattern of martial arts moves meant to be practiced and repeated with the aim of mastering it, is where this platform got its inspiration, as the name suggests.\\ 
+The word "Kata" in Japanese, which denotes a meticulously planned pattern of martial arts moves meant to be practiced and repeated with the aim of mastering it, is where this platform got its inspiration.\\ 
 \\
 Students can use the platform to compare themselves to one another while gradually improving little by little. Moreover, coworking with other people become a moment of improving personal knowledge with other people experience.\\
 \\
@@ -86,20 +86,20 @@ Tournaments can be made by educators, and this involves:
         \item the educator defines the modality of evaluation and if in this battle will be performed also a manual evaluation
     \end{itemize}
     \item the educator optionally can define badges with attached rules
-    \item the educator optionally can add other educators to the tournament to help in manual evaluations
-    \item the educator sets the deadline for subscribe to the tournament
+    \item the educator optionally can add other educators to the tournament to help managing it
+    \item the educator sets the deadline for subscribing to the tournament
     \item the educator sets the duration of the tournament
 \end{enumerate}
 After the creation of a tournament, the platform notifies all the students that a new tournament is available.
 
 Educators optionally, in the tournaments where they are involved, can evaluate code written by the students in the battle.\\
 \\
-The main purpose of a student in the platform is to compete in tournament.\\
+The main purpose of a student in the platform is to compete in tournaments.\\
 Each student will have the opportunity to explore all the tournaments offered on the platform.
 
-A student could subscribe to a tournament by himself or by an invitation from a colleague. Optionally, during subscription to a tournament, a student can invite other students to join to it together in a team.\\
+A student could subscribe to a tournament by himself or by an invitation from a colleague. Optionally, shortly after subscribing to a tournament, a student can invite other students to join to it together in a team.\\
 \\
-The platform notifies all the participating students that the tournament has begun at the conclusion of the subscription period. The same thing, including the final rank position, at the conclusion of the competition.\\
+The platform notifies all the participating students that the tournament has begun at the conclusion of the subscription period. The same thing will be done, including the final rank position, at the conclusion of the competition.\\
 \\
 The scores, that students can receive, are split between the battle score for a single code kata battle and the tournament score, which is the total of all the battle scores.
 
@@ -149,7 +149,7 @@ Code of all battles will be managed on a third party repository manager like "Gi
             Educator gets notified about student push                             & M                & N          \\
             \hline
         \end{tabularx}
-        \caption{phenomena table}
+        \caption{Phenomena table}
     \end{table}
 \end{center}
 
@@ -183,6 +183,23 @@ Code of all battles will be managed on a third party repository manager like "Gi
     A list of definitions, acronyms, and abbreviations that appear in this document is also included.\\
     Lastly, there is the document's changelog, which includes the list of revisions and their content, and the document structure, which outlines the primary goals of each section.
     \item \textbf{Section 2: Overall Description}\\
+    In this section is presented a high-level description of the platform, showing mainly non technical characteristics.\\
+    These characteristics are: 
+    scenarios, where some informal descriptions of user-platform interaction are given; 
+    general structure diagrams, where the main relationships between actors are described; 
+    functionalities and assoumptions, that are described in a discorsive manner.\\
+    \item \textbf{Section 3: Specific Requirements}\\
+    In this section are proposed again elements shown in section 2 in a more technical manner, with the objective of facilitating the real implementation of the platform.\\
+    The most important technical description given in this section is the one of the Use Cases, which are structured in tables followed by their respective sequence diagrams to better explain how scenarios are implemented.\\
+    Moreover are also described every kind of funtional or non functional requirements (like external interfaces, performance, design constraints and system attributes).
+    \item \textbf{Section 4: Formal Analysis}\\
+    In this section is checked the model of the platform in the formal verification language Alloy.
+    Specifically is shown the implementation in alloy code of the model and relative constraints, then are presented views of the results of some runs to show the model soundness.
+    \item \textbf{Section 5: Effort Spent}\\
+    In this section is shown the effort spent for the production of this document, divided by author and section.
+    \item \textbf{Section 6: References}\\
+    In this section are listed all references to external sources cited during the document.
+
 
 \end{enumerate}
 
