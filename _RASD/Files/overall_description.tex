@@ -2,28 +2,7 @@ This section describes the perspective, functionalities, characteristics, and do
 
 A RMP is needed, but all the modules needed for its execution are available.
 \\
-
-\subsubsection{Repository Manager Platform}
-The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:
-\begin{enumerate}
-    \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.
-    \item \textbf{Repository} A folder in which code is stored and managed by a version control system (VCS).
-    \item \textbf{Action} code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
-    \item \textbf{Commit} Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
-    \item \textbf{Push} Act in which commits are uploaded to the RMP Platform.
-    \item \textbf{Fork} Act of duplicating repositories created by others in a personal one
-\end{enumerate}
-RMP can be a first or third party system that is responsible for storing all Team code related to all battles of all tournaments, the code will be obtained only for test purposes and discarded shortly after score assignment. 
-To be useful to the platform the RMP needs to have some necessary functionalities like:
-\begin{enumerate}
-    \item RMP users can search for other RMP users by handle or e-mail
-    \item RMP users can collaborate on shared repositories
-    \item RMP allows running actions and these can work with KCB platform's API, technically needed to signal the platform of new pushes on the repository.
-    \item RMP has to 
-\end{enumerate}
-
 \subsection{Product Perspective}
-
 \subsubsection{Scenarios}
 \begin{enumerate}[label=$\bullet$ \textbf{SC\arabic*:}]
     \item \textbf{Student signs in to the platform to participate to tournaments}\\ Alice is studying programming all by herself and wants to evaluate her work. She accesses the Platform website and is intrigued to try it out. 
@@ -141,6 +120,25 @@ A student can finish battles by clicking on the button of a particular battle fr
 locally to pass the test cases that are included in the battle repository. The platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the battle score, that the student 
 can view from the battle page, each time he pushes code into the repository. Optionally, an educator might evaluate the written code as well.
 
+\subsubsection{RMP Functions}
+\paragraph{}
+The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:
+\begin{enumerate}
+    \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.
+    \item \textbf{Repository} A folder in which code is stored and managed by a version control system (VCS).
+    \item \textbf{Action} code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
+    \item \textbf{Commit} Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
+    \item \textbf{Push} Act in which commits are uploaded to the RMP Platform.
+    \item \textbf{Fork} Act of duplicating repositories created by others in a personal one
+\end{enumerate}
+RMP can be a first or third party system that is responsible for storing all Team code related to all battles of all tournaments, the code will be kept only for test purposes and discarded shortly after score assignment. 
+To be useful to the platform the RMP needs to have some necessary functionalities like:
+\begin{enumerate}
+    \item RMP users can search for other RMP users by handle or e-mail
+    \item RMP users can collaborate on shared repositories
+    \item RMP allows running actions and these can work with KCB platform's API, technically needed to signal the platform of new pushes on the repository.
+\end{enumerate}
+
 \subsection{User Characteristics}
 
 \subsubsection{User}
@@ -187,8 +185,11 @@ His team will be ranked in the tournament according to the total battle score th
 \end{enumerate}
 
 \subsubsection{Dependencies}
-
-E' qui che dobbiamo parlare di RMP e dire che ci deve essere?
+\paragraph{Repository Manager Platform}
+The Repository Manager Platform is a platform that allows to store code in a smart way using a VCS.
+RMP is assumed to be a third party system that is responsible for storing all team code related to all battles of all tournaments, the code will be mainly kept on the RMP and the CKB platform will take it only for test purposes and discard it shortly after score assignment. 
+To be useful to the CKB platform the RMP needs to have some necessary characteristics that have been listed as domain assoumptions.
+An example of compatible RMP is GitHub.
 
 \subsubsection{Constraints}
 \paragraph{Security Constraints}
