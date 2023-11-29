@@ -72,12 +72,13 @@ fact allRefersToPlatform{
 }
 */
 
-//pred show{}
+pred show{}
 
-pred show[p: Platform]{
-    #p.students > 1
-    #p.educators > 1
+/*pred show[p: Platform]{
+   // #p.students > 1
+    //#p.educators > 1
     #p.tournaments > 1
-}
+}*/
 
-run show for 2
+
+run show for 5 //but 5 Student, 5 Educator, 5 Tournament
