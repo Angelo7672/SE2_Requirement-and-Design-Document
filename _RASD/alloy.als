@@ -8,7 +8,8 @@ abstract sig User {
     email: one Email,
 }
 sig Team{
-    students: some Student
+    students: some Student,
+    tournament: one Tournament
 }
 one sig Platform{
     students: set Student,
@@ -27,6 +28,9 @@ sig Educator extends User{}
 sig Student extends User{
     rmpHandle: one RMPHandle
 }
+
+sig Badge{}
+sig Score{}
 
 fact noPlatformNoEntities{
     all  s: Student, e: Educator, t: Tournament, b: Battle, n: Name, su: Surname, em: Email, rh: RMPHandle, r: RMP |
