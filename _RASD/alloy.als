@@ -55,6 +55,44 @@ fact AllConnectedToPlatform {
     all t: Tournament | t in Platform.tournaments
 }
 
+fact battlesHaveDifferentRMPRepos{
+    all disj b1: Battle, b2: Battle | b1.repo = b2.repo iff b1 = b2
+}
+
+fact battleIsPartOfOneTournament{
+    all b1: Battle | one t1: Tournament | b1 in t1.battles
+}
+
+fact tournamentHasAtLeastOneBattle{
+    all t: Tournament | #t.battles > 1
+}
+
+fact RMPRepoIsPartOfOnlyOneBattle{
+    all r: RMPRepo | one b1: Battle | b1.repo = r
+}
+
+assert noBattlesHaveSameRepo{
+    no b1: Battle, b2: Battle | b1.repo = b2.repo
+}
+
+check noBattlesHaveSameRepo
+
+fact battlesHaveDifferentRMPRepos{
+    all disj b1: Battle, b2: Battle | b1.repo = b2.repo iff b1 = b2
+}
+
+fact battleIsPartOfOneTournament{
+    all b1: Battle | one t1: Tournament | b1 in t1.battles
+}
+
+fact tournamentHasAtLeastOneBattle{
+    all t: Tournament | #t.battles > 1
+}
+
+fact RMPRepoIsPartOfOnlyOneBattle{
+    all r: RMPRepo | one b1: Battle | b1.repo = r
+}
+
 fact descriptionUniqueForBadge{
     all b1: Badge, b2: Badge | b1!=b2 <=> (b1.description != b2.description)
 }
