@@ -32,7 +32,6 @@ sig Educator extends User{}
 sig Student extends User{
     badges: set Badge
 }
-
 sig Description{}
 
 sig Badge{
@@ -56,6 +55,29 @@ fact AllConnectedToPlatform {
     all t: Tournament | t in Platform.tournaments
 }
 
+fact descriptionUniqueForBadge{
+    all b1: Badge, b2: Badge | b1!=b2 <=> (b1.description != b2.description)
+}
+
+fact emailUnique{
+    all u1: User, u2: User | u1!=u2 <=> (u1.email != u2.email)
+}
+
+fact eachUserHasCredentials{
+    no u:User | (u.name = none) and (u.surname = none) and (u.email = none)
+}
+
+fact peopleNameNoObjectName{
+    all u:User, b:Badge | u.name != b.name
+}
+
+/*tutti i team che contengono uno student devono essere di Tournament diversi*/
+
+/*non esistono due team con lo stesso student che siano nello stesso tournament*/
+/*due team sono nello tournament se e solo se i loro student sono diversi*/
+/*fact teamWithSameStudentDifferentTournament{
+    all t1,t2:Team |  (t1.tournament = t2.tournament) <=> (t1.students != t2.students)
+}*/
 fact RMPHandleBelongsToUser {
     all r: RMPHandle | r in User.rmpHandle
 }
