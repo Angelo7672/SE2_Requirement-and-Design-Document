@@ -33,7 +33,13 @@ sig Student extends User{
     badges: set Badge
 }
 
-sig Badge{}
+sig Description{}
+
+sig Badge{
+    educator: one Educator,
+    name: one Name,
+    description: one Description
+}
 sig Score{}
 
 
@@ -57,7 +63,6 @@ fact allTournamentsInPlatform{
     all t: Tournament, p: Platform |
         p.tournaments = t
 }
-
 
 
 fact noPlatformNoEntities{
