@@ -87,13 +87,12 @@ fact RMPHandleIsPersonal{
 }
 
 
-pred show{}
-
-/*pred show[p: Platform]{
-   // #p.students > 1
-    //#p.educators > 1
-    #p.tournaments > 1
-}*/
+pred show{
+    #Student = 3
+    #Educator = 2
+    #Tournament > 1
+}
 
 
-run show for 5
+
+run show for 6
