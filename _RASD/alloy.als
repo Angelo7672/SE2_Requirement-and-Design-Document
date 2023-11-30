@@ -11,7 +11,7 @@ abstract sig User {
 }
 sig Team{
     students: some Student,
-    tournament: one Tournament
+    tournamentScore: one TournamentScore
 }
 one sig Platform{
     students: set Student,
@@ -24,7 +24,8 @@ sig Battle{
 sig Tournament{
     battles: set Battle,
     badges: set Badge,
-    educators: some Educator
+    educators: some Educator,
+    teams: some Team
 }
 sig RMP{}
 
@@ -39,7 +40,14 @@ sig Badge{
     name: one Name,
     description: one Description
 }
-sig Score{}
+abstract sig Score{
+    points: one Int
+}{
+    points >= 0
+}
+
+sig BattleScore extends Score{}
+sig TournamentScore extends Score{}
 
 fact SurnameBelongsToUser{
     all s: Surname | s in User.surname
@@ -124,11 +132,22 @@ fact RMPHandleIsPersonal{
     all disj u1, u2: User | u1.rmpHandle != u2.rmpHandle
 }
 
+fact TeamHasOnlyOneTournament{
+    all t: Team | t in Tournament.teams
+    all disj t1, t2: Tournament | all te1: Team | no te2: Team | t1.teams = te1 and t2.teams = te2 and te1 = te2
+}
+
+fact TeamScoreIsUnique{
+    all t: TournamentScore | t in Team.tournamentScore
+    all disj t1, t2: Team | t1.tournamentScore != t2.tournamentScore
+}
+
 
 pred show{
-    #Student = 3
-    #Educator = 2
+    /*#Student = 3
+    #Educator = 2*/
     #Tournament > 1
+    #Team > 1
 }
 
 
