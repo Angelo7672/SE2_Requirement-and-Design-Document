@@ -121,9 +121,10 @@ fact peopleNameNoObjectName{
 
 /*non esistono due team con lo stesso student che siano nello stesso tournament*/
 /*due team sono nello tournament se e solo se i loro student sono diversi*/
-/*fact teamWithSameStudentDifferentTournament{
-    all t1,t2:Team |  (t1.tournament = t2.tournament) <=> (t1.students != t2.students)
-}*/
+fact DifferentStudentsInSameTournament {
+    all disj t1, t2: Team | all s:Student | (t1.tournament = t2.tournament) <=> !(s in t1.students and s in t2.students)
+}
+
 fact RMPHandleBelongsToUser {
     all r: RMPHandle | r in User.rmpHandle
 }
@@ -149,6 +150,7 @@ pred show{
     #Tournament > 1
     #Team > 1
 }
+
 
 
 
