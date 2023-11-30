@@ -7,6 +7,7 @@ abstract sig User {
     name: one Name,
     surname: one Surname,
     email: one Email,
+    rmpHandle: one RMPHandle
 }
 sig Team{
     students: some Student,
@@ -29,7 +30,6 @@ sig RMP{}
 
 sig Educator extends User{}
 sig Student extends User{
-    rmpHandle: one RMPHandle,
     badges: set Badge
 }
 
@@ -42,6 +42,13 @@ sig Badge{
 }
 sig Score{}
 
+fact SurnameBelongsToUser{
+    all s: Surname | s in User.surname
+}
+
+fact EmailBelongsToUser{
+    all e: Email | e in User.email
+}
 
 fact AllConnectedToPlatform {
     all s: Student | s in Platform.students
@@ -49,33 +56,14 @@ fact AllConnectedToPlatform {
     all t: Tournament | t in Platform.tournaments
 }
 
-/*fact allStudentsInPlatform{
-    all s: Student, p: Platform |
-        p.students = s
+fact RMPHandleBelongsToUser {
+    all r: RMPHandle | r in User.rmpHandle
 }
 
-fact allEducatorsInPlatform{
-    all e: Educator, p: Platform |
-        p.educators = e
+fact RMPHandleIsPersonal{
+    all disj u1, u2: User | u1.rmpHandle != u2.rmpHandle
 }
 
-fact allTournamentsInPlatform{
-    all t: Tournament, p: Platform |
-        p.tournaments = t
-}
-
-
-fact noPlatformNoEntities{
-    all  s: Student, e: Educator, t: Tournament, b: Battle, n: Name, su: Surname, em: Email, rh: RMPHandle, r: RMP |
-    (no Platform implies (#s = 0 and #e = 0 and #t = 0 and #b = 0 and #n = 0 and #su = 0 and #em = 0 and #rh = 0 and #r = 0))
-}
-
-fact allRefersToPlatform{
-   all  s: Student, e: Educator, t: Tournament |
-   (#Platform.students = 0 implies no s) and (#Platform.educators = 0 implies no e) and (#Platform.tournaments = 0 implies no t)
-   and (#s > 0 implies #Platform.students > 0) and (#e > 0 implies #Platform.educators > 0) and (#t > 0 implies #Platform.tournaments > 0)
-}
-*/
 
 pred show{}
 
@@ -86,4 +74,4 @@ pred show{}
 }*/
 
 
-run show for 5 //but 5 Student, 5 Educator, 5 Tournament
+run show for 5
