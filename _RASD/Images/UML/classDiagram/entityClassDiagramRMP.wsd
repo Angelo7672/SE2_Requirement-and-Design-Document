@@ -26,15 +26,15 @@ Platform "1" -right-> "0...n" User : has
 
 RMP -down-> Platform : notifies
 
-User <|-up- Student
-User <|-up- Educator
+User <|-right- Student
+User <|-left- Educator
 User -left-> RMP : has handle
 
-Student "1...n" -up-o "1" Team : belongs to
+Student "1...n" -up--o "1" Team : belongs to
 
-Educator -up-> Battle : creates
+Educator -up--> Battle : creates
 
-Team -up-> RMP : has repo
+Team "1" -left-> "0...n" RMP : has repo
 
-Battle "1" -up-> "1" RMP : associated to
+Battle "1" -right-> "1" RMP : associated to
 @enduml
