@@ -1,0 +1,32 @@
+@startuml
+autonumber
+
+actor Alice
+participant EmailProvider as Email
+participant CKBWebApp as App
+entity CKBPlaform as Platform
+
+
+activate Alice
+Alice -> App: Clicks on "log in" button
+activate App
+App -> Platform: request loginin page
+activate Platform
+Platform -> App: login in form
+deactivate Platform
+App->Alice: login form provided
+Alice -> App: Form filled with infos
+Alice -> App: clicks on "log in" button
+App -> Platform: Form filled with infos
+   
+group if credential accepted
+    Platform -> App: credential accepted
+    App -> Alice: credential accepted
+    Platform -> App: Homepage infos
+    App -> Alice: User's homepage
+else email/password not valid
+    Platform -> App: email/password not valid
+    deactivate Platform
+    App -> Alice: email/password not valid
+end
+@enduml
