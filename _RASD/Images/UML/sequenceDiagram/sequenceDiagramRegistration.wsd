@@ -50,25 +50,12 @@ else e-mail accepted
     Alice -> Alice: click confirmation link
 end
 
-Alice -> App: request login page
-App -> Platform: request login page
+Alice -> App: login request
+App -> Platform: login request
 activate Platform
-Platform -> App: login page
+Platform -> App: login response 
 deactivate Platform
-App -> Alice: login page
-
-group Login
-    Alice -> App: email and password
-    App -> Platform: email and password
-    activate Platform
-else credential accepted
-    Platform -> App: credential accepted
-    App -> Alice: credential accepted
-else email/password not valid
-    Platform -> App: email/password not valid
-    deactivate Platform
-    App -> Alice: email/password not valid
-end
+App -> Alice: logged in
 
 Alice -> App: request home page
 App -> Platform: request home page
