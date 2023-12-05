@@ -1,9 +1,9 @@
 @startuml
 actor InvitedUser as UB
 actor InvitingUser as UA
+participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
-participant EmailProvider as E
 
 UA--->A: clicks on "collaborate button"
 activate UA
