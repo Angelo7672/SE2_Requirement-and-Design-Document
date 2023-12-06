@@ -1,8 +1,8 @@
 @startuml
 actor Educator as E
+participant EmailProvider as EP
 participant CKBWebApp as A
 entity CKBPlatform as P
-participant EmailProvider as EP
 
 E-->A: clicks on "Add Badge" button
 activate A

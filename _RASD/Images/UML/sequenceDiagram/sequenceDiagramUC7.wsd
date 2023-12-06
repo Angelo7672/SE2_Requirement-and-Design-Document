@@ -1,9 +1,9 @@
 @startuml
 
 actor Student as S
+participant EmailProvider as E
 entity CKBPlatform as P
 participant RMP as R
-participant EmailProvider as E
 
 S--->R: pushes code
 activate R

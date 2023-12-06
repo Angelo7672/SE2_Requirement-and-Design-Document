@@ -1,10 +1,12 @@
 @startuml
 autonumber
 actor Student as S
+participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
-participant EmailProvider as E
 
+
+activate S
 S--->A: logged in Student opens the WebApp
 
 A<---P: Student's infos
@@ -53,6 +55,7 @@ else
         S--->A: access his/her home page
         S<---A: shows confirmation message for the subscription
         deactivate A
+        deactivate S
     end
 end
 @enduml
