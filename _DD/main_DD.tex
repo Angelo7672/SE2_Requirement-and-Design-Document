@@ -1,9 +1,9 @@
-% !TeX root = main_RASD.tex
+% !TeX root = main_DD.tex
 \input{commandsFile}
 
 \begin{document}
 
-%TITLE PAGE 
+%TITLE PAGE
 
 \begin{titlepage}
 
@@ -14,7 +14,7 @@
 \centering
 \begin{tabu} to \textwidth { X[1.3,r,p] X[1.7,l,p] }
 \textcolor{Blue}
-{\textbf{\small{CodeKataBattle project Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli}}} & \includegraphics[scale=0.5]{Images/PolimiLogo}
+{\textbf{\small{Code Kata Battle project Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli}}} & \includegraphics[scale=0.5]{Images/PolimiLogo}
 \end{tabu}
 \end{table}}~\\ [7cm]
 
@@ -23,7 +23,7 @@
 \begin{flushleft}
 
 %Replace the text string with your title
-{\textcolor{Blue}{\textbf{\Huge{Requirement Analysis and Specification
+{\textcolor{Blue}{\textbf{\Huge{Design Document
         Document}}}} \\ [1cm]
 
 \end{flushleft}
@@ -36,13 +36,13 @@
 \begin{tabu} to \textwidth { X[0.3,r,p] X[0.7,l,p] }
 \hline
 
-\textbf{Deliverable:} & RASD\\
-\textbf{Title:} & Requirement Analysis and Verification Document \\
+\textbf{Deliverable:} & DD\\
+\textbf{Title:} & Design Document \\
 \textbf{Authors:} & Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli \\
 \textbf{Version:} & 1.0 \\ 
-\textbf{Date:} & 22-December-2023 \\
-\textbf{Download page:} & https://github.com/Angelo7672/AttivissimoBelardinelliChiodaroli \\
-\textbf{Copyright:} & Copyright © 2023, Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli – All rights reserved \\
+\textbf{Date:} & 07-January-2024 \\
+\textbf{Download page:} & https://github.com/Angelo7672/AttivissimoBelardinelliChiodaroli  \\
+\textbf{Copyright:} & Copyright © 2024, Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli– All rights reserved \\
 \hline
 \end{tabu}
 \end{table}
@@ -67,17 +67,16 @@
 \clearpage
 {\color{Blue}{\section{Introduction}}}
 \label{sect:introduction}
-\input{Files/introduction.tex}
+\input{Files/introduction}
 
 %------------------------------------------------------------------------------------------------------------------------------------------------
 \clearpage
 {\color{Blue}{\section{Overall Description}}}
 \label{sect:overview}
-\input{Files/overall_description.tex}
+\input{Files/overview}
 
 %------------------------------------------------------------------------------------------------------------------------------------------------
 \clearpage
-
 {\color{Blue}{\section{Specific Requirements}}}
 \label{sect:requirements}
 \input{Files/requirements}
@@ -99,11 +98,10 @@
 \clearpage
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{plain}
-\bibliography{main}
+\bibliography{main_DD}
 %------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 \end{document}
-
