@@ -1,26 +1,21 @@
-\paragraph*{UC2}
+\paragraph*{UC2 - need to fix numbering} \label{uc:uc2}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Student subscribes to tournament\\ 
-        Actors & Student \\ 
-        Entry Condition & - \\ 
+        Name & User logs in to the platform \\ 
+        Actors & User \\ 
+        Entry Condition & User has valid credentials corresponding to an account \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& Student logs in to the platform\\
-            2& Student is in it's home page and is presented with a list of available tournaments\\
-            3& Student scrolls through the list of available tournaments\\
-            4& Student can ask to see more tournaments via the "See more" button\\
-            5& Student clicks on tournament entry to see tournament details\\
-            6& Student clicks again on tournament if not interested to hide details\\
-            7& Student clicks on "subscribe" button to subscribe to tournament\\
-            8& Platform registers tournament subscription\\
-            9& Platform creates new team for that student\\
-            10& Platform sends confirmation e-mail to student\\
-            11& Platform gives visual feedback on web page of effective subscription\\
+            1& User is on web app welcome page\\
+            2& User clicks on "Log in" button\\
+            3& Platform shows user login form\\
+            4& User fills the form accordingly\\
+            5& User clicks on login button\\
+            6& Platform shows user's homepage\\
         \end{tabu} \\
-        Exit Condition & Student is subscribed to tournament and knowing it\\
-        Exception & Subscription deadline is passed, student cannot subscribe to tournament\\
-        Special \newline Requirement & - \\ 
+        Exit Condition & User finds in a valid session in his homepage free to do whatever he can do in the platform\\
+        Exception & User fills form with wrong user data, platform visually notifies about the error\\
+        Special \newline Requirement & Automatic action is run shortly after new push to the RMP\\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramStudentSubscribesToTournament.svg}{1.0}{1.0}{UC2 Sequence Diagram - Student subscribes to the tournament}
+\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1bis.svg}{.9}{0.9}{UC2 Sequence Diagram - User logs in to the platform}
 \clearpage

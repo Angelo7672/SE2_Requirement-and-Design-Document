@@ -1,4 +1,5 @@
-\paragraph*{UC1}    %questo lo toglierei tanto un user non puo' loggarsi come tale
+\paragraph*{UC1 - User signs in to the platform} \label{uc:uc1}
+   %questo lo toglierei tanto un user non puo' loggarsi come tale
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & User signs in to the platform \\
@@ -18,8 +19,8 @@
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
-
-\paragraph*{UC1a}
+UC1 is a generalization of UC1a and UC1b:
+\paragraph*{UC1a - Student signs in to the platform}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Student signs in to the platform \\ 
@@ -34,7 +35,7 @@
     \end{tabu}
 \end{center}
 
-\paragraph*{UC1b}
+\paragraph*{UC1b - Educator signs in to the platform}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Educator signs in to the platform \\ 
@@ -48,5 +49,6 @@
         Special \newline Requirement & Same as UC1\\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1.svg}{1.0}{1.0}{UC1 Sequence Diagram - User Registration to the platform}
+
+\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1.svg}{1.0}{1.0}{UC1, UC1a, UC1b Sequence Diagram - User, Student or Educator, signs in to the platform}
 \clearpage

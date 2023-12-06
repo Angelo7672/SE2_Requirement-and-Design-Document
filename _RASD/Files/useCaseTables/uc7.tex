@@ -1,20 +1,23 @@
-\paragraph*{UC7}    %possibile incoerenza, i badge in itinere o alla fine?
+\paragraph*{UC7} \label{uc:uc7}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Student gets awarded with badge\\ 
-        Actors & Student \\ 
-        Entry Condition & Student is part of a team, and has contributed to team's repository \newline Tournament is ended \\ 
+        Name & Educator creates Badge \\ 
+        Actors & Educator \\ 
+        Entry Condition & Educator is managing a tournament \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& - System runs badge tests on all repositories\\
-            2& - Badge tests give a list of RMP handles and e-mail addresses to which assign corresponding badge\\
-            1& - System searches for corresponding accounts\\
-            1& - System assigns badges to each user found\\
-            1& - System sends e-mail notification to chosen students\\
+            1& Educator is in tournament management page\\
+            2& Educator clicks on "Add badge" button\\
+            3& Platform shows badge creation form to educator\\
+            4& Educator fills the form with badge image, description and test script\\
+            5& Educator clicks on "Submit" button\\
+            6& Platform checks badge test correctness\\
+            7& Platform registers badge creation\\
+            8& Platform sends a confirmation e-mail to educator\\
         \end{tabu} \\
-        Exit Condition & Random platform user can see badge in the specific student profile page\\
-        Exception & Commit user data is wrong or does not correspond to CKB platform user: badge is not assigned to anyone \\
-        Special \newline Requirement & Commit user data is consistent with CKB platform user data \\ 
+        Exit Condition & Every user is able to see the existence of the badge in the tournament detail page\\
+        Exception & If test script isn't correct, badge information is dropped and a notification e-mail is sent to the educator describing the issue\\
+        Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramStudentGetsAwardedWithBadge.svg}{0.65}{0.65}{UC7 Sequence Diagram - Student gets awarded with badge}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramBadges.svg}{1.0}{1.0}{UC7 Sequence Diagram - Educator creates Badge}
 \clearpage

@@ -1,21 +1,20 @@
-\paragraph*{UC8}
+\paragraph*{UC8}   \label{uc:uc8} %possibile incoerenza, i badge in itinere o alla fine?
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Team gets code evaluated \\ 
-        Actors & RMP \\ 
-        Entry Condition & Team student upload update to RMP \\ 
+        Name & Student gets awarded with badge\\ 
+        Actors & Student \\ 
+        Entry Condition & Student is part of a team, and has contributed to team's repository \newline Tournament is ended \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& RMP notifies CKB platform of update to repository\\
-            2& Platform creates new test environment instance\\
-            3& Platform inserts Team code inside newly created test environment\\
-            4& Platform runs tests inside environment\\
-            5& Test ends with score, score gets assigned to corresponding team\\
-            6& Platform updates team's tournament score\\
+            1& - System runs badge tests on all repositories\\
+            2& - Badge tests give a list of RMP handles and e-mail addresses to which assign corresponding badge\\
+            1& - System searches for corresponding accounts\\
+            1& - System assigns badges to each user found\\
+            1& - System sends e-mail notification to chosen students\\
         \end{tabu} \\
-        Exit Condition & Users are able to see newly created score inside battle leaderboards\\
-        Exception & Repository is not associated to any team of the tournament: tests are not run\\
-        Special \newline Requirement & Automatic action is run shortly after new push to the RMP\\ 
+        Exit Condition & Random platform user can see badge in the specific student profile page\\
+        Exception & Commit user data is wrong or does not correspond to CKB platform user: badge is not assigned to anyone \\
+        Special \newline Requirement & Commit user data is consistent with CKB platform user data \\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagram3.svg}{1.0}{1.0}{UC8 Sequence Diagram - Team gets code awarded}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramStudentGetsAwardedWithBadge.svg}{0.65}{0.65}{UC8 Sequence Diagram - Student gets awarded with badge}
 \clearpage
