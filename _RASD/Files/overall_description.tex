@@ -3,45 +3,51 @@ A RMP is needed, but all the modules needed for its execution are available.
 \\
 \subsection{Product Perspective}
 \subsubsection{Scenarios}
-\begin{enumerate}[label=$\bullet$ \textbf{SC\arabic*:}]
-    \item \textbf{Student signs in to the platform to participate to tournaments}\\ Alice is studying programming all by herself and wants to evaluate her work. She accesses the Platform website and is intrigued to try it out. 
+\begin{enumerate}[label= \textbf{SC\arabic*}]
+    \item \textbf{Student signs in to the platform to participate to tournaments}
+    \label{sc:sc1}\\ Alice is studying programming all by herself and wants to evaluate her work. She accesses the Platform website and is intrigued to try it out. 
     Alice signs in as a student giving her details like name, surname, e-mail,  year of birth and RMP handle. Once done that she will receive updates on new open tournaments. Moreover, she can log in and be presented with a list 
     of tournaments to which she can subscribe.
-    \item \textbf{Student wants to participate in a tournament}\\ Dan, after studying a bit of Javascript wants to apply its studies in a project. In order to do so he wants to participate in a tournament. He is already subscribed 
+    \item \textbf{Student wants to participate in a tournament} \label{sc:sc2}\\ Dan, after studying a bit of Javascript wants to apply its studies in a project. In order to do so he wants to participate in a tournament. He is already subscribed 
     to the platform, so he can just log in to it and search a suitable tournament. After being presented of some valid choices, he clicks on one of them to see more details like description, educators, subscription deadline and 
     available badges. If he likes it, he clicks a "Subscribe" button, otherwise goes back and continues to search.
-    \item \textbf{Student wants to participate to tournament with friends}\\ Bob, a user of the platform, got notified of the creation of an interesting tournament in which he wants to participate with his friend Carlo. Bob logs in 
+    \item \textbf{Student wants to participate to tournament with friends} \label{sc:sc3}\\ Bob, a user of the platform, got notified of the creation of an interesting tournament in which he wants to participate with his friend Carlo. Bob logs in 
     to the website and subscribes to the tournament sending an invitation to Carlo, who gets notified of the invitation and, once logged in to the platform, can choose to accept or to deny it; if he accepts Bob and Carlo result 
     subscribed to the tournament as a team.
-    \item \textbf{Educator signs in to the platform to create tournaments}\\ Eve is a teacher that, in order to widen her didactic offer, wants to create some tournaments for her students. She accesses the Platform website and is 
+    \item \textbf{Educator signs in to the platform to create tournaments} \label{sc:sc4}\\ Eve is a teacher that, in order to widen her didactic offer, wants to create some tournaments for her students. She accesses the Platform website and is 
     intrigued to use it. Eve signs in as an educator giving her details like name, surname, e-mail, year of birth, institution and RMP handle. Then she logs in and is presented with a list of managed tournaments, empty for her, 
     and the possibility to create new ones.
-    \item \textbf{Educator wants to create a tournament}\\ Faith is a user of the platform signed in as an Educator and wants to create a tournament. She logs in to the website and is presented with the homepage, in which she can 
+    \item \textbf{Educator wants to create a tournament} \label{sc:sc5}\\ Faith is a user of the platform signed in as an Educator and wants to create a tournament. She logs in to the website and is presented with the homepage, in which she can 
     start to create the tournament by clicking a specific button. After clicking it she can enter details like tournament name, details (as overview, programming language/s and maximum and minimum number of students for a team),
     subscription deadline and duration, then click a "Create tournament" button that will create the tournament and bring her to the manager tournament page. 
-    \item \textbf{Educator wants to manage a tournament with a colleague}\\ Grace is an educator who is managing a tournament, she finds that the work behind creating all battles of the tournament is a bit too daunting, so she wants 
+    \item \textbf{Educator wants to manage a tournament with a colleague} \label{sc:sc6}\\ Grace is an educator who is managing a tournament, she finds that the work behind creating all battles of the tournament is a bit too daunting, so she wants 
     help. To do so she goes to the tournament management page and by clicking the "add Educator" button she can send an invitation to manage the tournament to her friend Heidi, another educator registered to the platform. Heidi 
     can accept the invite and create new battles and badges for the tournament and if it is required, also manual evaluate the students' code.
-    \item \textbf{Team wants to work on a battle}\\ After receiving notification of the tournament's start, a team that has subscribed to the competition wishes to focus on a battle. After arriving at the tournament page, to Isaac, 
+    \item \textbf{Team wants to work on a battle} \label{sc:sc7} \\ After receiving notification of the tournament's start, a team that has subscribed to the competition wishes to focus on a battle. After arriving at the tournament page, to Isaac, 
     a member of the team, is shown a list of the battles that are available. He selects one and is taken to a new page that includes his name, details, the team scoreboard, and a link to the repository within the RMP. Since Isaac 
     has already registered with the RMP, he is able to fork the repository and make an actual copy that is stored in its profile. He now needs to check each team member's RMP handle in their profile and invite them all to join the 
     battle. All team members have to accept the invitation, and after then they can start to work on the battle. The owner of the forked repository has to put its link in the battle details to signal the platform of its existence and in
     other he has to set an automated workflow that informs the CBK platform (through proper API calls) as soon as someone of the team make a modification of the code in the repository.
-    \item \textbf{Team wants to have work evaluated}\\ A team has worked on the battle and wants to check how is the quality of his work. In order to do so they only need to commit their changes and push their work to the RMP, 
+    \item \textbf{Team wants to have work evaluated} \label{sc:sc8} \\ A team has worked on the battle and wants to check how is the quality of his work. In order to do so they only need to commit their changes and push their work to the RMP, 
     this will be able to alert the platform of the new changes and will set off a pull of the files to be evaluated. After running all tests, these will generate points that will be combined to form a score. This score will be 
     published near the name of the team in the leaderboard of the battle, and will update also the main tournament score of that team. Possible checks for badge assignment can be also done, and if satisfied, badges can be granted at 
     the end of the tournament.
-    \item \textbf{Team wants to see how it is placed in the tournament}\\ Angelo, a student participating in a tournament in a team, wants to know how well they are doing. To do so he can log in to the platform and go to the page 
+    \item \textbf{Team wants to see how it is placed in the tournament} \label{sc:sc9} \\ Angelo, a student participating in a tournament in a team, wants to know how well they are doing. To do so he can log in to the platform and go to the page 
     of the tournament, on which he can see the leaderboard where he can find the overall tournament score of the team. Angelo can also check specific battles visiting their specific page where the related battle leaderboard is shown.
-    \item \textbf{User wants to check out other user's profile}\\ Michael, a user of the platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other users 
+    \item \textbf{User wants to check out other user's profile} \label{sc:sc10} \\ Michael, a user of the platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other users 
     via a specific bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: user type, name, surname, RMP handle and badges.
-    \item \textbf{Educator wants to create a Battle}\\Jude oversees a tournament as an educator. She now wants to put her students to the test by suggesting a battle. When she opened the CKB Web App, she was taken to the page where she 
+    \item \textbf{Educator wants to create a Battle} \label{sc:sc11} \\Jude oversees a tournament as an educator. She now wants to put her students to the test by suggesting a battle. When she opened the CKB Web App, she was taken to the page where she 
     oversees the tournaments she manages. Jude then chooses the one where he wants to start a battle and clicks the "Create Battle" button. This opens a form for her to fill out with the battle's name and an overview of the battle. 
     After supplying these details, she needs to include the battle's RMP repository link and specify the battle's evaluation modality. After filling out the form, she presses the "Submit" button. Now that the system has confirmed all 
     the data, a new battle has been created.
-    \item \textbf{Educator wants to create a Badge}\\Beniamino is an educator, and he wants to design a badge for a tournament he oversees. He open the CKB Web App on his home page and go to the page with the managed tournaments list.
+    \item \textbf{Educator wants to create a Badge} \label{sc:sc12} \\Beniamino is an educator, and he wants to design a badge for a tournament he oversees. He open the CKB Web App on his home page and go to the page with the managed tournaments list.
     He clicks the "Add Badge" button after choosing the one for which he wanted to make the badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
     to obtain this new badge. Once the form is submitted, the badge is created and made achievable during the tournament.
+    \item \textbf{Student gets awarded with badge} \label{sc:sc13} \\
+    Rupert, a student of the platform, has partecipated to a tournament, writing code for the battles. His code got evaluated and is in the scoreboard of the platform. The tournament has ended, so he can no more change his code. 
+    While checking his e-mails, he finds one email, sent from the platform, that notifies him that he got awarded with a new badge.
+    Then curious, he goes to his profile page to see the badge, where he finds it with a foto and a short description.
+    After some time, Olivia, a user of the platform wanting to find a student to invite to a team, for curiosity checks Rupert's profile page, seeing that he gained a lot of badges during his time on the platform, decides to try inviting him.
 \end{enumerate}
 
 \newpage

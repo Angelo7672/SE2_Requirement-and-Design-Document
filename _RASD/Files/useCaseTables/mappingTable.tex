@@ -1,7 +1,17 @@
 \subsubsection{Use case - Scenario - Requirement Mapping table}
-
 \begin{center}
-    \begin{tabu}{|X[.2]|X[.2]|X[.2]|} \hline \everyrow{\hline}
-        \href
+    \begin{tabu}{|X[.2]|X[.6]|X[.2]|} \hline \everyrow{\hline}
+        Scenario & Use Case & Requirements \\
+        \ref{sc:sc1}, \ref{sc:sc4} & \nameref{uc:uc1} & \ref{req:reqSignin} \\
+        \ref{sc:sc1} & \nameref{uc:uc2} & \ref{req:reqLogin} \\
+        \ref{sc:sc2} & \nameref{uc:uc3} & \ref{req:reqLogin}, \ref{req:reqShowTournaments}, \ref{req:reqTournamentSubscription}, \ref{req:reqCreateTeam}\\
+        \ref{sc:sc3}, \ref{sc:sc6} & \nameref{uc:uc4} & \ref{req:reqCreateTeam}, \ref{req:reqJoinTeam}, \ref{req:reqJoinManagement} \\
+        \ref{sc:sc6} & \nameref{uc:uc4a} & \ref{req:reqJoinManagement} \\
+        \ref{sc:sc3} & \nameref{uc:uc4b} & \ref{req:reqCreateTeam}, \ref{req:reqJoinTeam} \\
+        \ref{sc:sc5} & \nameref{uc:uc5} & \ref{req:reqCreateTournaments} \\
+        \ref{sc:sc11} & \nameref{uc:uc6} & \ref{req:reqCreateBattle} \\
+        \ref{sc:sc12} & \nameref{uc:uc7} & \ref{req:reqCreateBadge} \\
+        \ref{sc:sc13} & \nameref{uc:uc8} & \ref{req:reqAssignBadge} \\
+        \ref{sc:sc8}, \ref{sc:sc9} & \nameref{uc:uc9} & \ref{req:reqEvaluateCode}, \ref{req:reqRankingsUpdate}\\
     \end{tabu}
 \end{center}
