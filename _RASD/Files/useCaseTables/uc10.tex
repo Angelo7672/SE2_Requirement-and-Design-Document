@@ -1,0 +1,24 @@
+\paragraph*{UC10 - User searches for other users} \label{uc:uc10}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & User searches for other users \\ 
+        Actors & User \\ 
+        Entry Condition & - \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& User logs in to the platform\\
+            2& Platfrom finds himself in his homepage\\
+            3& Platform shows in user's homepage a form to search for users\\
+            4& User compiles it giving a string representing one of some other user's data (like name, surname, e-mail address or RMP handle)\\
+            5& User clicks on "Search" button\\
+            6& Platform shows a list of users with data compatible to the string given by the user\\
+            7& Platform keeps showing search form to the user to be able to start an other search\\
+            8& User clicks on user on list to see details\\
+        \end{tabu} \\
+        Exit Condition & Users are able to see newly created score inside battle leaderboards\\
+        Exception & Repository is not associated to any team of the tournament: tests are not run\\
+        Special \newline Requirement & Automatic action is run shortly after new push to the RMP\\ 
+    \end{tabu}
+\end{center}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC10.svg}{0.5}{0.5}{UC10 Sequence Diagram - User searches for other users}
+
+\clearpage

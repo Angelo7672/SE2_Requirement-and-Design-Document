@@ -1,0 +1,20 @@
+@startuml
+
+actor User as S
+participant CKBWebApp as E
+entity CKBPlatform as P
+
+activate E
+S->>E: fills the form
+S->>E: Click on search button
+activate P
+E->>P: search users with similar data
+P-->E: list of found users
+E-->S: show found users
+S->>E: click on user on list
+E->>P: get searched user profile
+P-->E: user profile data
+E-->S: show user profile
+deactivate P 
+
+@enduml
