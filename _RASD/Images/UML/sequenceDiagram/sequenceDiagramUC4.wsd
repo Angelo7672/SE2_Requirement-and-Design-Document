@@ -1,36 +1,53 @@
 @startuml
+actor InvitedUser as UB
+actor InvitingUser as UA
+participant EmailProvider as E
+participant CKBWebApp as A
+entity CKBPlatform as P
 
-autonumber
-
-actor Educator
-participant EmailProvider as Email
-participant CKBWebApp as App
-entity CKBPlaform as Platform
-
-activate Educator
-Educator -> App: Create Tournament
-activate App
-App -> Platform: Create Tournament
-activate Platform
-Platform -> App: Tournament creation form
-deactivate Platform
-App -> Educator: Tournament creation form
-deactivate App
-Educator -> App: Form filled with name, programming language/s and overview
-activate App
-App -> Platform: Form filled with name, programming language/s and overview
-activate Platform
-Platform -> Platform: Registers tournament creation
-Platform -> App: Tournament created
-Platform -> Email: Tournament creation confermation 
-activate Email
-deactivate Platform
-App -> Educator: Tournament created
-deactivate App
-Email -> Educator: Tournament creation confermation 
-deactivate Email
-deactivate Educator
-note right
-    da sistemare bisogna aggiungere l'invio delle mail agli studenti, bisogna aggiungere quello che riguarda i team min max duration deadline to subscribe
-end note
+UA--->A: clicks on "collaborate button"
+activate UA
+activate A
+UA<---A: shows a form to fill 
+UA--->A: provides infos to fill the form
+UA--->A: clicks on submit button
+deactivate UA
+A---->P: sends the information of User to invite
+deactivate A
+group if wrong information is provided
+    activate P
+    P-->P: checks information
+    P-->E: sends email to inform of wrong information provided
+    activate E
+    E-->UA: receives notification of wrong information provided
+    deactivate E
+else
+P---->E: sends Email to invited User
+deactivate P
+activate E
+E---->UB: delivers invitiation Email
+deactivate E
+group InvitedUser declines invitiation
+    UB--->P: clicks on "Decline" button
+    activate P
+    P---->A: comunicates the Decline
+    deactivate P
+    activate A
+    A---->UA: shows answer 
+    deactivate A
+else InvitedStudent accepts invitiation
+    UB--->P: clicks on "Accept" button
+    activate P
+    group Users are Educators
+        P--->P: manage Tournament permissions
+    else Users are Students
+        P--->P: creates a Team 
+    end
+    P---->A: comunicates the Acceptance
+    deactivate P
+    activate A
+    A---->UA: shows answer
+    deactivate A
+end 
+end 
 @enduml

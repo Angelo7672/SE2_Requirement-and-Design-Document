@@ -1,31 +1,43 @@
 @startuml
-actor Educator as E
-participant EmailProvider as EP
-participant CKBWebApp as A
-entity CKBPlatform as P
 
-E-->A: clicks on "Add Badge" button
-activate A
-E<--A: shows creation form
-E-->A: fills the form
-E-->A: clicks on "Submit" button 
-deactivate A
-A-->P: sends Badge creation form compiled
-activate P
-P-->P: checks Badge information correctness
-group if information is not correct
-    P-->EP: sends Email to inform of unsuccessful operation
-    deactivate P
-    activate EP
-    E<--EP: sends Email to inform of unsuccessful operation
-    deactivate EP
-else if information is correct
-    activate P
-    P-->P: registers Badge creation
-    P-->EP: send Email to inform of Badge creation
-    deactivate P
-    activate EP
-    E<--EP: send Email to inform of Badge creation
-    deactivate EP
-end
+autonumber
+
+actor Educator
+participant EmailProvider as Email
+participant CKBWebApp as App
+entity CKBPlaform as Platform
+
+activate Educator
+Educator -> App: Request tournament management page
+activate App
+App -> Platform: Request tournament management page
+activate Platform
+Platform -> App: Tournament management page
+deactivate Platform
+App -> Educator: Tournament management page
+deactivate App
+Educator -> App: Add battle
+activate App
+App -> Platform: Add battle
+activate Platform
+Platform -> App: Battle creation form
+deactivate Platform
+App -> Educator: Battle creation form
+deactivate App
+Educator -> App: Battle creation form filled with name, overview and RMP repo link
+activate App
+App -> Platform: Battle creation form filled with name, overview and RMP repo link
+activate Platform
+Platform -> Platform: Battle registered to tournament
+Platform -> Email: Battle creation confermation
+activate Email
+Platform -> App: Battle created
+deactivate Platform
+Email -> Educator: Battle creation confermation
+deactivate Email
+App -> Educator: Battle created
+deactivate App
+deactivate Educator
+
+
 @enduml

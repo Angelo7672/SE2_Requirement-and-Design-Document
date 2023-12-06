@@ -8,36 +8,29 @@ participant CKBWebApp as App
 entity CKBPlaform as Platform
 
 activate Educator
-Educator -> App: Request tournament management page
+Educator -> App: Create Tournament
 activate App
-App -> Platform: Request tournament management page
+App -> Platform: Create Tournament
 activate Platform
-Platform -> App: Tournament management page
+Platform -> App: Tournament creation form
 deactivate Platform
-App -> Educator: Tournament management page
+App -> Educator: Tournament creation form
 deactivate App
-Educator -> App: Add battle
+Educator -> App: Form filled with name, programming language/s and overview
 activate App
-App -> Platform: Add battle
+App -> Platform: Form filled with name, programming language/s and overview
 activate Platform
-Platform -> App: Battle creation form
-deactivate Platform
-App -> Educator: Battle creation form
-deactivate App
-Educator -> App: Battle creation form filled with name, overview and RMP repo link
-activate App
-App -> Platform: Battle creation form filled with name, overview and RMP repo link
-activate Platform
-Platform -> Platform: Battle registered to tournament
-Platform -> Email: Battle creation confermation
+Platform -> Platform: Registers tournament creation
+Platform -> App: Tournament created
+Platform -> Email: Tournament creation confermation 
 activate Email
-Platform -> App: Battle created
 deactivate Platform
-Email -> Educator: Battle creation confermation
-deactivate Email
-App -> Educator: Battle created
+App -> Educator: Tournament created
 deactivate App
+Email -> Educator: Tournament creation confermation 
+deactivate Email
 deactivate Educator
-
-
+note right
+    da sistemare bisogna aggiungere l'invio delle mail agli studenti, bisogna aggiungere quello che riguarda i team min max duration deadline to subscribe
+end note
 @enduml

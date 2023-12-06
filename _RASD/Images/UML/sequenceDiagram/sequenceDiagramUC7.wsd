@@ -1,31 +1,31 @@
 @startuml
-
-actor Student as S
-participant EmailProvider as E
+actor Educator as E
+participant EmailProvider as EP
+participant CKBWebApp as A
 entity CKBPlatform as P
-participant RMP as R
 
-S--->R: pushes code
-activate R
-P--->R: requires code
+E-->A: clicks on "Add Badge" button
+activate A
+E<--A: shows creation form
+E-->A: fills the form
+E-->A: clicks on "Submit" button 
+deactivate A
+A-->P: sends Badge creation form compiled
 activate P
-P<---R: pulls code
-deactivate R
-P--->P: runs tests
-activate P
-deactivate P
-P--->P: RMP handles and E-mail addresses to assign Badges
-activate P
-deactivate P
-P--->P: search corresponding accounts
-activate P
-deactivate P
-group if all commit Users correspond to CKB platform Users
-    P--->E: sends E-mails to each Student in the list
-    activate E
+P-->P: checks Badge information correctness
+group if information is not correct
+    P-->EP: sends Email to inform of unsuccessful operation
     deactivate P
-    E--->S: delivers the e-mail notification to chosen Student
-    deactivate E
-end 
-
+    activate EP
+    E<--EP: sends Email to inform of unsuccessful operation
+    deactivate EP
+else if information is correct
+    activate P
+    P-->P: registers Badge creation
+    P-->EP: send Email to inform of Badge creation
+    deactivate P
+    activate EP
+    E<--EP: send Email to inform of Badge creation
+    deactivate EP
+end
 @enduml

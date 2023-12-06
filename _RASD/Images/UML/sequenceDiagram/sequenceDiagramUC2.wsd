@@ -1,61 +1,60 @@
 @startuml
+
 autonumber
-actor Student as S
-participant EmailProvider as E
-participant CKBWebApp as A
-entity CKBPlatform as P
 
+actor Alice
+participant EmailProvider as Email
+participant CKBWebApp as App
+entity CKBPlaform as Platform
 
-activate S
-S--->A: logged in Student opens the WebApp
+activate Alice
+Alice -> App: Clicks on "log in" button
+activate App
+App -> Platform: request login page
+activate Platform
+Platform -> App: login page
+deactivate Platform
+App -> Alice: login page
+deactivate App
+Alice -> App: Form filled with email and password
+activate App
+App -> Platform: Form filled with email and password
+activate Platform
 
-A<---P: Student's infos
-deactivate P
-note left
-    the home page includes Tournament list
-end note
-S<---A: Student's home page
-activate A
-S--->A: scroll available Tournaments
-S<---A: more Tournaments
-S--->A: clicks the "See more" Button
-S<---A: more Tournaments displayed
-S--->A: clicks on Tournament entry to see details
-A--->P: requires more information about that specific Tournament
-activate P
-A<---P: Tournament's infos
-deactivate P
-S<---A: Tournament's info displayed
-deactivate A
-group if not interested
-    S--->A: clicks to hide details
-    activate A
-    S<---A: shows home page
-    deactivate A
-else 
-    S--->A: clicks on "Subscribe" button
-    activate A
-    A--->P: subscription request
-    activate P
-    group if Subscription deadline is passed
-        P--->A: error message
-        deactivate P
-        S<--A: error message
-        deactivate A
-    else
-        activate P
-        P--->P: creates Team with a single Student
-        P--->E: sends confirmation Email to the Student
-        deactivate P
-        activate E
-        A<---P: receive confirmation of subscription
-        activate A
-        E--->S: delivers Email to the Student
-        deactivate E
-        S--->A: access his/her home page
-        S<---A: shows confirmation message for the subscription
-        deactivate A
-        deactivate S
-    end
+alt if credential accepted
+    Platform -> App: credential accepted
+    deactivate Platform
+    App -> Alice: credential accepted
+    deactivate App
+    Alice -> App: request home page
+    activate App
+    App -> Platform: request home page
+    activate Platform
+    Platform -> App: User's homepage
+    deactivate Platform
+    note right
+        in the home page are shown 
+        the lates tournaments
+    end note
+    App -> Alice: User's homepage
+    deactivate App
+else email/password not valid
+    Platform -> App: email/password not valid
+    deactivate Platform
+    activate App
+    App -> Alice: email/password not valid
+    deactivate App
+    deactivate Alice
 end
+
+
+
+
+
+== A new tournament is created ==
+Platform -> Email: new tournament available + link
+activate Email
+Email -> Alice: new tournament available + link
+deactivate Email
+
 @enduml

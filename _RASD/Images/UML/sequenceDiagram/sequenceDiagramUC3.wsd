@@ -1,53 +1,61 @@
 @startuml
-actor InvitedUser as UB
-actor InvitingUser as UA
+autonumber
+actor Student as S
 participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
 
-UA--->A: clicks on "collaborate button"
-activate UA
-activate A
-UA<---A: shows a form to fill 
-UA--->A: provides infos to fill the form
-UA--->A: clicks on submit button
-deactivate UA
-A---->P: sends the information of User to invite
-deactivate A
-group if wrong information is provided
-    activate P
-    P-->P: checks information
-    P-->E: sends email to inform of wrong information provided
-    activate E
-    E-->UA: receives notification of wrong information provided
-    deactivate E
-else
-P---->E: sends Email to invited User
+
+activate S
+S--->A: logged in Student opens the WebApp
+
+A<---P: Student's infos
 deactivate P
-activate E
-E---->UB: delivers invitiation Email
-deactivate E
-group InvitedUser declines invitiation
-    UB--->P: clicks on "Decline" button
-    activate P
-    P---->A: comunicates the Decline
-    deactivate P
+note left
+    the home page includes Tournament list
+end note
+S<---A: Student's home page
+activate A
+S--->A: scroll available Tournaments
+S<---A: more Tournaments
+S--->A: clicks the "See more" Button
+S<---A: more Tournaments displayed
+S--->A: clicks on Tournament entry to see details
+A--->P: requires more information about that specific Tournament
+activate P
+A<---P: Tournament's infos
+deactivate P
+S<---A: Tournament's info displayed
+deactivate A
+group if not interested
+    S--->A: clicks to hide details
     activate A
-    A---->UA: shows answer 
+    S<---A: shows home page
     deactivate A
-else InvitedStudent accepts invitiation
-    UB--->P: clicks on "Accept" button
+else 
+    S--->A: clicks on "Subscribe" button
+    activate A
+    A--->P: subscription request
     activate P
-    group Users are Educators
-        P--->P: manage Tournament permissions
-    else Users are Students
-        P--->P: creates a Team 
+    group if Subscription deadline is passed
+        P--->A: error message
+        deactivate P
+        S<--A: error message
+        deactivate A
+    else
+        activate P
+        P--->P: creates Team with a single Student
+        P--->E: sends confirmation Email to the Student
+        deactivate P
+        activate E
+        A<---P: receive confirmation of subscription
+        activate A
+        E--->S: delivers Email to the Student
+        deactivate E
+        S--->A: access his/her home page
+        S<---A: shows confirmation message for the subscription
+        deactivate A
+        deactivate S
     end
-    P---->A: comunicates the Acceptance
-    deactivate P
-    activate A
-    A---->UA: shows answer
-    deactivate A
-end 
-end 
+end
 @enduml
