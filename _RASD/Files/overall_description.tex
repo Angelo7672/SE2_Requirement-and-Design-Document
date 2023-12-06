@@ -1,5 +1,4 @@
-This section describes the perspective, functionalities, characteristics, and domain assumptions of CBK, which is a complete system.
-
+This section describes the perspective, functionalities, characteristics, and domain assumptions of CBK, which is a complete system.\\
 A RMP is needed, but all the modules needed for its execution are available.
 \\
 \subsection{Product Perspective}
@@ -18,11 +17,11 @@ A RMP is needed, but all the modules needed for its execution are available.
     intrigued to use it. Eve signs in as an educator giving her details like name, surname, e-mail, year of birth, institution and RMP handle. Then she logs in and is presented with a list of managed tournaments, empty for her, 
     and the possibility to create new ones.
     \item \textbf{Educator wants to create a tournament}\\ Faith is a user of the platform signed in as an Educator and wants to create a tournament. She logs in to the website and is presented with the homepage, in which she can 
-    start to create the tournament by clicking a specific button. After clicking it she can enter details like tournament name and details (as overview, programming language/s and maximum and minimum number of students for a team), 
-    subscription deadline and badges, then click a "Create tournament" button that will create the tournament and bring her to the manager tournament page. 
+    start to create the tournament by clicking a specific button. After clicking it she can enter details like tournament name, details (as overview, programming language/s and maximum and minimum number of students for a team),
+    subscription deadline and duration, then click a "Create tournament" button that will create the tournament and bring her to the manager tournament page. 
     \item \textbf{Educator wants to manage a tournament with a colleague}\\ Grace is an educator who is managing a tournament, she finds that the work behind creating all battles of the tournament is a bit too daunting, so she wants 
     help. To do so she goes to the tournament management page and by clicking the "add Educator" button she can send an invitation to manage the tournament to her friend Heidi, another educator registered to the platform. Heidi 
-    can accept the invite and create new battles for the tournament and if it is required, also manual evaluate the students' code.
+    can accept the invite and create new battles and badges for the tournament and if it is required, also manual evaluate the students' code.
     \item \textbf{Team wants to work on a battle}\\ After receiving notification of the tournament's start, a team that has subscribed to the competition wishes to focus on a battle. After arriving at the tournament page, to Isaac, 
     a member of the team, is shown a list of the battles that are available. He selects one and is taken to a new page that includes his name, details, the team scoreboard, and a link to the repository within the RMP. Since Isaac 
     has already registered with the RMP, he is able to fork the repository and make an actual copy that is stored in its profile. He now needs to check each team member's RMP handle in their profile and invite them all to join the 
@@ -36,16 +35,14 @@ A RMP is needed, but all the modules needed for its execution are available.
     of the tournament, on which he can see the leaderboard where he can find the overall tournament score of the team. Angelo can also check specific battles visiting their specific page where the related battle leaderboard is shown.
     \item \textbf{User wants to check out other user's profile}\\ Michael, a user of the platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other users 
     via a specific bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: user type, name, surname, RMP handle and badges.
-    \item \textbf{Educator wants to create a Battle}\\Jude is an Educator who manages a Tournament. Now she wants to challange her Students proposing them a Battle. Opened the CKB Web App, in her profile she reaches the page with 
-    the Tournaments she manages. Then, selected the one in which Jude wants to create a Battle, clicks on the "Create Battle" button. This brings her in a form to fill with the name of the Battle and the Students' RMP she wants to invite.
-    Completed the form, she clicks on the "Submit" button. Now, verified all information by the system, the new Battle is created.
-    \item \textbf{Educator wants to create a Badge}\\Beniamino is an Educator who wants to create a Badge for a Tournament he manages. Opend CKB's Web App, he accesses by his home page the one with the list of managed Tournaments.
-    He selects the one for which he intended to create the Badge and clicks "Add Badge" button. A form is presented to Beniamino who fills it with an image, a description and the test script. Submitted the form, after the routine system checks, the Badge is created.
+    \item \textbf{Educator wants to create a Battle}\\Jude oversees a tournament as an educator. She now wants to put her students to the test by suggesting a battle. When she opened the CKB Web App, she was taken to the page where she 
+    oversees the tournaments she manages. Jude then chooses the one where he wants to start a battle and clicks the "Create Battle" button. This opens a form for her to fill out with the battle's name and an overview of the battle. 
+    After supplying these details, she needs to include the battle's RMP repository link and specify the battle's evaluation modality. After filling out the form, she presses the "Submit" button. Now that the system has confirmed all 
+    the data, a new battle has been created.
+    \item \textbf{Educator wants to create a Badge}\\Beniamino is an educator, and he wants to design a badge for a tournament he oversees. He open the CKB Web App on his home page and go to the page with the managed tournaments list.
+    He clicks the "Add Badge" button after choosing the one for which he wanted to make the badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
+    to obtain this new badge. Once the form is submitted, the badge is created and made achievable during the tournament.
 \end{enumerate}
-
-\subsection{Further Details On The Shared Phenomena}
-
-Ne i tutor, ne quelli di cui ho mandato il documento sulg ruppo hanno messo questa parte
 
 \newpage
 
@@ -85,23 +82,19 @@ Every user subscribed to the platform, can search other users by name in the sea
 \subsubsection{Educator Functions}
 
 \paragraph{Create a Tournament}
-The page where the tournament creation is displayed is accessed by clicking a specific button on the homepage. 
-
+The page where the tournament creation is displayed is accessed by clicking a specific button on the homepage.\\
 There, educators can enter the tournament's name, description, programming language/s, minimum and maximum number of students per team, subscription deadline, and duration.\\ 
 After the educator clicks the "Create tournament" button, students are notified that a new tournament is available.
-
 When the deadline subscription is reached, the tournament begin.
-useSvgWithCaption{./Images/BPMN/createTournament.svg}{1.0}{1.0}{BPMN diagram of the creation of a tournament}
+\useSvgWithCaption{./Images/BPMN/createTournament.svg}{1.0}{1.0}{BPMN diagram of the creation of a tournament}
 
 \paragraph{Create a Battle}
-In the dedicated manage page that is provided to the educators involved in a specific tournament, there is a "Create battle" button that an educator can use to create battles.
-
+In the dedicated manage page that is provided to the educators involved in a specific tournament, there is a "Create battle" button that an educator can use to create battles.\\
 After that the educator click on that button, he inserts in the battle creation page the name, a description, the link to the RMP directory (the RMP directory contains all the test cases of the battle
 and in some case also some programming code already available) and set how the battle will be evaluated, defining how many points of the total 100 will go to the functional tests, to timeliness, to 
-the quality level of the sources, and optionally he could designate some points also to the manual evaluation. 
-
+the quality level of the sources, and optionally he could designate some points also to the manual evaluation.\\
 In any case the sum of the points that a team could achieve from all this parameter must be 100.
-useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a battle}
+\useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a battle}
 
 \paragraph{Add an educator to a tournament}
 An educator can add another educator to a tournament once he is on the appropriate management tournament page. The educator's addition will support the manual assessment of the students' code.
@@ -110,13 +103,12 @@ An educator can add another educator to a tournament once he is on the appropria
 \paragraph{Create a badge}
 The tournament management page allows an educator to make a badge. To accomplish this, he must click the "Create a badge" button. This will open a creation form, which the educator must fill out with the name of the badge and the rule 
 or rules that the students must follow in order to receive the badge.
-useSvgWithCaption{./Images/BPMN/createBadge.svg}{1.0}{1.0}{BPMN diagram of the creation of a badge}
+\useSvgWithCaption{./Images/BPMN/createBadge.svg}{1.0}{1.0}{BPMN diagram of the creation of a badge}
 
 \subsubsection{Student Functions}
 
 \paragraph{Search and subscribe to a tournament}
-A student can search for tournaments on the platform from his homepage. He can view the most recent tournaments added or search for them by name or programming language.
-
+A student can search for tournaments on the platform from his homepage. He can view the most recent tournaments added or search for them by name or programming language.\\
 He can subscribe to a tournament after selecting one, and each tournament has a minimum and maximum number of students signed up for each team. While it is occasionally possible to compete alone, one of CKB's goals is to teach 
 students how to write code in a team. As a result, students will most likely join a team when they subscribe to the tournament, and it's possible that he will invite some of his friends to join a team that he will name during the 
 subscription process.
@@ -125,12 +117,11 @@ subscription process.
 A student can join to a tournament by an invitation of another student and compete together in a team.
 
 \paragraph{Complete a battle}
-A student can finish battles by clicking on the button of a particular battle from the tournament page once he has subscribed to it. Once the RMP directory has been configured with the fork and workflow action, he can write code 
+A student can carry out battles by clicking on the button of a particular battle from the tournament page once he has subscribed to it. Once the RMP directory has been configured with the fork and workflow action, he can write code 
 locally to pass the test cases that are included in the battle repository. The platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the battle score, that the student 
 can view from the battle page, each time he pushes code into the repository. Optionally, an educator might evaluate the written code as well.
 
 \subsubsection{RMP Functions}
-\paragraph{}
 The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:
 \begin{enumerate}
     \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.

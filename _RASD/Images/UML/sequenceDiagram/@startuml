@@ -1,5 +1,0 @@
-@startuml
-actor Student as S
-partecipant CKBPlatform as Platform
-partecipant CKBWebApp as App
-@enduml

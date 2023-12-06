@@ -1,7 +1,9 @@
 sig Name{}
 sig Surname{}
 sig Email{}
-sig RMPHandle{}
+sig RMPHandle{
+    repo: RMPRepo
+}
 sig RMPRepo{}
 abstract sig User {
     name: one Name,
@@ -121,9 +123,9 @@ fact peopleNameNoObjectName{
 
 /*non esistono due team con lo stesso student che siano nello stesso tournament*/
 /*due team sono nello tournament se e solo se i loro student sono diversi*/
-/*fact DifferentStudentsInSameTournament {
-    all disj t1, t2: Team | all s:Student | (t1.tournament = t2.tournament) <=> !(s in t1.students and s in t2.students)
-}*/
+fact DifferentStudentsInSameTournament {
+    all disj to: Tournament | all s:Student | all  disj t1,t2:Team | (t1 in to.teams and t2 in to.teams) <=> !(s in t1.students and s in t2.students)
+}
 
 fact RMPHandleBelongsToUser {
     all r: RMPHandle | r in User.rmpHandle
@@ -143,7 +145,9 @@ fact TeamScoreIsUnique{
     all disj t1, t2: Team | t1.tournamentScore != t2.tournamentScore
 }
 
+/*fact repoTeamLinkedRepoBattle{
 
+}*/
 pred show{
     /*#Student = 3
     #Educator = 2*/

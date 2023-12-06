@@ -20,19 +20,19 @@ hide Team circle
 
 'Define relations>
 
-Platform "1" -down-> "0...n" Tournament : contains
-Platform "1" -up-> "0...n" User : has
+Platform "1" --> "0...n" Tournament : contains
+Platform "1" --> "0...n" User : has
 
-User <|-down- Student
+User <|-left- Student
 User <|-down- Educator
 
-Student "1...n" -down-o "1" Team : belongs to
-Student "0...n" -right-> "0...n" Badge : achieve
+Student "1...n" -left-o "1" Team : belongs to
+Student "0...n" -down-> "0...n" Badge : achieve
 
-Educator "1" -down-> "0...n" Badge : creates
-Educator -right-> Tournament : manages
+Educator "1" -left-> "0...n" Badge : creates
+Educator --> Tournament : manages
 
-Tournament -up-> Badge : has
+Tournament -right-> Badge : has
 
 Team -down-> Tournament : partecipates to
 @enduml

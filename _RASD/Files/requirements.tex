@@ -1,15 +1,21 @@
-
 \subsection{External Interface Requirements}
 
 \subsubsection{User Interfaces}
-In order to access the platform the crucial interface needed by the User is the one provided by a web browser. In fact it is sufficient to reach the CKB's URL to start with log in or sign up operations, described in the scenarios, or, after authentication, interact with the platform. The platform software, in fact, is a Web App. Instead to join a Battle a RMP link would be required.
-\subsubsection{Hardware Interfaces}
-Users have to provide themselves with a device able to access internet. It would sufficient that it is equipped with a wifi and/or ethernet interface. Of course would be crucial that it provides adeguated components to allow Users to interact with the platform, showing its interfaces.
-\subsubsection{Software Interfaces}
-As defined above, a web browser is the only software needed to access the platform. The interfaces that have to be supported are the ones defined by the Web Page rendering. About RMP, the platform software run on the server would be equipped with appropriate interfaces to interact with the RMP provided by the Student or the Team in the steps described in previous sections of this document.
-\subsubsection{Comunication Interfaces}
-Comunication Interfaces needed are the one necessary to access the internet. So for the User, TCP and HTTP interfaces would be crucial to reach the server on which the platform runs, while for the CKB's app it is fundamental to interact with RMP.
+In order to access the platform the crucial interface needed by the User is the one provided by a web browser. In fact, it is sufficient to reach the CKB's URL to start with log in or sign up operations, described in the scenarios, or, 
+after authentication, interact with the platform. The platform software, in fact, is a Web App. Instead, to join a Battle a RMP link would be required.
 
+\subsubsection{Hardware Interfaces}
+Users have to provide themselves with a device able to access internet. It would be sufficient that it is equipped with a Wi-Fi and/or Ethernet interface. Of course would be crucial that it provides adequate components to allow Users 
+to interact with the platform, showing its interfaces.
+
+\subsubsection{Software Interfaces}
+As defined above, a web browser is the only software needed to access the platform. The interfaces that have to be supported are the ones defined by the Web Page rendering. About RMP, the platform software run on the server would be 
+equipped with appropriate interfaces to interact with the RMP provided by the Student or the Team in the steps described in previous sections of this document.
+\subsubsection{Communication Interfaces}
+Communication Interfaces needed are the one necessary to access the internet. So for the User, TCP and HTTP interfaces would be crucial to reach the server on which the platform runs, while for the CKB's app it is fundamental to 
+interact with RMP.
+
+\newpage
 
 \subsection{Functional Requirements}
 Here follows a list of the platform functional requirements:
@@ -18,18 +24,29 @@ Here follows a list of the platform functional requirements:
     \item The platform allows registered Students to join a Battle.
     \item The platform allows registered Students to form Teams.
     \item The platform allows registered Students to invite other Students to join a Team.
-    \item The platform allows registerd Educators to create Tournaments.
+    \item The platform allows registered Educators to create Tournaments.
     \item The platform allows registered Educators to create Battles.
     \item The platform allows registered Educators to create Badges.
-    \item The plaftorm assigns a Score to Teams' work.
-    \item The platform provides a Teams' ranking within a Tournament context.
-    \item The plaform allows registered Educators to invite other Educators to join a Tournament.
+    \item The platform assigns a Battle Score to Teams' work.
+    \item The platform provides a Teams' ranking based on the Tournament Score within a Tournament context.
+    \item The platform allows registered Educators to add other Educators to a Tournament.
     \item The platform allows Users to search for other Users.
-    \item The platform interacts properly with different RMPs to acquire latest versions of code uploaded by related Teams. 
+    \item The platform interacts properly with different RMPs to acquire the latest versions of code uploaded by related Teams. 
     \item The platform should be able to manage multiple requests at the same time
 \end{enumerate}
+
+\newpage
+
+\subsubsection{Use case diagrams}
+\useSvgWithCaption{./Images/UML/useCaseDiagram/useCase1.svg}{0.95}{0.95}{Use case diagram of the login and the invitation}
+\useSvgWithCaption{./Images/UML/useCaseDiagram/useCase2.svg}{0.93}{0.93}{Use case diagram of the Battle and the Tournament}
+
+\newpage
+
+\subsubsection{Use cases and associated sequence diagrams}
 Here follow Use Case tables followed by respective sequence diagrams.
 \input{Files/useCaseTables/useCaseTables}
+
 \subsection{Performance Requirements}
 The platfrom, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all the same time. So, in order to satisfy all Requirements defined above, providing a good time response for each tasks, the Platform should have good time performance. Being a Web App, this implies a high concurrent programming implementation, to manage multiple requests at the same time, and a rapid related Data Storage System. 
 \subsection{Design Constraints}
