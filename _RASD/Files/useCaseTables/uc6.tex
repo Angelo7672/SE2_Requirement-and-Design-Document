@@ -1,23 +1,28 @@
-\paragraph*{UC6}
+\paragraph*{UC6} \label{uc:uc6}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Educator creates Badge \\ 
+        Name & Educator adds battle to tournament\\ 
         Actors & Educator \\ 
-        Entry Condition & Educator is managing a tournament \\ 
+        Entry Condition & 
+        Tournament is not started \newline 
+        Educator has prepared: \newline 
+        \begin{tabu}{X X[50]}
+            -& Repository to be available for teams to fork\\
+            -& Repository containing evaluation test suite\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& Educator is in tournament management page\\
-            2& Educator clicks on "Add badge" button\\
-            3& Platform shows badge creation form to educator\\
-            4& Educator fills the form with badge image, description and test script\\
+            2& Educator clicks on "Add battle" button\\
+            3& Platform shows a battle creation form\\
+            4& Educator fills the form with link to repository in RMP\\
             5& Educator clicks on "Submit" button\\
-            6& Platform checks badge test correctness\\
-            7& Platform registers badge creation\\
-            8& Platform sends a confirmation e-mail to educator\\
+            6& Platform registers battle addition to tournament\\
+            7& Platfrom sends confirmation e-mail to Educator\\
         \end{tabu} \\
-        Exit Condition & Every user is able to see the existence of the badge in the tournament detail page\\
-        Exception & If test script isn't correct, badge information is dropped and a notification e-mail is sent to the educator describing the issue\\
+        Exit Condition & Platform is ready to test battles and code is available for students to fork\\
+        Exception & Wrong  battle creation is discarded and Educator notified via e-mail of error\\
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramBadges.svg}{1.0}{1.0}{UC6 Sequence Diagram - Educator creates Badge}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramEducatorCreatesBattle.svg}{1.0}{1.0}{UC6 Sequence Diagram - Educator adds a battle to the tournament}
 \clearpage

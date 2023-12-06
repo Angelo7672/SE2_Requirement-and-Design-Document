@@ -1,24 +1,57 @@
-\paragraph*{UC4}
+\paragraph*{UC4} \label{uc:uc4}   %come UC1 
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Educator creates Tournament \\ 
-        Actors & Educator\\ 
-        Entry Condition & Educator has a clear plan of how to run the tournament\\ 
+        Name & User invites other user to collaborate \\ 
+        Actors & Inviting user, invited user \\ 
+        Entry Condition & Inviting user knows email of invited user \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& Educator is in it's homepage\\
-            2& Educator clicks on "Create tournament" button\\
-            3& Platform tournament creation form to the educator\\
-            4& Educator fills in the form\\
-            5& Educator clicks on "Submit" button \\
-            6& Platform registers tournament creation \\
-            7& Platform sends e-mail notification of success to educator \\
-            8& Platform sends e-mail notification of tournament existence to students \\
+            1& Inviting user clicks on "collaborate" button\\
+            2& System shows inviting user a form to fill with the email of the user he wants to invite\\
+            3& Inviting user clicks submit button\\
+            4& System sends invite e-mail notification to invited user\\
+            5& Invited user clicks on "Accept" button to accept invitation\\
+            6& Invited user clicks on "Decline" button to decline invitation, or ignores it\\
         \end{tabu} \\
-        Exit Condition & Tournament is created and available for students to subscribe to it\\
-        Exception & -\\
+        Exit Condition & If invited user accepts invitation, invited user can collaborate with inviting one, else as nothing happened\\
+        Exception & \begin{tabu}{X}
+            Invited user e-mail address can be: non-existent, non-registered, of user of different role. In this case Inviting user get's notified of the error via e-mail.
+        \end{tabu}  \\
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
-
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramEducatorCreatesTournament.svg}{1.0}{1.0}{UC4 Sequence Diagram - Educator creates tournament}
+UC4 is a generalization of UC4a and UC4b:
+\clearpage
+\paragraph*{UC4a}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Educator invites other educator to co-manage tournament\\ 
+        Actors & Inviting educator, invited educator \\ 
+        Entry Condition & Inviting educator is managing a tournament\\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Educator is in the managing page of the tournament\\
+            & Event flow follows father use case
+        \end{tabu} \\
+        Exit Condition & Invited Educator can manage the tournament\\
+        Exception & Same as UC4\\
+        Special \newline Requirement & - \\ 
+    \end{tabu}
+\end{center}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramEducatorInvitesOtherEducator.svg}{1.0}{1.0}{UC4, UC4a Sequence Diagram - Educator invites educator to collaborate}
+\clearpage
+\paragraph*{UC4b}
+\begin{center}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+        Name & Student invites other student to participate in the tournament as a Team \\ 
+        Actors & Inviting student, invited student\\ 
+        Entry Condition & Inviting student is part of a team subscribed to a tournament \\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Student is in the tournament detail page\\
+            & Follows UC4's event flow
+        \end{tabu} \\
+        Exit Condition & If incited student accepts invitation, invited user is part of inviting user's team\\
+        Exception & Same as UC4, with the verification of no participance to the Team in which he/she is invited or any other Team\\
+        Special \newline Requirement & - \\ 
+    \end{tabu}
+\end{center}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramStudentInvitesOtherStudent.svg}{1.0}{1.0}{UC4, UC4b Sequence Diagram - Student invites student to collaborate}
 \clearpage

@@ -1,56 +1,26 @@
-\paragraph*{UC3}    %come UC1
+\paragraph*{UC3} \label{uc:uc3}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & User invites other user to collaborate \\ 
-        Actors & Inviting user, invited user \\ 
-        Entry Condition & Inviting user knows email of invited user \\ 
+        Name & Student subscribes to tournament\\ 
+        Actors & Student \\ 
+        Entry Condition & - \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& Inviting user clicks on "collaborate" button\\
-            2& System shows inviting user a form to fill with the email of the user he wants to invite\\
-            3& Inviting user clicks submit button\\
-            4& System sends invite e-mail notification to invited user\\
-            5& Invited user clicks on "Accept" button to accept invitation\\
-            6& Invited user clicks on "Decline" button to decline invitation, or ignores it\\
+            1& Student logs in to the platform\\
+            2& Student is in it's home page and is presented with a list of available tournaments\\
+            3& Student scrolls through the list of available tournaments\\
+            4& Student can ask to see more tournaments via the "See more" button\\
+            5& Student clicks on tournament entry to see tournament details\\
+            6& Student clicks again on tournament if not interested to hide details\\
+            7& Student clicks on "subscribe" button to subscribe to tournament\\
+            8& Platform registers tournament subscription\\
+            9& Platform creates new team for that student\\
+            10& Platform sends confirmation e-mail to student\\
+            11& Platform gives visual feedback on web page of effective subscription\\
         \end{tabu} \\
-        Exit Condition & If invited user accepts invitation, invited user can collaborate with inviting one, else as nothing happened\\
-        Exception & \begin{tabu}{X}
-            Invited user e-mail address can be: non-existent, non-registered, of user of different role. In this case Inviting user get's notified of the error via e-mail.
-        \end{tabu}  \\
+        Exit Condition & Student is subscribed to tournament and knowing it\\
+        Exception & Subscription deadline is passed, student cannot subscribe to tournament\\
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
-
-\paragraph*{UC3a}
-\begin{center}
-    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Educator invites other educator to co-manage tournament\\ 
-        Actors & Inviting educator, invited educator \\ 
-        Entry Condition & Inviting educator is managing a tournament\\ 
-        Event Flow & \begin{tabu}{X X[50]}
-            1& Educator is in the managing page of the tournament\\
-            & Event flow follows father use case
-        \end{tabu} \\
-        Exit Condition & Invited Educator can manage the tournament\\
-        Exception & Same as UC3\\
-        Special \newline Requirement & - \\ 
-    \end{tabu}
-\end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramEducatorInvitesOtherEducator.svg}{1.0}{1.0}{UC3a Sequence Diagram - Educator invites educator to collaborate}
-
-\paragraph*{UC3b}
-\begin{center}
-    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Student invites other student to participate in the tournament as a Team \\ 
-        Actors & Inviting student, invited student\\ 
-        Entry Condition & Inviting student is part of a team subscribed to a tournament \\ 
-        Event Flow & \begin{tabu}{X X[50]}
-            1& Student is in the tournament detail page\\
-            & Follows UC3's event flow
-        \end{tabu} \\
-        Exit Condition & If incited student accepts invitation, invited user is part of inviting user's team\\
-        Exception & Same as UC3, with the verification of no participance to the Team in which he/she is invited or any other Team\\
-        Special \newline Requirement & - \\ 
-    \end{tabu}
-\end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramStudentInvitesOtherStudent.svg}{1.0}{1.0}{UC3b Sequence Diagram - Student invites student to collaborate}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramStudentSubscribesToTournament.svg}{1.0}{1.0}{UC3 Sequence Diagram - Student subscribes to the tournament}
 \clearpage
