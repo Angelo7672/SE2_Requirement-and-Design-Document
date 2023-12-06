@@ -9,47 +9,30 @@ UA--->A: clicks on "collaborate button"
 activate UA
 activate A
 UA<---A: shows a form to fill 
-UA--->A: provides infos to fill the form
-UA--->A: clicks on submit button
+UA--->A: submit the form
 deactivate UA
-A---->P: sends the information of User to invite
+A---->P: sends the email of Student to invite
+P-->P: checks information
 deactivate A
-group if wrong information is provided
+alt if a non valid email is provided
     activate P
-    P-->P: checks information
-        note right
-        Are checked e-mail address existence,
-        if the User to invite is actually a registered Student
-        if he/she is not part of that Team 
-        or any other Team in the Tournament
-    end note
-    P-->E: sends email to inform of wrong information provided
+    P-->E: sends email to inform of a non valid email provided
     activate E
-    E-->UA: receives notification of wrong information provided
+    E-->UA: receives notification of a non valid email provided
     deactivate E
-else
-P---->E: sends Email to invited User
+else if a valid email is provided
+P---->E: sends Email to invited Student
 deactivate P
 activate E
 E---->UB: delivers invitiation Email
 deactivate E
-group InvitedStudent declines invitiation
+
+alt InvitedStudent declines invitiation
     UB--->P: clicks on "Decline" button
-    activate P
-    P---->A: comunicates the Decline
-    deactivate P
-    activate A
-    A---->UA: shows answer 
-    deactivate A
 else InvitedStudent accepts invitiation
     UB--->P: clicks on "Accept" button
     activate P
     P--->P: Adds InvitedStudent to the Team
-    P---->A: comunicates the Acceptance
-    deactivate P
-    activate A
-    A---->UA: shows answer
-    deactivate A
 end 
 end 
 @enduml

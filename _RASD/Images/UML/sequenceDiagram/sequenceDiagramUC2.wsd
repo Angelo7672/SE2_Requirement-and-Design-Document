@@ -32,10 +32,6 @@ alt if credential accepted
     activate Platform
     Platform -> App: User's homepage
     deactivate Platform
-    note right
-        in the home page are shown 
-        the lates tournaments
-    end note
     App -> Alice: User's homepage
     deactivate App
 else email/password not valid

@@ -1,0 +1,18 @@
+@startuml
+
+autonumber
+
+actor Alice
+participant EmailProvider as Email
+entity CKBPlaform as Platform
+
+Platform -> Platform: runs badge tests
+Platform -> Platform: search for badge receicever
+
+loop for each badge assigned:
+    Platform -> Platform: assign badge to user "Alice"
+    Platform -> Email: give badge
+    Email -> Alice: give badge
+end
+
+@enduml

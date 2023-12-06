@@ -7,8 +7,8 @@ entity CKBPlatform as P
 
 
 activate S
-S--->A: logged in Student opens the WebApp
-
+S--->A: login
+A--->P: login
 A<---P: Student's infos
 deactivate P
 note left
@@ -16,44 +16,51 @@ note left
 end note
 S<---A: Student's home page
 activate A
-S--->A: scroll available Tournaments
-S<---A: more Tournaments
+S--->S: scroll available Tournaments
+note right
+    the web app caches Tournaments list
+end note
 S--->A: clicks the "See more" Button
 S<---A: more Tournaments displayed
-S--->A: clicks on Tournament entry to see details
+S--->A: clicks on a Tournament displayed to see details
 A--->P: requires more information about that specific Tournament
 activate P
 A<---P: Tournament's infos
 deactivate P
 S<---A: Tournament's info displayed
 deactivate A
-group if not interested
-    S--->A: clicks to hide details
+
+alt if not interested
+    S--->A: clicks again on tournament to hide details
     activate A
-    S<---A: shows home page
+    S<---A: hide tournament details
     deactivate A
-else 
+else if interested
     S--->A: clicks on "Subscribe" button
     activate A
     A--->P: subscription request
     activate P
-    group if Subscription deadline is passed
+
+    alt if Subscription deadline is passed
         P--->A: error message
         deactivate P
         S<--A: error message
         deactivate A
-    else
+    else if Subscription deadline is not passed
         activate P
-        P--->P: creates Team with a single Student
+        P--->P: creates Team for that Student
+        P--->A: insert the Team's name
+        A--->S: insert the Team's name
+        S--->A: submit the Team's name
+        A--->P: submit the Team's name
         P--->E: sends confirmation Email to the Student
         deactivate P
         activate E
-        A<---P: receive confirmation of subscription
+        A<---P: gives feedback of effective subscription
         activate A
         E--->S: delivers Email to the Student
         deactivate E
-        S--->A: access his/her home page
-        S<---A: shows confirmation message for the subscription
+        S<---A: gives visual feedback of effective subscription
         deactivate A
         deactivate S
     end
