@@ -1,29 +1,34 @@
 @startuml
+
 autonumber
 actor Student as S
 participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
 
-
 activate S
-S--->A: login
-A--->P: login
-A<---P: Student's infos
+S->A: login
+activate A
+A->P: login
+activate P
+A<---P: Student's homepage
 deactivate P
 note left
     the home page includes Tournament list
 end note
 S<---A: Student's home page
-activate A
-S--->S: scroll available Tournaments
+deactivate A
+S->S: scroll available Tournaments
 note right
     the web app caches Tournaments list
 end note
-S--->A: clicks the "See more" Button
+S->A: clicks the "See more" Button
+activate A
 S<---A: more Tournaments displayed
-S--->A: clicks on a Tournament displayed to see details
-A--->P: requires more information about that specific Tournament
+deactivate A
+S->A: clicks on a Tournament displayed to see details
+activate A
+A->P: requires more information about that specific Tournament
 activate P
 A<---P: Tournament's infos
 deactivate P
@@ -31,14 +36,14 @@ S<---A: Tournament's info displayed
 deactivate A
 
 alt if not interested
-    S--->A: clicks again on tournament to hide details
+    S->A: clicks again on tournament to hide details
     activate A
     S<---A: hide tournament details
     deactivate A
 else if interested
-    S--->A: clicks on "Subscribe" button
+    S->A: clicks on "Subscribe" button
     activate A
-    A--->P: subscription request
+    A->P: subscription request
     activate P
 
     alt if Subscription deadline is passed
@@ -48,17 +53,21 @@ else if interested
         deactivate A
     else if Subscription deadline is not passed
         activate P
-        P--->P: creates Team for that Student
+        P->P: creates Team for that Student
         P--->A: insert the Team's name
-        A--->S: insert the Team's name
-        S--->A: submit the Team's name
-        A--->P: submit the Team's name
-        P--->E: sends confirmation Email to the Student
         deactivate P
+        activate A
+        A--->S: insert the Team's name
+        deactivate A
+        S->A: submit the Team's name
+        activate A
+        A->P: submit the Team's name
+        activate P
+        P->E: sends confirmation Email to the Student
         activate E
         A<---P: gives feedback of effective subscription
-        activate A
-        E--->S: delivers Email to the Student
+         deactivate P
+        E->S: delivers Email to the Student
         deactivate E
         S<---A: gives visual feedback of effective subscription
         deactivate A

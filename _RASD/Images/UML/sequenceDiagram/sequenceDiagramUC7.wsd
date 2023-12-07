@@ -1,31 +1,41 @@
 @startuml
+
+autonumber
+
 actor Educator as E
 participant EmailProvider as EP
 participant CKBWebApp as A
 entity CKBPlatform as P
 
-E-->A: clicks on "Add Badge" button
+activate E
+E -> A: clicks on "Add Badge" button
 activate A
-E<--A: shows creation form
-E-->A: fills the form
-E-->A: clicks on "Submit" button 
+A -> P: add badge
+P --> A: return badge creation form
+E <-- A: shows badge creation form
 deactivate A
-A-->P: sends Badge creation form compiled
+E -> A: submits the filled the form
+deactivate E
+activate A
+A -> P: sends Badge creation form compiled
+deactivate A
 activate P
-P-->P: checks Badge information correctness
-group if information is not correct
-    P-->EP: sends Email to inform of unsuccessful operation
+P -> P: checks requirements script correctness
+
+alt if script is not correct
+    P -> EP: sends Email to inform of unsuccessful operation
     deactivate P
     activate EP
-    E<--EP: sends Email to inform of unsuccessful operation
+    E <- EP: sends Email to inform of unsuccessful operation
     deactivate EP
-else if information is correct
+else if script is correct
     activate P
-    P-->P: registers Badge creation
-    P-->EP: send Email to inform of Badge creation
+    P -> P: registers Badge creation
+    P -> EP: send Email to inform of Badge creation
     deactivate P
     activate EP
-    E<--EP: send Email to inform of Badge creation
+    E <- EP: send Email to inform of Badge creation
     deactivate EP
 end
+
 @enduml

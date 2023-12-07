@@ -1,38 +1,50 @@
 @startuml
+
+
+
 actor InvitedEducator as UB
 actor InvitingEducator as UA
 participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
 
-UA--->A: clicks on "collaborate button"
 activate UA
+UA -> A: clicks on "collaborate" button
 activate A
-UA<---A: shows a form to fill 
-UA--->A: submit the form
-deactivate UA
-A---->P: sends the email of Educator to invite
+A -> P: adding an educator
+activate P
+P --> A: form to fill
+deactivate P
+UA <-- A: shows a form to fill 
 deactivate A
- P-->P: checks information
+UA -> A: submit the form
+deactivate UA
+activate A
+A -> P: sends the email of Educator to invite
+deactivate A
+activate P
+P -> P: checks email
+
 alt if a non valid email is provided
-    activate P
-    P-->E: sends email to inform of a non valid email provided
+    P -> E: sends email to inform of a non valid email provided
+    deactivate P
     activate E
-    E-->UA: receives notification of a non valid email provided
+    E -> UA: receives notification of a non valid email provided
     deactivate E
 else if a valid email is provided
-P---->E: sends Email to invited Educator
-deactivate P
-activate E
-E---->UB: delivers invitiation Email
-deactivate E
-alt InvitedEducator declines invitiation
-    UB--->P: clicks on "Decline" button
-    activate P
-else InvitedEducator accepts invitiation
-    UB--->P: clicks on "Accept" button
-    activate P
-    P--->P: Educator added to the Tournament
+    P -> E: sends Email to invited Educator
+    activate E
+    E -> UB: delivers invitiation Email
+    deactivate E
+
+    alt InvitedEducator declines invitiation
+        UB -> P: clicks on "Decline" button
+    else InvitedEducator accepts invitiation
+        UB -> P: clicks on "Accept" button
+        activate P
+        P -> P: Educator added to the Tournament
+    end
+    deactivate P
 end 
-end 
+
 @enduml

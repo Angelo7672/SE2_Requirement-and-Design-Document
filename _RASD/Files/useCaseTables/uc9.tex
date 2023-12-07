@@ -5,12 +5,14 @@
         Actors & RMP \\ 
         Entry Condition & Team student upload update to RMP \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& RMP notifies CKB platform of update to repository\\
-            2& Platform creates new test environment instance\\
-            3& Platform inserts Team code inside newly created test environment\\
-            4& Platform runs tests inside environment\\
-            5& Test ends with score, score gets assigned to corresponding team\\
-            6& Platform updates team's tournament score\\
+            1& RMP call CKB's API to notify platform of an update to repository\\
+            2& Platform checks the repository link and recognize the Team\\
+            3& Platform pulls the code from repository\\
+            4& Platform creates new test environment instance\\
+            5& Platform inserts Team code inside newly created test environment\\
+            6& Platform runs automatic tests inside environment\\
+            7& Test ends with a new battle score which gets assigned to corresponding team\\
+            8& Platform updates Team's tournament score\\
         \end{tabu} \\
         Exit Condition & Users are able to see newly created score inside battle leaderboards\\
         Exception & Repository is not associated to any team of the tournament: tests are not run\\

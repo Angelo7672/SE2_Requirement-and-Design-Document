@@ -12,9 +12,9 @@ Alice -> App: Clicks on "log in" button
 activate App
 App -> Platform: request login page
 activate Platform
-Platform -> App: login page
+Platform --> App: login page
 deactivate Platform
-App -> Alice: login page
+App --> Alice: login page
 deactivate App
 Alice -> App: Form filled with email and password
 activate App
@@ -22,35 +22,25 @@ App -> Platform: Form filled with email and password
 activate Platform
 
 alt if credential accepted
-    Platform -> App: credential accepted
+    Platform --> App: credential accepted
     deactivate Platform
-    App -> Alice: credential accepted
+    App --> Alice: credential accepted
     deactivate App
     Alice -> App: request home page
     activate App
     App -> Platform: request home page
     activate Platform
-    Platform -> App: User's homepage
+    Platform --> App: User's homepage
     deactivate Platform
-    App -> Alice: User's homepage
+    App --> Alice: User's homepage
     deactivate App
 else email/password not valid
-    Platform -> App: email/password not valid
+    Platform --> App: email/password not valid
     deactivate Platform
     activate App
-    App -> Alice: email/password not valid
+    App --> Alice: email/password not valid
     deactivate App
     deactivate Alice
 end
-
-
-
-
-
-== A new tournament is created ==
-Platform -> Email: new tournament available + link
-activate Email
-Email -> Alice: new tournament available + link
-deactivate Email
 
 @enduml

@@ -2,35 +2,42 @@
 
 autonumber
 
+actor Student
+participant StudentEmail
 actor Educator
-participant EmailProvider as Email
+participant EducatorEmail as Email
 participant CKBWebApp as App
 entity CKBPlaform as Platform
 
 activate Educator
-Educator -> App: Create Tournament
+Educator -> App: click on "Create tournament" button
 activate App
-App -> Platform: Create Tournament
+App -> Platform: create tournament
 activate Platform
-Platform -> App: Tournament creation form
+Platform --> App: tournament creation form
 deactivate Platform
-App -> Educator: Tournament creation form
+App --> Educator: tournament creation form
 deactivate App
-Educator -> App: Form filled with name, programming language/s and overview
+Educator -> App: submit form filled with tournament's information
 activate App
-App -> Platform: Form filled with name, programming language/s and overview
+App -> Platform: form filled with tournament's information
 activate Platform
-Platform -> Platform: Registers tournament creation
-Platform -> App: Tournament created
-Platform -> Email: Tournament creation confermation 
+Platform -> Platform: registers tournament creation
+Platform -> Email: tournament creation confermation
 activate Email
+Platform --> App: return new tournament's homepage
 deactivate Platform
-App -> Educator: Tournament created
-deactivate App
-Email -> Educator: Tournament creation confermation 
+Email -> Educator: tournament creation confermation
 deactivate Email
+App --> Educator: new tournament's homepage
+deactivate App
 deactivate Educator
-note right
-    da sistemare bisogna aggiungere l'invio delle mail agli studenti, bisogna aggiungere quello che riguarda i team min max duration deadline to subscribe
-end note
+
+loop to each student subscribed to CKB
+    Platform -> StudentEmail: new tournament available + link
+    activate StudentEmail
+    StudentEmail -> Student: new tournament available + link
+    deactivate StudentEmail
+end
+
 @enduml

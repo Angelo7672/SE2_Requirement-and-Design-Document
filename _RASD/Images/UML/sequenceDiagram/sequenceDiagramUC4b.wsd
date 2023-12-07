@@ -1,38 +1,50 @@
 @startuml
+
+autonumber
+
 actor InvitedStudent as UB
 actor InvitingStudent as UA
 participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
 
-UA--->A: clicks on "collaborate button"
 activate UA
+UA -> A: clicks on "collaborate button"
 activate A
-UA<---A: shows a form to fill 
-UA--->A: submit the form
-deactivate UA
-A---->P: sends the email of Student to invite
-P-->P: checks information
+A -> P: invite a student to a Team
+activate P
+P --> A: form to fill
+deactivate P
+UA <-- A: shows a form to fill
 deactivate A
+UA -> A: submit the form
+deactivate UA
+activate A
+A -> P: sends the email of Student to invite
+deactivate A
+activate P
+P -> P: checks email
+deactivate A
+
 alt if a non valid email is provided
-    activate P
-    P-->E: sends email to inform of a non valid email provided
+    P -> E: sends email to inform of a non valid email provided
+    deactivate P
     activate E
-    E-->UA: receives notification of a non valid email provided
+    E -> UA: receives notification of a non valid email provided
     deactivate E
 else if a valid email is provided
-P---->E: sends Email to invited Student
-deactivate P
-activate E
-E---->UB: delivers invitiation Email
-deactivate E
+    P -> E: sends Email to invited Student
+    activate E
+    E -> UB: delivers invitiation Email
+    deactivate E
 
-alt InvitedStudent declines invitiation
-    UB--->P: clicks on "Decline" button
-else InvitedStudent accepts invitiation
-    UB--->P: clicks on "Accept" button
-    activate P
-    P--->P: Adds InvitedStudent to the Team
-end 
+    alt InvitedStudent declines invitiation
+        UB -> P: clicks on "Decline" button
+    else InvitedStudent accepts invitiation
+        UB -> P: clicks on "Accept" button
+        activate P
+        P -> P: Adds InvitedStudent to the Team
+    end
+    deactivate P
 end 
 @enduml

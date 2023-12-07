@@ -1,31 +1,28 @@
 @startuml
 
-actor Student as S
-participant EmailProvider as E
+autonumber
+
 entity CKBPlatform as P
 participant RMP as R
 
-S--->R: pushes code
 activate R
-P--->R: requires code
-activate P
-P<---R: pulls code
+R -> P: call the API
 deactivate R
-P--->P: runs tests
 activate P
+P -> P: checks repository link
+
+alt Team owner of the repository is recognized
+    P -> R: pulls code
+    activate R
+    R --> P: returns the code
+    deactivate R
+    P -> P: creates new test environment instance
+    P -> P: inserts Team code inside test environment
+    P -> P: runs automatic tests inside environment
+    P -> P: update Team's battle score 
+    P -> P: update Team's tournament score
+else repository is not associated to any team
+end
 deactivate P
-P--->P: RMP handles and E-mail addresses to assign Badges
-activate P
-deactivate P
-P--->P: search corresponding accounts
-activate P
-deactivate P
-group if all commit Users correspond to CKB platform Users
-    P--->E: sends E-mails to each Student in the list
-    activate E
-    deactivate P
-    E--->S: delivers the e-mail notification to chosen Student
-    deactivate E
-end 
 
 @enduml

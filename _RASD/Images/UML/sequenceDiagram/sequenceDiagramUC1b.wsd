@@ -1,0 +1,66 @@
+@startuml
+
+autonumber
+
+actor Bob
+participant EmailProvider as Email
+participant CKBWebApp as App
+entity CKBPlaform as Platform
+
+activate Bob
+Bob -> App: Access to platform website
+activate App
+App -> Platform: request login/sign in page
+activate Platform
+Platform --> App: login/sign in page
+deactivate Platform
+App --> Bob: login/sign in page
+deactivate App
+Bob -> App: select sign in
+activate App
+App -> Platform: request sign in page
+activate Platform
+Platform --> App: sign in page
+deactivate Platform
+App --> Bob: sign in page
+deactivate App
+Bob -> App: select educator
+activate App
+App -> Platform: request educator sign in page
+activate Platform
+Platform --> App: educator sign in page
+deactivate Platform
+App --> Bob: educator sign in page
+deactivate App
+Bob -> App: give name, surname, e-mail
+activate App
+App -> Platform: sign in name, surname, e-mail
+activate Platform
+
+alt e-mail accepted
+    Platform --> App: create a password
+    deactivate Platform
+    App --> Bob: create a password
+    deactivate App
+    Bob -> App: new password
+    activate App
+    App -> Platform: new password
+    activate Platform
+    Platform --> App: password accepted. Confirm registration on email submitted
+    Platform -> Email: send confirmation email
+    deactivate Platform
+    activate Email
+    Email -> Bob: confirmation link
+    deactivate Email
+    App --> Bob: password accepted. Confirm registration on email submitted
+    deactivate App
+    Bob -> Bob: click confirmation link
+else e-mail already in use
+    Platform --> App: email already in use
+    activate App
+    App --> Bob: email already in use
+    deactivate App
+    deactivate Bob
+end
+
+@enduml

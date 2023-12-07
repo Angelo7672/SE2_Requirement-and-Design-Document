@@ -1,20 +1,28 @@
 @startuml
 
+autonumber
+
 actor User as S
 participant CKBWebApp as E
 entity CKBPlatform as P
 
+activate S
+S -> E: submit user's data in the search bar
 activate E
-S->>E: fills the form
-S->>E: Click on search button
+E -> P: search users with similar data
 activate P
-E->>P: search users with similar data
-P-->E: list of found users
-E-->S: show found users
-S->>E: click on user on list
-E->>P: get searched user profile
-P-->E: user profile data
-E-->S: show user profile
-deactivate P 
+P --> E: list of found users
+deactivate P
+E --> S: show found users
+deactivate E
+S -> E: click on a user on list
+activate E
+E -> P: get searched user profile
+activate P
+P --> E: user profile data
+deactivate P
+E --> S: show user profile
+deactivate E
+deactivate S
 
 @enduml

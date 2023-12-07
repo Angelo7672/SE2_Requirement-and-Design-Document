@@ -6,13 +6,21 @@ actor Alice
 participant EmailProvider as Email
 entity CKBPlaform as Platform
 
-Platform -> Platform: runs badge tests
-Platform -> Platform: search for badge receicever
+activate Platform
+
+loop on all repositories
+    Platform -> Platform: runs badge tests
+end
+
+    Platform -> Platform: search for badge receicever
 
 loop for each badge assigned:
     Platform -> Platform: assign badge to user "Alice"
-    Platform -> Email: give badge
-    Email -> Alice: give badge
+    Platform -> Email: notification of obtaining the badge
+    deactivate Platform
+    activate Email
+    Email -> Alice: notification of obtaining the badge
+    deactivate Email
 end
 
 @enduml
