@@ -1,5 +1,48 @@
-Hi this is the introduction part
+\subsection*{Porpose}
+The Design Document has the main goal of illustrate a more tecnical and specific indications to help developers implement what RASD describes. 
+In particular, where the previous mentioned document is more focused on the requirements, goals, general context description and their theorical correctness, DD defines main guidelines to concrete those ideas and principles, making the program real. 
+The procedures and phases here reported are, namely, implementation, integration and testing plans. Finally is reported the singular effort spent to realize the Document.
 \subsection{Scope}
+CodeKataBattle is an application thought to train coding skills using the "kata battle" principles. This tecnique, typical of martial arts, consists of repeating an action to improve it, until a good level of confidence, correctness and precision is achived.
+In this context Educators can create Tournaments and within them Battles, the final virtual space where students will compete on a specific code to develope. The app's services are accessble throught a Web App and among them are included the creation, for Educators, and registration, for Students, to Tournaments and Battles, code evaluation, creation of Teams of Students and invitations to collaborate to a Tournament management for Educators. 
+In order to assign a Score to a Team, assessing the code, the main Platform pulls the code from the Student's Repository Management, and runs it throught various tests provided for that Battle. Educators can appoint a different Score and create Badges to bestow to a Student that satisfied the related criterias.
 \subsection{Definitions, acronyms, abbreviations}
+To better understand the Document and the Actors involved here are reported some Definitions.
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Platform}\\Rapresents the CodeKataBattle System's behavior as a whole, describes its workflows and interactions.
+    \item \textbf{User}\\With User is intended, depending on the situation, Educator or Student. The entity, in particular will model behaviors and interactions common to both main Actors.
+    \item \textbf{Student}\\Student is one of the main Actors. The entire Platform is build with the aim to improve his/her coding skills, joining Battles, forming Teams, invinting other Students to join Battles, receving Badges.
+    \item \textbf{Educator}\\Educator is one of the main Actors. He/She manages Tournaments, alone or inviting other Educators, creating them and adding Battles. Educator creates Badges and can add extra point to Student's Score.
+    \item \textbf{Battle}\\Within a Battle Students compete to improve their skills. It is the base entity on which is realized the entire Platform.
+    \item \textbf{Group}\\This entity describes behaviors and interactions common to Students' Teams, that compete in a Battle, and a set of Educators, that manages a Tournament.
+    \item \textbf{Badge}\\In order to gamify the Platform Badges can be created. These are assigned to a Student that achieves a specific goal.
+    \item \textbf{Tournament}\\Tournaments are the context within Battles take place. They are managed by Educators and defines a specific topic for code developed for a hosted Battle.
+    \item \textbf{Repository manager platform}\\Repository management platform is an external platform that oversees code developed for a particular Battle.
+    \item \textbf{Score}\\Score is the quantified evaluation of the uploaded code. It is automatically assigned by the Platform or can ben defined by an Educator.
+\end{enumerate}
+\subsubsection[short]{Repository manager platform specific definitions}
+These definitions describe the technical jargon used while talking about repository management platform functionalities.
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Version Control System}\\A system that allows to save data in different versions keeping track of changes and authors.
+    \item \textbf{Repository}\\A folder in which code is stored and managed by a version control system.
+    \item \textbf{Action}\\Code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
+    \item \textbf{Commit}\\Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
+    \item \textbf{Push}\\Act in which commits are uploaded to the RMP Platform.
+    \item \textbf{Fork}\\Act of duplicating repositories created by others in a personal one
+\end{enumerate}
+\subsection{Abbreviations and Acronyms}
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{CKB}\\CodeKataBattle, the name of the Platform.
+    \item \textbf{RMP}\\Repository Manager Platform
+    \item \textbf{VCS}\\Version Control System
+\end{enumerate}
 \subsection{Reference documents}
+\subsection{Document Structure}
+\begin{enumerate}
+    \item \textbf{Introduction} This section provides a geneal description of the document porpose, structure and goals associated useful definitions, acronyms and abbreviations related to the software to develope. Moreover is reminded to the reader the general description and finalities of the app for which is intended to provide instructions.
+    \item \textbf{Architectural Design} Here are reported the main architectural components and qualities to implement in the software. A more detailed description of the app's functioning appears with respective modules and phisical components that host them. In order to do this, the section is enriched with diagrams and speicifation to organize the code in the architeture making it work as intended.
+    \item \textbf{User Interface Design} User Interface is crucial for the app's usability. In this sections are provided principles to apply to realize the intended interface, providing mockups, examples and descriptions. It would be clarified how to connect interface components to the code.
+    \item \textbf{Requirements Traceability}The purpose of the Document is to provide details to implement the software as intended. This means that is crucial to respect requirements and goals at all levels defined in the RASD. Each module and software components has to be matched with the requirement it brings to live. This procedure, reported in this section, is at the base of the project's coherence and it's essential for its  correct realization.
+    \item \textbf{Implementation, Integration and Test Plan}DD provides a more detailed analysis and description of what is needed to finally shape the project. In order to do that is vital to have a plan with the intention od achiving goals for the prefixed time without renouncing to quality. Proceding step by step and following a logic based on software characteristics, is possibile to make the app progressivly grow meeting stakeholders, clients and developers needs, involving every actor in the process without compromising the code. For these reasons Implementation, Integration and Test plans are provided to build a coherent, robust, complete code.
+\end{enumerate}
 \subsection{Overview}
