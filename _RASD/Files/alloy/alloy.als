@@ -1,10 +1,14 @@
+--------------------------------------------------
+//Signatures
 sig Name{}
 sig Surname{}
 sig Email{}
 sig RMPHandle{
     repo: RMPRepo
 }
-sig RMPRepo{}
+sig RMPRepo{
+    rmp: one RMP
+}
 abstract sig User {
     name: one Name,
     surname: one Surname,
@@ -51,6 +55,8 @@ abstract sig Score{
 sig BattleScore extends Score{}
 sig TournamentScore extends Score{}
 
+--------------------------------------------------
+//Facts
 fact SurnameBelongsToUser{
     all s: Surname | s in User.surname
 }
@@ -145,14 +151,55 @@ fact TeamScoreIsUnique{
     all disj t1, t2: Team | t1.tournamentScore != t2.tournamentScore
 }
 
+fact noAloneDescriptions{
+    some b:Badge | all d:Description | d in b.description
+}
+
+fact noAloneNames{
+    some b:Badge | some u:User | all n:Name | (n in b.name) or (n in u.name)
+}
+
 /*fact repoTeamLinkedRepoBattle{
 
 }*/
+
+
+--------------------------------------------------
+//Assertions
+
+//GP2: Allow Educators to create tournaments
+assert newTournament{
+    no t:Tournament | no t in Platform.tournament
+}
+check newTournament for 6
+//GP4: Allow Educators to create battles
+assert newBattle{
+    no b:Battle | all t:Tournament | no b in t.battles
+}
+check newBattle for 6
+//GP5: Allow Educators to create badges
+assert newBadge{
+    no b:Badge | all t:Tournament | no b in t.badges
+}
+check newBadge for 6
+//GS2: Allow Students to be rewarded for special achievement
+assert studentReceivesSpecialAchievements{
+    b: Badge | s: Student | b in s.badges
+}
+check studentReceivesSpecialAchievements for 6
+//GS4: Allow Students to have work evaluated
+assert haveWorkEvaluated{
+    no s: Score | all t:Team | no s in t.tournamentScore
+}
+check haveWorkEvaluated for 6
+--------------------------------------------------
+//Predicates
 pred show{
     /*#Student = 3
-    #Educator = 2*/
+    #Educator = 2
     #Tournament > 1
     #Team > 1
+    #RMP > 1*/
 }
 
 
