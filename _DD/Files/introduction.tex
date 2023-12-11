@@ -1,11 +1,36 @@
-\subsection*{Porpose}
-The Design Document has the main goal of illustrate a more tecnical and specific indications to help developers implement what RASD describes. 
-In particular, where the previous mentioned document is more focused on the requirements, goals, general context description and their theorical correctness, DD defines main guidelines to concrete those ideas and principles, making the program real. 
-The procedures and phases here reported are, namely, implementation, integration and testing plans. Finally is reported the singular effort spent to realize the Document.
+\subsection{Purpose}
+The Design Document has the main goal of illustrate a more technical and specific indications to help developers implement what RASD describes.
+
+In particular, where the previous mentioned document is more focused on the requirements, goals, general context description and their theoretical correctness, DD defines main guidelines to concrete those ideas and principles, 
+making the program real.\\
+\\
+The procedures and phases here reported are, namely, implementation, integration and testing plans.
+
+Finally, is reported the singular effort spent to realize the Document.
+
 \subsection{Scope}
-CodeKataBattle is an application thought to train coding skills using the "kata battle" principles. This tecnique, typical of martial arts, consists of repeating an action to improve it, until a good level of confidence, correctness and precision is achived.
-In this context Educators can create Tournaments and within them Battles, the final virtual space where students will compete on a specific code to develope. The app's services are accessble throught a Web App and among them are included the creation, for Educators, and registration, for Students, to Tournaments and Battles, code evaluation, creation of Teams of Students and invitations to collaborate to a Tournament management for Educators. 
-In order to assign a Score to a Team, assessing the code, the main Platform pulls the code from the Student's Repository Management, and runs it throught various tests provided for that Battle. Educators can appoint a different Score and create Badges to bestow to a Student that satisfied the related criterias.
+CodeKataBattle is an application thought to train coding skills using the "kata battle" principles. 
+
+This technique, typical of martial arts, consists of repeating an action to improve it, until a good level of confidence, correctness and precision is achieved.\\
+\\
+In this context, the application provides two different type of user that will interact with it, which are students and educators.
+
+\textbf{Educator} is the one who oversee the students' work and learning: he/she designs tournaments and their corresponding battles, which are the last online arenas in which students compete to develop a particular code. Furthermore, 
+he/she specify potential badges that could be given to the students who deserve them the most during each tournament.
+
+Instead, the \textbf{student} is a user who subscribes to CKB in order to advance his or her abilities in software development; as a result, he or she may participate in tournaments alone or in teams with other students. Through challenging 
+other colleagues, he or she will gain experience in developing and solving real-world programming problems.\\
+\\
+The \textbf{platform} will assist the educator in overseeing tournaments and battles, and it will automatically evaluate, based on certain standards, the code that the students provide. Furthermore, it will facilitate students' learning by 
+simplifying the user interface and making it simple to peruse the list of all accessible tournaments, distinctly outlining the prerequisites and goals of each of them.\\
+
+TODO: SUMMARY OF ARCHITECTURAL STYLE/CHOICES
+
+
+The app's services are accessble throught a Web App and among them are included the creation, for Educators, and registration, for Students, to Tournaments and Battles, code evaluation, creation of Teams of Students and invitations 
+to collaborate to a Tournament management for Educators. 
+In order to assign a Score to a Team, assessing the code, the main Platform pulls the code from the Student's Repository Management, and runs it throught various tests provided for that Battle. Educators can appoint a different 
+Score and create Badges to bestow to a Student that satisfied the related criterias.
 \subsection{Definitions, acronyms, abbreviations}
 To better understand the Document and the Actors involved here are reported some Definitions.
 \begin{enumerate}[label=$\bullet$]
