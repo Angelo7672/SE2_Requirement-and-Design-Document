@@ -1,0 +1,27 @@
+@startuml
+skinparam right to left
+package "CKBWebApp"{
+
+}
+
+package "CKBServer"{
+    package "DBMS"{
+
+    }
+    [comunicationHandler] - DataAccess
+    [securityHandler] -> comunicationHandler: use
+    [currentLoggedInUsers] -> securityHandler: use
+    [dispatcher] -> currentLoggedInUsers: use
+
+    component teamManager
+    component battleManager
+    component tournamentManager
+    component emailHandler
+    component searchManager
+    component dispatcher
+    component currentLoggedInUsers
+    component securityHandler
+    component comunicationHandler
+}
+
+@end
