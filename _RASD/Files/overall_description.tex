@@ -1,5 +1,5 @@
-This section describes the perspective, functionalities, characteristics, and domain assumptions of CBK, which is a complete system.\\
-A RMP is needed, but all the modules needed for its execution are available.
+This section describes the perspective, functionalities, characteristics, and domain assumptions of CKB platform, which is a complete system.\\
+The rigorous description of the RMP is out of the scope of the document. Of the RMP will be only described critical parts needed for the correct functioning of the platform, allowing to choose those ones that satisfy them in a later stage.
 \\
 \subsection{Product Perspective}
 \subsubsection{Scenarios}
@@ -127,24 +127,6 @@ A student can carry out battles by clicking on the button of a particular battle
 locally to pass the test cases that are included in the battle repository. The platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the battle score, that the student 
 can view from the battle page, each time he pushes code into the repository. Optionally, an educator might evaluate the written code as well.
 
-\subsubsection{RMP Functions}
-The Repository Manager Platform is a platform that allows to store code in a smart way. Before listing the characteristics some basic glossary:
-\begin{enumerate}
-    \item \textbf{VCS} Stands for Version Control System, a system that allows to save data in different versions keeping track of changes and authors.
-    \item \textbf{Repository} A folder in which code is stored and managed by a version control system (VCS).
-    \item \textbf{Action} code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
-    \item \textbf{Commit} Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
-    \item \textbf{Push} Act in which commits are uploaded to the RMP Platform.
-    \item \textbf{Fork} Act of duplicating repositories created by others in a personal one
-\end{enumerate}
-RMP can be a first or third party system that is responsible for storing all Team code related to all battles of all tournaments, the code will be kept only for test purposes and discarded shortly after score assignment. 
-To be useful to the platform the RMP needs to have some necessary functionalities like:
-\begin{enumerate}
-    \item RMP users can search for other RMP users by handle or e-mail
-    \item RMP users can collaborate on shared repositories
-    \item RMP allows running actions and these can work with KCB platform's API, technically needed to signal the platform of new pushes on the repository.
-\end{enumerate}
-
 \subsection{User Characteristics}
 
 \subsubsection{User}
@@ -165,6 +147,17 @@ He can use the homepage to browse tournaments and subscribe to them, but he may 
 to join him in a team that he will name in the subscription, or he can accept invitations to participate in tournaments.
 
 His team will be ranked in the tournament according to the total battle score they earn during the coding battle phase of the tournament.
+
+\subsection{RMP Functions}
+The Repository Manager Platform is a platform that allows to store code in a smart way
+RMP is third party system that is responsible for storing all Team code related to all battles of all tournaments, the code will be kept only for test purposes and discarded shortly after score assignment. 
+To be useful to the platform the RMP needs to have some necessary functionalities like:
+\begin{enumerate}
+    \item RMP users can search for other RMP users by handle or e-mail
+    \item RMP users can collaborate on shared repositories
+    \item RMP allows running actions and these can work with KCB platform's API, technically needed to signal the platform of new pushes on the repository.
+\end{enumerate}
+
 
 \subsection{Assumptions, Dependencies and Constraints}
 
