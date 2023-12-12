@@ -3,36 +3,34 @@ Computer Science is a field where theory and practice are tightly coupled and bo
 
 In fact in theory it can be easily studied by reading books or following courses on specific topics, but in reality being able to practice the subject is the best way to consolidate studies from pure erudition to useful knowledge.\\
 \\
-Being software development a subject based on technical skills and collaboration, CodeKataBattle is a platform that aims to help students improve their skills by training and competing in tournaments.
+For this reason CodeKataBattle is a platform that aims to help students improve their skills by training and competing in tournaments.
 
-The word "Kata" in Japanese, which denotes a meticulously planned pattern of martial arts moves meant to be practiced and repeated with the aim of mastering it, is where this platform got its inspiration.\\ 
+The word "Kata" is Japanese word from the world of Judo, which denotes a meticulously planned pattern of martial arts moves meant to be practiced and repeated with the aim of mastering it; and in this scope is where this platform got its inspiration.\\ 
 \\
 Students can use the platform to compare themselves to one another while gradually improving little by little. Moreover, coworking with other people become a moment of improving personal knowledge with other people experience.\\
 \\
 Throughout the entire CodeKataBattle experience, students are under the guidance of educators.
 
-Educators organize and oversee competitions, and afterward, they grade and award students.
+Educators organize and oversee competitions in order to grade and award students on the basis of their work.
 
 \subsection{Purpose}
 The platform's goal is to provide students with hands-on experience in software development.
-
-By applying their knowledge of one or more programming languages to solve puzzles or create whole products from scratch, users can hone their software development skills. Some test cases should be passed by the finished product.\\
 \\
-In order to consistently improve their code and adhere to the kata's philosophy, the students will compete against one another in teams.
-
-Ultimately, the platform's automated processes or educators assess the students' work, and the most deserving students may also receive special achievement badges.\\
 \\
-For educators and students, the platform ought to offer two different login options.
-
-Students will be able to take part in software development tournaments composed by battles, potentially as teams.
-
-Educators will design battles and tournaments for students instead, and they will also lay out the guidelines for earning badges that will be given to those who fulfill the requirements. Additionally, an educator involved in a tournament is 
-allowed to add additional educators to it, in order to assist with the development of the battles.\\
-\\
-Students and educators can look up and view the profiles of other users on the platform. When a student's profile is displayed, educators and students alike can view the badges that have been accrued.\\
-\\
-The platform will evaluate the code written by the students by automatic revision such as test passed, time of execution, security and realiability. Additionally also the educators could partecipate to the evaluation process of a code
-kata battle of a team of students.\\
+The platform ought to be able to discern between the two categories of users (Students and Educators) upon login.
+Users can look up and view the profiles of other users on the platform, this allows users to get to know about other people and collaborate here (mabie in a oturnament as a team) and there (mabie in the real world as colleagues).
+\\ \\
+By applying their knowledge of one or more programming languages to solve puzzles or create whole products from scratch, users can hone their software development skills. 
+\\ \\
+In order to consistently improve their code, adhere to the kata's philosophy and train their coworking capabilities, students will be able to compete against one another in teams, and can improve their code until the end of the tournament.
+\\ \\
+In the platform, competitions take form of tournaments. Tournaments are managed by educators that design battles (with their test cases) and lay out requirements for earning badges.
+\\ \\
+The platform will evaluate the code written by the students by means of automatic revision such as test passed, time of execution, security and realiability. Additionally also the educators could partecipate to the evaluation process of a code kata battle of a team of students.
+\\ \\
+Ultimately, the platform's automated processes, by means of test cases, or educators them selves assess teams' work, and the most deserving students, which pass the respective requirements, may also receive special achievement badges.\\ When a student's profile is displayed, educators and students alike can view the badges that have been accrued.
+\\ \\
+Additionally, an educator involved in a tournament is allowed to add additional educators to it, who can assist in all aspects on managing the tournament, like the development of the battles and scoring the teams.
 
 \newpage
 
@@ -41,7 +39,7 @@ kata battle of a team of students.\\
 \begin{enumerate}[label=$\bullet$ \textbf{GP\arabic*:}]
     \item \textbf{Allow Users to subscribe to the platform}\\In order to interact with the platform and its Users, Students and Educators have to be allowed to register. The satisfaction of this goal will concent them to be identified.
     \item \textbf{Allow Educators to create tournaments}\\Battles are fought within a Tournament context, which is created by an Educator. So it is a goal of the platform to allow them in this. 
-    \item \textbf{Allow Educators to invite other educators to manage tournaments}\\Allowing Educators to invite other Educators will empower them to create Battles within the Tournament context. 
+    \item \textbf{Allow Educators to invite other educators to manage tournaments}\\Allowing Educators to invite other Educators will empower them to help managing the tournament. 
     \item \textbf{Allow Educators to create battles}\\Both Educator that created the Tournament and the ones invited should be allowed to create Battles. 
     \item \textbf{Allow Educators to define badges}\\Badges are created to gamify the platform and encourage Students to do their best. Educators are allowed to create Badges using different criterias.
     \item \textbf{Allow Educators to score students}\\In order to make Students conscient about their work Educators are allowed to assign scores on top of the one defined by the platform itself.
@@ -73,7 +71,7 @@ kata battle of a team of students.\\
 \subsection{Scope}
 The platform, which will be called CodeKataBattle, will have two user types: educators and students, and it will be reachable via a web app.
 
-Users of all types are able to view each other's profiles, and students' profiles display their earned badges.\\
+Users of all types are able to view each other's profiles. User Profiles will show the user details, as e-mail address and the handle of the repository management platform. Moreover students' profiles display their earned badges.\\
 \\
 Tournaments can be made by educators, and this involves:
 \begin{enumerate}[label=$\bullet$]
@@ -97,7 +95,7 @@ Educators optionally, in the tournaments where they are involved, can evaluate c
 The main purpose of a student in the platform is to compete in tournaments.\\
 Each student will have the opportunity to explore all the tournaments offered on the platform.
 
-A student could subscribe to a tournament by himself or by an invitation from a colleague. Optionally, shortly after subscribing to a tournament, a student can invite other students to join to it together in a team.\\
+A student could subscribe to a tournament by himself or by an invitation from a colleague. Optionally, shortly after subscribing to a tournament, a student can invite other students to join to it together as a team.\\
 \\
 The platform notifies all the participating students that the tournament has begun at the conclusion of the subscription period. The same thing will be done, including the final rank position, at the conclusion of the competition.\\
 \\
@@ -108,7 +106,7 @@ battle score.
 
 In other the platform at the end of the tournament assign to each student that satisfied the requirements, the correspondent badge.\\
 \\
-Code of all battles will be managed on a third party repository manager like "GitHub" or "GitLab", where Educators are able to upload battle code then students to modify it and the platform to run it.
+Code of all battles will be managed on a third party repository manager like "GitHub" or "GitLab", where Educators are able to upload battle code then students to modify it and the platform to run it. Given the abstraction level of the document, in the following this platform will be known as Repository Management platform.
 
 \newpage
 
@@ -167,12 +165,12 @@ Code of all battles will be managed on a third party repository manager like "Gi
     \item \textbf{Score}\\Through Score the platform and/or an Educator evaluates Student's works. Each Student has its own Score history assigned, visible to other Students and Educators.
 \end{enumerate}
 \subsubsection[short]{Repository manager platform specific definitions}
-These definitions describe the technical jargon used while talking about repository management platform functionalities.
+These definitions describe the technical jargon used while talking about repository manager platform functionalities.
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Version Control System}\\A system that allows to save data in different versions keeping track of changes and authors.
     \item \textbf{Repository}\\A folder in which code is stored and managed by a version control system.
     \item \textbf{Action}\\Code that gets executed by the RMP on the repository once a certain condition is met (i.e. new upload, time of the day, ect...).
-    \item \textbf{Commit}\\Act in which changes are saved in the VCS. Commits have details consisting in a short textual description known as Message, and author data consisting in RMP handle and e-mail address.
+    \item \textbf{Commit}\\Act in which changes are saved in the Repository. Commits have details consisting in a short textual description known as message, and author data consisting in RMP handle and e-mail address.
     \item \textbf{Push}\\Act in which commits are uploaded to the RMP Platform.
     \item \textbf{Fork}\\Act of duplicating repositories created by others in a personal one
 \end{enumerate}
