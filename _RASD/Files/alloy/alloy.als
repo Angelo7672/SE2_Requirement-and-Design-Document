@@ -189,7 +189,7 @@ assert newTournament{
     no t:Tournament | t not in Platform.tournaments
 }
 check newTournament for 10  //VALID
-//GP4: Allow Educators to create battles //un educator può creare battaglie ==> ogni battaglia associata ad un tournament
+//GP4: Allow Educators to create battles 
 assert newBattle{
     no b:Battle | all t:Tournament | b not in t.battles
 }
@@ -205,10 +205,10 @@ assert studentReceivesSpecialAchievements{
 }
 check studentReceivesSpecialAchievements for 6 //VALID
 //GS4: Allow Students to have work evaluated
-/*assert haveWorkEvaluated{
-    no s: Score | all t:Team | s not in t.tournamentScore
+assert haveWorkEvaluated{
+    some to: Tournament | some t:Team | (t in to.teams) <=> (t.tournamentScore.points >= 0)
 }
-check haveWorkEvaluated for 6*/
+check haveWorkEvaluated for 6 //VALID
 --------------------------------------------------
 //Predicates
 pred show{
