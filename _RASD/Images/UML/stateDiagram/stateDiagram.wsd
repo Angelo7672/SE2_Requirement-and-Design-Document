@@ -1,54 +1,27 @@
 @startuml
 
 state TOURNAMENT{
-    state "EDUCATOR ADDED" as EDUCATORADDED
-    state "BATTLE CREATED" as BATTLECREATED
-    state "BADGE CREATED" as BADGECREATED
+    [*] --> DEFINED: setting
 
-    [*] -right-> CREATED: creation
-
-    CREATED: - name set
-
-    CREATED -right-> DEFINED: setting
-
+    DEFINED: - name set
     DEFINED: - programming language/s set
     DEFINED: - outline available
     DEFINED: - max and min number of student per team set
     DEFINED: - duration set
     DEFINED: - deadline for subscription set
 
-    state c <<choice>>
+    DEFINED -> CREATED: creation
 
-    DEFINED -down-> c
+    CREATED: - battle/s available
+    CREATED: - [optional] badge/s available
 
-    c -down---> EDUCATORADDED: adding educator
+    CREATED --> CREATED: adding educator
+    CREATED --> CREATED: adding battle
+    CREATED --> CREATED: adding badge
 
-    EDUCATORADDED: - new educator in the tournament
+    CREATED --> ONLINE: tournament publication
 
-    c -left-> BATTLECREATED: creating battle
-
-    BATTLECREATED: - description available
-    BATTLECREATED: - code available
-    BATTLECREATED: - tests available
-    BATTLECREATED: - automatic evaluation parameter defined
-    BATTLECREATED: - [optional] manual evaluation parameter defined
-
-    c -right-> BADGECREATED: defining badge
-
-    BADGECREATED: - name set
-    BADGECREATED: - rule/s defined
-
-    EDUCATORADDED -left-> BATTLECREATED: creating battle
-    BATTLECREATED -right-> EDUCATORADDED: adding educator
-    EDUCATORADDED -right-> BADGECREATED: defining badge
-    BADGECREATED -left-> EDUCATORADDED: adding educator
-    BATTLECREATED -right-> BADGECREATED: defining badge
-    BADGECREATED -left-> BATTLECREATED: creating battle
-
-    EDUCATORADDED -down-> ONLINE: tournament publication
-    BATTLECREATED -down-> ONLINE: tournament publication
-    BADGECREATED -down-> ONLINE: tournament publication
-
+    ONLINE: - students are notificated by email of the new tournament
     ONLINE: - students subscribe to the tournament in teams
 
     ONLINE --> STARTED: deadline for subscription met
@@ -59,35 +32,31 @@ state TOURNAMENT{
     STARTED --> BATTLE: battles online
 
     state BATTLE{
-        state "MANUAL EVALUATED" as MANUALEVALUATED
-
-        [*] --> ACCESSIBLE: RMP repo online
+        [*] -> ACCESSIBLE: RMP repo online
 
         ACCESSIBLE: - students do the fork of the repo
         ACCESSIBLE: - battle score available
         ACCESSIBLE: - completation status available
         ACCESSIBLE: - automatic evaluation enabled
 
-        ACCESSIBLE --> MANUALEVALUATED: [optional] educator's evaluation
+        ACCESSIBLE -> ACCESSIBLE: [optional] manual educator's evaluation
 
-        MANUALEVALUATED: - an educator evaluate the code written
-
-        MANUALEVALUATED --> ACCESSIBLE
-        ACCESSIBLE -right-> CLOSED: deadline reached
+        ACCESSIBLE --> CLOSED: deadline reached
 
         CLOSED: - it is no more possible modify the code
         CLOSED: - the battle score is ultimated
 
-        CLOSED --> [*]
+        CLOSED -> [*]
     }
 
-    BATTLE -right-> OFFLINE: deadline reached
+    BATTLE -> OFFLINE: deadline reached
 
     OFFLINE: - it is no more possible complete battles
     OFFLINE: - tournament score and rank are ultimated
     OFFLINE: - badges are assigned automatically
+    OFFLINE: - students receive a mail with the ranking position
 
-    OFFLINE -right-> [*]
+    OFFLINE --> [*]
 }
 
 @enduml

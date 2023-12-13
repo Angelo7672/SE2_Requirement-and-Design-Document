@@ -23,14 +23,12 @@ other colleagues, he or she will gain experience in developing and solving real-
 \\
 The \textbf{platform} will assist the educator in overseeing tournaments and battles, and it will automatically evaluate, based on certain standards, the code that the students provide. Furthermore, it will facilitate students' learning by 
 simplifying the user interface and making it simple to peruse the list of all accessible tournaments, distinctly outlining the prerequisites and goals of each of them.\\
-
-TODO: SUMMARY OF ARCHITECTURAL STYLE/CHOICES
-
-
-The app's services are accessble throught a Web App and among them are included the creation, for Educators, and registration, for Students, to Tournaments and Battles, code evaluation, creation of Teams of Students and invitations 
+\\
+The app's services are accessible through a Web App, that you reach through browser, and among them are included the creation, for Educators, and registration, for Students, to Tournaments and Battles, code evaluation, creation of Teams of Students and invitations 
 to collaborate to a Tournament management for Educators. 
-In order to assign a Score to a Team, assessing the code, the main Platform pulls the code from the Student's Repository Management, and runs it throught various tests provided for that Battle. Educators can appoint a different 
-Score and create Badges to bestow to a Student that satisfied the related criterias.
+The architecture of the product is divided in 4 tier: client,web server, application server and data server. Three layer are adopted: presentation layer, application layer and data layer.
+The app's services described before are implemented as microservices: there are microservices that operate to a correct functioning of the managing of the user's account and microservices to managed
+battles and tournaments with everything is concerned with them.
 \subsection{Definitions, acronyms, abbreviations}
 To better understand the Document and the Actors involved here are reported some Definitions.
 \begin{enumerate}[label=$\bullet$]

@@ -44,7 +44,7 @@ The rigorous description of the RMP is out of the scope of the document. Of the 
     He clicks the "Add Badge" button after choosing the one for which he wanted to make the badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
     to obtain this new badge. Once the form is submitted, the badge is created and made achievable during the tournament.
     \item \textbf{Student gets awarded with badge} \label{sc:sc13} \\
-    Rupert, a student of the platform, has partecipated to a tournament, writing code for the battles. His code got evaluated and is in the scoreboard of the platform. The tournament has ended, so he can no more change his code. 
+    Rupert, a student of the platform, has participated to a tournament, writing code for the battles. His code got evaluated and is in the scoreboard of the platform. The tournament has ended, so he can no more change his code. 
     While checking his e-mails, he finds one email, sent from the platform, that notifies him that he got awarded with a new badge.
     Then curious, he goes to his profile page to see the badge, where he finds it with a foto and a short description.
     After some time, Olivia, a user of the platform wanting to find a student to invite to a team, for curiosity checks Rupert's profile page, seeing that he gained a lot of badges during his time on the platform, decides to try inviting him.
@@ -74,7 +74,9 @@ Describes how Badges work inside the platform.\\
 \paragraph{State diagram}
 The different stages of the tournament and the battle are depicted in the state diagram in the figure.
 \useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{1.0}{1.0}{State Diagram of the tournament and the battle}
-
+In the CREATED state it is possible to add educators, battles and badges to the tournament.
+Adding a battle consists in provide a description for it, make the code and the test available and in defining the modality of evaluation between the automatic modality and the optional manual modality.
+Adding a badge consists in giving a name for it and defining its requirements.
 \newpage
 
 \subsection{Product Functions}
@@ -83,10 +85,10 @@ From the previous scenarios and the introduction above follow these Product Func
 \subsubsection{User Functions}
 
 \paragraph{Sign in}
-Every pearson that wishes to sign in to the platform can sign in via a specific form which allows to become an user of it.
+Every person that wishes to sign in to the platform can sign in via a specific form which allows to become an user of it.
 In the platform the form requests: name, surname, e-mail address, RMP handle, user type and password; after clicking on confirmation button, the platform sends a confirmation e-mail to the e-mail address given in the form with a button to finalize the subscription to the platform. Sign in is finalized once the button is clicked.
 \paragraph{Log in}
-Every user needs to log in to the platform to perform any acrivity in it. Log in is done via a form which has to be filled with e-mail address and password, if the pair corresponds to a user, the user will be logged in to the platform as of his role (student or educator).
+Every user needs to log in to the platform to perform any activity in it. Log in is done via a form which has to be filled with e-mail address and password, if the pair corresponds to a user, the user will be logged in to the platform as of his role (student or educator).
 \paragraph{Search for other user}
 Every user subscribed to the platform, can search other users by name, email or RMP handle in the search bar. If the user searched is a student, on his profile page are shown also the badge achieved.
 
