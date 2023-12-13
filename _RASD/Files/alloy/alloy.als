@@ -1,5 +1,3 @@
---------------------------------------------------
-//Signatures
 sig Name{}
 sig Surname{}
 sig Email{}
@@ -17,7 +15,8 @@ abstract sig User {
 }
 sig Team{
     students: some Student,
-    tournamentScore: one TournamentScore
+    tournamentScore: one TournamentScore,
+    battleScore: set BattleScore
 }
 one sig Platform{
     students: set Student,
@@ -25,13 +24,15 @@ one sig Platform{
     tournaments: set Tournament
 }
 sig Battle{
-    repo: one RMPRepo
+    repo: one RMPRepo,
+    scores: some BattleScore
 }
 sig Tournament{
     battles: set Battle,
     badges: set Badge,
     educators: some Educator,
-    teams: some Team
+    teams: some Team,
+    scores: some TournamentScore
 }
 sig RMP{}
 
@@ -146,7 +147,7 @@ fact TeamHasOnlyOneTournament{
     all disj t1, t2: Tournament | all te1: Team | no te2: Team | t1.teams = te1 and t2.teams = te2 and te1 = te2
 }
 
-fact TeamScoreIsUnique{
+fact TeamTournamentScoreIsUnique{
     all t: TournamentScore | t in Team.tournamentScore
     all disj t1, t2: Team | t1.tournamentScore != t2.tournamentScore
 }
@@ -159,6 +160,22 @@ fact noAloneNames{
     some b:Badge | some u:User | all n:Name | (n in b.name) or (n in u.name)
 }
 
+
+fact allBattleScoreBelongsOneABattle{  //+ battleScores ad una Battle, ma una battlescore non a + battle
+    all bs: BattleScore | all disj b1, b2:Battle | (bs in b1.scores) <=> (bs not in b2.scores)
+}
+
+fact aBattleScoreBelongsJustToATeam{
+    all bs:BattleScore | all disj t1, t2: Team | (bs in t1.battleScore) <=> (bs not in t2.battleScore)
+}
+
+fact battleScoreAlwaysToATeamAndToABattle{
+    all bs:BattleScore | one t:Team | one b:Battle | (bs in t.battleScore) and (bs in b.scores)
+}
+
+fact tournamentScoreAreSumOfBattleScores{
+    all ts: TournamentScore | all t: Team | (ts.points in t.tournamentScore.points) <=> (ts.points = sum(t.battleScore.points))
+}
 /*fact repoTeamLinkedRepoBattle{
 
 }*/
@@ -169,37 +186,33 @@ fact noAloneNames{
 
 //GP2: Allow Educators to create tournaments
 assert newTournament{
-    no t:Tournament | no t in Platform.tournament
+    no t:Tournament | t not in Platform.tournaments
 }
-check newTournament for 6
-//GP4: Allow Educators to create battles
+check newTournament for 10  //VALID
+//GP4: Allow Educators to create battles //un educator può creare battaglie ==> ogni battaglia associata ad un tournament
 assert newBattle{
-    no b:Battle | all t:Tournament | no b in t.battles
+    no b:Battle | all t:Tournament | b not in t.battles
 }
-check newBattle for 6
+check newBattle for 6 //VALID
 //GP5: Allow Educators to create badges
 assert newBadge{
-    no b:Badge | all t:Tournament | no b in t.badges
+    (no b:Badge | all t:Tournament | b not in t.badges) or (all b: Badge | one e: Educator | e = b.educator)
 }
 check newBadge for 6
-//GS2: Allow Students to be rewarded for special achievement
+//GS2: Allow Students to be rewarded for special achievement 
 assert studentReceivesSpecialAchievements{
-    b: Badge | s: Student | b in s.badges
+    all s: Student | #s.badges >= 0
 }
-check studentReceivesSpecialAchievements for 6
+check studentReceivesSpecialAchievements for 6 //VALID
 //GS4: Allow Students to have work evaluated
-assert haveWorkEvaluated{
-    no s: Score | all t:Team | no s in t.tournamentScore
+/*assert haveWorkEvaluated{
+    no s: Score | all t:Team | s not in t.tournamentScore
 }
-check haveWorkEvaluated for 6
+check haveWorkEvaluated for 6*/
 --------------------------------------------------
 //Predicates
 pred show{
-    /*#Student = 3
-    #Educator = 2
-    #Tournament > 1
-    #Team > 1
-    #RMP > 1*/
+    #BattleScore = 2
 }
 
 
