@@ -1,0 +1,18 @@
+@startuml ClientServerParadigm
+!include <tupadr3/common>
+
+!define ICONURL https://raw.githubusercontent.com/Roemer/plantuml-office/master/office2014
+!includeurl ICONURL/Devices/device_mac_client.puml
+!includeurl ICONURL/Servers/server_generic_blue.puml
+!includeurl ICONURL/Databases/database_server.puml
+
+OFF_DEVICE_MAC_CLIENT(client, Tier 1 - Presentation)
+OFF_SERVER_GENERIC_BLUE(server, Tier 2 - Logic)
+OFF_DATABASE_SERVER(db, Tier 3 - Data)
+
+client -right-> server
+server -left-> client
+server -right-> db
+db -left-> server
+
+@enduml
