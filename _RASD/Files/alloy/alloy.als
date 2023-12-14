@@ -10,8 +10,8 @@ sig RMPRepo{
 abstract sig User {
     name: one Name,
     surname: one Surname,
-    email: one Email,
-    rmpHandle: one RMPHandle
+    email: disj one Email,
+    rmpHandle: disj one RMPHandle
 }
 sig Team{
     students: some Student,
@@ -24,7 +24,7 @@ one sig Platform{
     tournaments: set Tournament
 }
 sig Battle{
-    repo: one RMPRepo,
+    repo: disj one RMPRepo,
     scores: some BattleScore
 }
 sig Tournament{
@@ -45,7 +45,7 @@ sig Description{}
 sig Badge{
     educator: one Educator,
     name: one Name,
-    description: one Description
+    description: disj one Description
 }
 abstract sig Score{
     points: one Int
@@ -58,6 +58,7 @@ sig TournamentScore extends Score{}
 
 --------------------------------------------------
 //Facts
+// User facts
 fact SurnameBelongsToUser{
     all s: Surname | s in User.surname
 }
@@ -66,65 +67,44 @@ fact EmailBelongsToUser{
     all e: Email | e in User.email
 }
 
+fact RMPHandleBelongsToUser{
+    all e: RMPHandle | e in User.rmpHandle
+}
+
+fact RMPHandleIsPersonal{
+    all disj u1, u2: User | u1.rmpHandle != u2.rmpHandle
+}
+
 fact AllConnectedToPlatform {
     all s: Student | s in Platform.students
     all e: Educator | e in Platform.educators
     all t: Tournament | t in Platform.tournaments
 }
 
-fact battlesHaveDifferentRMPRepos{
-    all disj b1: Battle, b2: Battle | b1.repo = b2.repo iff b1 = b2
-}
-
-fact battleIsPartOfOneTournament{
-    all b1: Battle | one t1: Tournament | b1 in t1.battles
-}
-
-fact tournamentHasAtLeastOneBattle{
-    all t: Tournament | #t.battles > 1
-}
-
-fact RMPRepoIsPartOfOnlyOneBattle{
-    all r: RMPRepo | one b1: Battle | b1.repo = r
-}
-
-assert noBattlesHaveSameRepo{
-    no b1: Battle, b2: Battle | b1.repo = b2.repo
-}
-
-check noBattlesHaveSameRepo
-
-fact battlesHaveDifferentRMPRepos{
-    all disj b1: Battle, b2: Battle | b1.repo = b2.repo iff b1 = b2
-}
-
-fact battleIsPartOfOneTournament{
-    all b1: Battle | one t1: Tournament | b1 in t1.battles
-}
-
-fact tournamentHasAtLeastOneBattle{
-    all t: Tournament | #t.battles > 1
-}
-
-fact RMPRepoIsPartOfOnlyOneBattle{
-    all r: RMPRepo | one b1: Battle | b1.repo = r
-}
-
-fact descriptionUniqueForBadge{
-    all b1: Badge, b2: Badge | b1!=b2 <=> (b1.description != b2.description)
-}
-
-fact emailUnique{
-    all u1: User, u2: User | u1!=u2 <=> (u1.email != u2.email)
-}
-
-fact eachUserHasCredentials{
-    no u:User | (u.name = none) and (u.surname = none) and (u.email = none)
-}
-
 fact peopleNameNoObjectName{
     all u:User, b:Badge | u.name != b.name
 }
+
+// Tournament facts
+
+fact tournamentHasAtLeastOneBattle{
+    all t: Tournament | #t.battles > 0
+}
+
+// Battle facts
+
+fact battleIsPartOfOneTournament{
+    all b1: Battle | one t1: Tournament | b1 in t1.battles
+}
+
+/*fact RMPRepoIsPartOfOnlyOneBattle{
+    all r: RMPRepo | one b1: Battle | b1.repo = r
+}*/
+
+/*fact descriptionUniqueForBadge{
+    all disj b1: Badge, b2: Badge | b1.description != b2.description
+    //all b1: Badge, b2: Badge | b1!=b2 <=> (b1.description != b2.description)
+}*/
 
 /*tutti i team che contengono uno student devono essere di Tournament diversi*/
 
@@ -134,17 +114,13 @@ fact DifferentStudentsInSameTournament {
     all disj to: Tournament | all s:Student | all  disj t1,t2:Team | (t1 in to.teams and t2 in to.teams) <=> !(s in t1.students and s in t2.students)
 }
 
-fact RMPHandleBelongsToUser {
-    all r: RMPHandle | r in User.rmpHandle
-}
-
-fact RMPHandleIsPersonal{
-    all disj u1, u2: User | u1.rmpHandle != u2.rmpHandle
-}
-
 fact TeamHasOnlyOneTournament{
     all t: Team | t in Tournament.teams
     all disj t1, t2: Tournament | all te1: Team | no te2: Team | t1.teams = te1 and t2.teams = te2 and te1 = te2
+}
+
+fact TeamIsPartOfOneTournament{
+    all t: Team | one to: Tournament | t in to.teams
 }
 
 fact TeamTournamentScoreIsUnique{
@@ -161,8 +137,9 @@ fact noAloneNames{
 }
 
 
-fact allBattleScoreBelongsOneABattle{  //+ battleScores ad una Battle, ma una battlescore non a + battle
+/*fact allBattleScoreBelongsOneABattle{  //+ battleScores ad una Battle, ma una battlescore non a + battle
     all bs: BattleScore | all disj b1, b2:Battle | (bs in b1.scores) <=> (bs not in b2.scores)
+    //all bs: BattleScore | all disj b1, b2:Battle | (bs in b1.scores) <=> (bs not in b2.scores)
 }
 
 fact aBattleScoreBelongsJustToATeam{
@@ -209,11 +186,18 @@ assert haveWorkEvaluated{
     some to: Tournament | some t:Team | (t in to.teams) <=> (t.tournamentScore.points >= 0)
 }
 check haveWorkEvaluated for 6 //VALID
+
+assert noBattlesHaveSameRepo{
+    no disj b1: Battle, b2: Battle | b1.repo = b2.repo
+}
+
+check noBattlesHaveSameRepo
 --------------------------------------------------
 //Predicates
 pred show{
-   #BattleScore = 2
+    //#Platform.tournaments = 1
+    #Tournament = 6
+    #Team = 6
 }
 
-
-run show for 6
+run show for 10
