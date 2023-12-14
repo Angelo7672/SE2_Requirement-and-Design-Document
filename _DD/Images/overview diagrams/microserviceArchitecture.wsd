@@ -1,0 +1,114 @@
+@startuml ClientServerParadigm
+!include <tupadr3/common>
+
+!define ICONURL https://raw.githubusercontent.com/Roemer/plantuml-office/master/office2014
+!includeurl ICONURL/Devices/device_mac_client.puml
+!includeurl ICONURL/Servers/server_generic_blue.puml
+!includeurl ICONURL/Databases/database_server.puml
+!includeurl ICONURL/Services/user_services.puml
+!includeurl ICONURL/Users/user_store.puml
+!includeurl ICONURL/Services/central_management_service.puml
+!includeurl ICONURL/Concepts/settings.puml
+!includeurl ICONURL/Services/email_service.puml
+!includeurl ICONURL/Communications/3rd_party_service.puml
+!includeurl ICONURL/Servers/web_server.puml
+!includeurl ICONURL/Concepts/firewall.puml
+!includeurl ICONURL/Servers/application_server.puml
+!includeurl ICONURL/Concepts/settings_office_365.puml
+!includeurl ICONURL/Databases/database.puml
+!includeurl ICONURL/Servers/3rd_party_mail_server.puml
+
+
+
+package "Client" as clientp{
+    OFF_3RD_PARTY_SERVICE(rmp, RMP)
+    OFF_DEVICE_MAC_CLIENT(client, Client)
+    OFF_3RD_PARTY_MAIL_SERVER(mailServer, Mail Server)
+}
+
+package "Application Layer" {
+    package "Data Layer" as DataLayer <<Frame>> {
+        OFF_DATABASE_SERVER(dbms, DBMS)
+        OFF_DATABASE(database, Database)
+    }
+    OFF_FIREWALL(firewallad, Firewall)
+    package "Inner Application Layer" as InnerApplicationLayer <<Frame>> {
+        package Microservices as Microservices <<Frame>> {
+            OFF_USER_SERVICES(login, Log In)
+            OFF_USER_SERVICES(signin, Sign In)
+            OFF_USER_SERVICES(account_mgr, Account Manager)
+            OFF_USER_STORE(userDataMngr, User Data Manager)
+            OFF_CENTRAL_MANAGEMENT_SERVICE(tournamentDataMgr, Tournament Data Manager)
+            OFF_SETTINGS(tournamentMgr, Tournament Manager)
+            OFF_SETTINGS(battleMgr, Battle Manager)
+            OFF_SETTINGS(badgeMgr, Badge Manager)
+            OFF_SETTINGS(evaluationMgr, Evaluation Manager)
+            OFF_SETTINGS(searchMgr, Search Manager)
+            OFF_SETTINGS(rmpMgr, RMP Manager)
+            OFF_EMAIL_SERVICE(notificationMgr, Notification Manager)
+        }
+        OFF_APPLICATION_SERVER(applicationServer, Application Server)
+        OFF_SETTINGS_OFFICE_365(dispatcher, Microservice Dispatcher)
+    }
+    OFF_FIREWALL(firewalldmza, Firewall)
+    package "DMZ" as DMZ <<Frame>> {
+        OFF_WEB_SERVER(webServer, Web Server)
+    }
+    OFF_FIREWALL(firewallcd, Firewall)
+}
+
+rmp -right-> firewallcd
+client -right-> firewallcd
+firewallcd -right-> webServer
+webServer -right-> firewalldmza
+firewalldmza -right-> applicationServer
+firewalldmza --> applicationServer
+firewalldmza --> applicationServer
+applicationServer -right-> dispatcher
+applicationServer -down-> dispatcher
+dispatcher -left-> login
+dispatcher -left-> signin
+dispatcher -left-> account_mgr
+dispatcher -left-> userDataMngr
+dispatcher -left-> tournamentDataMgr
+dispatcher -left-> tournamentMgr
+dispatcher -left-> battleMgr
+dispatcher -left-> badgeMgr
+dispatcher -left-> evaluationMgr
+dispatcher -left-> searchMgr
+dispatcher -left-> rmpMgr
+dispatcher -left-> notificationMgr
+tournamentDataMgr -right-> firewallad
+userDataMngr -right-> firewallad
+firewallad -right-> dbms
+dbms -> database
+
+'styling purposes
+client -[hidden]down-> rmp
+rmp -[hidden]down-> mailServer
+
+firewallcd -[hidden]left-> clientp
+firewallcd -[hidden]right-> DMZ
+firewalldmza -[hidden]left-> DMZ
+firewalldmza -[hidden]right-> InnerApplicationLayer
+firewallad -[hidden]left-> InnerApplicationLayer
+firewallad -[hidden]right-> DataLayer
+
+signin -[hidden]down-> login
+login -[hidden]down-> account_mgr
+account_mgr -[hidden]down-> userDataMngr
+userDataMngr -[hidden]down-> tournamentDataMgr
+tournamentDataMgr -[hidden]down-> tournamentMgr
+tournamentMgr -[hidden]down-> battleMgr
+battleMgr -[hidden]down-> badgeMgr
+badgeMgr -[hidden]down-> evaluationMgr
+evaluationMgr -[hidden]down-> searchMgr
+searchMgr -[hidden]down-> rmpMgr
+rmpMgr -[hidden]down-> notificationMgr
+
+clientp -[hidden]right-> DMZ
+mailServer -[hidden]up-> DMZ
+
+firewallad -[hidden]up-> DataLayer
+
+@enduml
