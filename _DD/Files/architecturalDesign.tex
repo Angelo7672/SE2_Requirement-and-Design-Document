@@ -1,22 +1,61 @@
 \subsection{Overview}
-CKB is thought form the ground basis as a client-server platform. In fact, Users access services through a Web App, which consitutes the only virtual device able to receive commands to interact with CKB.\\\\
-The main logic is hosted in servers, which job is to change the enviroment following Users' instructions, considering rules and practises set by CKB's developers and authors.
-Educators and Students have different roles, prerogatives and privileges, as specified before and in grater detail in RASD Document. This is reflected in two different type of clients with respective commands and instructions for each kind of User.
-Indeed both, considering even the fruition through Web App, can be thought as thin clients, witch role is just to expose to the User the Platform's services and their respective interfaces, deducting from the server exclusively the presentation of the App, meaning the GUI.
+
+%CLIENT-SERVER
+
+CKB is thought form the ground basis as a client-server platform. In fact, Users access services through a Web App, which constitutes the only virtual device able to receive commands to interact 
+with CKB.\\\\
+The main logic is hosted in servers that manages all the functionalities of CKB, instead the client is only a graphic representation for the user.
+
+The organization of Client-Server software is thought as remote representation because the fruition through Web App, as thin clients, witch role is just to expose to the User the Platform's 
+services and their respective interfaces, deducting from the server exclusively the presentation of the App, meaning the GUI.
+
+Client's communication is ideally handled by the Web Browser that hosts the Web App. Using HTTP and TCP protocols it has to provide a secure and effective communication with the Server. 
+CKB User Interface code has to be written in order to be run on all kind of Browsers.\\\\
+Servers, on the other hand, would be deputed to guard Users' data, after their kind and privileges, and Platform's model changed following given rules.
+
+%MICROSERVICES
+CKB, as thought, has at its core the possibility to manage and run multiple Battles, Tournaments and receive multiple inputs from different clients, after their type, all at the same time. 
+Server has to handle multiple requests, realizing it thought concurrency.
+
+An architectural approach that can be chosen is the Microservices one. 
+With this choice, favored by the presence of multiple servers, each machine would host multiple components, properly replicated even in other machines, each one would elaborate specific inputs 
+related to a precise topic or set of linked operations, that constitute a service.
+
+The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests form Users redirecting them to the 
+right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and platform reactivity.
+
 The approach empowers developers and authors to upgrade CKB with new functionalities without changing User's interface or all the way around, guaranteeing modularity and improvements.
-Client's comunication is ideally handled by the Web Broswer that hosts the Web App. Using HTTP and TCP protocols it has to provide a secure and effective comunication with the Server. CKB User Interface code has to be written in order to be run on all kind of Broswers.\\\\
-Servers, on the other hand, would be deputed to guard Users' data, after their kind and privileges, and Platform's model changed following given rules. Morevoer, they will manage and access interfaces provided by RMPs and E-mail providers, receiving their messages and instructions, acting conseguently, and using in turn their APIs to pull code or send E-mail respectively.\\\\
-CKB, as thought, has at its core the possibility to manage and run multiple Battles, Tournaments and receive multiple inputs from different clients, after their type, all at the same time. Servers has to handle multiple requests, realizing it thought concurrency. An architectural approach that can be chosen is the Microservices one. 
-With this choice, favored by the presence of multiple servers, each machine would host multiple components, properly replicated even in other computers, each one would elaborate specific inputs related to a precise topic or set of linked operations, that constitute a service.
-The concept would include DBMS services, provided throught proper APIs, as long as Comunication ones and the dispatcher itself, that would account all requests form Users redirecting them to the right Microservice. This architeture guarantees concurrency, modularity, witch positively affects mantainance, and platform reactiveness.
-All including appropritate duplication of each component to avoid failures and allowing the Platform to not lose data and determining resilience.\\\\
-Ultimately CKB, once realized, would be a four layer platform:
-\begin{enumerate}
-    \item \textbf{Client Layer} Receives inputs form Users, displaying answers form the Server, allowing to navigate and interact with the Platform. As a thin Client is equipped just with comunication APIs with the Server, that sends what is needed to exihibit GUI, and components to build this latest one. User interface consists in the proper Student and Educator variant, which differences are at this architetural level irrelevant for the system's functioning.
-    \item \textbf{Web Server Layer} Web Server is the main door to access the Platform itself. It counts the module deputed to comunicate with clients, the firewalls and the interfaces to expose access to the system. Web Server is directly connected with the Application Layer and it is encharged of sendig back information to clients to update the GUI, reflecting modifications on the Platform itself. This layer consistitues the bridge between Students and Educators and CKB, and it is completely transparent to Users.
-    \item \textbf{Application Layer} Application Layer is the Platform itself with its core functionalities. It is built with a Microservice approach, that consists of single software modules that manages single "services", a group of operations related to a specific topic. The structure is preceded by a dispatcher module, that redirects clients' requests to proper service. A suitable duplication system will allow to manage multiple Users' interactions at the same time.
-    \item \textbf{DBMS Layer} CKB stores even crucial Users'information and both crucial data to run the Platform. DBMS Layer is deputed to store, ensure and manage those data, allowing access to Microservices that would require them, updating if needed according to proper rules. 
+
+All including appropriate duplication of each component to avoid failures and allowing the Platform to not lose data and determining resilience.\\\\
+
+%LAYER
+CKB is thought to be implemented as a 3 layer application:
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Presentation Layer} the functionality of this layer is only to show to the user a graphic interface of the product functionalities of the application.
+    \item \textbf{Application Layer} this layer is the core of the platform: it contains the whole logic of the application, it manages the functionalities of the application.
+    \item \textbf{Data Layer} this layer contains all the data of the application.
 \end{enumerate}
+%TODO: immagine layer
+
+%TIER
+CKB, once realized, would be a 4 tier platform:
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Client} Receives inputs form Users, displaying answers from the Server, allowing to navigate and interact with the Platform. As a thin Client is equipped just with 
+    communication APIs with the Server, that sends what is needed to exhibit GUI, and components to build this latest one. User visualizing interface consists in the proper Student and Educator 
+    variant, which differences are only at this architectural level irrelevant for the system's functioning.
+    \item \textbf{Web Server} Web Server is the main door to access the Platform itself. It counts the module deputed to communicate with clients, the firewalls, the DMZ and the interfaces to 
+    expose access to the system. Web Server is directly connected with the Application Server, and it is uncharged of sending back information to clients to update the GUI, reflecting 
+    modifications on the Platform itself. This tier constitutes the bridge between Students and Educators and CKB.
+    \item \textbf{Application Server} Application Server is the Platform itself with its core functionalities. It is built with a Microservice approach, that consists of single software modules 
+    that manages a single "service", a group of operations related to a specific topic. The structure is preceded by a dispatcher module, that redirects clients' requests to proper service. 
+    A suitable distribution of the application server in microservices will allow managing multiple Users' interactions at the same time.
+    \item \textbf{DBMS Server} CKB stores even Users'information and both data to run the Platform, like tournament's and battle's data. DBMS tier is deputed to store, ensure and manage those data, 
+    allowing access to Microservices that would require them, updating if needed according to proper rules. 
+\end{enumerate}
+
+%TODO: immagine tier
+
+
 \subsection{Component View}
 \subsection{Deployment View}
 \subsection{Component Interfaces}

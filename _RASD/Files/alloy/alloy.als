@@ -212,7 +212,7 @@ check haveWorkEvaluated for 6 //VALID
 --------------------------------------------------
 //Predicates
 pred show{
-    #BattleScore = 2
+   #BattleScore = 2
 }
 
 
