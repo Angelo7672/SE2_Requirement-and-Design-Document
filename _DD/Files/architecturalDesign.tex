@@ -1,7 +1,7 @@
 \subsection{Overview}
 CKB is thought form the ground basis as a client-server platform. In fact, Users access services through a Web App, which consitutes the only virtual device able to receive commands to interact with CKB.\\\\
 The main logic is hosted in servers, which job is to change the enviroment following Users' instructions, considering rules and practises set by CKB's developers and authors.
-Educators and Students have different roles, prerogatives and privileges, as specified before and in grater detail in RASD Document. This is reflected in two different type of clients with respective commands and instructions for each kind of User.
+Educators and Students have different roles, prerogatives and privileges, as specified before and in greater detail in RASD Document. This is reflected in two different type of clients with respective commands and instructions for each kind of User.
 Indeed both, considering even the fruition through Web App, can be thought as thin clients, witch role is just to expose to the User the Platform's services and their respective interfaces, deducting from the server exclusively the presentation of the App, meaning the GUI.
 The approach empowers developers and authors to upgrade CKB with new functionalities without changing User's interface or all the way around, guaranteeing modularity and improvements.
 Client's comunication is ideally handled by the Web Broswer that hosts the Web App. Using HTTP and TCP protocols it has to provide a secure and effective comunication with the Server. CKB User Interface code has to be written in order to be run on all kind of Broswers.\\\\
@@ -18,6 +18,20 @@ Ultimately CKB, once realized, would be a four layer platform:
     \item \textbf{DBMS Layer} CKB stores even crucial Users'information and both crucial data to run the Platform. DBMS Layer is deputed to store, ensure and manage those data, allowing access to Microservices that would require them, updating if needed according to proper rules. 
 \end{enumerate}
 \subsection{Component View}
+CKB's Application Layer is based on Microservices, that consitutes components in the system's architeture.
+Which are:
+\begin{enumerate}
+    \item \textbf{SignIn Manager} It is the manager encharged of allow Users to sign in into the Platform, throught proper signIn interface.
+    \item \textbf{LogIn Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used on clients' commands and by signIn, badge, battle, tournament Managers component, to verify if a existing User is, in fact, logged in.
+    \item \textbf{RMP Manager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager witch acceses pullRequests Interface.
+    \item \textbf{Notification Manager} This component manages particular notifications to be send to Users, comunicating with E-mail provider, which performs as a Server for this module. Requests are sent on other components' indications, which are expressed throught sendNotification Interface.
+    \item \textbf{Evaluation Manager} It is encharged of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
+    \item \textbf{Badge Manager} Allows Educators to create a Badge with corresponding parameters anche criterias. Moreover it assigns Badges to Students who can be awarded. BadgeCreation Interface is invoked by clients' requests.
+    \item \textbf{Battle Manager} This component, verified the identity of the User which accesses it, is responsable for the creation of a Battle within a Tournament, invitations of other Students, traking battle's points respectively throught battleCreation, invitationB, updatePoints Interfaces. Finally the component allows Students to join the Battle, via battleJoinment Interface.
+    \item \textbf{Tournament Manager} It will be used by Educators to create a Tournament and to invite other Educators to join it, throught in that order tournamentCreation and invitationT Interfaces. Furthermore this component exposes Tournament's information and repo to clone, updates ranking, via updatePoints Interface, and allows Teams to participate.
+    \item \textbf{Account Manager} It is encharged of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data. Its accountManager Interface is invoked by clients' requests.
+    \item \textbf{Search Manager} It performs all searches of Users within the Platform. It organizes the data in a proper way from results got by DBMS. It's search Interface is used by clients and by Battle Manager.
+\end{enumerate}
 \subsection{Deployment View}
 \subsection{Component Interfaces}
 \subsection{Runtime View}
