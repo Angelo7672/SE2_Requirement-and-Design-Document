@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 600
+<style>
+red {
+  BackGroundColor red
+  LineThickness 1
+  LineColor black
+}
+green {
+  BackGroundColor palegreen
+  LineThickness 1
+  LineColor black
+}
+orange {
+  BackGroundColor orange
+  LineThickness 1
+  LineColor black
+}
+</style>
+
+
+
+node 1 as "Presentation Layer" <<red>>
+node 2 as "Application Layer" <<green>>
+node 3 as "Data Layer" <<orange>>
+
+
+1 - 2
+2 - 3
+
+@enduml
