@@ -78,14 +78,14 @@ For each component here are explained functions, expressed in pseudo-code, assoc
 \begin{enumerate}
     \item \textbf{SignInManager Interface} 
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{Account Manager signIn(String name, String surname, String email, String password, String repo)} This method allows User to register to the Platform providing name, email, password and a repo that will receive system's pull requests thought proper component. The return is a Manager for that specific Account created.
+                \item \textbf{AccountManager signIn(String name, String surname, String email, String password, String repo)} This method allows User to register to the Platform providing name, email, password and a repo that will receive system's pull requests thought proper component. The return is a Manager for that specific Account created.
                 \item \textbf{Boolean signOut(String email)} To signOut from the Platform signOut method is invoked, with the email of the Account to delete as parameter. A Boolean value is responsable of informing of the outcome.
             \end{enumerate}
     \item \textbf{LogInManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Bool logIn(String email, String password)} The method is used to let the manager know when a User, registered or not, asks to enter CKB. The result of the invocation is a Boolean value to acknowledge client of the success or insuccess of the operation, which depends on parameters' correctness or on Account existence.
-            \item \textbf{Bool logOut(String email)} In order to log out form the system is needed as input the email of the User to discard from Users that are currently interacting with the Platform. A Boolean value comunicate the outcome.
-            \item \textbf{Bool isLogged(String email)} Throught this method, providing the an email, the invocator is able to know is the User who asks for the operation is actually logged in.
+            \item \textbf{Boolean logIn(String email, String password)} The method is used to let the manager know when a User, registered or not, asks to enter CKB. The result of the invocation is a Boolean value to acknowledge client of the success or insuccess of the operation, which depends on parameters' correctness or on Account existence.
+            \item \textbf{Boolean logOut(String email)} In order to log out form the system is needed as input the email of the User to discard from Users that are currently interacting with the Platform. A Boolean value comunicate the outcome.
+            \item \textbf{Boolean isLogged(String email)} Throught this method, providing the an email, the invocator is able to know is the User who asks for the operation is actually logged in.
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -93,25 +93,25 @@ For each component here are explained functions, expressed in pseudo-code, assoc
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Bool sendNotification(String email, String description)} The only parameters required are the recipient email address and its content. The method reports a Boolean value to report the status of the operation.
+            \item \textbf{Boolean sendNotification(String email, String description)} The only parameters required are the recipient email address and its content. The method reports a Boolean value to report the status of the operation.
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Bool joinBattle(String email, String team)} Providing the email of the Student and the eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean value the outcome of the invocation.
+            \item \textbf{Boolean joinBattle(String email, String team)} Providing the email of the Student and the eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean value the outcome of the invocation.
             \item \textbf{void updateBattleScore(String team, int score)} The score of a Team is updated, via this method's invocation, providing the name of the Team and the actual Score, witch is an integer value.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
-        \item \textbf{void inviteEducator(String myemail, String emailToInvite)} To invite other Educators are needed the email of the Educator who invites and the one of the Educator to invite.
-        \item \textbf{Bool createTeam(String myEmail, Array<String> emails, String team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the team. The result is provided via Boolean value. 
-        \item \textbf{Bool joinStudentTournament(String email, String team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
-        \item \textbf{Bool joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the Boolean of result of the execution and asks for the email of the Educator.
+        \item \textbf{void inviteEducator(String myEmail, String emailToInvite)} To invite other Educators are needed the email of the Educator who invites and the one of the Educator to invite.
+        \item \textbf{Boolean createTeam(String myEmail, Array<String> emails, String team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the team. The result is provided via Boolean value. 
+        \item \textbf{Boolean joinStudentTournament(String email, String team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
+        \item \textbf{Boolean joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the Boolean of result of the execution and asks for the email of the Educator.
         \item \textbf{void updateTournamentScore(String team, int score)} The Score of the Tournament has to be updated via this function, that requires the name of the team and the integer value of the score.
         \end{enumerate}
     \item \textbf{AccountManage Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Bool deleteAccount()} The method performs the deletion of the AccountManager associated to the specific User. A true/false response describes the result.
-            \item \textbf{void updateAccount(String name, String surname, email, repo)} UpdateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo thought which he/she would be identified in the system.
+            \item \textbf{Boolean deleteAccount()} The method performs the deletion of the AccountManager associated to the specific User. A true/false response describes the result.
+            \item \textbf{void updateAccount(String name, String surname, String email, String repo)} UpdateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo thought which he/she would be identified in the system.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]

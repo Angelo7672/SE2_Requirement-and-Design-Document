@@ -1,0 +1,74 @@
+@startuml
+
+skinparam linetype polyline
+class microserviceDispatcher{}
+interface logInManager{
+    + logIn(String email, String password): Boolean
+    + logOut(String email): Boolean
+    + isLogged(String email): Boolean
+}
+interface signInManager{
+    + signIn(String name, String surname, String email, String password): AccountManager
+    + signOut(String email): Boolean
+}
+interface RMPManager{
+    + pullRequest(String repo): String
+}
+interface evaluationManager
+interface notificationManager{
+    + sendNotification(String email, String description): Boolean
+}
+interface badgeManager
+interface battleManager{
+    + joinBattle(String email, String team): Boolean
+    + updateBattleScore(String team, int score): void
+}
+interface tournamentManager{
+    + inviteEducator(String myEmail, String emailToInvite): void
+    + createTeam(String myEmail, Array<String> emails, String team): Boolean
+    + joinStudentTournament(String email, String team): Boolean
+    + joinEducatorTournament(String email): Boolean
+    + updateTournamentScore(String team, int score): void
+}
+interface searchManager{
+    + searchUser(String email, String name, String surname):Array<AccountManager>
+    + searchTournament(String tournamentName): Array<TournamentManager>
+}
+interface accountManager{
+    + deleteAccount(): Boolean
+    + updateAccount(String name, String surname, String email, String repo): void
+}
+
+hide microserviceDispatcher circle
+hide logInManager circle
+hide signInManager circle
+hide RMPManager circle
+hide evaluationManager circle
+hide notificationManager circle
+hide badgeManager circle
+hide battleManager circle
+hide tournamentManager circle
+hide searchManager circle
+hide accountManager circle
+
+microserviceDispatcher ---> signInManager: signIn, signOut
+microserviceDispatcher ---> logInManager: logIn, logOut
+microserviceDispatcher ---> accountManager: updateAccount
+microserviceDispatcher ---> tournamentManager: inviteEducator, createTeam, joinStudentTournament, joinEducatorTournament
+microserviceDispatcher ---> battleManager: joinBattle
+signInManager ---> accountManager: deleteAccount
+logInManager ---> searchManager: searchUser
+tournamentManager ---> logInManager: isLogged
+tournamentManager ---> notificationManager: sendNotification
+battleManager ---> logInManager: isLogged
+battleManager ---> notificationManager: sendNotification
+evaluationManager ---> battleManager: updateBattleScore
+evaluationManager ---> tournamentManager: updateTournamentScore
+RMPManager <--- evaluationManager: pullRequest
+
+
+
+
+
+
+@enduml
