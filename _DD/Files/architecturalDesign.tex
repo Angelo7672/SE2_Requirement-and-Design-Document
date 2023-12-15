@@ -60,19 +60,65 @@ CKB, once realized, would be a 4 tier platform:
 CKB's Application Layer is based on Microservices, that consitutes components in the system's architeture.
 Which are:
 \begin{enumerate}
-    \item \textbf{SignIn Manager} It is the manager encharged of allow Users to sign in into the Platform, throught proper signIn interface.
-    \item \textbf{LogIn Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used on clients' commands and by signIn, badge, battle, tournament Managers component, to verify if a existing User is, in fact, logged in.
-    \item \textbf{RMP Manager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager witch acceses pullRequests Interface.
-    \item \textbf{Notification Manager} This component manages particular notifications to be send to Users, comunicating with E-mail provider, which performs as a Server for this module. Requests are sent on other components' indications, which are expressed throught sendNotification Interface.
-    \item \textbf{Evaluation Manager} It is encharged of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
-    \item \textbf{Badge Manager} Allows Educators to create a Badge with corresponding parameters anche criterias. Moreover it assigns Badges to Students who can be awarded. BadgeCreation Interface is invoked by clients' requests.
-    \item \textbf{Battle Manager} This component, verified the identity of the User which accesses it, is responsable for the creation of a Battle within a Tournament, invitations of other Students, traking battle's points respectively throught battleCreation, invitationB, updatePoints Interfaces. Finally the component allows Students to join the Battle, via battleJoinment Interface.
-    \item \textbf{Tournament Manager} It will be used by Educators to create a Tournament and to invite other Educators to join it, throught in that order tournamentCreation and invitationT Interfaces. Furthermore this component exposes Tournament's information and repo to clone, updates ranking, via updatePoints Interface, and allows Teams to participate.
-    \item \textbf{Account Manager} It is encharged of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data. Its accountManager Interface is invoked by clients' requests.
-    \item \textbf{Search Manager} It performs all searches of Users within the Platform. It organizes the data in a proper way from results got by DBMS. It's search Interface is used by clients and by Battle Manager.
+    \item \textbf{SignInManager} It is the manager encharged of allow Users to sign in into the Platform or sign out, throught proper interface.
+    \item \textbf{LogInManager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used by the User to log in and by other components to verify if a existing User is, in fact, logged in. Finally the interface allows to log out too.
+    \item \textbf{RMPManager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager witch acceses pullRequests Interface.
+    \item \textbf{NotificationManager} This component manages particular notifications to be sent to Users, comunicating with E-mail provider, which performs as a Server for this module. Requests are sent on other components' indications, which are expressed throught sendNotification Interface.
+    \item \textbf{EvaluationManager} It is encharged of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
+    \item \textbf{BadgeManager} Allows Educators to create a Badge with corresponding parameters anche criterias. Moreover it assigns Badges to Students who can be awarded.
+    \item \textbf{BattleManager} This component, verified the identity of the User which accesses it, is responsable for invitations of other Students and traking battle's points thought proper interface. Finally the component allows Students to join the Battle.
+    \item \textbf{TournamentManager} It will be used by Educators to create a Tournament and to invite other Educators to join it, throught provided interface. Furthermore this component exposes Tournament's information and repo to clone, updates ranking and allows Teams to participate.
+    \item \textbf{AccountManager} It is encharged of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
+    \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data in a proper way from results got by DBMS and makes them availble via its interface.
 \end{enumerate}
 \subsection{Deployment View}
 \subsection{Component Interfaces}
+For each component here are explained functions, expressed in pseudo-code, associated with respective interfaces.
+%DA VERIFICARE SE INSERIRE ANCHE I GETTER
+\begin{enumerate}
+    \item \textbf{SignInManager Interface} 
+            \begin{enumerate}[label=$\bullet$]
+                \item \textbf{Account Manager signIn(String name, String surname, String email, String password, String repo)} This method allows User to register to the Platform providing name, email, password and a repo that will receive system's pull requests thought proper component. The return is a Manager for that specific Account created.
+                \item \textbf{Boolean signOut(String email)} To signOut from the Platform signOut method is invoked, with the email of the Account to delete as parameter. A Boolean value is responsable of informing of the outcome.
+            \end{enumerate}
+    \item \textbf{LogInManager Interface}
+        \begin{enumerate}[label=$\bullet$]
+            \item \textbf{Bool logIn(String email, String password)} The method is used to let the manager know when a User, registered or not, asks to enter CKB. The result of the invocation is a Boolean value to acknowledge client of the success or insuccess of the operation, which depends on parameters' correctness or on Account existence.
+            \item \textbf{Bool logOut(String email)} In order to log out form the system is needed as input the email of the User to discard from Users that are currently interacting with the Platform. A Boolean value comunicate the outcome.
+            \item \textbf{Bool isLogged(String email)} Throught this method, providing the an email, the invocator is able to know is the User who asks for the operation is actually logged in.
+        \end{enumerate}
+    \item \textbf{RMPManager Interface}
+        \begin{enumerate}[label=$\bullet$]
+            \item \textbf{String pullRequest(String repo)} In order to perform a Pull request to the right RMP by RMPManager, the component thought the here descripted method, asks for the repo as a parameter. The return value is the code pulled from the repo itself.
+        \end{enumerate} 
+    \item \textbf{NotificationManager Interface}
+        \begin{enumerate}[label=$\bullet$]
+            \item \textbf{Bool sendNotification(String email, String description)} The only parameters required are the recipient email address and its content. The method reports a Boolean value to report the status of the operation.
+        \end{enumerate}
+    \item \textbf{BattleManager Interface}
+        \begin{enumerate}[label=$\bullet$]
+            \item \textbf{Bool joinBattle(String email, String team)} Providing the email of the Student and the eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean value the outcome of the invocation.
+            \item \textbf{void updateBattleScore(String team, int score)} The score of a Team is updated, via this method's invocation, providing the name of the Team and the actual Score, witch is an integer value.
+        \end{enumerate}
+    \item \textbf{TournamentManager Interface}
+        \begin{enumerate}[label=$\bullet$]
+        \item \textbf{void inviteEducator(String myemail, String emailToInvite)} To invite other Educators are needed the email of the Educator who invites and the one of the Educator to invite.
+        \item \textbf{Bool createTeam(String myEmail, Array<String> emails, String team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the team. The result is provided via Boolean value. 
+        \item \textbf{Bool joinStudentTournament(String email, String team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
+        \item \textbf{Bool joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the Boolean of result of the execution and asks for the email of the Educator.
+        \item \textbf{void updateTournamentScore(String team, int score)} The Score of the Tournament has to be updated via this function, that requires the name of the team and the integer value of the score.
+        \end{enumerate}
+    \item \textbf{AccountManage Interface} 
+        \begin{enumerate}[label=$\bullet$]
+            \item \textbf{Bool deleteAccount()} The method performs the deletion of the AccountManager associated to the specific User. A true/false response describes the result.
+            \item \textbf{void updateAccount(String name, String surname, email, repo)} UpdateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo thought which he/she would be identified in the system.
+        \end{enumerate}
+    \item \textbf{SearchManager Interface} 
+        \begin{enumerate}[label=$\bullet$]
+            \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname)} To search one or more Users SearchManager, thought the here presented method requires the email or name or surname of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criterias.
+            \item \textbf{Array<TournamentManager> searchTournament(String tournamentName)} The name of the Tournament to search is required and as result the Array of TournamentManagers, which data matched the parameters, is provided.
+        \end{enumerate}
+\end{enumerate}
 \subsection{Runtime View}
 \subsection{Noteworthy Architectural Patterns}
 \subsection{Other design Decisions}
