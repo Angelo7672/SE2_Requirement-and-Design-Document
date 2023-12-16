@@ -1,3 +1,6 @@
+// ---- Signatures ----
+
+
 sig Name{}
 sig Surname{}
 sig Email{}
@@ -57,9 +60,11 @@ abstract sig Score{
 sig BattleScore extends Score{}
 sig TournamentScore extends Score{}
 
---------------------------------------------------
-//Facts
+// ---- Facts ----
+
+
 // User facts
+
 fact SurnameBelongsToUser{
     all s: Surname | s in User.surname
 }
@@ -130,17 +135,11 @@ fact battleIsPartOfOneTournament{
     all b1: Battle | one t1: Tournament | b1 in t1.battles
 }
 
+// Score facts
+
 fact TeamTournamentScoreIsUnique{
     all t: TournamentScore | t in Team.tournamentScore
     all disj t1, t2: Team | t1.tournamentScore != t2.tournamentScore
-}
-
-fact noAloneDescriptions{
-    some b:Badge | all d:Description | d in b.description
-}
-
-fact noAloneNames{
-    some b:Badge | some u:User | all n:Name | (n in b.name) or (n in u.name)
 }
 
 fact allBattlescoreBelongstoOneTeam{
@@ -175,12 +174,22 @@ fact allBattleTeamCoupleHaveABattleScore{
     all to: Tournament | all t:to.teams | all b:to.battles | one bs:BattleScore| bs in t.battleScore and bs in b.scores
 }
 
-/*fact tournamentScoreAreSumOfBattleScores{
-    all ts: TournamentScore | all t: Team | (ts.points in t.tournamentScore.points) <=> (ts.points = sum(t.battleScore.points))
-}*/
+fact tournamentScoreIsSumOfBattleScores{
+    all to: Tournament | all t:to.teams | all ts: t.tournamentScore | ts.points = sum[t.battleScore.points]
+}
 
---------------------------------------------------
-//Assertions
+// Various facts
+
+fact noAloneDescriptions{
+    some b:Badge | all d:Description | d in b.description
+}
+
+fact noAloneNames{
+    some b:Badge | some u:User | all n:Name | (n in b.name) or (n in u.name)
+}
+
+// ---- Assertions ----
+
 
 //GP2: Allow Educators to create tournaments
 assert newTournament{
@@ -214,8 +223,10 @@ assert noBattlesHaveSameRepo{
 }
 
 check noBattlesHaveSameRepo
---------------------------------------------------
-//Predicates
+
+// ---- Predicates ----
+
+
 pred show{
     //#Platform.tournaments = 1
     #Tournament = 2

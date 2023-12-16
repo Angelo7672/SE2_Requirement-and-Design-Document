@@ -1,1 +1,13 @@
-\lstinputlisting[language=Alloy]{Files/alloy/alloy.als}
+% arg1 = first line, arg2 = last line
+\newcommand{\showCode}[2]{
+    \lstinputlisting[language=Alloy, firstline=#1, lastline=#2]{Files/alloy/alloy.als}
+}
+
+\subsection{Signatures}
+\showCode{2}{62}
+\subsection{Facts}
+\showCode{65}{190}
+\subsection{Assertions}
+\showCode{194}{225}
+\subsection{Predicates}
+\showCode{229}{237}
