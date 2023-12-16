@@ -12,4 +12,3 @@ client -right-> server
 server -left-> client
 
 @enduml
-

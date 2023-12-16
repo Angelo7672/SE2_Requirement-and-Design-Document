@@ -1,44 +1,42 @@
 \subsection{Overview}
-
 %CLIENT-SERVER
+CKB is conceptualized from the ground basis as a \textbf{Client-Server} platform. In fact, Users access services through a Web App, which constitutes the only virtual device able to receive commands to interact 
+with CKB.
+\useSvgWithCaption{./Images/overviewDiagrams/ClientServerParadigm.svg}{0.35}{0.35}{Client-Server paradigm}
+\\
+The main logic is hosted in the server that manages all the functionalities of CKB, instead the client is only a graphic representation for the user.
 
-CKB is thought form the ground basis as a client-server platform. In fact, Users access services through a Web App, which constitutes the only virtual device able to receive commands to interact 
-with CKB.\\\\
-The main logic is hosted in servers that manages all the functionalities of CKB, instead the client is only a graphic representation for the user.
+Because the client, acting as a thin client, only displays the GUI to the user in order to expose the Platform's services and functionalities with their corresponding interfaces that it obtains by communicating with the Server through 
+the Network, the client-server software organization that was chosen is \textbf{Remote Representation}.
 
-The organization of Client-Server software is thought as remote representation because the fruition through Web App, as thin clients, witch role is just to expose to the User the Platform's 
-services and their respective interfaces, deducting from the server exclusively the presentation of the App, meaning the GUI.
+The Web Browser hosting the Web App should ideally handle client communication. It must enable safe and efficient communication with the server via the HTTP and TCP protocols. 
 
-Client's communication is ideally handled by the Web Browser that hosts the Web App. Using HTTP and TCP protocols it has to provide a secure and effective communication with the Server. 
-CKB User Interface code has to be written in order to be run on all kind of Browsers.\\\\
-Servers, on the other hand, would be deputed to guard Users' data, after their kind and privileges, and Platform's model changed following given rules.
-
+To be used with all types of browsers, CKB User Interface code needs to be written. However, after their kind and privileges, servers would be assigned to protect users' data, and the platform's model would change in accordance 
+with the guidelines.\\
+\\
 %MICROSERVICES
-CKB, as thought, has at its core the possibility to manage and run multiple Battles, Tournaments and receive multiple inputs from different clients, after their type, all at the same time. 
-Server has to handle multiple requests, realizing it thought concurrency.
+The fundamental capability of CKB is the ability to simultaneously manage and conduct multiple Battles, Tournaments, and receive multiple inputs from various clients, based on their type. 
+The server must manage several requests at once, recognizing this through concurrency.
 
-An architectural approach that can be chosen is the Microservices one. 
-With this choice, favored by the presence of multiple servers, each machine would host multiple components, properly replicated even in other machines, each one would elaborate specific inputs 
-related to a precise topic or set of linked operations, that constitute a service.
+The \textbf{Microservices architectural} approach is one that can be selected. This option, which is supported by the availability of multiple servers, would allow each machine to host multiple service components that are properly 
+replicated even in other machines. These components would each elaborate particular inputs pertaining to a particular topic or collection of related operations that make up a service.
 
-The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests form Users redirecting them to the 
+The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests from Users redirecting them to the 
 right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and platform reactivity.
 
-The approach empowers developers and authors to upgrade CKB with new functionalities without changing User's interface or all the way around, guaranteeing modularity and improvements.
-
-All including appropriate duplication of each component to avoid failures and allowing the Platform to not lose data and determining resilience.\\\\
-
+The method ensures modularity and improvements by enabling developers and authors to update CKB with new functionalities without altering the user interface in any way. It also allows the Platform to retain data and determine 
+resilience while ensuring appropriate duplication of each component to prevent failures.\\
+\\
 %LAYER
-CKB is thought to be implemented as a 3 layer application:
+CKB is thought to be implemented as a \textbf{Three Layer Architecture}:
 \begin{enumerate}[label=$\bullet$]
-    \item \textbf{Presentation Layer} the functionality of this layer is only to show to the user a graphic interface of the product functionalities of the application.
-    \item \textbf{Application Layer} this layer is the core of the platform: it contains the whole logic of the application, it manages the functionalities of the application.
-    \item \textbf{Data Layer} this layer contains all the data of the application.
+    \item \textbf{Presentation Layer:} this layer's only purpose is to display to the user the application's product functionalities through a graphical interface.
+    \item \textbf{Application Layer:} this layer is the central component of the platform since it contains the entire application's logic and controls its functionalities.
+    \item \textbf{Data Layer:} the application's whole data set is contained in this layer.
 \end{enumerate}
-%TODO: immagine layer
-
+\useSvgWithCaption{./Images/overviewDiagrams/3LayerArchitecture.svg}{0.65}{0.65}{Three Layer Architecture}
 %TIER
-CKB, once realized, would be a 4 tier platform:
+CKB, once realized, would be a \textbf{Four Tier Application}:
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Client} Receives inputs form Users, displaying answers from the Server, allowing to navigate and interact with the Platform. As a thin Client is equipped just with 
     communication APIs with the Server, that sends what is needed to exhibit GUI, and components to build this latest one. User visualizing interface consists in the proper Student and Educator 
@@ -52,8 +50,7 @@ CKB, once realized, would be a 4 tier platform:
     \item \textbf{DBMS Server} CKB stores even Users'information and both data to run the Platform, like tournament's and battle's data. DBMS tier is deputed to store, ensure and manage those data, 
     allowing access to Microservices that would require them, updating if needed according to proper rules. 
 \end{enumerate}
-
-%TODO: immagine tier
+\useSvgWithCaption{./Images/overviewDiagrams/3LayerArchitecture.svg}{1.0}{1.0}{Four Tier Application}
 
 
 \subsection{Component View}
