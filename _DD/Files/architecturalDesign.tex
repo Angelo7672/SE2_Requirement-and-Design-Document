@@ -2,7 +2,7 @@
 %CLIENT-SERVER
 CKB is conceptualized from the ground basis as a \textbf{Client-Server} platform. In fact, Users access services through a Web App, which constitutes the only virtual device able to receive commands to interact 
 with CKB.
-\useSvgWithCaption{./Images/overviewDiagrams/ClientServerParadigm.svg}{0.35}{0.35}{Client-Server paradigm}
+\useSvgWithCaption{./Images/overviewDiagrams/clientServerParadigm.svg}{0.35}{0.35}{Client-Server paradigm}
 \\
 The main logic is hosted in the server that manages all the functionalities of CKB, instead the client is only a graphic representation for the user.
 
@@ -38,20 +38,19 @@ CKB is thought to be implemented as a \textbf{Three Layer Architecture}:
 %TIER
 CKB, once realized, would be a \textbf{Four Tier Application}:
 \begin{enumerate}[label=$\bullet$]
-    \item \textbf{Client} Receives inputs form Users, displaying answers from the Server, allowing to navigate and interact with the Platform. As a thin Client is equipped just with 
-    communication APIs with the Server, that sends what is needed to exhibit GUI, and components to build this latest one. User visualizing interface consists in the proper Student and Educator 
-    variant, which differences are only at this architectural level irrelevant for the system's functioning.
-    \item \textbf{Web Server} Web Server is the main door to access the Platform itself. It counts the module deputed to communicate with clients, the firewalls, the DMZ and the interfaces to 
-    expose access to the system. Web Server is directly connected with the Application Server, and it is uncharged of sending back information to clients to update the GUI, reflecting 
-    modifications on the Platform itself. This tier constitutes the bridge between Students and Educators and CKB.
-    \item \textbf{Application Server} Application Server is the Platform itself with its core functionalities. It is built with a Microservice approach, that consists of single software modules 
-    that manages a single "service", a group of operations related to a specific topic. The structure is preceded by a dispatcher module, that redirects clients' requests to proper service. 
-    A suitable distribution of the application server in microservices will allow managing multiple Users' interactions at the same time.
-    \item \textbf{DBMS Server} CKB stores even Users'information and both data to run the Platform, like tournament's and battle's data. DBMS tier is deputed to store, ensure and manage those data, 
-    allowing access to Microservices that would require them, updating if needed according to proper rules. 
+    \item \textbf{Client:} Users input data into the Client, which displays responses from the Server and enables users to navigate and interact with the Platform. Since a thin client only has communication APIs with the server, 
+    it transmits the components needed to create the most recent one as well as the necessary data to display the GUI. The appropriate Student and Educator variants make up the user visualizing interface; differences between them 
+    are only at this architectural level unimportant to the operation of the system.
+    \item \textbf{Web Server:} The primary entry point to the Platform is through the Web Server. It takes into account the interfaces that provide system access, the firewalls, the DMZ, and the module assigned to communicate with 
+    clients. The Web Server is in direct communication with the Application Server; it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Between students, educators, 
+    and CKB, this tier serves as a bridge.
+    \item \textbf{Application Server:} The Platform, with its essential features, is the Application Server. It is constructed using a microservices architecture, which is made up of lone software modules that oversee a single 
+    "service", or collection of tasks associated with a particular subject. A dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
+    will be possible with a proper distribution of the application server across microservices.
+    \item \textbf{DBMS Server:} CKB keeps track of both user data and platform operational data, such as battle and tournament records. The DBMS tier is responsible for managing, securing, and storing the data. It permits access to 
+    Microservices that need it, and it updates it as needed in compliance with regulations.
 \end{enumerate}
-\useSvgWithCaption{./Images/overviewDiagrams/3LayerArchitecture.svg}{1.0}{1.0}{Four Tier Application}
-
+\useSvgWithCaption{./Images/overviewDiagrams/4TierArchitecture.svg}{0.8}{0.8}{Four Tier Application}
 
 \subsection{Component View}
 CKB's Application Layer is based on Microservices, that consitutes components in the system's architeture.
