@@ -1,5 +1,4 @@
 \paragraph{UC1 - User signs in to the platform} \label{uc:uc1} 
-   %questo lo toglierei tanto un user non puo' loggarsi come tale
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & User signs in to the platform \\
@@ -18,37 +17,41 @@
         Exception & User does not confirm e-mail address, Saved data will be deleted after some time.\\
         Special \newline Requirement & - \\ 
     \end{tabu}
-\end{center}
-UC1 is a generalization of UC1a and UC1b:
-\paragraph*{UC1a - Student signs in to the platform}
+\end{center} 
+"\nameref*{uc:uc1}" is a generalization of:\\
+"\nameref{uc:uc1a}" and \\ "\nameref{uc:uc1b}".
+\clearpage
+\paragraph*{UC1a - Student signs in to the platform} \label{uc:uc1a} 
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Student signs in to the platform \\ 
         Actors & Student \\ 
-        Entry Condition & Same as UC1 \\ 
-        Event Flow & Same as UC1 with exception of \newline \begin{tabu}{X X[50]}
+        Entry Condition & Same as \nameref{uc:uc1} \\ 
+        Event Flow & Same as \nameref{uc:uc1} with exception of \newline \begin{tabu}{X X[50]}
             3& Student chooses student role while filling in form\\
         \end{tabu} \\
-        Exit Condition & Same as UC1\\
-        Exception & Same as UC1\\
-        Special \newline Requirement & Same as UC1\\ 
+        Exit Condition & Same as \nameref{uc:uc1}\\
+        Exception & Same as \nameref{uc:uc1}\\
+        Special \newline Requirement & Same as \nameref{uc:uc1}\\ 
     \end{tabu}
 \end{center}
+\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1a.svg}{1.0}{1.0}{UC1, UC1a, Sequence Diagram - User, Student or Educator, signs in to the platform}
+\clearpage
 
-\paragraph*{UC1b - Educator signs in to the platform}
+\paragraph*{UC1b - Educator signs in to the platform} \label{uc:uc1b} 
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Educator signs in to the platform \\ 
         Actors & Educator \\ 
-        Entry Condition & Same as UC1 \\ 
-        Event Flow & Same as UC1 with exception of \newline \begin{tabu}{X X[50]}
+        Entry Condition & Same as \nameref{uc:uc1} \\ 
+        Event Flow & Same as \nameref{uc:uc1} with exception of \newline \begin{tabu}{X X[50]}
             3& Educator chooses educator role while filling in form\\
         \end{tabu} \\
-        Exit Condition & Same as UC1\\
-        Exception & Same as UC1\\
-        Special \newline Requirement & Same as UC1\\ 
+        Exit Condition & Same as \nameref{uc:uc1}\\
+        Exception & Same as \nameref{uc:uc1}\\
+        Special \newline Requirement & Same as \nameref{uc:uc1}\\ 
     \end{tabu}
 \end{center}
 
-\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1a.svg}{1.0}{1.0}{UC1, UC1a, UC1b Sequence Diagram - User, Student or Educator, signs in to the platform}
+\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1b.svg}{1.0}{1.0}{UC1, UC1b Sequence Diagram - User, Student or Educator, signs in to the platform}
 \clearpage

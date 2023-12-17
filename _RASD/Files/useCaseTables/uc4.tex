@@ -19,7 +19,8 @@
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
-UC4 is a generalization of UC4a and UC4b:
+"\nameref*{uc:uc4}" is a generalization of:\\
+"\nameref{uc:uc4a}" and \\ "\nameref{uc:uc4b}".
 \clearpage
 \paragraph*{UC4a - Educator invites other educator to co-manage tournament} \label{uc:uc4a}
 \begin{center}
@@ -29,10 +30,10 @@ UC4 is a generalization of UC4a and UC4b:
         Entry Condition & Inviting educator is managing a tournament\\ 
         Event Flow & \begin{tabu}{X X[50]}
             1& Educator is in the managing page of the tournament\\
-            & Event flow follows father use case
+            & Event flow follows father's \nameref{uc:uc4} event flow
         \end{tabu} \\
         Exit Condition & Invited Educator can manage the tournament\\
-        Exception & Same as UC4\\
+        Exception & Same as \nameref{uc:uc4}\\
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
@@ -46,10 +47,10 @@ UC4 is a generalization of UC4a and UC4b:
         Entry Condition & Inviting student is part of a team subscribed to a tournament \\ 
         Event Flow & \begin{tabu}{X X[50]}
             1& Student is in the tournament detail page\\
-            & Follows UC4's event flow
+            & Follows follows father's \nameref{uc:uc4} event flow
         \end{tabu} \\
         Exit Condition & If invited student accepts invitation, invited user is part of inviting user's team\\
-        Exception & Same as UC4, with the verification of no participance to the Team in which he/she is invited or any other Team\\
+        Exception & Same as \nameref{uc:uc4}, with the verification of no participance to the Team in which he/she is invited or any other Team\\
         Special \newline Requirement & - \\ 
     \end{tabu}
 \end{center}
