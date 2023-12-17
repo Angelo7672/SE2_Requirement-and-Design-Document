@@ -88,12 +88,14 @@ From the previous scenarios and the introduction above follow these Product Func
 Every person that wishes to sign in to the platform can sign in via a specific form which allows to become a user of it.
 In the platform the form requests: name, surname, e-mail address, RMP handle, user type and password; after clicking on confirmation button, the platform sends a confirmation e-mail to the e-mail address given in the form with a 
 button to finalize the subscription to the platform. Sign in is finalized once the button is clicked.
+\useSvgWithCaption{./Images/BPMN/signin.svg}{1.0}{1.0}{BPMN diagram of the sign in}
 \paragraph{Log in}
 Every user needs to log in to the platform to perform any activity in it. Log in is done via a form which has to be filled with e-mail address and password, if the pair corresponds to a user, the user will be logged in to the 
 platform as of his role (student or educator).
+\useSvgWithCaption{./Images/BPMN/login.svg}{1.0}{1.0}{BPMN diagram of the log in}
 \paragraph{Search for other user}
 Every user subscribed to the platform, can search other users by name, email or RMP handle in the search bar. If the user searched is a student, on his profile page are shown also the badge achieved.
-
+\useSvgWithCaption{./Images/BPMN/searchUser.svg}{1.0}{1.0}{BPMN diagram of searching a user}
 \subsubsection{Educator Functions}
 
 \paragraph{Create a Tournament}
@@ -127,6 +129,7 @@ A student can search for tournaments on the platform from his homepage. He can v
 He can subscribe to a tournament after selecting one, and each tournament has a minimum and maximum number of students signed up for each team. While it is occasionally possible to compete alone, one of CKB's goals is to teach 
 students how to write code in a team. As a result, students will most likely join a team when they subscribe to the tournament, and it's possible that he will invite some of his friends to join a team that he will name during the 
 subscription process.
+\useSvgWithCaption{./Images/BPMN/subscribeTournament.svg}{1.0}{1.0}{BPMN diagram of the subscription to a tournament}
 
 \paragraph{Accept an invitation from another student}
 A student can join to a tournament by an invitation of another student and compete together in a team.
@@ -135,7 +138,7 @@ A student can join to a tournament by an invitation of another student and compe
 A student can carry out battles by clicking on the button of a particular battle from the tournament page once he has subscribed to it. Once the RMP directory has been configured with the fork and workflow action, he can write code 
 locally to pass the test cases that are included in the battle repository. The platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the battle score, that the student 
 can view from the battle page, each time he pushes code into the repository. Optionally, an educator might evaluate the written code as well.
-
+\useSvgWithCaption{./Images/BPMN/completeBattle.svg}{1.0}{1.0}{BPMN diagram of battle completion}
 \subsection{User Characteristics}
 
 \subsubsection{User}
