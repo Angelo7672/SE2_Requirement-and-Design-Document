@@ -3,7 +3,11 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Team gets code evaluated \\ 
         Actors & RMP \\ 
-        Entry Condition & Team student upload update to RMP \\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Team student pushes code to RMP\\
+            Tournament is in "STARTED" state\\
+            Battle is in "ACCESSIBLE" state\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& RMP call CKB's API to notify platform of an update to repository\\
             2& Platform checks the repository link and recognize the Team\\
@@ -16,7 +20,7 @@
         \end{tabu} \\
         Exit Condition & Users are able to see newly created score inside battle leaderboards\\
         Exception & Repository is not associated to any team of the tournament: tests are not run\\
-        Special \newline Requirement & Automatic action is run shortly after new push to the RMP\\ 
+        \specialReqLabel & Automatic action is run shortly after new push to the RMP\\ 
     \end{tabu}
 \end{center}
 \useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC9.svg}{.4}{.4}{UC9 Sequence Diagram - Team gets code awarded}

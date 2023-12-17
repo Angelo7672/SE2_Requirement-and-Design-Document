@@ -3,7 +3,10 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Educator creates Badge \\ 
         Actors & Educator \\ 
-        Entry Condition & Educator is managing a tournament \\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Educator is managing a tournament \\
+            Tournament is in "CREATED" state\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& Educator is in tournament management page\\
             2& Educator clicks on "Add badge" button\\
@@ -16,7 +19,7 @@
         \end{tabu} \\
         Exit Condition & Every user is able to see the existence of the badge in the tournament detail page\\
         Exception & If requirements script isn't correct, badge information is dropped and a notification e-mail is sent to the educator describing the issue\\
-        Special \newline Requirement & - \\ 
+        \specialReqLabel & - \\ 
     \end{tabu}
 \end{center}
 \useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC7.svg}{1.0}{1.0}{UC7 Sequence Diagram - Educator creates Badge}

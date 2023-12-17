@@ -3,7 +3,10 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & User invites other user to collaborate \\ 
         Actors & Inviting user, invited user \\ 
-        Entry Condition & Inviting user knows email of invited user \\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Inviting user knows email of invited user \\ 
+            Tournament is in the right state to invite user\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& Inviting user clicks on "collaborate" button\\
             2& System shows inviting user a form to fill with the email of the user he wants to invite\\
@@ -13,10 +16,10 @@
             6& Invited user clicks on "Decline" button to decline invitation, or ignores it\\
         \end{tabu} \\
         Exit Condition & If invited user accepts invitation, invited user can collaborate with inviting one, else as nothing happened\\
-        Exception & \begin{tabu}{X}
-            Invited user e-mail address can be: non-existent, non-registered, of user of different role. In this case Inviting user get's notified of the error via e-mail.
+        Exception & \begin{tabu}{@{}X}
+            Invited user e-mail address can be: non-existent, non-registered, of user of \\different role. In this case Inviting user get's notified of the error via e-mail.
         \end{tabu}  \\
-        Special \newline Requirement & - \\ 
+        \specialReqLabel & - \\ 
     \end{tabu}
 \end{center}
 "\nameref*{uc:uc4}" is a generalization of:\\
@@ -27,14 +30,18 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Educator invites other educator to co-manage tournament\\ 
         Actors & Inviting educator, invited educator \\ 
-        Entry Condition & Inviting educator is managing a tournament\\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Same as \nameref{uc:uc4} \\
+            Inviting educator is managing a tournament\\ 
+            Tournament is in "CREATED" state\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& Educator is in the managing page of the tournament\\
             & Event flow follows father's \nameref{uc:uc4} event flow
         \end{tabu} \\
         Exit Condition & Invited Educator can manage the tournament\\
         Exception & Same as \nameref{uc:uc4}\\
-        Special \newline Requirement & - \\ 
+        \specialReqLabel & - \\ 
     \end{tabu}
 \end{center}
 \useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC4a.svg}{1.0}{1.0}{UC4, UC4a Sequence Diagram - Educator invites educator to collaborate}
@@ -44,14 +51,18 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Student invites other student to participate in the tournament as a Team \\ 
         Actors & Inviting student, invited student\\ 
-        Entry Condition & Inviting student is part of a team subscribed to a tournament \\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Same as \nameref{uc:uc4} \\
+            Inviting student is part of a team subscribed to a tournament \\ 
+            Tournament is in "ONLINE" state\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& Student is in the tournament detail page\\
-            & Follows follows father's \nameref{uc:uc4} event flow
+            & Event flow follows father's \nameref{uc:uc4} event flow
         \end{tabu} \\
         Exit Condition & If invited student accepts invitation, invited user is part of inviting user's team\\
         Exception & Same as \nameref{uc:uc4}, with the verification of no participance to the Team in which he/she is invited or any other Team\\
-        Special \newline Requirement & - \\ 
+        \specialReqLabel & - \\ 
     \end{tabu}
 \end{center}
 \useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC4b.svg}{1.0}{1.0}{UC4, UC4b Sequence Diagram - Student invites student to collaborate}

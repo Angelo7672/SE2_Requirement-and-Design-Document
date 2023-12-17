@@ -3,7 +3,10 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Student gets awarded with badge\\ 
         Actors & Student \\ 
-        Entry Condition & Student is part of a team, and has contributed to team's repository \newline Tournament is ended \\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Student is part of a team, and has contributed to team's repository \\
+            Tournament is in "OFFLINE" state\\
+        \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
             1& - System runs badge tests on all repositories\\
             2& - Badge tests give a list of RMP handles and e-mail addresses to which assign corresponding badge\\
@@ -13,7 +16,7 @@
         \end{tabu} \\
         Exit Condition & Random platform user can see badge in the specific student profile page\\
         Exception & - \\
-        Special \newline Requirement & Commit user data is consistent with CKB platform user data \\ 
+        \specialReqLabel & Commit user data is consistent with CKB platform user data \\ 
     \end{tabu}
 \end{center}
 \useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC8.svg}{0.65}{0.65}{UC8 Sequence Diagram - Student gets awarded with badge}
