@@ -1,5 +1,6 @@
 @startuml entityClassDiagramRMP
-'skinparam linetype polyline
+'skinparam linetype ortho
+skinparam Padding 5
 'Hide circles defaultly present on the classes
 
 'component RMP 
@@ -28,11 +29,11 @@ RMP -down-> Platform : notifies
 
 User <|-right- Student
 User <|-left- Educator
-User -left-> RMP : has handle
+User -left---> RMP : has handle
 
-Student "1...n" -up--o "1" Team : belongs to
+Student "1...n" -up---o "1" Team : belongs to
 
-Educator -up--> Battle : creates
+Educator -up---> Battle : creates
 
 Team "1" -left-> "0...n" RMP : has repo
 

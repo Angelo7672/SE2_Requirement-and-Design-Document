@@ -1,5 +1,4 @@
 @startuml
-
 state TOURNAMENT{
     [*] --> DEFINED: setting
 
@@ -10,19 +9,24 @@ state TOURNAMENT{
     DEFINED: - duration set
     DEFINED: - deadline for subscription set
 
-    DEFINED -> CREATED: creation
+    DEFINED --> CREATED: creation
 
     CREATED: - battle/s available
     CREATED: - [optional] badge/s available
 
-    CREATED --> CREATED: adding educator
-    CREATED --> CREATED: adding battle
-    CREATED --> CREATED: adding badge
+    CREATED --> CREATED: adding educator | adding battle | adding badge
+
+    'CREATED --> CREATED: adding educator
+    'CREATED -[HIDDEN]-> CREATED: GIMMESPACEE
+    'CREATED --> CREATED: adding battle
+    'CREATED -[HIDDEN]-> CREATED: GIMMESPACEE
+    'CREATED --> CREATED: adding badge
 
     CREATED --> ONLINE: tournament publication
 
     ONLINE: - students are notificated by email of the new tournament
     ONLINE: - students subscribe to the tournament in teams
+    ONLINE --> ONLINE: adding team
 
     ONLINE --> STARTED: deadline for subscription met
 
@@ -49,7 +53,9 @@ state TOURNAMENT{
         CLOSED -> [*]
     }
 
-    BATTLE -> OFFLINE: deadline reached
+    BATTLE --> BATTLE: update tournament scores
+
+    BATTLE --> OFFLINE: deadline reached
 
     OFFLINE: - it is no more possible complete battles
     OFFLINE: - tournament score and rank are ultimated
