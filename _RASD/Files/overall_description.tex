@@ -1,12 +1,13 @@
 This section describes the perspective, functionalities, characteristics, and domain assumptions of CKB platform, which is a complete system.\\
-The rigorous description of the RMP is out of the scope of the document. Of the RMP will be only described critical parts needed for the correct functioning of the platform, allowing to choose those ones that satisfy them in a later stage.
-\\
+The rigorous description of the RMP is out of the scope of the document. 
+
+Of the RMP will be only described critical parts needed for the correct functioning of the platform, allowing to choose those that satisfy them in a later stage.
+
 \subsection{Product Perspective}
 \subsubsection{Scenarios}
 \begin{enumerate}[label= \textbf{SC\arabic*}]
-    \item \textbf{Student signs in to the platform to participate to tournaments}
-    \label{sc:sc1}\\ Alice is studying programming all by herself and wants to evaluate her work. She accesses the Platform website and is intrigued to try it out. 
-    Alice signs in as a student giving her details like name, surname, e-mail,  year of birth and RMP handle. Once done that she will receive updates on new open tournaments. Moreover, she can log in and be presented with a list 
+    \item \textbf{Student signs in to the platform to participate to tournaments} \label{sc:sc1}\\ Alice is studying programming all by herself and wants to evaluate her work. She accesses the Platform website and is intrigued to try it out. 
+    Alice signs in as a student giving her details like name, surname, e-mail, year of birth and RMP handle. Once done that she will receive updates on new open tournaments. Moreover, she can log in and be presented with a list 
     of tournaments to which she can subscribe.
     \item \textbf{Student wants to participate in a tournament} \label{sc:sc2}\\ Dan, after studying a bit of Javascript wants to apply its studies in a project. In order to do so he wants to participate in a tournament. He is already subscribed 
     to the platform, so he can just log in to it and search a suitable tournament. After being presented of some valid choices, he clicks on one of them to see more details like description, educators, subscription deadline and 
@@ -44,9 +45,9 @@ The rigorous description of the RMP is out of the scope of the document. Of the 
     He clicks the "Add Badge" button after choosing the one for which he wanted to make the badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
     to obtain this new badge. Once the form is submitted, the badge is created and made achievable during the tournament.
     \item \textbf{Student gets awarded with badge} \label{sc:sc13} \\
-    Rupert, a student of the platform, has participated to a tournament, writing code for the battles. His code got evaluated and is in the scoreboard of the platform. The tournament has ended, so he can no more change his code. 
+    Rupert, a student of the platform, has participated in a tournament, writing code for the battles. His code got evaluated and is in the scoreboard of the platform. The tournament has ended, so he can no more change his code. 
     While checking his e-mails, he finds one email, sent from the platform, that notifies him that he got awarded with a new badge.
-    Then curious, he goes to his profile page to see the badge, where he finds it with a foto and a short description.
+    Then curious, he goes to his profile page to see the badge, where he finds it with a photo and a short description.
     After some time, Olivia, a user of the platform wanting to find a student to invite to a team, for curiosity checks Rupert's profile page, seeing that he gained a lot of badges during his time on the platform, decides to try inviting him.
 \end{enumerate}
 
@@ -73,17 +74,18 @@ Describes how Badges work inside the platform.\\
 
 \paragraph{State diagram}
 The different stages of the tournament and the battle are depicted in the state diagram in the figure.
-\useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{.79}{.79}{State Diagram of the tournament and the battle}
-In the CREATED state it is possible to add educators, battles and badges to the tournament.
-Adding a battle consists in provide a description for it, make the code and the test available and in defining the modality of evaluation between the automatic modality and the optional manual modality.
-Adding a badge consists in giving a name for it and defining its requirements.
+\useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{0.75}{0.75}{State Diagram of the tournament and the battle}
+\\In the CREATED state it is possible to add educators, battles and badges to the tournament:
+\begin{enumerate}[label=$\bullet$]
+    \item Adding a battle consists in provide a description for it, make the code and the test available and in defining the modality of evaluation between the automatic modality and the optional manual modality.
+    \item Adding a badge consists in giving a name for it and defining its requirements.
+\end{enumerate}
 \newpage
 
 \subsection{Product Functions}
 From the previous scenarios and the introduction above follow these Product Functions.
 
 \subsubsection{User Functions}
-
 \paragraph{Sign in}
 Every person that wishes to sign in to the platform can sign in via a specific form which allows to become a user of it.
 In the platform the form requests: name, surname, e-mail address, RMP handle, user type and password; after clicking on confirmation button, the platform sends a confirmation e-mail to the e-mail address given in the form with a 
@@ -96,15 +98,14 @@ platform as of his role (student or educator).
 \paragraph{Search for other user}
 Every user subscribed to the platform, can search other users by name, email or RMP handle in the search bar. If the user searched is a student, on his profile page are shown also the badge achieved.
 \useSvgWithCaption{./Images/BPMN/searchUser.svg}{1.0}{1.0}{BPMN diagram of searching a user}
-\subsubsection{Educator Functions}
 
+\subsubsection{Educator Functions}
 \paragraph{Create a Tournament}
 The page where the tournament creation is displayed is accessed by clicking a specific button on the homepage.\\
 There, educators can enter the tournament's name, description, programming language/s, minimum and maximum number of students per team, subscription deadline, and duration.\\ 
 After the educator clicks the "Create tournament" button, students are notified that a new tournament is available.
 When the deadline subscription is reached, the tournament begin.
 \useSvgWithCaption{./Images/BPMN/createTournament.svg}{1.0}{1.0}{BPMN diagram of the creation of a tournament}
-
 \paragraph{Create a Battle}
 In the dedicated manage page that is provided to the educators involved in a specific tournament, there is a "Create battle" button that an educator can use to create battles.\\
 After that the educator click on that button, he inserts in the battle creation page the name, a description, the link to the RMP directory (the RMP directory contains all the test cases of the battle
@@ -112,38 +113,33 @@ and in some case also some programming code already available) and set how the b
 the quality level of the sources, and optionally he could designate some points also to the manual evaluation.\\
 In any case the sum of the points that a team could achieve from all this parameter must be 100.
 \useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a battle}
-
 \paragraph{Add an educator to a tournament}
 An educator can add another educator to a tournament once he is on the appropriate management tournament page. The educator's addition will support the manual assessment of the students' code.
 \useSvgWithCaption{./Images/BPMN/addEducator.svg}{1.0}{1.0}{BPMN diagram of the addition of a new educator to the tournament}
-
 \paragraph{Create a badge}
 The tournament management page allows an educator to make a badge. To accomplish this, he must click the "Create a badge" button. This will open a creation form, which the educator must fill out with the name of the badge and the rule 
 or rules that the students must follow in order to receive the badge.
 \useSvgWithCaption{./Images/BPMN/createBadge.svg}{1.0}{1.0}{BPMN diagram of the creation of a badge}
 
 \subsubsection{Student Functions}
-
 \paragraph{Search and subscribe to a tournament}
 A student can search for tournaments on the platform from his homepage. He can view the most recent tournaments added or search for them by name or properties.\\
 He can subscribe to a tournament after selecting one, and each tournament has a minimum and maximum number of students signed up for each team. While it is occasionally possible to compete alone, one of CKB's goals is to teach 
 students how to write code in a team. As a result, students will most likely join a team when they subscribe to the tournament, and it's possible that he will invite some of his friends to join a team that he will name during the 
 subscription process.
 \useSvgWithCaption{./Images/BPMN/subscribeTournament.svg}{1.0}{1.0}{BPMN diagram of the subscription to a tournament}
-
 \paragraph{Accept an invitation from another student}
 A student can join to a tournament by an invitation of another student and compete together in a team.
-
+\useSvgWithCaption{./Images/BPMN/acceptInvitation.svg}{1.0}{1.0}{BPMN diagram of accept an invitation from another student}
 \paragraph{Complete a battle}
 A student can carry out battles by clicking on the button of a particular battle from the tournament page once he has subscribed to it. Once the RMP directory has been configured with the fork and workflow action, he can write code 
 locally to pass the test cases that are included in the battle repository. The platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the battle score, that the student 
 can view from the battle page, each time he pushes code into the repository. Optionally, an educator might evaluate the written code as well.
 \useSvgWithCaption{./Images/BPMN/completeBattle.svg}{1.0}{1.0}{BPMN diagram of battle completion}
+
 \subsection{User Characteristics}
-
 \subsubsection{User}
-A user is a normal person who intend to subscribe to CKB. It is able to access to the platform by web app from any type of device with an internet connection.
-
+A user is a normal person who intend to subscribe to CKB. It is able to access to the platform by web app from any type of device with an internet connection.\\
 Every user subscribed to the platform is able to search for other users using the search bar.
 
 \subsubsection{Educator}
@@ -170,13 +166,12 @@ To be useful to the platform the RMP needs to have some necessary functionalitie
     \item RMP allows running actions and these can work with KCB platform's API, technically needed to signal the platform of new pushes on the repository.
 \end{enumerate}
 
-
 \subsection{Assumptions, Dependencies and Constraints}
-
 \subsubsection{Assumptions}
 \begin{enumerate}[label=$\bullet$ \textbf{D\arabic*:}]
     \item User has provided valid credentials - RMP handle, e-mail, name and surname
     \item User is registered to the RMP platform
+    \item User has an email
     \item User has a functioning device capable of internet connection
     \item User has a functioning internet connection
     \item User can locally work on project files
@@ -194,19 +189,18 @@ To be useful to the platform the RMP needs to have some necessary functionalitie
     \item RMP API is accessible to third party applications
     \item RMP bases itself on version control system
 \end{enumerate}
-
 \subsubsection{Dependencies}
 \paragraph{Repository Manager Platform}
 The Repository Manager Platform is a platform that allows to store code in a smart way using a VCS.
 RMP is assumed to be a third party system that is responsible for storing all team code related to all battles of all tournaments, the code will be mainly kept on the RMP and the CKB platform will take it only for test purposes and discard it shortly after score assignment. 
-To be useful to the CKB platform the RMP needs to have some necessary characteristics that have been listed as domain assoumptions.
+To be useful to the CKB platform the RMP needs to have some necessary characteristics that have been listed as domain assumptions.
 An example of compatible RMP is GitHub.
 
 \subsubsection{Constraints}
 \paragraph{Security Constraints}
 Given her nature, this platform is more vulnerable to security attacks than other ones. For this reason, especially in battle code evaluation, the platform needs to implement state of the art security policies in order to protect user data and safety.
 \paragraph{Privacy Polices}
-Personal user data and storic user data shall be stored and used only for legitimate use internal to the platform. Public to the platform user data has to be accessible only via the platform. Finally, none of the user data has to be used for commercial purposes, and its use has to be done in compliance with, to the user, local privacy policies. 
+Personal user data and historical user data shall be stored and used only for legitimate use internal to the platform. Public to the platform user data has to be accessible only via the platform. Finally, none of the user data has to be used for commercial purposes, and its use has to be done in compliance with, to the user, local privacy policies. 
 \paragraph{Platform Limitations}
 User is required to use internet connection to access the platform, download code repository and upload code for evaluation. Out of these actions, Users can work on battles locally without the need of internet connections, if not specifically stated otherwise in the battle description.\\
 Battle computational size and complexity has to be sized in order to be feasible to be coded and executed locally by students.\\
