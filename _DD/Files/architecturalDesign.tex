@@ -1,17 +1,17 @@
 \subsection{Overview}
 %CLIENT-SERVER
-CKB is conceptualized from the ground basis as a \textbf{Client-Server} platform. In fact, Users access services through a Web App, which constitutes the only virtual device able to receive commands to interact 
+CKB is conceptualized from the ground basis as a \textbf{Client-Server} Platform. In fact, Users access services through a Web App, which constitutes the only virtual device able to receive commands to interact 
 with CKB.
 \useSvgWithCaption{./Images/overviewDiagrams/clientServerParadigm.svg}{0.35}{0.35}{Client-Server paradigm}
 \\
-The main logic is hosted in the server that manages all the functionalities of CKB, instead the client is only a graphic representation for the user.
+The main logic is hosted in the server that manages all the functionalities of CKB, instead the client is only a graphic representation for the User.
 
-Because the client, acting as a thin client, only displays the GUI to the user in order to expose the Platform's services and functionalities with their corresponding interfaces that it obtains by communicating with the Server through 
+Because the client, acting as a thin client, only displays the GUI to the User in order to expose the Platform's services and functionalities with their corresponding interfaces that it obtains by communicating with the Server through 
 the Network, the client-server software organization that was chosen is \textbf{Remote Representation}.
 
 The Web Browser hosting the Web App should ideally handle client communication. It must enable safe and efficient communication with the server via the HTTP and TCP protocols. 
 
-To be used with all types of browsers, CKB User Interface code needs to be written. However, after their kind and privileges, servers would be assigned to protect users' data, and the platform's model would change in accordance 
+To be used with all types of browsers, CKB User Interface code needs to be written. However, after their kind and privileges, servers would be assigned to protect Users' data, and the Platform's model would change in accordance 
 with the guidelines.\\
 \\
 %MICROSERVICES
@@ -22,36 +22,28 @@ The \textbf{Microservices architectural} approach is one that can be selected. T
 replicated even in other machines. These components would each elaborate particular inputs pertaining to a particular topic or collection of related operations that make up a service.
 
 The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests from Users redirecting them to the 
-right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and platform reactivity.
+right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and Platform reactivity.
 
-The method ensures modularity and improvements by enabling developers and authors to update CKB with new functionalities without altering the user interface in any way. It also allows the Platform to retain data and determine 
+The method ensures modularity and improvements by enabling developers and authors to update CKB with new functionalities without altering the User interface in any way. It also allows the Platform to retain data and determine 
 resilience while ensuring appropriate duplication of each component to prevent failures.\\
 \\
 %LAYER
 CKB is thought to be implemented as a \textbf{Three Layer Architecture}:
 \begin{enumerate}[label=$\bullet$]
-    \item \textbf{Presentation Layer:} this layer's only purpose is to display to the user the application's product functionalities through a graphical interface.
-    \item \textbf{Application Layer:} this layer is the central component of the platform since it contains the entire application's logic and controls its functionalities.
+    \item \textbf{Presentation Layer:} this layer's only purpose is to display to the User the application's product functionalities through a graphical interface.
+    \item \textbf{Application Layer:} this layer is the central component of the Platform since it contains the entire application's logic and controls its functionalities.
     \item \textbf{Data Layer:} the application's whole data set is contained in this layer.
 \end{enumerate}
 \useSvgWithCaption{./Images/overviewDiagrams/3LayerArchitecture.svg}{0.65}{0.65}{Three Layer Architecture}
 %TIER
 CKB, once realized, would be a \textbf{Four Tier Application}:
-\begin{enumerate}[label=$\bullet$]
-    \item \textbf{Client:} Users input data into the Client, which displays responses from the Server and enables users to navigate and interact with the Platform. Since a thin client only has communication APIs with the server, 
-    it transmits the components needed to create the most recent one as well as the necessary data to display the GUI. The appropriate Student and Educator variants make up the user visualizing interface; differences between them 
-    are only at this architectural level unimportant to the operation of the system.
-    \item \textbf{Web Server:} The primary entry point to the Platform is through the Web Server. It takes into account the interfaces that provide system access, the firewalls, the DMZ, and the module assigned to communicate with 
-    clients. The Web Server is in direct communication with the Application Server; it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Between students, educators, 
-    and CKB, this tier serves as a bridge.
-    \item \textbf{Application Server:} The Platform, with its essential features, is the Application Server. It is constructed using a microservices architecture, which is made up of lone software modules that oversee a single 
-    "service", or collection of tasks associated with a particular subject. A dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
-    will be possible with a proper distribution of the application server across microservices.
-    \item \textbf{DBMS Server:} CKB keeps track of both user data and platform operational data, such as battle and tournament records. The DBMS tier is responsible for managing, securing, and storing the data. It permits access to 
-    Microservices that need it, and it updates it as needed in compliance with regulations.
+\begin{enumerate}
+    \item \textbf{Client:} This Tier is encharged of acquiring inputs from Users, both Educators and Students, reporting their commands into the system.
+    \item \textbf{Web Server:} It counts components deputed to establish a secure connection among all main actors, so Application Server and Clients. Web Server is equipped with appropiate firewalls and DeMilitarized Zone (DMZ) to guaratee Application Server's security and Data Integrity.
+    \item \textbf{Application Server:} It hosts components that constitutes the actual Platform, modules that implement main requirements and goals defined in RASD. This Tier can be described as the Model of the App, realized via Microservices Architecture, coordinated by a dispatcher.
+    \item \textbf{DBMS Server:} DBMS is responsable for Data security, integrity and preservation. It will dispence them on appropriate modules'requests based on their permissions on that specific information. 
 \end{enumerate}
 \useSvgWithCaption{./Images/overviewDiagrams/4TierArchitecture.svg}{0.8}{0.8}{Four Tier Application}
-
 \subsection{Component View}
 CKB's Application Layer is based on Microservices, that consitutes components in the system's architeture.
 Which are:
@@ -62,12 +54,32 @@ Which are:
     \item \textbf{NotificationManager} This component manages particular notifications to be sent to Users, comunicating with E-mail provider, which performs as a Server for this module. Requests are sent on other components' indications, which are expressed throught sendNotification Interface.
     \item \textbf{EvaluationManager} It is encharged of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
     \item \textbf{BadgeManager} Allows Educators to create a Badge with corresponding parameters anche criterias. Moreover it assigns Badges to Students who can be awarded.
-    \item \textbf{BattleManager} This component, verified the identity of the User which accesses it, is responsable for invitations of other Students and traking battle's points thought proper interface. Finally the component allows Students to join the Battle.
+    \item \textbf{BattleManager} This component, verified the identity of the User which accesses it, is responsable for invitations of other Students and traking Battle's points thought proper interface. Finally the component allows Students to join the Battle.
     \item \textbf{TournamentManager} It will be used by Educators to create a Tournament and to invite other Educators to join it, throught provided interface. Furthermore this component exposes Tournament's information and repo to clone, updates ranking and allows Teams to participate.
     \item \textbf{AccountManager} It is encharged of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
     \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data in a proper way from results got by DBMS and makes them availble via its interface.
 \end{enumerate}
 \subsection{Deployment View}
+%TIER
+CKB, as specified before, once deployed will count a \textbf{Four Tiers Architeture} that reflects and expands the three layers, that logically composes CKB.
+In fact the actual implementation will require more components to manage communication with Users and Platform and to interact with Data modules.
+\begin{enumerate}[label=$\bullet$]
+    \item \textbf{Client:} Users input data into the Client, which displays responses from the Server and enables Users to navigate and interact with the Platform. In fact this Tier has its corresponding logical layer in the presentation one. 
+    Since a thin client only has communication APIs with the server, it transmits the components needed to create the most recent one as well as the necessary data to display the GUI.
+    The appropriate Student and Educator variants make up the User visualizing interface, representing, as specified before, the actual presentation layer; differences between them 
+    are only at this architectural level unimportant to the operation of the system.
+    \item \textbf{Web Server:} The primary entry point to the Platform is through the Web Server. It takes into account the interfaces that provide system access, the firewalls, the DMZ, and the module assigned to communicate with 
+    clients. In particular input from Clients, once achieved the Server, enter into the DMZ and as first step pass thought a first firewall that analizes them to verify the provinience of the same. If it is granted them access, Web Server registers Client that sended it, parsing the content of the request, evaluating in addition their correctness. 
+    Furthermore Web Server it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Web Server and Application Server are divided by a second firewall which role is to avoid undesidered access to the actual model. Between Students, Educators, 
+    and CKB, this Tier serves as a bridge. Web Server constitues part of the implementation of the Application Layer.
+    \item \textbf{Application Server:} The Platform, with its essential features, is the Application Server. It is constructed using a Microservices Architecture, which is made up of lone software modules that oversee a single 
+    "service", or collection of tasks associated with a particular subject. Each module that performs a Microservice is better explained and analized in the previous and following section of this document. A dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
+    will be possible with a proper distribution of the Application Server across Microservices. A firewall delimits this Tier with the DMZ as described above, a second one separates the App with Email-Provider and RMP and a third defines the boarder with DMBS.
+    This last one avoids intrutions and damage into DBMS, while the fist two are deputed to protect Application Tier from external attacks or bad requests. Finally this Server constitutes the remaing implementation of the Application Layer.
+    \item \textbf{DBMS Server:} CKB keeps track of both User data and Platform operational data, such as Battle and Tournament records. DBMS is responsible for managing, securing, and storing the data. It permits access to 
+    Microservices that need it, and it updates it as needed in compliance with regulations. This Tier is the actual implementation of logic Data Layer and it is protected by a Firewall that filters requests and operations from Application Server. 
+\end{enumerate}
+
 \subsection{Component Interfaces}
 For each component here are explained functions, expressed in pseudo-code, associated with respective interfaces.
 %DA VERIFICARE SE INSERIRE ANCHE I GETTER
@@ -93,16 +105,16 @@ For each component here are explained functions, expressed in pseudo-code, assoc
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean joinBattle(String email, String team)} Providing the email of the Student and the eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean value the outcome of the invocation.
-            \item \textbf{void updateBattleScore(String team, int score)} The score of a Team is updated, via this method's invocation, providing the name of the Team and the actual Score, witch is an integer value.
+            \item \textbf{Boolean joinBattle(String email, String Team)} Providing the email of the Student and the eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean value the outcome of the invocation.
+            \item \textbf{void updateBattleScore(String Team, int score)} The score of a Team is updated, via this method's invocation, providing the name of the Team and the actual Score, witch is an integer value.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
         \item \textbf{void inviteEducator(String myEmail, String emailToInvite)} To invite other Educators are needed the email of the Educator who invites and the one of the Educator to invite.
-        \item \textbf{Boolean createTeam(String myEmail, Array<String> emails, String team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the team. The result is provided via Boolean value. 
-        \item \textbf{Boolean joinStudentTournament(String email, String team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
+        \item \textbf{Boolean createTeam(String myEmail, Array<String> emails, String Team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the Team. The result is provided via Boolean value. 
+        \item \textbf{Boolean joinStudentTournament(String email, String Team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the Team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
         \item \textbf{Boolean joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the Boolean of result of the execution and asks for the email of the Educator.
-        \item \textbf{void updateTournamentScore(String team, int score)} The Score of the Tournament has to be updated via this function, that requires the name of the team and the integer value of the score.
+        \item \textbf{void updateTournamentScore(String Team, int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
         \end{enumerate}
     \item \textbf{AccountManage Interface} 
         \begin{enumerate}[label=$\bullet$]
@@ -112,7 +124,7 @@ For each component here are explained functions, expressed in pseudo-code, assoc
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname)} To search one or more Users SearchManager, thought the here presented method requires the email or name or surname of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criterias.
-            \item \textbf{Array<TournamentManager> searchTournament(String tournamentName)} The name of the Tournament to search is required and as result the Array of TournamentManagers, which data matched the parameters, is provided.
+            \item \textbf{Array<TournamentManager> searchTournament(String TournamentName)} The name of the Tournament to search is required and as result the Array of TournamentManagers, which data matched the parameters, is provided.
         \end{enumerate}
 \end{enumerate}
 \subsection{Runtime View}

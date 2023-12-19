@@ -14,27 +14,27 @@ Of the RMP will be only described critical parts needed for the correct function
     available badges. If he likes it, he clicks a "Subscribe" button, otherwise goes back and continues to search.
     \item \textbf{Student wants to participate to Tournament with friends} \label{sc:sc3}\\ Bob, a user of the Platform, got notified of the creation of an interesting Tournament in which he wants to participate with his friend Carlo. Bob logs in 
     to the website and subscribes to the Tournament sending an invitation to Carlo, who gets notified of the invitation and, once logged in to the Platform, can choose to accept or to deny it; if he accepts Bob and Carlo result 
-    subscribed to the Tournament as a team.
+    subscribed to the Tournament as a Team.
     \item \textbf{Educator signs in to the Platform to create Tournaments} \label{sc:sc4}\\ Eve is a teacher that, in order to widen her didactic offer, wants to create some Tournaments for her Students. She accesses the Platform website and is 
     intrigued to use it. Eve signs in as an Educator giving her details like name, surname, e-mail, year of birth, institution and RMP handle. Then she logs in and is presented with a list of managed Tournaments, empty for her, 
     and the possibility to create new ones.
     \item \textbf{Educator wants to create a Tournament} \label{sc:sc5}\\ Faith is a user of the Platform signed in as an Educator and wants to create a Tournament. She logs in to the website and is presented with the homepage, in which she can 
-    start to create the Tournament by clicking a specific button. After clicking it she can enter details like Tournament name, details (as overview, programming language/s and maximum and minimum number of Students for a team),
+    start to create the Tournament by clicking a specific button. After clicking it she can enter details like Tournament name, details (as overview, programming language/s and maximum and minimum number of Students for a Team),
     subscription deadline and duration, then click a "Create Tournament" button that will create the Tournament and bring her to the manager Tournament page. 
     \item \textbf{Educator wants to manage a Tournament with a colleague} \label{sc:sc6}\\ Grace is an Educator who is managing a Tournament, she finds that the work behind creating all Battles of the Tournament is a bit too daunting, so she wants 
     help. To do so she goes to the Tournament management page and by clicking the "add Educator" button she can send an invitation to manage the Tournament to her friend Heidi, another Educator registered to the Platform. Heidi 
     can accept the invite and create new Battles and badges for the Tournament and if it is required, also manual evaluate the Students' code.
-    \item \textbf{Team wants to work on a Battle} \label{sc:sc7} \\ After receiving notification of the Tournament's start, a team that has subscribed to the competition wishes to focus on a Battle. After arriving at the Tournament page, to Isaac, 
-    a member of the team, is shown a list of the Battles that are available. He selects one and is taken to a new page that includes his name, details, the team scoreboard, and a link to the repository within the RMP. Since Isaac 
-    has already registered with the RMP, he is able to fork the repository and make an actual copy that is stored in its profile. He now needs to check each team member's RMP handle in their profile and invite them all to join the 
-    Battle. All team members have to accept the invitation, and after then they can start to work on the Battle. The owner of the forked repository has to put its link in the Battle details to signal the Platform of its existence and in
-    other he has to set an automated workflow that informs the CBK Platform (through proper API calls) as soon as someone of the team make a modification of the code in the repository.
-    \item \textbf{Team wants to have work evaluated} \label{sc:sc8} \\ A team has worked on the Battle and wants to check how is the quality of his work. In order to do so they only need to commit their changes and push their work to the RMP, 
+    \item \textbf{Team wants to work on a Battle} \label{sc:sc7} \\ After receiving notification of the Tournament's start, a Team that has subscribed to the competition wishes to focus on a Battle. After arriving at the Tournament page, to Isaac, 
+    a member of the Team, is shown a list of the Battles that are available. He selects one and is taken to a new page that includes his name, details, the Team scoreboard, and a link to the repository within the RMP. Since Isaac 
+    has already registered with the RMP, he is able to fork the repository and make an actual copy that is stored in its profile. He now needs to check each Team member's RMP handle in their profile and invite them all to join the 
+    Battle. All Team members have to accept the invitation, and after then they can start to work on the Battle. The owner of the forked repository has to put its link in the Battle details to signal the Platform of its existence and in
+    other he has to set an automated workflow that informs the CBK Platform (through proper API calls) as soon as someone of the Team make a modification of the code in the repository.
+    \item \textbf{Team wants to have work evaluated} \label{sc:sc8} \\ A Team has worked on the Battle and wants to check how is the quality of his work. In order to do so they only need to commit their changes and push their work to the RMP, 
     this will be able to alert the Platform of the new changes and will set off a pull of the files to be evaluated. After running all tests, these will generate points that will be combined to form a score. This score will be 
-    published near the name of the team in the leaderboard of the Battle, and will update also the main Tournament score of that team. Possible checks for badge assignment can be also done, and if satisfied, badges can be granted at 
+    published near the name of the Team in the leaderboard of the Battle, and will update also the main Tournament score of that Team. Possible checks for badge assignment can be also done, and if satisfied, badges can be granted at 
     the end of the Tournament.
-    \item \textbf{Team wants to see how it is placed in the Tournament} \label{sc:sc9} \\ Angelo, a Student participating in a Tournament in a team, wants to know how well they are doing. To do so he can log in to the Platform and go to the page 
-    of the Tournament, on which he can see the leaderboard where he can find the overall Tournament score of the team. Angelo can also check specific Battles visiting their specific page where the related Battle leaderboard is shown.
+    \item \textbf{Team wants to see how it is placed in the Tournament} \label{sc:sc9} \\ Angelo, a Student participating in a Tournament in a Team, wants to know how well they are doing. To do so he can log in to the Platform and go to the page 
+    of the Tournament, on which he can see the leaderboard where he can find the overall Tournament score of the Team. Angelo can also check specific Battles visiting their specific page where the related Battle leaderboard is shown.
     \item \textbf{User wants to check out other user's profile} \label{sc:sc10} \\ Michael, a user of the Platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other users 
     via a specific bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: user type, name, surname, RMP handle and badges.
     \item \textbf{Educator wants to create a Battle} \label{sc:sc11} \\Jude oversees a Tournament as an Educator. She now wants to put her Students to the test by suggesting a Battle. When she opened the CKB Web App, she was taken to the page where she 
@@ -48,7 +48,7 @@ Of the RMP will be only described critical parts needed for the correct function
     Rupert, a Student of the Platform, has participated in a Tournament, writing code for the Battles. His code got evaluated and is in the scoreboard of the Platform. The Tournament has ended, so he can no more change his code. 
     While checking his e-mails, he finds one email, sent from the Platform, that notifies him that he got awarded with a new badge.
     Then curious, he goes to his profile page to see the badge, where he finds it with a photo and a short description.
-    After some time, Olivia, a user of the Platform wanting to find a Student to invite to a team, for curiosity checks Rupert's profile page, seeing that he gained a lot of badges during his time on the Platform, decides to try inviting him.
+    After some time, Olivia, a user of the Platform wanting to find a Student to invite to a Team, for curiosity checks Rupert's profile page, seeing that he gained a lot of badges during his time on the Platform, decides to try inviting him.
 \end{enumerate}
 
 \newpage
@@ -102,7 +102,7 @@ Every user subscribed to the Platform, can search other users by name, email or 
 \subsubsection{Educator Functions}
 \paragraph{Create a Tournament}
 The page where the Tournament creation is displayed is accessed by clicking a specific button on the homepage.\\
-There, Educators can enter the Tournament's name, description, programming language/s, minimum and maximum number of Students per team, subscription deadline, and duration.\\ 
+There, Educators can enter the Tournament's name, description, programming language/s, minimum and maximum number of Students per Team, subscription deadline, and duration.\\ 
 After the Educator clicks the "Create Tournament" button, Students are notified that a new Tournament is available.
 When the deadline subscription is reached, the Tournament begin.
 \useSvgWithCaption{./Images/BPMN/createTournament.svg}{1.0}{1.0}{BPMN diagram of the creation of a Tournament}
@@ -111,7 +111,7 @@ In the dedicated manage page that is provided to the Educators involved in a spe
 After that the Educator click on that button, he inserts in the Battle creation page the name, a description, the link to the RMP directory (the RMP directory contains all the test cases of the Battle
 and in some case also some programming code already available) and set how the Battle will be evaluated, defining how many points of the total 100 will go to the functional tests, to timeliness, to 
 the quality level of the sources, and optionally he could designate some points also to the manual evaluation.\\
-In any case the sum of the points that a team could achieve from all this parameter must be 100.
+In any case the sum of the points that a Team could achieve from all this parameter must be 100.
 \useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a Battle}
 \paragraph{Add an Educator to a Tournament}
 An Educator can add another Educator to a Tournament once he is on the appropriate management Tournament page. The Educator's addition will support the manual assessment of the Students' code.
@@ -124,12 +124,12 @@ or rules that the Students must follow in order to receive the badge.
 \subsubsection{Student Functions}
 \paragraph{Search and subscribe to a Tournament}
 A Student can search for Tournaments on the Platform from his homepage. He can view the most recent Tournaments added or search for them by name or properties.\\
-He can subscribe to a Tournament after selecting one, and each Tournament has a minimum and maximum number of Students signed up for each team. While it is occasionally possible to compete alone, one of CKB's goals is to teach 
-Students how to write code in a team. As a result, Students will most likely join a team when they subscribe to the Tournament, and it's possible that he will invite some of his friends to join a team that he will name during the 
+He can subscribe to a Tournament after selecting one, and each Tournament has a minimum and maximum number of Students signed up for each Team. While it is occasionally possible to compete alone, one of CKB's goals is to teach 
+Students how to write code in a Team. As a result, Students will most likely join a Team when they subscribe to the Tournament, and it's possible that he will invite some of his friends to join a Team that he will name during the 
 subscription process.
 \useSvgWithCaption{./Images/BPMN/subscribeTournament.svg}{1.0}{1.0}{BPMN diagram of the subscription to a Tournament}
 \paragraph{Accept an invitation from another Student}
-A Student can join to a Tournament by an invitation of another Student and compete together in a team.
+A Student can join to a Tournament by an invitation of another Student and compete together in a Team.
 \useSvgWithCaption{./Images/BPMN/acceptInvitation.svg}{1.0}{1.0}{BPMN diagram of accept an invitation from another Student}
 \paragraph{Complete a Battle}
 A Student can carry out Battles by clicking on the button of a particular Battle from the Tournament page once he has subscribed to it. Once the RMP directory has been configured with the fork and workflow action, he can write code 
@@ -149,12 +149,12 @@ He designs coding Battles and software development Tournaments that simulate act
 specific tasks.
 
 \subsubsection{Student}
-A subscriber to CKB who wants to hone his skills in one or more programming languages or who wants to practice developing software in a team is identified as a Student.
+A subscriber to CKB who wants to hone his skills in one or more programming languages or who wants to practice developing software in a Team is identified as a Student.
 
 He can use the homepage to browse Tournaments and subscribe to them, but he may also want to use the search bar to look up Tournaments by name or just look them up by programming language. He has the option to invite other Students
-to join him in a team that he will name in the subscription, or he can accept invitations to participate in Tournaments.
+to join him in a Team that he will name in the subscription, or he can accept invitations to participate in Tournaments.
 
-His team will be ranked in the Tournament according to the total Battle score they earn during the coding Battle phase of the Tournament.
+His Team will be ranked in the Tournament according to the total Battle score they earn during the coding Battle phase of the Tournament.
 
 \subsection{RMP Functions}
 The Repository Manager Platform is a Platform that allows to store code in a smart way
@@ -181,8 +181,8 @@ To be useful to the Platform the RMP needs to have some necessary functionalitie
     \item Educators allow Students to fork Battle repository
     \item Teams fork repository once for Battle
     \item Teams work on their forked repositories
-    \item Students don't allow Students out of their team access to modify code in their repository
-    \item Students allow Tournament Educators access to their team repository
+    \item Students don't allow Students out of their Team access to modify code in their repository
+    \item Students allow Tournament Educators access to their Team repository
     \item Teams declare coherent links to their Battle repositories
     \item RMP is able to notify the Platform once every push
     \item RMP is able to reliably store Battle source code
@@ -192,7 +192,7 @@ To be useful to the Platform the RMP needs to have some necessary functionalitie
 \subsubsection{Dependencies}
 \paragraph{Repository Manager Platform}
 The Repository Manager Platform is a Platform that allows to store code in a smart way using a VCS.
-RMP is assumed to be a third party system that is responsible for storing all team code related to all Battles of all Tournaments, the code will be mainly kept on the RMP and the CKB Platform will take it only for test purposes and discard it shortly after score assignment. 
+RMP is assumed to be a third party system that is responsible for storing all Team code related to all Battles of all Tournaments, the code will be mainly kept on the RMP and the CKB Platform will take it only for test purposes and discard it shortly after score assignment. 
 To be useful to the CKB Platform the RMP needs to have some necessary characteristics that have been listed as domain assumptions.
 An example of compatible RMP is GitHub.
 
