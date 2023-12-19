@@ -1,0 +1,69 @@
+@startuml
+
+autonumber
+
+actor Student as U
+participant emailProvider as EP
+participant Firewall as F
+participant NotificationManager as NM
+entity notificationManagerInterface as NMI
+participant Microservices_Dispatcher as MD
+entity AccountManagerInterface as AMI
+participant AccountManager as AM
+participant BadgeManager as BM
+entity badgeManagerInterface as BMI
+participant EvaluationManager as EM
+entity RMPManagerInterface as RMI
+participant RMPManager as RMP
+
+activate EM
+activate RMI
+EM --> RMI: RMP.pullRequest(repo)
+RMI -->RMP: pullRequest(String repo)
+activate RMP
+deactivate RMI
+RMP --> EM: Code file
+deactivate RMP
+EM --> EM: evaluate Code
+activate EM
+deactivate EM
+EM --> BMI: BadgeManager.verifyCriteria(testResults, emails)
+activate BMI
+BMI --> BM: verifyCriteria(testResults, emails)
+deactivate BMI
+alt testResults meet criterias
+activate BM
+BM --> EM: True: Badge is assigned
+deactivate BM
+EM --> MD: MicroserviceDispatcher.assignBadge(this)
+activate MD
+MD --> AMI: AccountManager.assignBadge(BadgeManager)
+activate AMI
+AMI --> AM: assignBadge(BadgeManager)
+deactivate AMI
+activate AM
+alt if Badge is assigned
+    AM --> MD: True: Badge is successfully assigned
+    MD --> NMI: MicroserviceDispatcher.sendNotification(email, description)
+    activate NMI
+    NMI --> NM: sendNotification(email, description)
+    deactivate NMI
+    activate NM
+    NM --> F: send email
+    deactivate NM
+    activate F
+    F --> EP: send email
+    deactivate F
+    activate EP
+    EP --> U: receive email
+    deactivate EP
+else Badge is already assigned to the Student
+    AM --> MD: False: Badge is not assigned 
+    deactivate AM
+else testResults do NOt meet criterias
+    BM --> EM: False: Badge is NOT assigned
+    deactivate MD
+    deactivate EM
+end
+
+@enduml
