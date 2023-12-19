@@ -9,7 +9,7 @@ participant Application_Server as AS
 participant Microservices_Dispatcher as MD
 entity logInInterface as LII
 participant LogInManager as LIM
-participant SearchManager as LM
+participant SearchManager as SM
 participant DBMS as D
 
 activate U
@@ -28,39 +28,39 @@ activate LII
 LII-->LIM: logIn(e-mail, password)
 deactivate LII
 activate LIM
-LIM-->LM: searchUser(e-mail, password): List<Account>
-activate LM
+LIM-->SM: searchUser(e-mail, password): List<Account>
+activate SM
 alt accont exists
-    LM-->D: searchQuery
+    SM-->D: searchQuery
     activate D
-    D-->LM: Response
+    D-->SM: Response
     deactivate D
     alt if password correct
-        LM-->LIM: List.count > 0 <<Account found>> and exists Account.password == this.password
+        SM-->LIM: List.count > 0 <<Account found>> and exists Account.password == this.password
         LIM-->MD: True: account exists and password is correct
         MD-->AS: access granted
-        AS-->WS: access granted
+        AS-->WS: Json(access granted)
         WS-->U: Information of successed operation
     else password NOT correct
-        LM-->D: searchQuery
+        SM-->D: searchQuery
         activate D
-        D-->LM: Response
+        D-->SM: Response
         deactivate D
-        LM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
+        SM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
         LIM-->MD: False: account does not exists or password is correct
         MD-->AS: access denied
-        AS-->WS: access denied
+        AS-->WS: Json(access denied)
         WS-->U: Information of Unsuccessful operation
     end
 else account does not exists
-    LM-->D: searchQuery
+    SM-->D: searchQuery
     activate D
-    D-->LM: Response
+    D-->SM: Response
     deactivate D
-    LM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
+    SM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
     LIM-->MD: False: account does not exists or password is correct
     MD-->AS: access denied
-    AS-->WS: access denied
+    AS-->WS: Json(access denied)
     WS-->U: Information of Unsuccessful operation
 end
 deactivate U
