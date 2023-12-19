@@ -1,0 +1,71 @@
+@startuml
+
+autonumber
+actor User as U
+participant First_Firewall as FF
+participant WebServer as WS
+participant Second_Firewall as SF
+participant Application_Server as AS
+participant Microservices_Dispatcher as MD
+entity logInInterface as LII
+participant LogInManager as LIM
+participant SearchManager as LM
+participant DBMS as D
+
+activate U
+activate FF
+activate WS
+activate SF
+activate AS
+U-->FF: logIn(Json( e-mail, password))
+FF-->WS: analizer(socket, Json): Json
+WS-->SF: activeClientAdd(socket)
+SF-->AS: analizer(socket, Json): Json
+AS-->MD: parser(Json): response
+activate MD
+MD-->LII: logInManager.logIn(e-mail, password)
+activate LII
+LII-->LIM: logIn(e-mail, password)
+deactivate LII
+activate LIM
+LIM-->LM: searchUser(e-mail, password): List<Account>
+activate LM
+alt accont exists
+    LM-->D: searchQuery
+    activate D
+    D-->LM: Response
+    deactivate D
+    alt if password correct
+        LM-->LIM: List.count > 0 <<Account found>> and exists Account.password == this.password
+        LIM-->MD: True: account exists and password is correct
+        MD-->AS: access granted
+        AS-->WS: access granted
+        WS-->U: Information of successed operation
+    else password NOT correct
+        LM-->D: searchQuery
+        activate D
+        D-->LM: Response
+        deactivate D
+        LM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
+        LIM-->MD: False: account does not exists or password is correct
+        MD-->AS: access denied
+        AS-->WS: access denied
+        WS-->U: Information of Unsuccessful operation
+    end
+else account does not exists
+    LM-->D: searchQuery
+    activate D
+    D-->LM: Response
+    deactivate D
+    LM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
+    LIM-->MD: False: account does not exists or password is correct
+    MD-->AS: access denied
+    AS-->WS: access denied
+    WS-->U: Information of Unsuccessful operation
+end
+deactivate U
+deactivate FF
+deactivate WS
+deactivate SF
+deactivate AS
+@enduml

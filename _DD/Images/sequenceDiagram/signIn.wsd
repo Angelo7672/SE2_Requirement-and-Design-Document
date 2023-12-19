@@ -43,7 +43,7 @@ alt new account
     SIM-->MD: Response
     MD-->AS: Response
     AS-->WS: Response
-    WS-->U: Information of successed operation
+    WS-->U: Information of successful operation
 else account exists yet or account with same repo
     SM-->D: searchQuery
     activate D
@@ -56,7 +56,7 @@ else account exists yet or account with same repo
     MD-->AS: Error: account already exists
     deactivate MD
     AS-->WS: Error: account already exists
-    WS-->U: Error: account already exists
+    WS-->U: Information of Unsuccessful operation: account already exists
 end
 deactivate U
 deactivate FF
