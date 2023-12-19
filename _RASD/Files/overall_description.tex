@@ -11,19 +11,19 @@ Of the RMP will be only described critical parts needed for the correct function
     of Tournaments to which she can subscribe.
     \item \textbf{Student wants to participate in a Tournament} \label{sc:sc2}\\ Dan, after studying a bit of Javascript wants to apply its studies in a project. In order to do so he wants to participate in a Tournament. He is already subscribed 
     to the Platform, so he can just log in to it and search a suitable Tournament. After being presented of some valid choices, he clicks on one of them to see more details like description, Educators, subscription deadline and 
-    available badges. If he likes it, he clicks a "Subscribe" button, otherwise goes back and continues to search.
-    \item \textbf{Student wants to participate to Tournament with friends} \label{sc:sc3}\\ Bob, a user of the Platform, got notified of the creation of an interesting Tournament in which he wants to participate with his friend Carlo. Bob logs in 
+    available Badges. If he likes it, he clicks a "Subscribe" button, otherwise goes back and continues to search.
+    \item \textbf{Student wants to participate to Tournament with friends} \label{sc:sc3}\\ Bob, a User of the Platform, got notified of the creation of an interesting Tournament in which he wants to participate with his friend Carlo. Bob logs in 
     to the website and subscribes to the Tournament sending an invitation to Carlo, who gets notified of the invitation and, once logged in to the Platform, can choose to accept or to deny it; if he accepts Bob and Carlo result 
     subscribed to the Tournament as a Team.
     \item \textbf{Educator signs in to the Platform to create Tournaments} \label{sc:sc4}\\ Eve is a teacher that, in order to widen her didactic offer, wants to create some Tournaments for her Students. She accesses the Platform website and is 
     intrigued to use it. Eve signs in as an Educator giving her details like name, surname, e-mail, year of birth, institution and RMP handle. Then she logs in and is presented with a list of managed Tournaments, empty for her, 
     and the possibility to create new ones.
-    \item \textbf{Educator wants to create a Tournament} \label{sc:sc5}\\ Faith is a user of the Platform signed in as an Educator and wants to create a Tournament. She logs in to the website and is presented with the homepage, in which she can 
+    \item \textbf{Educator wants to create a Tournament} \label{sc:sc5}\\ Faith is a User of the Platform signed in as an Educator and wants to create a Tournament. She logs in to the website and is presented with the homepage, in which she can 
     start to create the Tournament by clicking a specific button. After clicking it she can enter details like Tournament name, details (as overview, programming language/s and maximum and minimum number of Students for a Team),
     subscription deadline and duration, then click a "Create Tournament" button that will create the Tournament and bring her to the manager Tournament page. 
     \item \textbf{Educator wants to manage a Tournament with a colleague} \label{sc:sc6}\\ Grace is an Educator who is managing a Tournament, she finds that the work behind creating all Battles of the Tournament is a bit too daunting, so she wants 
     help. To do so she goes to the Tournament management page and by clicking the "add Educator" button she can send an invitation to manage the Tournament to her friend Heidi, another Educator registered to the Platform. Heidi 
-    can accept the invite and create new Battles and badges for the Tournament and if it is required, also manual evaluate the Students' code.
+    can accept the invite and create new Battles and Badges for the Tournament and if it is required, also manual evaluate the Students' code.
     \item \textbf{Team wants to work on a Battle} \label{sc:sc7} \\ After receiving notification of the Tournament's start, a Team that has subscribed to the competition wishes to focus on a Battle. After arriving at the Tournament page, to Isaac, 
     a member of the Team, is shown a list of the Battles that are available. He selects one and is taken to a new page that includes his name, details, the Team scoreboard, and a link to the repository within the RMP. Since Isaac 
     has already registered with the RMP, he is able to fork the repository and make an actual copy that is stored in its profile. He now needs to check each Team member's RMP handle in their profile and invite them all to join the 
@@ -31,24 +31,24 @@ Of the RMP will be only described critical parts needed for the correct function
     other he has to set an automated workflow that informs the CBK Platform (through proper API calls) as soon as someone of the Team make a modification of the code in the repository.
     \item \textbf{Team wants to have work evaluated} \label{sc:sc8} \\ A Team has worked on the Battle and wants to check how is the quality of his work. In order to do so they only need to commit their changes and push their work to the RMP, 
     this will be able to alert the Platform of the new changes and will set off a pull of the files to be evaluated. After running all tests, these will generate points that will be combined to form a score. This score will be 
-    published near the name of the Team in the leaderboard of the Battle, and will update also the main Tournament score of that Team. Possible checks for badge assignment can be also done, and if satisfied, badges can be granted at 
+    published near the name of the Team in the leaderboard of the Battle, and will update also the main Tournament score of that Team. Possible checks for Badge assignment can be also done, and if satisfied, Badges can be granted at 
     the end of the Tournament.
     \item \textbf{Team wants to see how it is placed in the Tournament} \label{sc:sc9} \\ Angelo, a Student participating in a Tournament in a Team, wants to know how well they are doing. To do so he can log in to the Platform and go to the page 
     of the Tournament, on which he can see the leaderboard where he can find the overall Tournament score of the Team. Angelo can also check specific Battles visiting their specific page where the related Battle leaderboard is shown.
-    \item \textbf{User wants to check out other user's profile} \label{sc:sc10} \\ Michael, a user of the Platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other users 
-    via a specific bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: user type, name, surname, RMP handle and badges.
+    \item \textbf{User wants to check out other User's profile} \label{sc:sc10} \\ Michael, a User of the Platform, wants to find the profile of his friend Nick to check out on him. He logs in to the website in which he can search for other Users 
+    via a specific bar, there searches for Nick, and clicking on his name goes to the profile page. Here he can see his details like: User type, name, surname, RMP handle and Badges.
     \item \textbf{Educator wants to create a Battle} \label{sc:sc11} \\Jude oversees a Tournament as an Educator. She now wants to put her Students to the test by suggesting a Battle. When she opened the CKB Web App, she was taken to the page where she 
     oversees the Tournaments she manages. Jude then chooses the one where he wants to start a Battle and clicks the "Create Battle" button. This opens a form for her to fill out with the Battle's name and an overview of the Battle. 
     After supplying these details, she needs to include the Battle's RMP repository link and specify the Battle's evaluation modality. After filling out the form, she presses the "Submit" button. Now that the system has confirmed all 
     the data, a new Battle has been created.
-    \item \textbf{Educator wants to create a Badge} \label{sc:sc12} \\Beniamino is an Educator, and he wants to design a badge for a Tournament he oversees. He open the CKB Web App on his home page and go to the page with the managed Tournaments list.
-    He clicks the "Add Badge" button after choosing the one for which he wanted to make the badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
-    to obtain this new badge. Once the form is submitted, the badge is created and made achievable during the Tournament.
-    \item \textbf{Student gets awarded with badge} \label{sc:sc13} \\
+    \item \textbf{Educator wants to create a Badge} \label{sc:sc12} \\Beniamino is an Educator, and he wants to design a Badge for a Tournament he oversees. He open the CKB Web App on his home page and go to the page with the managed Tournaments list.
+    He clicks the "Add Badge" button after choosing the one for which he wanted to make the Badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
+    to obtain this new Badge. Once the form is submitted, the Badge is created and made achievable during the Tournament.
+    \item \textbf{Student gets awarded with Badge} \label{sc:sc13} \\
     Rupert, a Student of the Platform, has participated in a Tournament, writing code for the Battles. His code got evaluated and is in the scoreboard of the Platform. The Tournament has ended, so he can no more change his code. 
-    While checking his e-mails, he finds one email, sent from the Platform, that notifies him that he got awarded with a new badge.
-    Then curious, he goes to his profile page to see the badge, where he finds it with a photo and a short description.
-    After some time, Olivia, a user of the Platform wanting to find a Student to invite to a Team, for curiosity checks Rupert's profile page, seeing that he gained a lot of badges during his time on the Platform, decides to try inviting him.
+    While checking his e-mails, he finds one email, sent from the Platform, that notifies him that he got awarded with a new Badge.
+    Then curious, he goes to his profile page to see the Badge, where he finds it with a photo and a short description.
+    After some time, Olivia, a User of the Platform wanting to find a Student to invite to a Team, for curiosity checks Rupert's profile page, seeing that he gained a lot of Badges during his time on the Platform, decides to try inviting him.
 \end{enumerate}
 
 \newpage
@@ -75,10 +75,10 @@ Describes how Badges work inside the Platform.\\
 \paragraph{State diagram}
 The different stages of the Tournament and the Battle are depicted in the state diagram in the figure.
 \useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{0.75}{0.75}{State Diagram of the Tournament and the Battle}
-\\In the CREATED state it is possible to add Educators, Battles and badges to the Tournament:
+\\In the CREATED state it is possible to add Educators, Battles and Badges to the Tournament:
 \begin{enumerate}[label=$\bullet$]
     \item Adding a Battle consists in provide a description for it, make the code and the test available and in defining the modality of evaluation between the automatic modality and the optional manual modality.
-    \item Adding a badge consists in giving a name for it and defining its requirements.
+    \item Adding a Badge consists in giving a name for it and defining its requirements.
 \end{enumerate}
 \newpage
 
@@ -87,17 +87,17 @@ From the previous scenarios and the introduction above follow these Product Func
 
 \subsubsection{User Functions}
 \paragraph{Sign in}
-Every person that wishes to sign in to the Platform can sign in via a specific form which allows to become a user of it.
-In the Platform the form requests: name, surname, e-mail address, RMP handle, user type and password; after clicking on confirmation button, the Platform sends a confirmation e-mail to the e-mail address given in the form with a 
+Every person that wishes to sign in to the Platform can sign in via a specific form which allows to become a User of it.
+In the Platform the form requests: name, surname, e-mail address, RMP handle, User type and password; after clicking on confirmation button, the Platform sends a confirmation e-mail to the e-mail address given in the form with a 
 button to finalize the subscription to the Platform. Sign in is finalized once the button is clicked.
 \useSvgWithCaption{./Images/BPMN/signin.svg}{1.0}{1.0}{BPMN diagram of the sign in}
 \paragraph{Log in}
-Every user needs to log in to the Platform to perform any activity in it. Log in is done via a form which has to be filled with e-mail address and password, if the pair corresponds to a user, the user will be logged in to the 
+Every User needs to log in to the Platform to perform any activity in it. Log in is done via a form which has to be filled with e-mail address and password, if the pair corresponds to a User, the User will be logged in to the 
 Platform as of his role (Student or Educator).
 \useSvgWithCaption{./Images/BPMN/login.svg}{1.0}{1.0}{BPMN diagram of the log in}
-\paragraph{Search for other user}
-Every user subscribed to the Platform, can search other users by name, email or RMP handle in the search bar. If the user searched is a Student, on his profile page are shown also the badge achieved.
-\useSvgWithCaption{./Images/BPMN/searchUser.svg}{1.0}{1.0}{BPMN diagram of searching a user}
+\paragraph{Search for other User}
+Every User subscribed to the Platform, can search other Users by name, email or RMP handle in the search bar. If the User searched is a Student, on his profile page are shown also the Badge achieved.
+\useSvgWithCaption{./Images/BPMN/searchUser.svg}{1.0}{1.0}{BPMN diagram of searching a User}
 
 \subsubsection{Educator Functions}
 \paragraph{Create a Tournament}
@@ -116,10 +116,10 @@ In any case the sum of the points that a Team could achieve from all this parame
 \paragraph{Add an Educator to a Tournament}
 An Educator can add another Educator to a Tournament once he is on the appropriate management Tournament page. The Educator's addition will support the manual assessment of the Students' code.
 \useSvgWithCaption{./Images/BPMN/addEducator.svg}{1.0}{1.0}{BPMN diagram of the addition of a new Educator to the Tournament}
-\paragraph{Create a badge}
-The Tournament management page allows an Educator to make a badge. To accomplish this, he must click the "Create a badge" button. This will open a creation form, which the Educator must fill out with the name of the badge and the rule 
-or rules that the Students must follow in order to receive the badge.
-\useSvgWithCaption{./Images/BPMN/createBadge.svg}{1.0}{1.0}{BPMN diagram of the creation of a badge}
+\paragraph{Create a Badge}
+The Tournament management page allows an Educator to make a Badge. To accomplish this, he must click the "Create a Badge" button. This will open a creation form, which the Educator must fill out with the name of the Badge and the rule 
+or rules that the Students must follow in order to receive the Badge.
+\useSvgWithCaption{./Images/BPMN/createBadge.svg}{1.0}{1.0}{BPMN diagram of the creation of a Badge}
 
 \subsubsection{Student Functions}
 \paragraph{Search and subscribe to a Tournament}
@@ -139,13 +139,13 @@ can view from the Battle page, each time he pushes code into the repository. Opt
 
 \subsection{User Characteristics}
 \subsubsection{User}
-A user is a normal person who intend to subscribe to CKB. It is able to access to the Platform by web app from any type of device with an internet connection.\\
-Every user subscribed to the Platform is able to search for other users using the search bar.
+A User is a normal person who intend to subscribe to CKB. It is able to access to the Platform by web app from any type of device with an internet connection.\\
+Every User subscribed to the Platform is able to search for other Users using the search bar.
 
 \subsubsection{Educator}
-An Educator is a user whose job it is to provide Students with rewards and practice materials for software development.
+An Educator is a User whose job it is to provide Students with rewards and practice materials for software development.
 
-He designs coding Battles and software development Tournaments that simulate actual IT case problems for Students. In addition, he evaluates their work optionally and creates a special badge for Students who successfully complete 
+He designs coding Battles and software development Tournaments that simulate actual IT case problems for Students. In addition, he evaluates their work optionally and creates a special Badge for Students who successfully complete 
 specific tasks.
 
 \subsubsection{Student}
@@ -161,8 +161,8 @@ The Repository Manager Platform is a Platform that allows to store code in a sma
 RMP is third party system that is responsible for storing all Team code related to all Battles of all Tournaments, the code will be kept only for test purposes and discarded shortly after score assignment. 
 To be useful to the Platform the RMP needs to have some necessary functionalities like:
 \begin{enumerate}
-    \item RMP users can search for other RMP users by handle or e-mail
-    \item RMP users can collaborate on shared repositories
+    \item RMP Users can search for other RMP Users by handle or e-mail
+    \item RMP Users can collaborate on shared repositories
     \item RMP allows running actions and these can work with KCB Platform's API, technically needed to signal the Platform of new pushes on the repository.
 \end{enumerate}
 
@@ -198,10 +198,10 @@ An example of compatible RMP is GitHub.
 
 \subsubsection{Constraints}
 \paragraph{Security Constraints}
-Given her nature, this Platform is more vulnerable to security attacks than other ones. For this reason, especially in Battle code evaluation, the Platform needs to implement state of the art security policies in order to protect user data and safety.
+Given her nature, this Platform is more vulnerable to security attacks than other ones. For this reason, especially in Battle code evaluation, the Platform needs to implement state of the art security policies in order to protect User data and safety.
 \paragraph{Privacy Polices}
-Personal user data and historical user data shall be stored and used only for legitimate use internal to the Platform. Public to the Platform user data has to be accessible only via the Platform. Finally, none of the user data has to be used for commercial purposes, and its use has to be done in compliance with, to the user, local privacy policies. 
+Personal User data and historical User data shall be stored and used only for legitimate use internal to the Platform. Public to the Platform User data has to be accessible only via the Platform. Finally, none of the User data has to be used for commercial purposes, and its use has to be done in compliance with, to the User, local privacy policies. 
 \paragraph{Platform Limitations}
 User is required to use internet connection to access the Platform, download code repository and upload code for evaluation. Out of these actions, Users can work on Battles locally without the need of internet connections, if not specifically stated otherwise in the Battle description.\\
 Battle computational size and complexity has to be sized in order to be feasible to be coded and executed locally by Students.\\
-Platform does not allow for live code editing and execution, for this reason users have to be able to edit and run code locally.
+Platform does not allow for live code editing and execution, for this reason Users have to be able to edit and run code locally.
