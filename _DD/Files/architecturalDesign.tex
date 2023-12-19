@@ -73,7 +73,7 @@ In fact the actual implementation will require more components to manage communi
     Furthermore Web Server it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Web Server and Application Server are divided by a second firewall which role is to avoid undesidered access to the actual model. Between Students, Educators, 
     and CKB, this Tier serves as a bridge. Web Server constitues part of the implementation of the Application Layer.
     \item \textbf{Application Server:} The Platform, with its essential features, is the Application Server. It is constructed using a Microservices Architecture, which is made up of lone software modules that oversee a single 
-    "service", or collection of tasks associated with a particular subject. Each module that performs a Microservice is better explained and analized in the previous and following section of this document. A dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
+    "service", or collection of tasks associated with a particular subject. Each module that performs a Microservice is better explained and analized in the previous and following section of this document. After parsing the requests, a dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
     will be possible with a proper distribution of the Application Server across Microservices. A firewall delimits this Tier with the DMZ as described above, a second one separates the App with Email-Provider and RMP and a third defines the boarder with DMBS.
     This last one avoids intrutions and damage into DBMS, while the fist two are deputed to protect Application Tier from external attacks or bad requests. Finally this Server constitutes the remaing implementation of the Application Layer.
     \item \textbf{DBMS Server:} CKB keeps track of both User data and Platform operational data, such as Battle and Tournament records. DBMS is responsible for managing, securing, and storing the data. It permits access to 
@@ -120,6 +120,7 @@ For each component here are explained functions, expressed in pseudo-code, assoc
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{Boolean deleteAccount()} The method performs the deletion of the AccountManager associated to the specific User. A true/false response describes the result.
             \item \textbf{void updateAccount(String name, String surname, String email, String repo)} UpdateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo thought which he/she would be identified in the system.
+            \item \textbf{void createAccount(String name, String surname, String email, Int yearOfBirth, String repo)} This function enables the caller to create a new account, with the given parameters.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
@@ -128,5 +129,7 @@ For each component here are explained functions, expressed in pseudo-code, assoc
         \end{enumerate}
 \end{enumerate}
 \subsection{Runtime View}
+\subsubsection{Sign in}
+\subsubsection{Log in}
 \subsection{Noteworthy Architectural Patterns}
 \subsection{Other design Decisions}
