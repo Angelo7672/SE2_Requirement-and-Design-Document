@@ -1,0 +1,34 @@
+@startuml
+
+autonumber
+
+participant EvaluationManager as EM
+entity battleManagerInterface as BMI
+participant BattleManager as BM
+entity tournamentManagerInterface as TMI
+participant TournamentManager as TM
+entity RMPManagerInterface as RMI
+participant RMPManager as RMP
+
+
+activate EM
+EM --> RMI: RMPManager.pullRequest(repo)
+activate RMI
+RMI --> RMP: pullRequest(repo)
+deactivate RMI
+activate RMP
+RMP --> EM: File Code
+deactivate RMP
+EM --> EM: evaluate code
+activate EM
+deactivate EM
+EM --> TMI: TournamentManager.updateTournamentScore(Team, Score)
+activate TMI
+TMI --> TM: updateTournament(Team, Score)
+deactivate TMI
+EM --> BMI: BattleManager.updateBattleScore(Team, Score)
+activate BMI
+BMI --> BM: updateBattleScore(Score)
+deactivate BMI
+deactivate EM
+@enduml
