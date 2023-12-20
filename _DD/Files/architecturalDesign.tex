@@ -110,7 +110,6 @@ For each component here are explained functions, expressed in pseudo-code, assoc
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
-        \item \textbf{void inviteEducator(String myEmail, String emailToInvite)} To invite other Educators are needed the email of the Educator who invites and the one of the Educator to invite.
         \item \textbf{Boolean createTeam(String myEmail, Array<String> emails, String Team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the Team. The result is provided via Boolean value. 
         \item \textbf{Boolean joinStudentTournament(String email, String Team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the Team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
         \item \textbf{Boolean joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the Boolean of result of the execution and asks for the email of the Educator.

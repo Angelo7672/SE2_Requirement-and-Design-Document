@@ -77,7 +77,7 @@ else  Tournament already joined or Team does not exists
     F->EP: sendEmail
     deactivate F
     activate EP
-    EP-->U: Email <<Tournament joined>>
+    EP-->U: Email <<Tournament already joined>>
     deactivate EP
     activate TM
     TM-->MD: False: Tournament is already joined/Team doen not exists
