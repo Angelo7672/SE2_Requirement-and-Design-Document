@@ -286,9 +286,9 @@ pred show{
     #Tournament = 2
     //#Team = 6
     //#Battle = 6
-    //#Educator = 3
+    #Educator = 6
     //#Student = 3
-    #Badge > 1
+    //#Badge > 1
 }
 
-run show for 10
+run show for 6
