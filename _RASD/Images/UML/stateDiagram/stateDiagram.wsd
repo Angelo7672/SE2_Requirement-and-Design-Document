@@ -5,7 +5,7 @@ state TOURNAMENT{
     DEFINED: - name set
     DEFINED: - programming language/s set
     DEFINED: - outline available
-    DEFINED: - max and min number of student per team set
+    DEFINED: - max number of students per team set
     DEFINED: - duration set
     DEFINED: - deadline for subscription set
 

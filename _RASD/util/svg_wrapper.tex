@@ -15,3 +15,19 @@
         \caption{#4}
     \end{figure}
 }
+
+\newcommand{\useImg}[3]{
+    \IfFileExists{#1}
+    {\includegraphics[width=#2\textwidth, height=#3\textheight]{#1}}
+    {\includesvg[inkscapelatex=false, width=#2\textwidth, height=#3\textheight]{Images/TODO.svg}}
+    
+}
+
+% arg1 = svg file path, arg2 = width, arg3= height, arg4 = caption
+\newcommand{\useImgWithCaption}[4]{
+    \begin{figure}[h]
+        \centering
+        \useImg{#1}{#2}{#3}
+        \caption{#4}
+    \end{figure}
+}

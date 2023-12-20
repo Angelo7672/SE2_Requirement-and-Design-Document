@@ -115,7 +115,8 @@ fact peopleNameNoObjectName{
 
 // Tournament facts
 
-fact tournamentHasAtLeastOneBattle{ //e' necessario?
+//all tournaments have at least one battle
+fact tournamentHasAtLeastOneBattle{ 
     all t: Tournament | #t.battles > 0
 }
 
@@ -278,17 +279,59 @@ check noBattlesHaveSameRepo for 6 //VALID
 
 // ---- Predicates ----
 
-
-pred show{
-    //#Platform.tournaments = 1
-    //#Tournament = 3
-    //#Tournament.educators > 1
-    //#Team = 6
-    //#Battle = 6
-    //#Educator = 4
-    //#Student = 3
-    //#Badge > 1
-    //#RMPRepo = 3
+// simple world to easily see relationships between entities
+pred world1{
+    #Platform.students = 1
+    #Platform.educators = 1
+    #Platform.tournaments = 1
+    #Tournament = 1
+    #Tournament.educators = 1
+    #Team = 1
+    #Battle = 1
+    #Educator = 1
+    #Student = 1
+    #Student.badges = 1
+    #Badge = 1
+    #RMP = 1
 }
 
-run show for 6
+run world1 for 13
+
+// complexer world to see how one tournament behaves with more entities
+pred world2{
+    #Tournament = 1
+    #Tournament.educators > 1
+    #Team = 3
+    #Battle = 3
+    #Educator = 3
+    #Student = 5
+    #Student.badges = 1
+    #Badge = 2
+    #RMP = 1
+}
+
+run world2 for 13
+
+// more complex world to see how multiple tournaments behave with more entities
+pred world3{
+    #Tournament = 4
+    #Team = 5
+    #Battle = 5
+    #Educator = 3
+    #Student = 7
+    #Badge = 3
+}
+
+run world3 for 20
+
+pred show{
+    #Tournament = 3
+    #Team = 6
+    #Battle = 6
+    #Educator = 4
+    #Student = 3
+    #Badge > 1
+}
+
+// testing world hidden from the reader
+run show for 20

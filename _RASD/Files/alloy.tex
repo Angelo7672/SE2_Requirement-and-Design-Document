@@ -2,12 +2,74 @@
 \newcommand{\showCode}[2]{
     \lstinputlisting[language=Alloy, firstline=#1, lastline=#2]{Files/alloy/alloy.als}
 }
+\subsection*{Introduction to the section}
+%% TODOO - CHECK OPRTHOGRAPHYYY
+In this section we provide the Alloy model of the Platform. This model is useful to check the consistency of the system and to verify that the requirements are satisfied. Given the limitations of the modelling language, this model represents statically the Platform and users, showing their relationships and the constraints that they must satisfy. The state of the system that is represented is the one at which all represented torunaments have reached the state of "STARTED" or "CLOSED", so where tournament badges can be assigned, teams got their code evaluated and the tournament score has been computed. For reducing the complexity some details about battles and torunamets have been omitted (like subscription deadline, programming language and duration) since the focal point of view of this model is evaluating how the main entities of the Platform, adding also the RMP, relate between each other in the perspective of the tournament, battle and code.\\
+As for how is structured an Alloy model, firstly will be shown the signatures, then the facts, assertions (followed by check results) and predicates (followed by model found).
 
 \subsection{Signatures}
-\showCode{2}{62}
+\showCode{4}{76}
 \subsection{Facts}
-\showCode{65}{190}
+\showCode{82}{236}
 \subsection{Assertions}
-\showCode{194}{225}
+\showCode{244}{276}
+Here the assertion results:
+\begin{lstlisting}[basicstyle=\footnotesize]
+
+Executing "Check newTournament for 10"
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20 Mode=batch
+95882 vars. 2450 primary vars. 240333 clauses. 322ms.
+No counterexample found. Assertion may be valid. 54ms.
+
+Executing "Check newBattle for 6"
+Solver=sat4j Bitwidth=4 MaxSeq=6 SkolemDepth=1 Symmetry=20 Mode=batch
+121684 vars. 3416 primary vars. 299209 clauses. 57ms.
+No counterexample found. Assertion may be valid. 6ms.
+
+Executing "Check newBadge for 6"
+Solver=sat4j Bitwidth=4 MaxSeq=6 SkolemDepth=1 Symmetry=20 Mode=batch
+147484 vars. 4388 primary vars. 358199 clauses. 56ms.
+No counterexample found. Assertion may be valid. 6ms.
+
+Executing "Check studentReceivesSpecialAchievements for 6"
+Solver=sat4j Bitwidth=4 MaxSeq=6 SkolemDepth=1 Symmetry=20 Mode=batch
+147484 vars. 4388 primary vars. 358199 clauses. 49ms.
+No counterexample found. Assertion may be valid. 0ms.
+
+Executing "Check haveWorkEvaluated for 6"
+Solver=sat4j Bitwidth=4 MaxSeq=6 SkolemDepth=1 Symmetry=20 Mode=batch
+173443 vars. 5360 primary vars. 417705 clauses. 60ms.
+No counterexample found. Assertion may be valid. 108ms.
+
+Executing "Check noBattlesHaveSameRepo for 6"
+Solver=sat4j Bitwidth=4 MaxSeq=6 SkolemDepth=1 Symmetry=20 Mode=batch
+199347 vars. 6332 primary vars. 476904 clauses. 83ms.
+No counterexample found. Assertion may be valid. 14ms.
+
+6 commands were executed. The results are:
+#1: No counterexample found. newTournament may be valid.
+#2: No counterexample found. newBattle may be valid.
+#3: No counterexample found. newBadge may be valid.
+#4: No counterexample found. studentReceivesSpecialAchievements may be valid.
+#5: No counterexample found. haveWorkEvaluated may be valid.
+#6: No counterexample found. noBattlesHaveSameRepo may be valid.
+\end{lstlisting}
+\clearpage
 \subsection{Predicates}
-\showCode{229}{237}
+The predicates here are used to represent the syste in different states to highlight diffferent aspects of it's behavior.
+\subsubsection{World1}
+This is a simple world, where all entities are present once. The scope of this world is to show relationships between entities.
+\showCode{283}{298}
+\useImgWithCaption{Images/PNG/World1.png}{.8}{0.5}{Alloy predicate World 1}
+\clearpage
+\subsubsection{World2}
+This is a complex world, where only one tournament is considered. The scope of this world is to see how the model behaves with more entities. 
+\showCode{301}{313}
+Since the graph representation becomes very large, here is presented the table representation of the world.
+\lstinputlisting[basicstyle=\tiny]{Files/alloy/world2_ascii.txt}
+\clearpage
+\subsubsection{World3}
+This is an even more complex world, where more tournaments are considered. The scope of this world is similar to the one of World 2, but with more tournaments;
+\showCode{316}{325}
+For the same reason as before, here is presented the table representation.
+\lstinputlisting[basicstyle=\tiny]{Files/alloy/world3_ascii.txt}
