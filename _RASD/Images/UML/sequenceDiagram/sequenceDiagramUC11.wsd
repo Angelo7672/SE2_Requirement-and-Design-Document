@@ -2,41 +2,26 @@
 
 autonumber
 
-actor Student as S
+actor User as S
 participant CKBWebApp as E
 entity CKBPlatform as P
 
 activate S
-
-alt search for name
-    S -> E: submit tournament's name in the search bar
-    activate E
-    E -> P: search tournament with similar name
-    deactivate E
-else search for properties
-    opt insert the name
-        S -> S: insert name in the search bar
-    end
-    loop for each property desired
-        S -> S: select property in the search bar's filter
-    end
-    S -> E: submit the research
-    activate E
-    E -> P: search tournament with similar data
-    deactivate E
-end
-
-P --> E: list of found tournaments
+S -> E: submit user's data in the search bar
 activate E
-E --> S: show found tournaments
-deactivate E
-S -> E: click on a tournament on list
-activate E
-E -> P: get searched tournament details
+E -> P: search users with similar data
 activate P
-P --> E: tournament details data
-deactivate P 
-E --> S: show tournament details
+P --> E: list of found users
+deactivate P
+E --> S: show found users
+deactivate E
+S -> E: click on a user on list
+activate E
+E -> P: get searched user profile
+activate P
+P --> E: user profile data
+deactivate P
+E --> S: show user profile
 deactivate E
 deactivate S
 
