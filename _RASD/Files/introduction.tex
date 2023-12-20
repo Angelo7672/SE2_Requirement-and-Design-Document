@@ -154,7 +154,7 @@ Code of all Battles will be handled on a third party repository manager like "Gi
     \item \textbf{Student}\\Student is one of the main actors. His/Her scope is to improve its coding skills using the Platform. It will interact with it properly in order to have its work evaluated, to collaborate with other Students and to join Battles.
     \item \textbf{Educator}\\Educator is the other main actor of the Platform. His/Her scope is to create Tournaments and Battles in which Students can compete.
     \item \textbf{Battle}\\With this entity is described the single challenge Students have to face. It is the center around which all the Platform is build, and only through it would be achieved by Students the goal to improve their skills.
-    \item \textbf{Group}\\The entity describes a set of Students, which are working in Team on a single Battle, or of Educators, which creates Battles in a Tournament.
+    \item \textbf{Team}\\The entity describes a set of Students, which are working in Team on a single Battle, or of Educators, which creates Battles in a Tournament.
     \item \textbf{Badge}\\With Badges Students are rewarded for special achievements. This entity is introduced to gamify the Platform.
     \item \textbf{Tournament}\\The Tournament is the context within Battles are created. A Tournament can host multiple Battles and represents the topic in which they take place.
     \item \textbf{Repository manager Platform}\\The Repository manager Platform is a system which manages all code involved in Battles of all Students of all Tournaments.
@@ -178,8 +178,15 @@ These definitions describe the technical jargon used while talking about Reposit
 \end{enumerate}
 
 \subsection{Revision History}
-
-\subsection{References}
+\newcommand{\release}[2]{
+    \item \textbf{Version #1} - #2
+}
+\begin{enumerate}[label=$\bullet$]
+    \release{1.0}{2023-12-22}
+    \begin{itemize}
+        \item First release
+    \end{itemize}
+\end{enumerate}
 
 \subsection{Document Structure}
 \begin{enumerate}[label=$\bullet$]
