@@ -2,7 +2,6 @@
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
-*.bbl
 *.blg
 *.lof
 *.log
@@ -16,7 +15,6 @@
 *.cb2
 .*.lb
 *.blg
-*.bbl
 
 ## Intermediate documents:
 *.dvi

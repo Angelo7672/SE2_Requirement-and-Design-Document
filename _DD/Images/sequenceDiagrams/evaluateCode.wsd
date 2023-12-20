@@ -10,13 +10,13 @@ participant TournamentManager as TM
 entity RMPManagerInterface as RMI
 participant RMPManager as RMP
 
-
+activate RMP
+RMP --> EM: new code available
 activate EM
 EM --> RMI: RMPManager.pullRequest(repo)
 activate RMI
 RMI --> RMP: pullRequest(repo)
 deactivate RMI
-activate RMP
 RMP --> EM: File Code
 deactivate RMP
 EM --> EM: evaluate code

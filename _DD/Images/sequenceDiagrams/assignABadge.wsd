@@ -10,17 +10,24 @@ entity notificationManagerInterface as NMI
 participant Microservices_Dispatcher as MD
 entity AccountManagerInterface as AMI
 participant AccountManager as AM
+entity SearchManagerInterface as SMI
+participant SearchManager as SM
 participant BadgeManager as BM
 entity badgeManagerInterface as BMI
 participant EvaluationManager as EM
 entity RMPManagerInterface as RMI
 participant RMPManager as RMP
+entity notificationManagerInterface as NMI
+participant NotificationManager as NM
+participant Firewall as F
+participant EmailProvider as EP
 
+activate RMP
+RMP-->EM: new code available
 activate EM
 activate RMI
 EM --> RMI: RMP.pullRequest(repo)
 RMI -->RMP: pullRequest(String repo)
-activate RMP
 deactivate RMI
 RMP --> EM: Code file
 deactivate RMP
@@ -33,20 +40,27 @@ BMI --> BM: verifyCriteria(testResults, emails)
 deactivate BMI
 alt testResults meet criterias
 activate BM
-BM --> EM: True: Badge is assigned
-deactivate BM
-EM --> MD: MicroserviceDispatcher.assignBadge(this)
-activate MD
-MD --> AMI: AccountManager.assignBadge(BadgeManager)
-activate AMI
-AMI --> AM: assignBadge(BadgeManager)
-deactivate AMI
-activate AM
 alt if Badge is assigned
+    BM --> EM: True: Badge is assigned
+    deactivate BM
+    EM --> MD: MicroserviceDispatcher.assignBadge(this, repo)
+    activate MD
+    MD --> SMI: MicroserviceDispatcher.searchUser(repo)
+    activate SMI
+    SMI --> SM: searchUser(repo)
+    deactivate SMI
+    activate SM
+    SM --> MD: AccountManager
+    deactivate SM
+    MD --> AMI: AccountManager.assignBadge(BadgeManager)
+    activate AMI
+    AMI --> AM: assignBadge(BadgeManager)
+    deactivate AMI
+    activate AM
     AM --> MD: True: Badge is successfully assigned
-    MD --> NMI: MicroserviceDispatcher.sendNotification(email, description)
+    MD --> NMI: MicroserviceDispatcher.sendNotification(List<String> emails, description)
     activate NMI
-    NMI --> NM: sendNotification(email, description)
+    NMI --> NM: sendNotification(List<String> emails, description)
     deactivate NMI
     activate NM
     NM --> F: send email
