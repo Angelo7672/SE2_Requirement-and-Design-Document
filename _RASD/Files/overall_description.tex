@@ -41,7 +41,9 @@ Of the RMP will be only described critical parts needed for the correct function
     oversees the Tournaments she manages. Jude then chooses the one where he wants to start a Battle and clicks the "Create Battle" button. This opens a form for her to fill out with the Battle's name and an overview of the Battle. 
     After supplying these details, she needs to include the Battle's RMP repository link and specify the Battle's evaluation modality. After filling out the form, she presses the "Submit" button. Now that the system has confirmed all 
     the data, a new Battle has been created.\\
-    \item \textbf{Educator wants to manually evaluate teams code} \label{sc:sc12} \\ Gino is an Educator, and after checking the code of a Team on a battle on a tournament he manages, he wants to manually evaluate it. He opens the CKB Web App on his home page, goes to the tournament page to reach battle rankings, there finds the team he wants to evaluate and clicks on the "Add score" button. He receives a form to complete, which he provides by adding a score. Once the form is submitted, the score is updated on the respective entry on the ranking list.
+    \item \textbf{Educator wants to manually evaluate teams code} \label{sc:sc12} \\ Gino is an Educator, and after checking the code of a Team on a battle on a tournament he manages, he wants to manually evaluate it. He opens the CKB Web App on his home 
+    page, goes to the tournament page to reach battle rankings, there finds the team he wants to evaluate and clicks on the "Add score" button. He receives a form to complete, which he provides by adding a score. Once the form is submitted, the score is 
+    updated on the respective entry on the ranking list.
     \item \textbf{Educator wants to create a Badge} \label{sc:sc13} \\Beniamino is an Educator, and he wants to design a Badge for a Tournament he oversees. He open the CKB Web App on his home page and go to the page with the managed Tournaments list.
     He clicks the "Add Badge" button after choosing the one for which he wanted to make the Badge. Beniamino receives a form to complete, which he provides by adding an image, a description, and the requirements that must be met in order 
     to obtain this new Badge. Once the form is submitted, the Badge is created and made achievable during the Tournament.
@@ -63,19 +65,20 @@ This is an illustration of a high-level UML. The primary classes are described, 
 \newpage
 \subparagraph{Platform Class Diagram}
 Describes the core functionality of the Platform without caring about RMP and Badges.\\
-\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramPlatform.svg}{0.65}{0.65}{Platform Class Diagram}
+\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramPlatform.svg}{1.0}{1.0}{Platform Class Diagram}
 \newpage
 \subparagraph{Platform relationship with RMP Class Diagram}
 Describes which elements of the Platform have relations with RMP.\\
-\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramRMP.svg}{0.45}{0.45}{Platform relationship with RMP Class Diagram}
+\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramRMP.svg}{1.0}{1.0}{Platform relationship with RMP Class Diagram}
+\newpage
 \subparagraph{Platform Gamification Class Diagram}
 Describes how Badges work inside the Platform.\\
-\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramGamification.svg}{0.45}{0.45}{Platform Gamification Class Diagram}
+\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramGamification.svg}{1.0}{1.0}{Platform Gamification Class Diagram}
 \newpage 
 
 \paragraph{State diagram}
 The different stages of the Tournament and the Battle are depicted in the state diagram in the figure.
-\useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{0.75}{0.75}{State Diagram of the Tournament and the Battle}
+\useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{0.85}{0.85}{State Diagram of the Tournament and the Battle}
 \\In the CREATED state it is possible to add Educators, Battles and Badges to the Tournament:
 \begin{enumerate}[label=$\bullet$]
     \item Adding a Battle consists in provide a description for it, make the code and the test available and in defining the modality of evaluation between the automatic modality and the optional manual modality.
@@ -114,6 +117,12 @@ and in some case also some programming code already available) and set how the B
 the quality level of the sources, and optionally he could designate some points also to the manual evaluation.\\
 In any case the sum of the points that a Team could achieve from all this parameter must be 100.
 \useSvgWithCaption{./Images/BPMN/createBattle.svg}{1.0}{1.0}{BPMN diagram of the creation of a Battle}
+\paragraph{Manual evaluation}
+When necessary, the Educator must manually assess the code that the Teams have written.\\
+In order to do this, he must complete his own manual evaluation visiting the RMP directory of a Battle of the Teams, where he must first be added by the Students. He must next navigate to the tournament 
+page of the corresponding tournament, access the corresponding Battle page, and proceed to the Battle ranking section. There, he chooses the Team he evaluated and clicks the "Add score" button next to the 
+Team's name to enter his manual score.
+\useSvgWithCaption{./Images/BPMN/manualEvaluation.svg}{1.0}{1.0}{BPMN diagram of the manual evaluation}
 \paragraph{Add an Educator to a Tournament}
 An Educator can add another Educator to a Tournament once he is on the appropriate management Tournament page. The Educator's addition will support the manual assessment of the Students' code.
 \useSvgWithCaption{./Images/BPMN/addEducator.svg}{1.0}{1.0}{BPMN diagram of the addition of a new Educator to the Tournament}
