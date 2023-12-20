@@ -152,6 +152,11 @@ fact noTeamWorksOnBattleRepo{
     all t: Team | all b: Battle | all r: t.repos | r != b.repo
 }
 
+//a RMP repo belongs to a Team or to a Battle
+fact noRepoAlone{
+    all r: RMPRepo | (r in Team.repos) or (r in Battle.repo)
+}
+
 // Battle facts
 
 //there cannot exists a battle that isn't part of a tournament
@@ -283,13 +288,14 @@ check noBattlesHaveSameRepo for 6 //VALID
 
 pred show{
     //#Platform.tournaments = 1
-    #Tournament = 3
-    #Tournament.educators > 1
-    #Team = 6
-    #Battle = 6
-    #Educator = 4
-    #Student = 3
-    #Badge > 1
+    //#Tournament = 3
+    //#Tournament.educators > 1
+    //#Team = 6
+    //#Battle = 6
+    //#Educator = 4
+    //#Student = 3
+    //#Badge > 1
+    //#RMPRepo = 3
 }
 
-run show for 20
+run show for 6
