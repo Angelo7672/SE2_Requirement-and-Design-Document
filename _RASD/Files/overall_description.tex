@@ -65,20 +65,20 @@ This is an illustration of a high-level UML. The primary classes are described, 
 \newpage
 \subparagraph{Platform Class Diagram}
 Describes the core functionality of the Platform without caring about RMP and Badges.\\
-\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramPlatform.svg}{1.0}{1.0}{Platform Class Diagram}
+\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramPlatform.svg}{0.9}{0.9}{Platform Class Diagram}
 \newpage
 \subparagraph{Platform relationship with RMP Class Diagram}
 Describes which elements of the Platform have relations with RMP.\\
-\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramRMP.svg}{1.0}{1.0}{Platform relationship with RMP Class Diagram}
+\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramRMP.svg}{0.7}{0.7}{Platform relationship with RMP Class Diagram}
 \newpage
 \subparagraph{Platform Gamification Class Diagram}
 Describes how Badges work inside the Platform.\\
-\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramGamification.svg}{1.0}{1.0}{Platform Gamification Class Diagram}
+\useSvgWithCaption{./Images/UML/classDiagram/entityClassDiagramGamification.svg}{0.75}{0.75}{Platform Gamification Class Diagram}
 \newpage 
 
 \paragraph{State diagram}
 The different stages of the Tournament and the Battle are depicted in the state diagram in the figure.
-\useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{0.85}{0.85}{State Diagram of the Tournament and the Battle}
+\useSvgWithCaption{./Images/UML/stateDiagram/stateDiagram.svg}{0.78}{0.78}{State Diagram of the Tournament and the Battle}
 \\In the CREATED state it is possible to add Educators, Battles and Badges to the Tournament:
 \begin{enumerate}[label=$\bullet$]
     \item Adding a Battle consists in provide a description for it, make the code and the test available and in defining the modality of evaluation between the automatic modality and the optional manual modality.
@@ -107,7 +107,7 @@ Every User subscribed to the Platform, can search other Users by name, email or 
 \paragraph{Create a Tournament}
 The page where the Tournament creation is displayed is accessed by clicking a specific button on the homepage.\\
 There, Educators can enter the Tournament's name, description, programming language/s, minimum and maximum number of Students per Team, subscription deadline, and duration.\\ 
-After the Educator clicks the "Create Tournament" button, Students are notified that a new Tournament is available.
+After the Educator clicks the "Create Tournament" button, Students are notified that a new Tournament is available. Students will see in the Tournament details also the Educators involved in it: in this way they can add them to their Battle's RMP directory.\\
 When the deadline subscription is reached, the Tournament begin.
 \useSvgWithCaption{./Images/BPMN/createTournament.svg}{1.0}{1.0}{BPMN diagram of the creation of a Tournament}
 \paragraph{Create a Battle}
@@ -123,6 +123,7 @@ In order to do this, he must complete his own manual evaluation visiting the RMP
 page of the corresponding tournament, access the corresponding Battle page, and proceed to the Battle ranking section. There, he chooses the Team he evaluated and clicks the "Add score" button next to the 
 Team's name to enter his manual score.
 \useSvgWithCaption{./Images/BPMN/manualEvaluation.svg}{1.0}{1.0}{BPMN diagram of the manual evaluation}
+\newpage
 \paragraph{Add an Educator to a Tournament}
 An Educator can add another Educator to a Tournament once he is on the appropriate management Tournament page. The Educator's addition will support the manual assessment of the Students' code.
 \useSvgWithCaption{./Images/BPMN/addEducator.svg}{1.0}{1.0}{BPMN diagram of the addition of a new Educator to the Tournament}
@@ -138,6 +139,7 @@ He can subscribe to a Tournament after selecting one, and each Tournament has a 
 Students how to write code in a Team. As a result, Students will most likely join a Team when they subscribe to the Tournament, and it's possible that he will invite some of his friends to join a Team that he will name during the 
 subscription process.
 \useSvgWithCaption{./Images/BPMN/subscribeTournament.svg}{1.0}{1.0}{BPMN diagram of the subscription to a Tournament}
+\newpage
 \paragraph{Accept an invitation from another Student}
 A Student can join to a Tournament by an invitation of another Student and compete together in a Team.
 \useSvgWithCaption{./Images/BPMN/acceptInvitation.svg}{1.0}{1.0}{BPMN diagram of accept an invitation from another Student}
@@ -146,6 +148,7 @@ A Student can carry out Battles by clicking on the button of a particular Battle
 locally to pass the test cases that are included in the Battle repository. The Platform will automatically evaluate the functional test, the timeliness and quality of the sources, and it will update the Battle score, that the Student 
 can view from the Battle page, each time he pushes code into the repository. Optionally, an Educator might evaluate the written code as well.
 \useSvgWithCaption{./Images/BPMN/completeBattle.svg}{1.0}{1.0}{BPMN diagram of Battle completion}
+\newpage
 
 \subsection{User Characteristics}
 \subsubsection{User}

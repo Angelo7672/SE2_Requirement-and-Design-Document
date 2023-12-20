@@ -42,7 +42,7 @@ else if a valid Email is provided
     else InvitedEducator accepts invitiation
         UB -> P: clicks on "Accept" button
         activate P
-        P -> P: Educator added to the Tournament
+        P -> P: Educator added \nto the Tournament
     end
     deactivate P
 end 

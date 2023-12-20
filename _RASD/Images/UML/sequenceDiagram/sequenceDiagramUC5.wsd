@@ -22,7 +22,7 @@ Educator -> App: submit form filled with Tournament's information
 activate App
 App -> Platform: form filled with Tournament's information
 activate Platform
-Platform -> Platform: registers Tournament creation
+Platform -> Platform: registers \nTournament \ncreation
 Platform -> Email: Tournament creation confermation
 activate Email
 Platform --> App: return new Tournament's homepage

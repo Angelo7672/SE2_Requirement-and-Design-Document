@@ -20,7 +20,7 @@ Educator -> App: submit form filled with name, overview, RMP repo link and evalu
 activate App
 App -> Platform: form filled with name, overview, RMP repo link and evaluation parameters
 activate Platform
-Platform -> Platform: Battle registered to Tournament
+Platform -> Platform: Battle registered \nto Tournament
 Platform -> Email: Battle creation confermation
 activate Email
 Platform --> App: return new Battle's homepage

@@ -43,7 +43,7 @@ else if a valid Email is provided
     else InvitedStudent accepts invitiation
         UB -> P: clicks on "Accept" button
         activate P
-        P -> P: Adds InvitedStudent to the Team
+        P -> P: Adds InvitedStudent \nto the Team
     end
     deactivate P
 end 
