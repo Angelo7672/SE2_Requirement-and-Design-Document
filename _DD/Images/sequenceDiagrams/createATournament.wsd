@@ -10,6 +10,11 @@ participant Microservices_Dispatcher as MD
 participant TournamentManager as TM
 entity logInManagerInterface as LMI
 participant LogInManager as LM
+entity notificationManagerInterface as NMI
+participant NotificationManager as NM
+participant Firewall as F
+participant EmailProvider as EP
+actor Students as S
 
 activate U
 activate FF
@@ -33,21 +38,42 @@ alt if Tournament is created
     activate TM
     TM-->MD: True: Tournament is created
     deactivate TM
-    MD-->AS: Tournament created
-    AS-->WS: Json(Tournament created)
-    WS-->U: Tournament successfully created
+    MD-->NMI: MicroserviceDispatcher.sendNotification(List<String> emails, description)
+    activate NMI
+    NMI-->NM: sendNotification(List<String> emails, description)
+    deactivate NMI
+    activate NM
+    NM->F: sendEmail
+    deactivate NM
+    activate F
+    F->EP: sendEmail
+    deactivate F
+    activate EP
+    EP-->U: Email <<Tournament successfully created>>
+    EP-->S: Email <<New Tournament is available>>
+    deactivate EP
 else  data provided are incorrect or Tournament already exists
     LM-->MD: True: the User is logged properly and it is an Educator
-    MD-->AS: Tournament not created, Tournament already exists
-    AS-->WS: Json(Tournament NOT created)
-    WS-->U: Tournament NOT created
+    MD-->NMI: MicroserviceDispatcher.sendNotification(List<String> emails, description)
+    activate NMI
+    NMI-->NM: sendNotification(List<String> emails, description)
+    deactivate NMI
+    activate NM
+    NM->F: sendEmail
+    deactivate NM
+    activate F
+    F->EP: sendEmail
+    deactivate F
+    activate EP
+    EP-->U: Email <<Tournament not created, already exists>>
+    deactivate EP
 else User is not an Educator or is not logged
     LM-->MD: False: the User is not logged properly or he/she is not an Educator
     deactivate LM
     MD-->AS: Tournament NOT created, User NOT logged properly 
     deactivate MD
-    AS-->WS: Json(Tournament NOT created)
-    WS-->U: Tournament NOT created
+    AS-->WS: Json(NO Educator logged)
+    WS-->U: NO Educator logged
 end
 deactivate U
 deactivate FF
