@@ -1,0 +1,43 @@
+@startuml
+
+autonumber
+
+actor Student as S
+participant CKBWebApp as E
+entity CKBPlatform as P
+
+activate S
+
+alt search for name
+    S -> E: submit tournament's name in the search bar
+    activate E
+    E -> P: search tournament with similar name
+    deactivate E
+else search for properties
+    opt insert the name
+        S -> S: insert name in the search bar
+    end
+    loop for each property desired
+        S -> S: select property in the search bar's filter
+    end
+    S -> E: submit the research
+    activate E
+    E -> P: search tournament with similar data
+    deactivate E
+end
+
+P --> E: list of found tournaments
+activate E
+E --> S: show found tournaments
+deactivate E
+S -> E: click on a tournament on list
+activate E
+E -> P: get searched tournament details
+activate P
+P --> E: tournament details data
+deactivate P 
+E --> S: show tournament details
+deactivate E
+deactivate S
+
+@enduml

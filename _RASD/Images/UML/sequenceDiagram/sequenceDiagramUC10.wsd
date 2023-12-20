@@ -2,26 +2,30 @@
 
 autonumber
 
-actor User as S
+actor Educator as S
 participant CKBWebApp as E
 entity CKBPlatform as P
 
 activate S
-S -> E: submit user's data in the search bar
+S -> E: asks for battle rankings
 activate E
-E -> P: search users with similar data
+E -> P: get battle rankings
 activate P
-P --> E: list of found users
+P --> E: list of teams with rankings in battle
 deactivate P
-E --> S: show found users
+E --> S: show gotten list
 deactivate E
-S -> E: click on a user on list
+S -> E: click on "add Score" button
 activate E
-E -> P: get searched user profile
+E --> S: show form to add score
+deactivate E
+S -> E: submit form with score
+activate E
+E -> P: add score to team in battle
 activate P
-P --> E: user profile data
+P --> E: score added
 deactivate P
-E --> S: show user profile
+E --> S: update view with updated score
 deactivate E
 deactivate S
 

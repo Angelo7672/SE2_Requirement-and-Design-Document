@@ -1,22 +1,27 @@
-\paragraph*{UC10 - User searches for other users} \label{uc:uc10}
+\paragraph*{UC10 - Team gets code evaluated by Educator} \label{uc:uc10}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & User searches for other users \\ 
-        Actors & User \\ 
-        Entry Condition & User is in his homepage \\ 
-        Event Flow & \begin{tabu}{X X[50]}
-            1& Platform shows in user's homepage a search bar to search for users\\
-            2& User writes in search bar a string representing one of some other user's data (like name, surname, e-mail address or RMP handle)\\
-            3& User clicks on "Search" button\\
-            4& Platform shows a list of users with data compatible to the string given by the user\\
-            5& Platform keeps showing search bar to the user to be able to start another search\\
-            6& User clicks on a user on the list to see details\\
+        Name & Educator manually evaluates code \\ 
+        Actors & Educator \\ 
+        Entry Condition & \begin{tabu}{@{}X}
+            Tournament is in "STARTED" state\\
+            Battle is in "ACCESSIBLE" state\\
         \end{tabu} \\
-        Exit Condition & User can look other user's profile\\
-        Exception & -\\
-        \specialReqLabel & -\\ 
+        Event Flow & \begin{tabu}{X X[50]}
+            1& Educator goes to the tournament management page\\
+            2& Educator goes to the battle ranking list\\
+            3& In the row associated to the score of the team, Platform shows "Add score" button\\
+            4& Educator clicks on "Add score" button\\
+            5& Platform shows add score form to Educator\\
+            6& Educator fills form with his score\\
+            7& Educator clicks on "Submit" button\\
+            8& Platform registers the score\\
+            9& Platform updates Team's tournament score\\
+        \end{tabu} \\
+        Exit Condition & Users are able to see newly created score inside battle leaderboards\\
+        Exception & \\
+        \specialReqLabel & Educator has been invited to the RMPrepo, and can see the code of the team, and has seen it before scoring the students\\ 
     \end{tabu}
-\end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC10.svg}{1.0}{1.0}{UC10 Sequence Diagram - User searches for other users}
-
+\end{center} 
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC10.svg}{0.63}{0.63}{UC10 Sequence Diagram - Educator manually evaluates code}
 \clearpage

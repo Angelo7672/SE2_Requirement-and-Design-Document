@@ -1,23 +1,22 @@
-\paragraph*{UC11 - Student searches for a tournament} \label{uc:uc11}
+\paragraph*{UC11 - User searches for other users} \label{uc:uc11}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Student searches for a tournament \\ 
-        Actors & Student \\ 
-        Entry Condition & Student is in his homepage \\ 
+        Name & User searches for other users \\ 
+        Actors & User \\ 
+        Entry Condition & User is in his homepage \\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& Platform shows in student's homepage a search bar to search for tournaments\\
-            2& Student writes in search bar a string representing the name of the tournament\\
-            3& Student alternatively can filter tournaments by selecting specific properties of it in the filter of the search bar\\  
-            3& Student clicks on "Search" button\\
-            4& Platform shows a list of tournaments with data compatible to the string or properties given by the student\\
-            5& Platform keeps showing search bar to the student to be able to start another search\\
-            6& Student clicks on a tournament on the list to see details\\
+            1& Platform shows in user's homepage a search bar to search for users\\
+            2& User writes in search bar a string representing one of some other user's data (like name, surname, e-mail address or RMP handle)\\
+            3& User clicks on "Search" button\\
+            4& Platform shows a list of users with data compatible to the string given by the user\\
+            5& Platform keeps showing search bar to the user to be able to start another search\\
+            6& User clicks on a user on the list to see details\\
         \end{tabu} \\
-        Exit Condition & Student can look tournament details\\
+        Exit Condition & User can look other user's profile\\
         Exception & -\\
         \specialReqLabel & -\\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC11.svg}{0.73}{0.73}{UC11 Sequence Diagram - Student searches for a tournament}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC11.svg}{.6}{.6}{UC11 Sequence Diagram - User searches for other users}
 
 \clearpage
