@@ -1,23 +1,23 @@
-\paragraph*{UC4 - User invites other user to collaborate} \label{uc:uc4}  
+\paragraph*{UC4 - User invites other User to collaborate} \label{uc:uc4}  
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & User invites other user to collaborate \\ 
-        Actors & Inviting user, invited user \\ 
+        Name & User invites other User to collaborate \\ 
+        Actors & Inviting User, invited User \\ 
         Entry Condition & \begin{tabu}{@{}X}
-            Inviting user knows email of invited user \\ 
-            Tournament is in the right state to invite user\\
+            Inviting User knows email of invited User \\ 
+            Tournament is in the right state to invite User\\
         \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
-            1& Inviting user clicks on "collaborate" button\\
-            2& System shows inviting user a form to fill with the email of the user he wants to invite\\
-            3& Inviting user clicks submit button\\
-            4& System sends invite e-mail notification to invited user\\
-            5& Invited user clicks on "Accept" button to accept invitation\\
-            6& Invited user clicks on "Decline" button to decline invitation, or ignores it\\
+            1& Inviting User clicks on "collaborate" button\\
+            2& System shows inviting User a form to fill with the email of the User he/she wants to invite\\
+            3& Inviting User clicks submit button\\
+            4& System sends invite e-mail notification to invited User\\
+            5& Invited User clicks on "Accept" button to accept invitation\\
+            6& Invited User clicks on "Decline" button to decline invitation, or ignores it\\
         \end{tabu} \\
-        Exit Condition & If invited user accepts invitation, invited user can collaborate with inviting one, else as nothing happened\\
+        Exit Condition & If invited User accepts invitation, invited User can collaborate with inviting one, else as nothing happened\\
         Exception & \begin{tabu}{@{}X}
-            Invited user e-mail address can be: non-existent, non-registered, of user of \\different role. In this case Inviting user get's notified of the error via e-mail.
+            Invited User e-mail address can be: non-existent, non-registered, of User of \\different role. In this case Inviting User get's notified of the error via e-mail.
         \end{tabu}  \\
         \specialReqLabel & - \\ 
     \end{tabu}
@@ -25,45 +25,45 @@
 "\nameref*{uc:uc4}" is a generalization of:\\
 "\nameref{uc:uc4a}" and \\ "\nameref{uc:uc4b}".
 \clearpage
-\paragraph*{UC4a - Educator invites other educator to co-manage tournament} \label{uc:uc4a}
+\paragraph*{UC4a - Educator invites other Educator to co-manage Tournament} \label{uc:uc4a}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Educator invites other educator to co-manage tournament\\ 
-        Actors & Inviting educator, invited educator \\ 
+        Name & Educator invites other Educator to co-manage Tournament\\ 
+        Actors & Inviting Educator, invited Educator \\ 
         Entry Condition & \begin{tabu}{@{}X}
             Same as \nameref{uc:uc4} \\
-            Inviting educator is managing a tournament\\ 
+            Inviting Educator is managing a Tournament\\ 
             Tournament is in "CREATED" state\\
         \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
-            1& Educator is in the managing page of the tournament\\
+            1& Educator is in the managing page of the Tournament\\
             & Event flow follows father's \nameref{uc:uc4} event flow
         \end{tabu} \\
-        Exit Condition & Invited Educator can manage the tournament\\
+        Exit Condition & Invited Educator can manage the Tournament\\
         Exception & Same as \nameref{uc:uc4}\\
         \specialReqLabel & - \\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC4a.svg}{1.0}{1.0}{UC4, UC4a Sequence Diagram - Educator invites educator to collaborate}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC4a.svg}{1.0}{1.0}{UC4, UC4a Sequence Diagram - Educator invites Educator to collaborate}
 \clearpage
-\paragraph*{UC4b - Student invites other student to participate in the tournament as a Team} \label{uc:uc4b}
+\paragraph*{UC4b - Student invites other Student to participate in the Tournament as a Team} \label{uc:uc4b}
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Student invites other student to participate in the tournament as a Team \\ 
-        Actors & Inviting student, invited student\\ 
+        Name & Student invites other Student to participate in the Tournament as a Team \\ 
+        Actors & Inviting Student, invited Student\\ 
         Entry Condition & \begin{tabu}{@{}X}
             Same as \nameref{uc:uc4} \\
-            Inviting student is part of a team subscribed to a tournament \\ 
+            Inviting Student is part of a team subscribed to a Tournament \\ 
             Tournament is in "ONLINE" state\\
         \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
-            1& Student is in the tournament detail page\\
+            1& Student is in the Tournament detail page\\
             & Event flow follows father's \nameref{uc:uc4} event flow
         \end{tabu} \\
-        Exit Condition & If invited student accepts invitation, invited user is part of inviting user's team\\
+        Exit Condition & If invited Student accepts invitation, invited User is part of inviting User's team\\
         Exception & Same as \nameref{uc:uc4}, with the verification of no participance to the Team in which he/she is invited or any other Team\\
         \specialReqLabel & - \\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC4b.svg}{1.0}{1.0}{UC4, UC4b Sequence Diagram - Student invites student to collaborate}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC4b.svg}{1.0}{1.0}{UC4, UC4b Sequence Diagram - Student invites Student to collaborate}
 \clearpage

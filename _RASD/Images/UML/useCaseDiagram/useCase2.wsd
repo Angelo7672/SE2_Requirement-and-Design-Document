@@ -1,5 +1,5 @@
 @startuml
-skinparam linetype polyline
+'skinparam linetype polyline
 left to right direction
 
 :User: <<Human>>
@@ -19,26 +19,32 @@ usecase "Work on a Battle" as UC6
 usecase "Evaluates code" as UC7
 usecase "Consult rank" as UC8
 usecase "Search another User" as UC9
+usecase "Manual Evaluation" as UC10
 
 
-Users --|> User: extends
+Users -right-|> User: extends
 Student --> UC2
 Educator --> UC4
+Educator --> UC10
+Educator -right-> Student
 UC2 --> CKB
 UC4 --> CKB
 Team --> UC6
-Student ...> Team : form
-User -> UC8
-User -> UC9
-UC9 -> CKB
-UC8 --> CKB
+Student ..> Team : form
+User <--> UC8
+User --> UC9
+UC9 ---> CKB
+UC8 <--> CKB
 UC6 ---> RMP: pushes code to
+'UC10 <-- CKB
+UC10 .> UC8
 
-CKB -> UC8: returns the current rank
-UC8 -> User
+'CKB -> UC8: returns the current rank
+'UC8 -right-> User
 CKB --> RMP: pulls code from
 CKB --> UC7
-UC7 ...> UC8
+UC7 ..> UC8
+
 
 
 @enduml

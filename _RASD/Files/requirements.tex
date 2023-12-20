@@ -20,23 +20,23 @@ interact with RMP and with E-mail Provider. For this last communication the prot
 \subsection{Functional Requirements}
 Here follows a list of the Platform functional requirements:
 \begin{enumerate}[label= \textbf{R\arabic*}]
-    \item The platform allows Users to sign in to the platform itself either as Student either Educator. \label{req:reqSignin}
-    \item The platform allows Users to log in to the platform. \label{req:reqLogin}
-    \item The platform shows Students the list of available Tournaments. \label{req:reqShowTournaments}
-    \item The platform allows registered Students to search for Tournaments. \label{req:reqSearchForTournament}
-    \item The platform allows registered Students to subscribe to Tournament. \label{req:reqTournamentSubscription}
-    \item The platform allows registered Students to participate to Tournaments as a Team. \label{req:reqCreateTeam}
-    \item The platform allows registered Students to invite other Students to join a Team. \label{req:reqJoinTeam}
-    \item The platform allows registered Educators to create Tournaments. \label{req:reqCreateTournaments}
-    \item The platform allows registered Educators to create Battles in the context of a Tournament. \label{req:reqCreateBattle}
-    \item The platform allows registered Educators to manually assign scores to Teams in a context of a Battle in a Tournament managed by them. \label{req:reqManualEvalCode} 
-    \item The platform allows registered Educators to create Badges in the context of a Tournament. \label{req:reqCreateBadge}
-    \item The platform assigns a Battle Score to Teams' work. \label{req:reqEvaluateCode}
-    \item The platform provides a Teams' ranking based on the Tournament Score within a Tournament context. \label{req:reqRankingsUpdate}
-    \item The platform allows registered Educators to add other Educators to a Tournament. \label{req:reqJoinManagement}
-    \item The platform allows Users to search for other Users. \label{req:reqSearchForUsers}
-    \item The platform interacts properly with different RMPs to acquire the latest versions of code uploaded by related Teams. \label{req:reqPullRMP}
-    \item The platform awards Badges to deserving Students \label{req:reqAssignBadge}
+    \item The Platform allows Users to sign in to the Platform itself either as Student either Educator. \label{req:reqSignin}
+    \item The Platform allows Users to log in to the Platform. \label{req:reqLogin}
+    \item The Platform shows Students the list of available Tournaments. \label{req:reqShowTournaments}
+    \item The Platform allows registered Students to search for Tournaments. \label{req:reqSearchForTournament}
+    \item The Platform allows registered Students to subscribe to Tournament. \label{req:reqTournamentSubscription}
+    \item The Platform allows registered Students to participate to Tournaments as a Team. \label{req:reqCreateTeam}
+    \item The Platform allows registered Students to invite other Students to join a Team. \label{req:reqJoinTeam}
+    \item The Platform allows registered Educators to create Tournaments. \label{req:reqCreateTournaments}
+    \item The Platform allows registered Educators to create Battles in the context of a Tournament. \label{req:reqCreateBattle}
+    \item The Platform allows registered Educators to manually assign scores to Teams in a context of a Battle in a Tournament managed by them. \label{req:reqManualEvalCode} 
+    \item The Platform allows registered Educators to create Badges in the context of a Tournament. \label{req:reqCreateBadge}
+    \item The Platform assigns a Battle Score to Teams' work. \label{req:reqEvaluateCode}
+    \item The Platform provides a Teams' ranking based on the Tournament Score within a Tournament context. \label{req:reqRankingsUpdate}
+    \item The Platform allows registered Educators to add other Educators to a Tournament. \label{req:reqJoinManagement}
+    \item The Platform allows Users to search for other Users. \label{req:reqSearchForUsers}
+    \item The Platform interacts properly with different RMPs to acquire the latest versions of code uploaded by related Teams. \label{req:reqPullRMP}
+    \item The Platform awards Badges to deserving Students \label{req:reqAssignBadge}
 \end{enumerate}
 
 \newpage
@@ -52,7 +52,7 @@ Here follow Use Case tables followed by respective sequence diagrams.
 \input{Files/useCaseTables/useCaseTables}
 
 \subsection{Performance Requirements}
-The Platform, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all the same time. 
+The Platform, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all at the same time. 
 
 So, in order to satisfy all Requirements defined above, providing a good time response for each task, the Platform should have good time performance. Being a Web App, this implies a high concurrent programming implementation, to 
 manage multiple requests at the same time, and a rapid related Data Storage System. 
@@ -68,13 +68,13 @@ It is also important to respect internet protocols standards and their rules, in
 Hardware limitations in the RASD context are referred to User's machine capabilities and server's limits. 
 
 In fact, the devices used by both Students and Educators are constrained by memory capacity, CPU capabilities and GPU computational power. The first is essential to memorize the file to upload in RMP, run the software to access internet
- and to manage the Web App data itself. The second is fundamental to run the connection tasks and the site, receiving and elaborating inputs for the User and CKB's responses. Finally, GPU is essential to render the Platform UI.\\
+, to manage the Web App data itself and allow User to receive Emails. The second is fundamental to run the connection tasks and the site, receiving and elaborating inputs for the User and CKB's responses. Finally, GPU is essential to render UI and allows Users to read Emails via a proper Email Client App.\\
 \\
  On server side, instead, is important for our App to have an organized storage to preserve all necessary data and enough computational power in our CPUs to manage multiple requests for each machine that composes CKB's server. 
  
 In fact, to satisfy all possible inputs from all possible Users, formulating for each one a response, and meet requirements, is critical to have a multiple machine architecture on our servers. 
 
-To complete, a multiple internet connection ports is fundamental, to make the Platform available on the internet and make it capable of communicate with Users and RMPs.
+To complete, a multiple internet connection ports is fundamental, to make the Platform available on the internet and make it capable of communicate with Users, RMPs and Email Provider.
 
 \subsection{Software System Attributes}
 

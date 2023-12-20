@@ -1,51 +1,51 @@
-\paragraph{UC1 - User signs in to the platform} \label{uc:uc1} 
+\paragraph{UC1 - User signs in to the Platform} \label{uc:uc1} 
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & User signs in to the platform \\
+        Name & User signs in to the Platform \\
         Actors & User \\ 
         Entry Condition & User has a valid e-mail address and valid RMP handle\\ 
         Event Flow & \begin{tabu}{X X[50]}
             1& At Homepage click on "Sign in" button\\
-            2& System shows user the registration form\\
+            2& System shows User the registration form\\
             3& User fills form with data, caring to choose his role accordingly\\
             4& User clicks on "Submit" button \\
             5& Platform saves submitted information\\
-            6& Platform sends e-mail confirmation link to user\\
+            6& Platform sends e-mail confirmation link to User\\
             7& User confirms e-mail by clicking confirmation e-mail\\
         \end{tabu} \\
-        Exit Condition & User correctly registered in the platform, User needs to login to use the platform\\
-        Exception & User provides an email already in use.\\
+        Exit Condition & User correctly registered in the Platform, User needs to login to use the Platform\\
+        Exception & User provides an Email already in use.\\
         \specialReqLabel & - \\ 
     \end{tabu}
 \end{center} 
 "\nameref*{uc:uc1}" is a generalization of:\\
 "\nameref{uc:uc1a}" and \\ "\nameref{uc:uc1b}".
 \clearpage
-\paragraph*{UC1a - Student signs in to the platform} \label{uc:uc1a} 
+\paragraph*{UC1a - Student signs in to the Platform} \label{uc:uc1a} 
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Student signs in to the platform \\ 
+        Name & Student signs in to the Platform \\ 
         Actors & Student \\ 
         Entry Condition & Same as \nameref{uc:uc1} \\ 
         Event Flow & Same as \nameref{uc:uc1} with exception of \newline \begin{tabu}{X X[50]}
-            3& Student chooses student role while filling in form\\
+            3& Student chooses Student role while filling in form\\
         \end{tabu} \\
         \exitCondLabel & Same as \nameref{uc:uc1}\\
         Exception & Same as \nameref{uc:uc1}\\
         \specialReqLabel & Same as \nameref{uc:uc1}\\ 
     \end{tabu}
 \end{center}
-\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1a.svg}{1.0}{1.0}{UC1, UC1a, Sequence Diagram - Student signs in to the platform}
+\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1a.svg}{1.0}{1.0}{UC1, UC1a, Sequence Diagram - Student signs in to the Platform}
 \clearpage
 
-\paragraph*{UC1b - Educator signs in to the platform} \label{uc:uc1b} 
+\paragraph*{UC1b - Educator signs in to the Platform} \label{uc:uc1b} 
 \begin{center}
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
-        Name & Educator signs in to the platform \\ 
+        Name & Educator signs in to the Platform \\ 
         Actors & Educator \\ 
         Entry Condition & Same as \nameref{uc:uc1} \\ 
         Event Flow & Same as \nameref{uc:uc1} with exception of \newline \begin{tabu}{X X[50]}
-            3& Educator chooses educator role while filling in form\\
+            3& Educator chooses Educator role while filling in form\\
         \end{tabu} \\
         Exit Condition & Same as \nameref{uc:uc1}\\
         Exception & Same as \nameref{uc:uc1}\\
@@ -53,5 +53,5 @@
     \end{tabu}
 \end{center}
 
-\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1b.svg}{1.0}{1.0}{UC1, UC1b Sequence Diagram - Educator signs in to the platform}
+\useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1b.svg}{1.0}{1.0}{UC1, UC1b Sequence Diagram - Educator signs in to the Platform}
 \clearpage

@@ -7,25 +7,25 @@ participant CKBWebApp as E
 entity CKBPlatform as P
 
 activate S
-S -> E: asks for battle rankings
+S -> E: asks for Battle rankings
 activate E
-E -> P: get battle rankings
+E -> P: get Battle rankings
 activate P
-P --> E: list of teams with rankings in battle
+P --> E: list of Teams with rankings in Battle
 deactivate P
 E --> S: show gotten list
 deactivate E
 S -> E: click on "add Score" button
 activate E
-E --> S: show form to add score
+E --> S: show form to add Score
 deactivate E
-S -> E: submit form with score
+S -> E: submit form with Score
 activate E
-E -> P: add score to team in battle
+E -> P: add Score to Team in Battle
 activate P
-P --> E: score added
+P --> E: Score added
 deactivate P
-E --> S: update view with updated score
+E --> S: update view with updated Score
 deactivate E
 deactivate S
 
