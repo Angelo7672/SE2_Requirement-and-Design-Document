@@ -61,8 +61,7 @@ sig Rules{}
 sig Badge{
     educator: one Educator,
     name: one Name,
-    rules: one Rules
-    //description: disj one Description
+    rules: disj one Rules
 }
 
 sig Tournament{
@@ -73,7 +72,7 @@ sig Tournament{
     scores: some TournamentScore
 }
 
-sig RMP{}   //forse si puo togliere
+sig RMP{}
 
 //--------------------------------------------------------------------------------
 
@@ -138,8 +137,9 @@ fun allRmpHandlesFromTournament[t: Tournament]: set RMPHandle{
     {r: RMPHandle | r in t.educators.rmpHandle} + {r: RMPHandle | r in t.teams.students.rmpHandle}
 }
 
+// all tournament repos and rmp handles are in the same rmp 
 fact uniqueRMPinATournament{
-    all to: Tournament | all r :allReposFromTournament[to]| all h :allRmpHandlesFromTournament[to]| r.rmp = h.rmp and one r.rmp
+    all to: Tournament | all r :allReposFromTournament[to]| all h :allRmpHandlesFromTournament[to]| r.rmp = h.rmp
 }
 
 //a RMP repo belongs to only a team
@@ -202,8 +202,8 @@ fact allTeamsHaveATournamentScore{
     all t:Team | one ts:TournamentScore | ts in t.tournamentScore
 }
 
-
-fact allBattleTeamCoupleHaveABattleScore{   //questo non l'ho capito
+//each team in a tournament has a battle score for each battle in the same tournament
+fact allBattleTeamCoupleHaveABattleScore{ 
     all to: Tournament | all t:to.teams | all b:to.battles | one bs:BattleScore| bs in t.battleScore and bs in b.scores
 }
 
@@ -221,9 +221,9 @@ fact noAloneDescriptions{
 }
 
 //a set of rules is a requirement for only one badge
-fact uniqueRules{
-    all disj b1, b2: Badge | b1.rules != b2.rules
-}
+//fact uniqueRules{
+//    all disj b1, b2: Badge | b1.rules != b2.rules
+//}
 
 //there cannot exists a name without a badge or user
 fact noAloneNames{
@@ -283,12 +283,13 @@ check noBattlesHaveSameRepo for 6 //VALID
 
 pred show{
     //#Platform.tournaments = 1
-    #Tournament = 2
-    //#Team = 6
-    //#Battle = 6
-    #Educator = 6
-    //#Student = 3
-    //#Badge > 1
+    #Tournament = 3
+    #Tournament.educators > 1
+    #Team = 6
+    #Battle = 6
+    #Educator = 4
+    #Student = 3
+    #Badge > 1
 }
 
-run show for 6
+run show for 20
