@@ -1,7 +1,7 @@
 @startuml
 
 autonumber
-actor Student as U
+actor Educator as U
 participant First_Firewall as FF
 participant WebServer as WS
 participant Second_Firewall as SF
@@ -11,6 +11,10 @@ entity tournamentManagerInterface as TMI
 participant TournamentManager as TM
 entity logInManagerInterface as LMI
 participant LogInManager as LM
+entity notificationManagerInterface as NMI
+participant NotificationManager as NM
+participant Firewall as F
+participant EmailProvider as EP
 
 activate U
 activate FF
@@ -37,6 +41,20 @@ alt if Tournament joined successful
     activate TM
     TM-->MD: True: Tournament is joined
     deactivate TM
+    deactivate TM
+    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
+    activate NMI
+    NMI-->NM: sendNotification(email, description)
+    deactivate NMI
+    activate NM
+    NM->F: sendEmail
+    deactivate NM
+    activate F
+    F->EP: sendEmail
+    deactivate F
+    activate EP
+    EP-->U: Email <<Tournament joined>>
+    deactivate EP
     MD-->AS: Tournament joined
     AS-->WS: Json(Tournament joined)
     WS-->U: Tournament successfully joined
@@ -44,7 +62,23 @@ else  Tournament already joined or Team does not exists
     LM-->MD: True: the User is logged properly and it is a Student
     MD-->TMI: TournamentManager.joinTournament(email, Team)
     TMI-->TM: joinTournament(email, Team)
+    activate TM
+    TM-->MD: False: Tournament already joined
     deactivate TMI
+    deactivate TM
+    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
+    activate NMI
+    NMI-->NM: sendNotification(email, description)
+    deactivate NMI
+    activate NM
+    NM->F: sendEmail
+    deactivate NM
+    activate F
+    F->EP: sendEmail
+    deactivate F
+    activate EP
+    EP-->U: Email <<Tournament joined>>
+    deactivate EP
     activate TM
     TM-->MD: False: Tournament is already joined/Team doen not exists
     deactivate TM
