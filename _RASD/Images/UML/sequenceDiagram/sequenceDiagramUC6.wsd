@@ -8,33 +8,26 @@ participant CKBWebApp as App
 entity CKBPlaform as Platform
 
 activate Educator
-Educator -> App: clicks on "Add battle" button
+Educator -> App: clicks on "Add Battle" button
 activate App
-App -> Platform: Add battle
+App -> Platform: Add Battle
 activate Platform
 Platform --> App: Battle creation form
 deactivate Platform
 App --> Educator: Battle creation form
 deactivate App
-Educator -> App: submit form filled with name, overview and RMP repo link
+Educator -> App: submit form filled with name, overview, RMP repo link and evaluation modalities
 activate App
-App -> Platform: form filled with name, overview and RMP repo link
+App -> Platform: form filled with name, overview, RMP repo link and evaluation parameters
 activate Platform
-Platform -> Platform: battle registered to tournament
+Platform -> Platform: Battle registered to Tournament
 Platform -> Email: Battle creation confermation
 activate Email
-Platform --> App: return new battle's homepage
+Platform --> App: return new Battle's homepage
 deactivate Platform
 Email -> Educator: Battle creation confermation
 deactivate Email
-App --> Educator: new battle's homepage
+App --> Educator: new Battle's homepage
 deactivate App
-Educator -> App: defines evaluation modalities
-deactivate Educator
-activate App
-App -> Platform: evaluation modalities
-deactivate App
-activate Platform
-Platform -> Platform: sets the evaluation parameter
 
 @enduml

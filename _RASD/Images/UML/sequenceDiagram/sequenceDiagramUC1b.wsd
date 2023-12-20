@@ -32,21 +32,14 @@ Platform --> App: educator sign in page
 deactivate Platform
 App --> Bob: educator sign in page
 deactivate App
-Bob -> App: give name, surname, e-mail
+Bob -> App: give name, surname, password, e-mail
 activate App
-App -> Platform: sign in name, surname, e-mail
+App -> Platform: sign in name, surname, password, password, e-mail
 activate Platform
 
 alt e-mail accepted
-    Platform --> App: create a password
-    deactivate Platform
-    App --> Bob: create a password
-    deactivate App
-    Bob -> App: new password
-    activate App
-    App -> Platform: new password
     activate Platform
-    Platform --> App: password accepted. Confirm registration on email submitted
+    Platform --> App: Credentials accepted. Confirm registration on email submitted
     Platform -> Email: send confirmation email
     deactivate Platform
     activate Email

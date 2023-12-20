@@ -11,7 +11,7 @@ entity CKBPlatform as P
 activate UA
 UA -> A: clicks on "collaborate" button
 activate A
-A -> P: adding an educator
+A -> P: adding an Educator
 activate P
 P --> A: form to fill
 deactivate P
@@ -20,18 +20,18 @@ deactivate A
 UA -> A: submit the form
 deactivate UA
 activate A
-A -> P: sends the email of Educator to invite
+A -> P: sends the Email of Educator to invite
 deactivate A
 activate P
-P -> P: checks email
+P -> P: checks Email
 
-alt if a non valid email is provided
-    P -> E: sends email to inform of a non valid email provided
+alt if a non valid Email is provided
+    P -> E: sends Email to inform of a non valid Email provided
     deactivate P
     activate E
-    E -> UA: receives notification of a non valid email provided
+    E -> UA: receives notification of a non valid Email provided
     deactivate E
-else if a valid email is provided
+else if a valid Email is provided
     P -> E: sends Email to invited Educator
     activate E
     E -> UB: delivers invitiation Email

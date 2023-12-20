@@ -9,17 +9,17 @@ entity CKBPlaform as Platform
 activate Platform
 
 loop on all repositories
-    Platform -> Platform: runs badge tests
+    Platform -> Platform: runs Badge tests
 end
 
-    Platform -> Platform: search for badge receicever
+    Platform -> Platform: search for Badge receiver
 
-loop for each badge assigned:
-    Platform -> Platform: assign badge to user "Alice"
-    Platform -> Email: notification of obtaining the badge
+loop for each Badge assigned:
+    Platform -> Platform: assign Badge to user "Alice"
+    Platform -> Email: notification of obtaining the Badge
     deactivate Platform
     activate Email
-    Email -> Alice: notification of obtaining the badge
+    Email -> Alice: notification of obtaining the Badge
     deactivate Email
 end
 

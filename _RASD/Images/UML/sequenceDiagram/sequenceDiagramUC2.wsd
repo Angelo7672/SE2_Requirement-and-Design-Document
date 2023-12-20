@@ -3,7 +3,6 @@
 autonumber
 
 actor Alice
-participant EmailProvider as Email
 participant CKBWebApp as App
 entity CKBPlaform as Platform
 

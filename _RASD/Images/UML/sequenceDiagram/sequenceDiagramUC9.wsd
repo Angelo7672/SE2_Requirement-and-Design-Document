@@ -20,7 +20,7 @@ alt Team owner of the repository is recognized
     P -> P: inserts Team code inside test environment
     P -> P: runs automatic tests inside environment
     P -> P: update Team's battle score 
-    P -> P: update Team's tournament score
+    P -> P: update Team's Tournament score
 else repository is not associated to any team
 end
 deactivate P

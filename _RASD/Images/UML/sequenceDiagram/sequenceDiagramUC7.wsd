@@ -10,11 +10,11 @@ entity CKBPlatform as P
 activate E
 E -> A: clicks on "Add Badge" button
 activate A
-A -> P: add badge
-P --> A: return badge creation form
-E <-- A: shows badge creation form
+A -> P: add Badge
+P --> A: return Badge creation form
+E <-- A: shows Badge creation form
 deactivate A
-E -> A: submits the filled the form
+E -> A: submits the filled form
 deactivate E
 activate A
 A -> P: sends Badge creation form compiled

@@ -10,33 +10,33 @@ participant CKBWebApp as App
 entity CKBPlaform as Platform
 
 activate Educator
-Educator -> App: click on "Create tournament" button
+Educator -> App: click on "Create Tournament" button
 activate App
-App -> Platform: create tournament
+App -> Platform: create Tournament
 activate Platform
-Platform --> App: tournament creation form
+Platform --> App: Tournament creation form
 deactivate Platform
-App --> Educator: tournament creation form
+App --> Educator: Tournament creation form
 deactivate App
-Educator -> App: submit form filled with tournament's information
+Educator -> App: submit form filled with Tournament's information
 activate App
-App -> Platform: form filled with tournament's information
+App -> Platform: form filled with Tournament's information
 activate Platform
-Platform -> Platform: registers tournament creation
-Platform -> Email: tournament creation confermation
+Platform -> Platform: registers Tournament creation
+Platform -> Email: Tournament creation confermation
 activate Email
-Platform --> App: return new tournament's homepage
+Platform --> App: return new Tournament's homepage
 deactivate Platform
-Email -> Educator: tournament creation confermation
+Email -> Educator: Tournament creation confermation
 deactivate Email
-App --> Educator: new tournament's homepage
+App --> Educator: new Tournament's homepage
 deactivate App
 deactivate Educator
 
 loop to each student subscribed to CKB
-    Platform -> StudentEmail: new tournament available + link
+    Platform -> StudentEmail: new Tournament available + link
     activate StudentEmail
-    StudentEmail -> Student: new tournament available + link
+    StudentEmail -> Student: new Tournament available + link
     deactivate StudentEmail
 end
 

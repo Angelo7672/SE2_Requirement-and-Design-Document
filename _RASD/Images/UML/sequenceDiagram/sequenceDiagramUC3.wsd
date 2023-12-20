@@ -2,9 +2,9 @@
 
 autonumber
 actor Student as S
-participant EmailProvider as E
 participant CKBWebApp as A
 entity CKBPlatform as P
+participant EmailProvider as E
 
 activate S
 S->A: login
@@ -36,9 +36,9 @@ S<---A: Tournament's info displayed
 deactivate A
 
 alt if not interested
-    S->A: clicks again on tournament to hide details
+    S->A: clicks again on Tournament to hide details
     activate A
-    S<---A: hide tournament details
+    S<---A: hide Tournament details
     deactivate A
 else if interested
     S->A: clicks on "Subscribe" button

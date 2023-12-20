@@ -1,43 +1,43 @@
 \subsection{External Interface Requirements}
 
 \subsubsection{User Interfaces}
-In order to access the platform the crucial interface needed by the User is the one provided by a web browser. In fact, it is sufficient to reach the CKB's URL to start with log in or sign up operations, described in the scenarios, or, 
-after authentication, interact with the platform. The platform software, in fact, is a Web App. Instead, to join a Battle a RMP link would be required.
+In order to access the Platform the crucial interface needed by the User is the one provided by a web browser. In fact, it is sufficient to reach the CKB's URL to start with log in or sign up operations, described in the scenarios, or, 
+after authentication, interact with the Platform. The Platform software, in fact, is a Web App. Instead, to join a Battle a RMP link would be required.
 
 \subsubsection{Hardware Interfaces}
 Users have to provide themselves with a device able to access internet. It would be sufficient that it is equipped with a Wi-Fi and/or Ethernet interface. Of course would be crucial that it provides adequate components to allow Users 
-to interact with the platform, showing its interfaces.
+to interact with the Platform, showing its interfaces and collecting inputs.
 
 \subsubsection{Software Interfaces}
-As defined above, a web browser is the only software needed to access the platform. The interfaces that have to be supported are the ones defined by the Web Page rendering. About RMP, the platform software run on the server would be 
+As defined above, a web browser is the only software needed to access the Platform. The interfaces that have to be supported are the ones defined by the Web Page rendering. About RMP, the Platform software run on the server would be 
 equipped with appropriate interfaces to interact with the RMP provided by the Student or the Team in the steps described in previous sections of this document.
 \subsubsection{Communication Interfaces}
-Communication Interfaces needed are the one necessary to access the internet. So for the User, TCP and HTTP interfaces would be crucial to reach the server on which the platform runs, while for the CKB's app it is fundamental to 
-interact with RMP.
+Communication Interfaces needed are the one necessary to access the internet. So for the User, TCP and HTTP interfaces would be crucial to reach the server on which the Platform runs, while for the CKB's app it is fundamental to 
+interact with RMP and with E-mail Provider. For this last comunication the protocol that would be used is the SMTP, as for RMP the same ones described above for Client-Server interaction.
 
 \newpage
 
 \subsection{Functional Requirements}
-Here follows a list of the platform functional requirements:
+Here follows a list of the Platform functional requirements:
 \begin{enumerate}[label= \textbf{R\arabic*}]
-    \item The platform allows Users to sign in to the platform itself either as Student either Educator. \label{req:reqSignin}
-    \item The platform allows Users to log in to the platform. \label{req:reqLogin}
-    \item The platform shows Students the list of available Tournaments. \label{req:reqShowTournaments}
-    \item The platform allows registered Students to search for Tournaments. \label{req:reqSearchForTournament}
-    \item The platform allows registered Students to subscribe to Tournament. \label{req:reqTournamentSubscription}
-    % \item The platform allows registered Students to join a Battle. \label{req:reqJoinBattle}
-    \item The platform allows registered Students to participate to Tournaments as a Team. \label{req:reqCreateTeam}
-    \item The platform allows registered Students to invite other Students to join a Team. \label{req:reqJoinTeam}
-    \item The platform allows registered Educators to create Tournaments. \label{req:reqCreateTournaments}
-    \item The platform allows registered Educators to create Battles in the context of a Tournament. \label{req:reqCreateBattle}
-    \item The platform allows registered Educators to create Badges in the context of a Tournament. \label{req:reqCreateBadge}
-    \item The platform assigns a Battle Score to Teams' work. \label{req:reqEvaluateCode}
-    \item The platform provides a Teams' ranking based on the Tournament Score within a Tournament context. \label{req:reqRankingsUpdate}
-    \item The platform allows registered Educators to add other Educators to a Tournament. \label{req:reqJoinManagement}
-    \item The platform allows Users to search for other Users. \label{req:reqSearchForUsers}
-    \item The platform interacts properly with different RMPs to acquire the latest versions of code uploaded by related Teams. \label{req:reqPullRMP}
-    %\item The platform should be able to manage multiple requests at the same time \label{req:req13}?
-    \item The platform awards Badges to deserving Students \label{req:reqAssignBadge}
+    \item The Platform allows Users to sign in to the Platform, either as Student either as Educator. \label{req:reqSignin}
+    \item The Platform allows Users to log in to the Platform either as Student either as Educator. \label{req:reqLogin}
+    \item The Platform shows Students the list of available Tournaments. \label{req:reqShowTournaments}
+    \item The Platform allows registered Students to search for Tournaments. \label{req:reqSearchForTournament}
+    \item The Platform allows registered Students to subscribe to Tournament. \label{req:reqTournamentSubscription}
+    % \item The Platform allows registered Students to join a Battle. \label{req:reqJoinBattle}
+    \item The Platform allows registered Students to participate to Tournaments as a Team. \label{req:reqCreateTeam}
+    \item The Platform allows registered Students to invite other Students to join a Team. \label{req:reqJoinTeam}
+    \item The Platform allows registered Educators to create Tournaments. \label{req:reqCreateTournaments}
+    \item The Platform allows registered Educators to create Battles in the context of a Tournament. \label{req:reqCreateBattle}
+    \item The Platform allows registered Educators to create Badges in the context of a Tournament. \label{req:reqCreateBadge}
+    \item The Platform assigns a Battle Score to Teams' work. \label{req:reqEvaluateCode}
+    \item The Platform provides a Teams' ranking based on the Tournament Score within a Tournament context. \label{req:reqRankingsUpdate}
+    \item The Platform allows registered Educators to add other Educators to a Tournament. \label{req:reqJoinManagement}
+    \item The Platform allows Users to search for other Users. \label{req:reqSearchForUsers}
+    \item The Platform interacts properly with different RMPs to acquire the latest versions of code uploaded by related Teams. \label{req:reqPullRMP}
+    %\item The Platform should be able to manage multiple requests at the same time \label{req:req13}?
+    \item The Platform awards Badges to deserving Students. \label{req:reqAssignBadge}
 \end{enumerate}
 
 \newpage
@@ -53,7 +53,7 @@ Here follow Use Case tables followed by respective sequence diagrams.
 \input{Files/useCaseTables/useCaseTables}
 
 \subsection{Performance Requirements}
-The platform, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all the same time. 
+The Platform, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all the same time. 
 
 So, in order to satisfy all Requirements defined above, providing a good time response for each task, the Platform should have good time performance. Being a Web App, this implies a high concurrent programming implementation, to 
 manage multiple requests at the same time, and a rapid related Data Storage System. 
@@ -61,7 +61,7 @@ manage multiple requests at the same time, and a rapid related Data Storage Syst
 \subsection{Design Constraints}
 
 \subsubsection{Standard Compliance}
-First of all, the platform has to respect privacy standards, such as GDPR for EU countries or similar regulations, in order to protect personal information provided by Users when they sign in, their code and identity across the Web App.
+First of all, the Platform has to respect privacy standards, such as GDPR for EU countries or similar regulations, in order to protect personal information provided by Users when they sign in, their code and identity across the Web App.
 
 It is also important to respect internet protocols standards and their rules, in order to make the app run and communicate properly. Other standards are related to UI accessibility features and servers' power consumption. 
 
@@ -69,42 +69,42 @@ It is also important to respect internet protocols standards and their rules, in
 Hardware limitations in the RASD context are referred to User's machine capabilities and server's limits. 
 
 In fact, the devices used by both Students and Educators are constrained by memory capacity, CPU capabilities and GPU computational power. The first is essential to memorize the file to upload in RMP, run the software to access internet
- and to manage the Web App data itself. The second is fundamental to run the connection tasks and the site, receiving and elaborating inputs for the User and CKB's responses. Finally, GPU is essential to render the platform UI.\\
+ and to manage the Web App data itself. The second is fundamental to run the connection tasks and the site, receiving and elaborating inputs for the User and CKB's responses. Finally, GPU is essential to render the Platform UI.\\
 \\
  On server side, instead, is important for our App to have an organized storage to preserve all necessary data and enough computational power in our CPUs to manage multiple requests for each machine that composes CKB's server. 
  
 In fact, to satisfy all possible inputs from all possible Users, formulating for each one a response, and meet requirements, is critical to have a multiple machine architecture on our servers. 
 
-To complete, a multiple internet connection ports is fundamental, to make the platform available on the internet and make it capable of communicate with Users and RMPs.
+To complete, a multiple internet connection ports is fundamental, to make the Platform available on the internet and make it capable of communicate with Users and RMPs.
 
 \subsection{Software System Attributes}
 
 \subsubsection{Reliability}
-The platform described in this document should be an always available Web App. 
+The Platform described in this document should be an always available Web App. 
 
 Downtimes are meant to be as less as possible, and the overall system, in order to prevent evaluation, ranking, registration, search problems, should be designed with robustness in mind and with built-in mechanisms to manage situations 
-that could compromise information, materials and commands assigned to the platform. All of this performed transparently to the Users as much as possible.
+that could compromise information, materials and commands assigned to the Platform. All of this performed transparently to the Users as much as possible.
 
 \subsubsection{Availability}
-The platform should be able as much as possible, 24/7, 365 days per year. 
+The Platform should be able as much as possible, 24/7, 365 days per year. 
 
 The minimum availability rate should be 99\%. An inferior percentage could compromise educational activities potentially damaging Students.
 
 \subsubsection{Security}
 Both Users' devices and servers communications must always take place only via encrypted channels, using appropriate cryptographic protocols such as SSL. 
 
-All operations and contributions to the platform, except automated tasks performed on server side communicating with RMP, must be always explicitly approved by the Users.
+All operations and contributions to the Platform, except automated tasks performed on server side communicating with RMP, must be always explicitly approved by the Users.
 
 \subsubsection{Maintainability}
-In order to extend as much as possible the platform's life cycle it should be designed with modularity in mind. 
+In order to extend as much as possible the Platform's life cycle it should be designed with modularity in mind. 
 
 This approach will guarantee the interchanging of old modules to update or to substitute, possibly maintaining the same interfaces and core functionalities, at minimum cost.
 
 \subsubsection{Portability}
-The platform intended to be build would be used independently by the OS provided with the machine. 
+The Platform intended to be build would be used independently by the OS provided with the machine. 
 
 In fact CKB can be accessed simply using just a web browser, on which compatibility the developers should concentrate.\\ 
 \\
 On User side, it would be sufficient to guarantee portability to build the Web App using common internet standards and protocols to make it usable on any web browser.\\
 \\
-About RPM portability, the platform should be provided with the right interfaces and modules to communicate with the largest amount of RMPs available, in order to acquire and run code evaluating it.
+About RPM portability, the Platform should be provided with the right interfaces and modules to communicate with the largest amount of RMPs available, in order to acquire and run code evaluating it.
