@@ -221,18 +221,11 @@ fact tournamentScoreIsSumOfBattleScores{
 
 //there cannot exists a set of rules without a badge connected
 fact noAloneDescriptions{
-    //some b:Badge | all d:Description | d in b.description
     all r: Rules | r in Badge.rules
 }
 
-//a set of rules is a requirement for only one badge
-//fact uniqueRules{
-//    all disj b1, b2: Badge | b1.rules != b2.rules
-//}
-
 //there cannot exists a name without a badge or user
 fact noAloneNames{
-    //some b:Badge | some u:User | all n:Name | (n in b.name) or (n in u.name)
     all n: Name | (n in User.name) or (n in Badge.name)
 }
 
