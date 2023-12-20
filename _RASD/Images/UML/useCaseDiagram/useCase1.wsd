@@ -1,5 +1,5 @@
 @startuml
-skinparam linetype polyline
+'skinparam linetype polyline
 left to right direction
 
 :User: <<Human>>
