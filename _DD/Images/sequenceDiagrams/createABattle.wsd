@@ -7,6 +7,8 @@ participant WebServer as WS
 participant Second_Firewall as SF
 participant Application_Server as AS
 participant Microservices_Dispatcher as MD
+entity tournamentManagerInterface as TMI
+participant TournamentManager as TM
 participant BattleManager as BM
 entity logInManagerInterface as LMI
 participant LogInManager as LM
@@ -20,7 +22,7 @@ activate FF
 activate WS
 activate SF
 activate AS
-U-->FF: createABattle(Json(Name, overview, RMP, evaluationMode, email))
+U-->FF: createABattle(Json(Name, overview, RMP, evaluationMode, email, tournamentName))
 FF-->WS: analizer(socket, Json): Json
 WS-->SF: verifyLoggedClient(socket)
 SF-->AS: analizer(socket, Json): Json
@@ -28,15 +30,22 @@ AS-->MD: parser(Json): response
 activate MD
 MD-->LMI: logInManager.isLogged(email)
 activate LMI
-activate LM
 LMI-->LM: isLogged(email)
 deactivate LMI
+activate LM
 alt if Battle is created
     LM-->MD: True: the User is logged properly and he/she is an Educator
-    MD-->BM: MicroserviceDispatcher.createBattle(Name,overview, RMP, evaluationMode, email)
+    MD-->TMI: MicroserviceDispatcher.addBattle(Name,overview, RMP, evaluationMode, email)
+    activate TMI
+    TMI-->TM: addBattle(Name,overview, RMP, evaluationMode, email)
+    deactivate TMI
+    activate TM
+    TD-->BM: MicroserviceDispatcher.createBattle(Name,overview, RMP, evaluationMode, email)
     activate BM
-    BM-->MD: True: Battle is created
+    BM-->TM: True: Battle is created
     deactivate BM
+    TM-->MD: True: Battle is created
+    deactivate TM
     MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
     activate NMI
     NMI-->NM: sendNotification(email, description)
@@ -71,6 +80,7 @@ else User is not an Educator or is not logged
     MD-->AS: Battle NOT created, User NOT logged properly 
     deactivate MD
     AS-->WS: Json(Battle NOT created)
+    deactivate AS
     WS-->U: Battle NOT created
 end
 deactivate U

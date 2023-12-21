@@ -2,17 +2,17 @@
 \newcommand{\showCode}[2]{
     \lstinputlisting[language=Alloy, firstline=#1, lastline=#2]{Files/alloy/alloy.als}
 }
-\subsection*{Introduction to the section}
+%\subsection*{Introduction to the section}
 %% TODOO - CHECK OPRTHOGRAPHYYY
-In this section we provide the Alloy model of the Platform. This model is useful to check the consistency of the system and to verify that the requirements are satisfied. Given the limitations of the modelling language, this model represents statically the Platform and users, showing their relationships and the constraints that they must satisfy. The state of the system that is represented is the one at which all represented torunaments have reached the state of "STARTED" or "CLOSED", so where tournament badges can be assigned, teams got their code evaluated and the tournament score has been computed. For reducing the complexity some details about battles and torunamets have been omitted (like subscription deadline, programming language and duration) since the focal point of view of this model is evaluating how the main entities of the Platform, adding also the RMP, relate between each other in the perspective of the tournament, battle and code.\\
+In this section we provide the Alloy model of the Platform. This model is useful to check the consistency of the system and to verify that the requirements are satisfied. Given the limitations of the modelling language, this model represents statically the Platform and Users, showing their relationships and the constraints that they must satisfy. The state of the system that is represented is the one at which all represented Tournaments have reached the state of "STARTED" or "CLOSED", so where Tournament Badges can be assigned, Teams got their code evaluated, and the Tournament score has been computed. For reducing the complexity some details about Battles and Tournaments have been omitted (like subscription deadline, programming language and duration) since the focal point of view of this model is evaluating how the main entities of the Platform, adding also the RMP, relate between each other in the perspective of the Tournament, Battle and code.\\
 As for how is structured an Alloy model, firstly will be shown the signatures, then the facts, assertions (followed by check results) and predicates (followed by model found).
 
 \subsection{Signatures}
 \showCode{4}{76}
 \subsection{Facts}
-\showCode{82}{236}
+\showCode{82}{238}
 \subsection{Assertions}
-\showCode{244}{276}
+\showCode{246}{278}
 Here the assertion results:
 \begin{lstlisting}[basicstyle=\footnotesize]
 
@@ -56,20 +56,22 @@ No counterexample found. Assertion may be valid. 14ms.
 \end{lstlisting}
 \clearpage
 \subsection{Predicates}
-The predicates here are used to represent the syste in different states to highlight diffferent aspects of it's behavior.
-\subsubsection{World1}
+The predicates here are used to represent the system in different states to highlight different aspects of its behavior.
+\subsubsection{World 1} 
 This is a simple world, where all entities are present once. The scope of this world is to show relationships between entities.
-\showCode{283}{298}
+\showCode{285}{300}
 \useImgWithCaption{Images/PNG/World1.png}{.8}{0.5}{Alloy predicate World 1}
 \clearpage
-\subsubsection{World2}
-This is a complex world, where only one tournament is considered. The scope of this world is to see how the model behaves with more entities. 
-\showCode{301}{313}
+\subsubsection{World 2}
+This is a complex world, where only one Tournament is considered. The scope of this world is to see how the model behaves with more entities. 
+\showCode{303}{315}
 Since the graph representation becomes very large, here is presented the table representation of the world.
+\tableEntry{World 2 execution output}
 \lstinputlisting[basicstyle=\tiny]{Files/alloy/world2_ascii.txt}
 \clearpage
-\subsubsection{World3}
-This is an even more complex world, where more tournaments are considered. The scope of this world is similar to the one of World 2, but with more tournaments;
-\showCode{316}{325}
+\subsubsection{World 3}
+This is an even more complex world, where more Tournaments are considered. The scope of this world is similar to the one of World 2, but with more Tournaments;
+\showCode{318}{327}
 For the same reason as before, here is presented the table representation.
+\tableEntry{World 3 execution output}
 \lstinputlisting[basicstyle=\tiny]{Files/alloy/world3_ascii.txt}
