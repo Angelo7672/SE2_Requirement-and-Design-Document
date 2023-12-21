@@ -1,6 +1,6 @@
 \paragraph{UC1 - User signs in to the Platform} \label{uc:uc1} 
 \begin{center}
-    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline} 
         Name & User signs in to the Platform \\
         Actors & User \\ 
         Entry Condition & User has a valid e-mail address and valid RMP handle\\ 
@@ -17,13 +17,14 @@
         Exception & User provides an Email already in use.\\
         \specialReqLabel & - \\ 
     \end{tabu}
+    \tableEntryByLabel{uc:uc1}
 \end{center} 
 "\nameref*{uc:uc1}" is a generalization of:\\
 "\nameref{uc:uc1a}" and \\ "\nameref{uc:uc1b}".
 \clearpage
 \paragraph*{UC1a - Student signs in to the Platform} \label{uc:uc1a} 
 \begin{center}
-    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
+    \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline} 
         Name & Student signs in to the Platform \\ 
         Actors & Student \\ 
         Entry Condition & Same as \nameref{uc:uc1} \\ 
@@ -34,6 +35,7 @@
         Exception & Same as \nameref{uc:uc1}\\
         \specialReqLabel & Same as \nameref{uc:uc1}\\ 
     \end{tabu}
+    \tableEntryByLabel{uc:uc1a}
 \end{center}
 \useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1a.svg}{1.0}{1.0}{UC1, UC1a, Sequence Diagram - Student signs in to the Platform}
 \clearpage
@@ -51,6 +53,7 @@
         Exception & Same as \nameref{uc:uc1}\\
         \specialReqLabel & Same as \nameref{uc:uc1}\\ 
     \end{tabu}
+    \tableEntryByLabel{uc:uc1b}
 \end{center}
 
 \useSvgWithCaption{./Images/UML/sequenceDiagram/sequenceDiagramUC1b.svg}{1.0}{1.0}{UC1, UC1b Sequence Diagram - Educator signs in to the Platform}

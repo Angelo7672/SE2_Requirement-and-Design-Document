@@ -1,0 +1,10 @@
+\newcommand{\tableEntry}[1]{
+    \addtocounter{table}{1}
+    \addcontentsline{lot}{table}{\protect\numberline{\thetable}Table: #1}
+}
+
+\newcommand{\tableEntryByLabel}[1]{
+    %\addtocounter{table}{1}
+    %\addcontentsline{lot}{table}{\protect\numberline{\thetable}Table \nameref*{#1}}
+    \tableEntry{\nameref*{#1}}
+}
