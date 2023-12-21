@@ -38,30 +38,37 @@ CKB is thought to be implemented as a Three Layer Architecture:
 %TIER
 CKB, once realized, would be a Four Tier Application:
 \begin{enumerate}
-    \item \textbf{Client:} This Tier is encharged of acquiring inputs from Users, both Educators and Students, reporting their commands into the system.
-    \item \textbf{Web Server:} It counts components deputed to establish a secure connection among all main actors, so Application Server and Clients. Web Server is equipped with appropiate firewalls and DeMilitarized Zone (DMZ) to guaratee Application Server's security and Data Integrity.
-    \item \textbf{Application Server:} It hosts components that constitutes the actual Platform, modules that implement main requirements and goals defined in RASD. This Tier can be described as the Model of the App, realized via Microservices Architecture, coordinated by a dispatcher.
-    \item \textbf{DBMS Server:} DBMS is responsable for Data security, integrity and preservation. It will dispence them on appropriate modules'requests based on their permissions on that specific information. 
+    \item \textbf{Client:} The task assigned to this Tier is to gather input from users—both Educators and Students—and report their instructions into the system. It functions as a GUI.
+    \item \textbf{Web Server:} It counts the parts assigned to create a secure connection between the Application Server and the Clients, which are the major actors. Web Server is outfitted with 
+    suitable firewalls and a Demilitarized Zone (DMZ) to ensure the security and integrity of Application Server data.
+    \item \textbf{Application Server:} It houses the elements that make up the Platform itself, the modules that carry out the primary needs and objectives outlined in RASD. This Tier can be 
+    defined as the application Model, realized through a dispatcher-coordinated Microservices Architecture.
+    \item \textbf{DBMS Server:} Data security, integrity, and preservation are the purview of DBMS. It will provide them with the relevant modules' requests according to their authorization for that particular data. 
 \end{enumerate}
 \useSvgWithCaption{./Images/overviewDiagrams/4TierArchitecture.svg}{0.8}{0.8}{Four Tier Application}
+
 \subsection{Component View}
-CKB's Application Layer is based on Microservices, that consitutes components in the system's architeture.
-Which are:
+CKB's Application Layer is based on Microservices, that constitutes components in the system's architecture.
 \begin{enumerate}
-    \item \textbf{SignInManager} It is the manager encharged of allow Users to sign in into the Platform or sign out, throught proper interface.
-    \item \textbf{LogInManager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used by the User to log in and by other components to verify if a existing User is, in fact, logged in. Finally the interface allows to log out too.
-    \item \textbf{RMPManager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager witch acceses pullRequests Interface.
-    \item \textbf{NotificationManager} This component manages particular notifications to be sent to Users, comunicating with E-mail provider, which performs as a Server for this module. Requests are sent on other components' indications, which are expressed throught sendNotification Interface.
-    \item \textbf{EvaluationManager} It is encharged of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
-    \item \textbf{BadgeManager} Allows Educators to create a Badge with corresponding parameters anche criterias. Moreover it assigns Badges to Students who can be awarded.
-    \item \textbf{BattleManager} This component, verified the identity of the User which accesses it, is responsable for invitations of other Students and traking Battle's points thought proper interface. Finally the component allows Students to join the Battle.
-    \item \textbf{TournamentManager} It will be used by Educators to create a Tournament and to invite other Educators to join it, throught provided interface. Furthermore this component exposes Tournament's information and repo to clone, updates ranking and allows Teams to participate.
-    \item \textbf{AccountManager} It is encharged of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
-    \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data in a proper way from results got by DBMS and makes them availble via its interface.
+    \item \textbf{SignInManager} It is the manager in charge of allow Users to sign in into the Platform or sign out, through proper interface.
+    \item \textbf{LogInManager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used by the User to log in 
+    and by other components to verify if an existing User is, in fact, logged in. Finally, the interface allows logging out too.
+    \item \textbf{RMPManager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access pullRequests Interface.
+    \item \textbf{NotificationManager} This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
+    components' indications, which are expressed through sendNotification Interface.
+    \item \textbf{EvaluationManager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
+    \item \textbf{BadgeManager} Allows Educators to create a Badge with corresponding parameters and criteria. Moreover, it assigns Badges to Students who can be awarded.
+    \item \textbf{BattleManager} This component, which authenticates the user gaining access, is in charge of sending out invites to other students and obtaining the battle score via an appropriate interface. It also 
+    includes the RMP repository link for cloning. Ultimately, the component enables Students to participate in the Battle.
+    \item \textbf{TournamentManager} Educators will use the given interface to create a Tournament and invite other Educators to participate. This component also permits Teams to compete, maintains the ranking, and makes
+    Tournament information available.
+    \item \textbf{AccountManager} It is in charge of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
+    \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
 \end{enumerate}
+
 \subsection{Deployment View}
 %TIER
-CKB, as specified before, once deployed will count a Four Tiers Architeture that reflects and expands the three layers, that logically composes CKB.
+CKB, as specified before, once deployed will count a Four Tiers Architecture that reflects and expands the three layers, that logically composes CKB.
 In fact the actual implementation will require more components to manage communication with Users and Platform and to interact with Data modules.
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Client:} Users input data into the Client, which displays responses from the Server and enables Users to navigate and interact with the Platform. In fact this Tier has its corresponding logical layer in the presentation one. 
@@ -69,13 +76,13 @@ In fact the actual implementation will require more components to manage communi
     The appropriate Student and Educator variants make up the User visualizing interface, representing, as specified before, the actual presentation layer; differences between them 
     are only at this architectural level unimportant to the operation of the system.
     \item \textbf{Web Server:} The primary entry point to the Platform is through the Web Server. It takes into account the interfaces that provide system access, the firewalls, the DMZ, and the module assigned to communicate with 
-    clients. In particular input from Clients, once achieved the Server, enter into the DMZ and as first step pass thought a first firewall that analizes them to verify the provinience of the same. If it is granted them access, Web Server registers Client that sended it, parsing the content of the request, evaluating in addition their correctness. 
-    Furthermore Web Server it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Web Server and Application Server are divided by a second firewall which role is to avoid undesidered access to the actual model. Between Students, Educators, 
-    and CKB, this Tier serves as a bridge. Web Server constitues part of the implementation of the Application Layer.
+    clients. In particular input from Clients, once achieved the Server, enter into the DMZ and as first step pass thought a first firewall that analyzes them to verify the provenience of the same. If it is granted them access, Web Server registers Client that sent it, parsing the content of the request, evaluating in addition their correctness. 
+    Furthermore, Web Server it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Web Server and Application Server are divided by a second firewall which role is to avoid undesired access to the actual model. Between Students, Educators, 
+    and CKB, this Tier serves as a bridge. Web Server constitutes part of the implementation of the Application Layer.
     \item \textbf{Application Server:} The Platform, with its essential features, is the Application Server. It is constructed using a Microservices Architecture, which is made up of lone software modules that oversee a single 
-    "service", or collection of tasks associated with a particular subject. Each module that performs a Microservice is better explained and analized in the previous and following section of this document. After parsing the requests, a dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
+    "service", or collection of tasks associated with a particular subject. Each module that performs a Microservice is better explained and analyzed in the previous and following section of this document. After parsing the requests, a dispatcher module that routes client requests to the appropriate service comes before the structure. Managing the interactions of several Users at once 
     will be possible with a proper distribution of the Application Server across Microservices. A firewall delimits this Tier with the DMZ as described above, a second one separates the App with Email-Provider and RMP and a third defines the boarder with DMBS.
-    This last one avoids intrutions and damage into DBMS, while the fist two are deputed to protect Application Tier from external attacks or bad requests. Finally this Server constitutes the remaing implementation of the Application Layer.
+    This last one avoids intrusions and damage into DBMS, while the fist two are deputed to protect Application Tier from external attacks or bad requests. Finally, this Server constitutes the reaming implementation of the Application Layer.
     \item \textbf{DBMS Server:} CKB keeps track of both User data and Platform operational data, such as Battle and Tournament records. DBMS is responsible for managing, securing, and storing the data. It permits access to 
     Microservices that need it, and it updates it as needed in compliance with regulations. This Tier is the actual implementation of logic Data Layer and it is protected by a Firewall that filters requests and operations from Application Server. 
 \end{enumerate}
