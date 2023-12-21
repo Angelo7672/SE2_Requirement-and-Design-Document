@@ -130,10 +130,12 @@ fact TeamIsPartOfOneTournament{
     all t: Team | one to: Tournament | t in to.teams
 }
 
+//get all RMP repos present in the context of a tournament, the team ones and Battle ones
 fun allReposFromTournament[t: Tournament]: set RMPRepo{
     {r: RMPRepo | r in t.battles.repo} + {r: RMPRepo | r in t.teams.repos}
 }
 
+//get all RMP handles present in the context of a tournament, the student ones and educator ones
 fun allRmpHandlesFromTournament[t: Tournament]: set RMPHandle{
     {r: RMPHandle | r in t.educators.rmpHandle} + {r: RMPHandle | r in t.teams.students.rmpHandle}
 }
