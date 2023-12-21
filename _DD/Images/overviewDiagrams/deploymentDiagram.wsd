@@ -1,0 +1,40 @@
+@startuml
+node Client <<Device>> #Yellow{
+    node OS <<ExecutionEnvironment>> #LightBlue{
+        artifact "Web Browser" as w <<Executable>>
+    }
+}
+
+node "Web Server" <<Device>> #LightCoral{
+    node Linux <<ExecutionEnvironment>> #LightBlue{
+        artifact "Web Server Module" as w1 <<Executable>>
+    }
+}
+
+node "Application Server" <<Device>> #LightGreen{
+    node Linux as l <<ExecutionEnvironment>> #LightBlue{
+        artifact "CKB Services" as s <<Executable>>
+    }
+}
+
+node "DBMS Server" <<Device>> #Pink{
+    node OS as o <<ExecutionEnvironment>> #LightBlue{
+        database "Database" as d <<DatabaseSystem>>{
+
+        }
+    }
+}
+
+node Firewall as f1 <<Device>> #Orange
+node Firewall as f2 <<Device>> #Orange
+node Firewall as f3 <<Device>> #Orange
+
+w -- f1
+f1 - w1
+w1 - f2
+f2 - s
+s - f3
+f3 - d
+
+
+@enduml
