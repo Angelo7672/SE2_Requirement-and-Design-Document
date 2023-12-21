@@ -140,5 +140,8 @@
 \input{util/svg_wrapper.tex}
 \input{util/table_rerefences.tex}
 
+% patch reference title
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 
 \date{}
