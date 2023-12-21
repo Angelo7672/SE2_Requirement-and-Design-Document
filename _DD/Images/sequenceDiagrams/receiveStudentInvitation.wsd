@@ -1,0 +1,58 @@
+@startuml
+
+autonumber
+actor Invited_Student as U
+participant First_Firewall as FF
+participant WebServer as WS
+participant Second_Firewall as SF
+participant Application_Server as AS
+participant Microservices_Dispatcher as MD
+entity logInManagerInterface as LMI
+participant LogInManager as LM
+entity searchManagerInterface as SMI
+participant searchManager as SM
+entity tourmanetManagerInterface as TMI
+participant TournamentManager as TM
+participant EmailProvider as EP
+
+activate U
+activate FF
+activate WS
+activate SF
+activate AS
+EP --> U: Email: Invitation to collaborate
+alt Invited Student accepts invitation
+    note left
+        If Invited Student
+        declines nothing happens
+    end note
+    U --> FF: Json(joinStudentTournament(email, teamName, tournamentName))
+    WS-->SF: verifyLoggedClient(socket)
+    SF-->AS: analizer(socket, Json): Json
+    AS-->MD: parser(Json): response
+    activate MD
+    MD-->LMI: logInManager.isLogged(myemail)
+    activate LMI
+    LMI-->LM: isLogged(myemail) 
+    note right
+        if Student is not logged it will be required log in procedure
+    end note
+    deactivate LMI
+    activate LM
+    LM-->MD: True: the User is logged properly and it is a Student
+    deactivate LM
+    activate SMI
+    MD-->SMI: Microdispatcher.searchTournament(tournamentName)
+    SMI-->SM: searchTournament(tournamentName)
+    deactivate SMI
+    activate SM
+    SM --> MD: TournamentManager
+    deactivate SM
+    MD --> TMI: MicroserviceDispatcher.TouranmentManager.joinStudentTournament(email, teamName)
+    activate TMI
+    TMI --> TM: joinStudentTournament(email, teamName)
+    activate TM
+    TM --> MD: True: Student joined successfully
+    deactivate TM  
+end
+@enduml
