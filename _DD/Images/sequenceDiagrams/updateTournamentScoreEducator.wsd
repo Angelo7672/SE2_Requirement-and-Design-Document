@@ -1,0 +1,68 @@
+@startuml
+
+autonumber
+
+actor Educator as U
+participant First_Firewall as FF
+participant WebServer as WS
+participant Second_Firewall as SF
+participant Application_Server as AS
+participant Microservices_Dispatcher as MD
+entity logInManagerInterface as LMI
+participant LogInManager as LM
+entity searchManagerInterface as SMI
+participant searchManager as SM
+entity tournamentManagerInterface as TMI
+participant TournamentManager as TM
+
+
+activate U
+activate FF
+activate WS
+activate SF
+activate AS
+U --> FF: Json(evaluateCode(tournamentName, teamName, score))
+FF-->WS: analizer(socket, Json): Json
+WS-->SF: verifyLoggedClient(socket)
+SF-->AS: analizer(socket, Json): Json
+AS-->MD: parser(Json): response
+activate MD
+MD-->LMI: logInManager.isLogged(myemail)
+activate LMI
+LMI-->LM: isLogged(myemail)
+alt User logged is an Educator
+    deactivate LMI
+    activate LM
+    LM-->MD: True: Student is properly logged
+    MD-->SMI: MicroservicesDispatcher.searchTournament(tournamentName)
+    activate SMI
+    SMI-->SM:searchTournament(tournamentName)
+    deactivate SMI
+    activate SM
+    SM-->MD: TournamentManager
+    deactivate SM
+    MD-->TMI: MicroservicesDispatcher.updateTournamentScore(teamName, score)
+    activate TMI
+    MD-->TMI: MicroservicesDispatcher.updateTournamentScore(teamName, score)
+    TMI-->TM: updateTournamentScore(teamName, score)
+    MD-->TMI: MicroservicesDispatcher.getTournamentInfos()
+    TMI-->TM: getTournamentInfos()
+    activate TM
+    TM-->MD: TournamentInfos
+    deactivate TM
+    deactivate TMI
+    MD-->AS: Json(TournamentInfos)
+    deactivate MD
+    AS-->WS: Json(TournamentInfos)
+    WS-->U: Tournament Infos updated
+else User is not an Educator or is not logged
+    LM-->MD: False: the User is not logged properly or he/she is not an Educator
+    deactivate LM
+    MD-->AS: Tournament NOT created, User NOT logged properly 
+    deactivate MD
+    AS-->WS: Json(NO Educator logged)
+    WS-->U: NO Educator logged
+
+end 
+
+@enduml
