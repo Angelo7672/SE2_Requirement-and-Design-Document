@@ -1,0 +1,7 @@
+@startuml
+
+component "Web Server" <<subsystem>> #LightBlue{
+    component "Web Server Module"
+}
+
+@enduml

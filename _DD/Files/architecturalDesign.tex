@@ -47,8 +47,28 @@ CKB, once realized, would be a Four Tier Application:
 \end{enumerate}
 \useSvgWithCaption{./Images/overviewDiagrams/4TierArchitecture.svg}{0.8}{0.8}{Four Tier Application}
 
+\newpage
+
 \subsection{Component View}
+\subsubsection{Microservices Architecture}
 CKB's Application Layer is based on Microservices, that constitutes components in the system's architecture.
+\useSvgWithCaption{./Images/componentDiagrams/microserviceArchitecture.svg}{0.88}{0.88}{Microservices Architecture}
+\newpage
+\subsubsection{Component Diagrams}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagram.svg}{1.0}{1.0}{Component Diagram}
+\newpage
+
+\paragraph{Client}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramClient.svg}{1.0}{1.0}{Client Component Diagram}
+\newpage
+
+\paragraph{Web Server}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{1.0}{1.0}{Web Server Component Diagram}
+
+\newpage
+
+\paragraph{Application Server}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{1.0}{1.0}{Application Server Component Diagram}
 \begin{enumerate}
     \item \textbf{SignInManager} It is the manager in charge of allow Users to sign in into the Platform or sign out, through proper interface.
     \item \textbf{LogInManager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used by the User to log in 
@@ -66,7 +86,16 @@ CKB's Application Layer is based on Microservices, that constitutes components i
     \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
 \end{enumerate}
 
+\newpage
+
+\paragraph{DBMS Server}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{1.0}{1.0}{Client Component Diagram}
+
+\newpage
+
 \subsection{Deployment View}
+\useSvgWithCaption{./Images/deploymentDiagram/deploymentDiagram.svg}{1.0}{1.0}{Deployment Diagram}
+
 %TIER
 CKB, as specified before, once deployed will count a Four Tiers Architecture that reflects and expands the three layers, that logically composes CKB.
 In fact the actual implementation will require more components to manage communication with Users and Platform and to interact with Data modules.

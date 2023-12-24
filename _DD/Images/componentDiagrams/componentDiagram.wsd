@@ -1,0 +1,35 @@
+@startuml
+
+component Client <<subsystem>> #Red{
+    component WebBrowser
+}
+
+package "CKB Server"{
+    component "Web Server" <<subsystem>> #LightBlue{
+        component "Web Server Module"
+    }
+
+    component "Application Server" <<subsystem>> #LightGreen{
+        component SignInManager
+        component LogInManager
+        component RMPManager
+        component NotificationManager
+        component EvaluationManager
+        component BadgeManager
+        component BattleManager
+        component TournamentManager
+        component AccountManager
+        component SearchManager
+    }
+
+    component "DBMS Server" <<subsystem>> #Violet{
+        component DBMS
+    }
+}
+
+component "External Services" #Cyan{
+    component RMP
+    component "Email Provider"
+}
+
+@enduml

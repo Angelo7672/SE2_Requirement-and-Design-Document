@@ -1,4 +1,4 @@
-@startuml ClientServerParadigm
+@startuml
 !include <tupadr3/common>
 
 !define ICONURL https://raw.githubusercontent.com/Roemer/plantuml-office/master/office2014

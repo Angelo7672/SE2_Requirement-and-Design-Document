@@ -1,0 +1,7 @@
+@startuml
+
+component Client <<subsystem>> #Red{
+    component WebBrowser
+}
+
+@enduml

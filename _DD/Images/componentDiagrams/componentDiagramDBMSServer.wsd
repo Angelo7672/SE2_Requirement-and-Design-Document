@@ -1,0 +1,7 @@
+@startuml
+
+component "DBMS Server" <<subsystem>> #Violet{
+    component DBMS
+}
+
+@enduml

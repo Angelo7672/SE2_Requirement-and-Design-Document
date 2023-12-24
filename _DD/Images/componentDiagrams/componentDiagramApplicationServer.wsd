@@ -1,0 +1,16 @@
+@startuml
+
+component "Application Server" <<subsystem>> #LightGreen{
+    component SignInManager
+    component LogInManager
+    component RMPManager
+    component NotificationManager
+    component EvaluationManager
+    component BadgeManager
+    component BattleManager
+    component TournamentManager
+    component AccountManager
+    component SearchManager
+}
+
+@enduml
