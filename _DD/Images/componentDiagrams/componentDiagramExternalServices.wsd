@@ -1,0 +1,4 @@
+component "External Services" #Cyan{
+    component RMP
+    component "Email Provider"
+}

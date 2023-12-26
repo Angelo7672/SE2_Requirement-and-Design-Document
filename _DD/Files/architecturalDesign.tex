@@ -59,12 +59,15 @@ CKB's Application Layer is based on Microservices, that constitutes components i
 \newpage
 
 \paragraph{Client}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramClient.svg}{1.0}{1.0}{Client Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramClient.svg}{0.5}{0.5}{Client Component Diagram}
+In this representation the Client contains only the Web Browser module.
+A Web Browser it is needed to connect the Client to the CKB Server through the Network. The Web Browser it is also able to manage the graphical elements sent to the client by the Server, and them will be used by the User's GUI.
 \newpage
 
 \paragraph{Web Server}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{1.0}{1.0}{Web Server Component Diagram}
-
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{0.5}{0.5}{Web Server Component Diagram}
+The role of the web server is to forward browser requests to the application server and return the application server's responses. You have to think that the Web Server is in the DMZ for this reason it has only to route the request
+from and to the Network.
 \newpage
 
 \paragraph{Application Server}
@@ -85,12 +88,16 @@ CKB's Application Layer is based on Microservices, that constitutes components i
     \item \textbf{AccountManager} It is in charge of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
     \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
 \end{enumerate}
-
 \newpage
 
 \paragraph{DBMS Server}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{1.0}{1.0}{Client Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.5}{0.5}{Client Component Diagram}
+The role of the DBMS server is to store and always make available all the data of the Platform. In the data are included Users, Tournaments and Battles information.
+\newpage
 
+\paragraph{External Services}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramExternalServices.svg}{0.5}{0.5}{External Services Component Diagram}
+The role of the External Services is to provide the Platform with the functionalities that it needs to work properly. In particular, the E-mail Provider is used to send notifications to Users, while the RMP is used to perform pull requests.            
 \newpage
 
 \subsection{Deployment View}
@@ -116,24 +123,95 @@ In fact the actual implementation will require more components to manage communi
     Microservices that need it, and it updates it as needed in compliance with regulations. This Tier is the actual implementation of logic Data Layer and it is protected by a Firewall that filters requests and operations from Application Server. 
 \end{enumerate}
 
+\subsection{Runtime View}
+\subsubsection{Sign in}
+\useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.0}{1.0}{Sign In Sequence Diagram}
+
+\newpage
+\subsubsection{Log in}
+\useSvgWithCaption{./Images/sequenceDiagrams/logIn.svg}{1.0}{1.0}{Log In Sequence Diagram}
+
+\newpage
+\subsubsection{Join a Tournament}
+\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.0}{1.0}{Join a Tournament Sequence Diagram}
+
+\newpage
+\subsubsection{Invite Educator}
+\useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.0}{1.0}{Invite an Educator Sequence Diagram}
+
+\newpage
+\subsubsection{Invite Student}
+\useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.0}{1.0}{Invite a Student Sequence Diagram}
+
+\newpage
+\subsubsection{Receive Educator Invitation}
+\useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.0}{1.0}{Receive an Educator invitation Sequence Diagram}
+
+\newpage
+\subsubsection{Receive Student Invitation}
+\useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.0}{1.0}{Receive a Student Sequence Diagram}
+
+\newpage
+\subsubsection{Create a Tournament}
+\useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.0}{1.0}{Create a Tournament Sequence Diagram}
+
+\newpage
+\subsubsection{Create a Battle}
+\useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.0}{1.0}{Create a Battle Sequence Diagram}
+
+\newpage
+\subsubsection{Join a Battle}
+\useSvgWithCaption{./Images/sequenceDiagrams/joinABattle.svg}{1.0}{1.0}{Join a Battle Sequence Diagram}
+
+\newpage
+\subsubsection{Create a Badge}
+\useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.0}{1.0}{Create a Badge Sequence Diagram}
+
+\newpage
+\subsubsection{Assign a Badge}
+\useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.0}{1.0}{Assign a Badge Sequence Diagram}
+
+\newpage
+\subsubsection{Evaluate Code}
+\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.0}{1.0}{Evaluate Code Sequence Diagram}
+
+\newpage
+\subsubsection{Educator Manual Evaluate Code}
+\useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.0}{1.0}{Educator Manual Evaluate Code Sequence Diagram}
+
+\newpage
+\subsubsection{User searches for Users}
+\useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.0}{1.0}{User searches for Users Sequence Diagram}
+
+\newpage
+\subsubsection{Student searches for Tournaments}
+\useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.0}{1.0}{Student searches for Tournaments Sequence Diagram}
+
+\newpage
+
 \subsection{Component Interfaces}
-For each component here are explained functions, expressed in pseudo-code, associated with respective interfaces.
+\useSvgWithCaption{./Images/componentInterface/componentInterface.svg}{1.0}{1.0}{Component Interfaces Diagram} 
+For each component here are explained functions associated with respective interfaces.
 %DA VERIFICARE SE INSERIRE ANCHE I GETTER
 \begin{enumerate}
     \item \textbf{SignInManager Interface} 
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{AccountManager signIn(String name, String surname, String email, String password, String repo)} This method allows User to register to the Platform providing name, email, password and a repo that will receive system's pull requests thought proper component. The return is a Manager for that specific Account created.
-                \item \textbf{Boolean signOut(String email)} To signOut from the Platform signOut method is invoked, with the email of the Account to delete as parameter. A Boolean value is responsable of informing of the outcome.
+                \item \textbf{AccountManager signIn(String name, String surname, String email, String password, String repo)} This method allows User to register to the Platform providing name, email, password and a repo that will 
+                receive system's pull requests thought proper component. The return is a Manager for that specific Account created.
+                \item \textbf{Boolean signOut(String email)} To signOut from the Platform signOut method is invoked, with the email of the Account to delete as parameter. A Boolean value is responsible for informing of the outcome.
             \end{enumerate}
     \item \textbf{LogInManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean logIn(String email, String password)} The method is used to let the manager know when a User, registered or not, asks to enter CKB. The result of the invocation is a Boolean value to acknowledge client of the success or insuccess of the operation, which depends on parameters' correctness or on Account existence.
-            \item \textbf{Boolean logOut(String email)} In order to log out form the system is needed as input the email of the User to discard from Users that are currently interacting with the Platform. A Boolean value comunicate the outcome.
-            \item \textbf{Boolean isLogged(String email)} Throught this method, providing the an email, the invocator is able to know is the User who asks for the operation is actually logged in.
+            \item \textbf{Boolean logIn(String email, String password)} The method is used to let the manager know when a User, registered or not, asks to enter CKB. The result of the invocation is a Boolean value to acknowledge 
+            client of the success or in success of the operation, which depends on parameters' correctness or on Account existence.
+            \item \textbf{Boolean logOut(String email)} In order to log out form the system is needed as input the email of the User to discard from Users that are currently interacting with the Platform. A Boolean value communicates 
+            the outcome.
+            \item \textbf{Boolean isLogged(String email)} Through this method, providing the email, the invocator is able to know is the User who asks for the operation is actually logged in.
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{String pullRequest(String repo)} In order to perform a Pull request to the right RMP by RMPManager, the component thought the here descripted method, asks for the repo as a parameter. The return value is the code pulled from the repo itself.
+            \item \textbf{String pullRequest(String repo)} In order to perform a Pull request to the right RMP by RMPManager, the component through the here described method, asks for the repo as a parameter. The return value is the 
+            code pulled from the repo itself.
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -141,66 +219,53 @@ For each component here are explained functions, expressed in pseudo-code, assoc
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean joinBattle(String email, String Team)} Providing the email of the Student and the eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean value the outcome of the invocation.
+            \item \textbf{Boolean joinBattle(String email, String Team)} Providing the email of the Student and eventually the name the Team he/she would like to join, the Manager performs the information, returning thought a Boolean 
+            value the outcome of the invocation.
             \item \textbf{void updateBattleScore(int score)} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
-        \item \textbf{Boolean createTeam(String myEmail, Array<String> emails, String Team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails of other Students to invite, and the name of the Team. The result is provided via Boolean value. 
-        \item \textbf{Boolean joinStudentTournament(String email, String Team)} An invited Student's acceptance results in this method invocation, which is responsable of the creation of the Team. In fact, it is provided its name and the email of the Student that wants to join the Tournament with its colleague.
-        \item \textbf{Boolean joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the Boolean of result of the execution and asks for the email of the Educator.
+        \item \textbf{Boolean createTeam(String myEmail, Array<String> emails, String Team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails 
+        of other Students to invite, and the name of the Team. The result is provided via Boolean value. 
+        \item \textbf{Boolean joinStudentTournament(String email, String Team)} An invited Student's acceptance results in this method invocation, which is responsible for the creation of the Team. In fact, it is provided its name and 
+        the email of the Student that wants to join the Tournament with its colleague.
+        \item \textbf{Boolean joinEducatorTournament(String email)} When an Educator receives an invitation of collaboration to a Tournament, the method invoked internally to actually join it is joinTournament, that responds with the 
+        Boolean of result of the execution and asks for the email of the Educator.
         \item \textbf{void updateTournamentScore(String Team, int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
-        \item \textbf{Boolean addNewBattle(String name, String overview, String RMP, String evaluationMode, String email)} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, the RMP link from which Students will fork the repo, evaluation mode and the email of the Educator who created it.
+        \item \textbf{Boolean addNewBattle(String name, String overview, String RMP, String evaluationMode, String email)} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
+        the RMP link from which Students will fork the repo, evaluation mode and the email of the Educator who created it.
         \end{enumerate}
     \item \textbf{AccountManage Interface} 
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{Boolean deleteAccount()} The method performs the deletion of the AccountManager associated to the specific User. A true/false response describes the result.
-            \item \textbf{void updateAccount(String name, String surname, String email, String repo)} UpdateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo thought which he/she would be identified in the system.
+            \item \textbf{void updateAccount(String name, String surname, String email, String repo)} UpdateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo 
+            through which he/she would be identified in the system.
             \item \textbf{void createAccount(String name, String surname, String email, Int yearOfBirth, String repo)} This function enables the caller to create a new account, with the given parameters.
             \item \textbf{Boolean assignBadge(BadgeManager badge)} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager. The result is False if the Student has already that Badge.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname, String repo)} To search one or more Users SearchManager, thought the here presented method requires the email or name or surname of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criterias. Many overrides of the function will be present to perform the search based on just the available values.
+            \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname, String repo)} To search one or more Users SearchManager, thought the here presented method requires the email or name or surname
+            of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criterias. Many overrides of the function will be present to perform the search based on just the available values.
             \item \textbf{Array<TournamentManager> searchTournament(String TournamentName)} The name of the Tournament to search is required and as result the Array of TournamentManagers, which data matched the parameters, is provided.
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean verifyCriteria(File testResults, List<String> emails)} BadgeManager is invoked thought this method to verify if some tests results meet criterias to assign a Badge to a specific User. The results of the test and the emails of corresponding Students are the necessary parameters. If the answer is True, the Badge is assigned
+            \item \textbf{Boolean verifyCriteria(File testResults, List<String> emails)} BadgeManager is invoked thought this method to verify if some tests results meet criteria to assign a Badge to a specific User. The results of 
+            the test and the emails of corresponding Students are the necessary parameters. If the answer is True, the Badge is assigned.
         \end{enumerate}
 \end{enumerate}
-\subsection{Runtime View}
-\subsubsection{Sign in}
-%SIGNIN SEQUENCE DIAGRAM TO ADD
-\subsubsection{Log in}
-%LOGIN SEQUENCE DIAGRAM TO ADD
-\subsubsection{Join a Tournament}
-%JOINATOURNAMENT SEQUENCE DIAGRAM TO ADD
-\subsubsection{Invite Educator}
-%INVITE EDUCATOR SEQUENCE DIAGRAM TO ADD
-\subsubsection{Invite Student}
-%INVITE STUDENT SEQUENCE DIAGRAM TO ADD
-\subsubsection{Receive Educator Invitation}
-%RECEIVE EDUCATOR INVITATION SEQUENCE DIAGRAM TO ADD
-\subsubsection{Receive Student Invitation}
-%RECEIVE STUDENT INVITATION SEQUENCE DIAGRAM TO ADD
-\subsubsection{Create a Tournament}
-%CREATEATOURNAMENT SEQUENCE DIAGRAM TO ADD
-\subsubsection{Create a Battle}
-%CREATEABATTLE SEQUENCE DIAGRAM TO ADD
-\subsubsection{Join a Battle}
-%JOINABATTLE SEQUENCE DIAGRAM TO ADD
-\subsubsection{Create a Badge}
-%CREATEABADGE SEQUENCE DIAGRAM TO ADD
-\subsubsection{Assign a Badge}
-%ASSIGNABADGE SEQUENCE DIAGRAM TO DO
-\subsubsection{Evaluate Code}
-%EVALUATECODE SEQUENCE DIAGRAM TO ADD
-\subsubsection{Educator adds scores}
-%UPDATE TOURNAMENT SCORE EDUCATOR SEQUENCE DIAGRAM TO ADD
-\subsubsection{User searches for Users}
-%USER SEARCHES FOR USERS SEQUENCE DIAGRAM TO ADD
-\subsubsection{Student searches for Tournaments}
-%STUDENT SEARCHES FOR TOURNAMENTS SEQUENCE DIAGRAM TO ADD
-\subsection{Noteworthy Architectural Patterns}
+
+\subsection{Selected architectural styles and patterns}
+\subsubsection{Four-Tier Architecture}
+Flexibility, scalability and load distribution.
+\subsubsection{Model View Controller}
+SCRITTO CON COPILOT XD
+The MVC pattern is used to separate the data model, the presentation layer and the logic layer. This pattern is used to separate the data model, the presentation layer and the logic layer. The MVC pattern is used to separate the data model, the presentation layer and the logic layer.
 \subsection{Other design Decisions}
+\subsubsection{Relational Database}
+QUI VOGLIAMO METTERE ER?
+\subsubsection{API}
+\subsubsection{Scale-Out}
+SCRITTO CON COPILOT XD
+With Microservices Architecture, the Platform is able to scale-out, in order to manage multiple requests at the same time. In fact, each Microservice is able to run on different machines, and the Platform is able to replicate them in order to avoid failures.
