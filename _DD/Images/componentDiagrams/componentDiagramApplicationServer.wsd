@@ -1,16 +1,56 @@
 @startuml
 
-component "Application Server" <<subsystem>> #LightGreen{
-    component SignInManager
-    component LogInManager
-    component RMPManager
-    component NotificationManager
-    component EvaluationManager
-    component BadgeManager
-    component BattleManager
-    component TournamentManager
-    component AccountManager
-    component SearchManager
+component "Application Server" as AppServer <<subsystem>> #LightGreen{
+    component "Sign In Manager"
+    component "Log In Manager"
+    component "RMP Manager"
+    component "Notification Manager"
+    component "Evaluation Manager"
+    component "Badge Manager"
+    component "Battle Manager"
+    component "Tournament Manager"
+    component "Account Manager"
+    component "Search Manager"
 }
+[Sign In Manager] -[hidden]- [Log In Manager]
+[Log In Manager] -[hidden]- [RMP Manager]
+[RMP Manager] -[hidden]- [Notification Manager]
+[Notification Manager] -[hidden]- [Evaluation Manager]
+[Evaluation Manager] -[hidden]- [Badge Manager]
+[Badge Manager] -[hidden]- [Battle Manager]
+[Battle Manager] -[hidden]- [Tournament Manager]
+[Tournament Manager] -[hidden]- [Account Manager]
+[Account Manager] -[hidden]- [Search Manager]
+
+interface "Sign In Interface"
+[Sign In Interface] - [Sign In Manager]
+interface "Log In Interface"
+[Log In Interface] - [Log In Manager]
+interface "RMP Interface"
+[RMP Interface] - [RMP Manager]
+interface "Notification Interface"
+[Notification Interface] - [Notification Manager]
+interface "Evaluation Interface"
+[Evaluation Interface] - [Evaluation Manager]
+interface "Badge Interface"
+[Badge Interface] - [Badge Manager]
+interface "Battle Interface"
+[Battle Interface] - [Battle Manager]
+interface "Tournament Interface"
+[Tournament Interface] - [Tournament Manager]
+interface "Account Interface"
+[Account Interface] - [Account Manager]
+interface "Search Interface"
+[Search Interface] - [Search Manager]
+
+[Sign In Interface] -- [Log In Interface]
+[Log In Interface] -- [RMP Interface]
+[RMP Interface] -- [Notification Interface]
+[Notification Interface] -- [Evaluation Interface]
+[Evaluation Interface] -- [Badge Interface]
+[Badge Interface] -- [Battle Interface]
+[Battle Interface] -- [Tournament Interface]
+[Tournament Interface] -- [Account Interface]
+[Account Interface] -- [Search Interface]
 
 @enduml

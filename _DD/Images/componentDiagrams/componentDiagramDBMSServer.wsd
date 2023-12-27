@@ -3,5 +3,7 @@
 component "DBMS Server" <<subsystem>> #Violet{
     component DBMS
 }
+interface "DBMS Interface"
+[DBMS Interface] - [DBMS]
 
 @enduml

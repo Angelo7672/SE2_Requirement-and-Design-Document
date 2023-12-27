@@ -46,7 +46,6 @@ CKB, once realized, would be a Four Tier Application:
     \item \textbf{DBMS Server:} Data security, integrity, and preservation are the purview of DBMS. It will provide them with the relevant modules' requests according to their authorization for that particular data. 
 \end{enumerate}
 \useSvgWithCaption{./Images/overviewDiagrams/4TierArchitecture.svg}{0.8}{0.8}{Four Tier Application}
-
 \newpage
 
 \subsection{Component View}
@@ -55,57 +54,56 @@ CKB's Application Layer is based on Microservices, that constitutes components i
 \useSvgWithCaption{./Images/componentDiagrams/microserviceArchitecture.svg}{0.88}{0.88}{Microservices Architecture}
 \newpage
 \subsubsection{Component Diagrams}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagram.svg}{1.0}{1.0}{Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagram.svg}{0.81}{0.81}{Component Diagram}
 \newpage
 
 \paragraph{Client}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramClient.svg}{0.5}{0.5}{Client Component Diagram}
-In this representation the Client contains only the Web Browser module.
-A Web Browser it is needed to connect the Client to the CKB Server through the Network. The Web Browser it is also able to manage the graphical elements sent to the client by the Server, and them will be used by the User's GUI.
-\newpage
+The Web Browser module is the only module contained in the Client in this representation.
+To establish a network connection between the Client and the CKB Server, a Web Browser is required. The Web Browser can also control the graphical elements that the Server sends to the client, which the User's GUI will employ.
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramClient.svg}{0.3}{0.3}{Client Component Diagram}
 
 \paragraph{Web Server}
+The Web Browser's job is to route browser requests to the Application Server and get back responses from the Application Server. The Web Server just needs to route requests from and to the Network because you have to assume 
+that it is located in the DMZ.
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{0.5}{0.5}{Web Server Component Diagram}
-The role of the web server is to forward browser requests to the application server and return the application server's responses. You have to think that the Web Server is in the DMZ for this reason it has only to route the request
-from and to the Network.
 \newpage
 
 \paragraph{Application Server}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{1.0}{1.0}{Application Server Component Diagram}
 \begin{enumerate}
-    \item \textbf{SignInManager} It is the manager in charge of allow Users to sign in into the Platform or sign out, through proper interface.
-    \item \textbf{LogInManager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a logIn Interface used by the User to log in 
+    \item \textbf{Sign In Manager} It is the manager in charge of allow Users to sign in into the Platform or sign out, through proper interface.
+    \item \textbf{Log In Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
     and by other components to verify if an existing User is, in fact, logged in. Finally, the interface allows logging out too.
-    \item \textbf{RMPManager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access pullRequests Interface.
-    \item \textbf{NotificationManager} This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
-    components' indications, which are expressed through sendNotification Interface.
-    \item \textbf{EvaluationManager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
-    \item \textbf{BadgeManager} Allows Educators to create a Badge with corresponding parameters and criteria. Moreover, it assigns Badges to Students who can be awarded.
-    \item \textbf{BattleManager} This component, which authenticates the user gaining access, is in charge of sending out invites to other students and obtaining the battle score via an appropriate interface. It also 
+    \item \textbf{RMP Manager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access 'pullRequests' Interface.
+    \item \textbf{Notification Manager} This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
+    components' indications, which are expressed through 'sendNotification' Interface.
+    \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
+    \item \textbf{Badge Manager} Allows Educators to create a Badge with corresponding parameters and criteria. Moreover, it assigns Badges to Students who can be awarded.
+    \item \textbf{Battle Manager} This component, which authenticates the user gaining access, is in charge of sending out invites to other students and obtaining the battle score via an appropriate interface. It also 
     includes the RMP repository link for cloning. Ultimately, the component enables Students to participate in the Battle.
-    \item \textbf{TournamentManager} Educators will use the given interface to create a Tournament and invite other Educators to participate. This component also permits Teams to compete, maintains the ranking, and makes
+    \item \textbf{Tournament Manager} Educators will use the given interface to create a Tournament and invite other Educators to participate. This component also permits Teams to compete, maintains the ranking, and makes
     Tournament information available.
-    \item \textbf{AccountManager} It is in charge of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
-    \item \textbf{SearchManager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
+    \item \textbf{Account Manager} It is in charge of recruiting all information about a single Account, allowing the owner to delete or update the Account with new personal data.
+    \item \textbf{Search Manager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
 \end{enumerate}
+\newpage
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
 \newpage
 
 \paragraph{DBMS Server}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.5}{0.5}{Client Component Diagram}
-The role of the DBMS server is to store and always make available all the data of the Platform. In the data are included Users, Tournaments and Battles information.
-\newpage
+The DBMS server's job is to keep all of the Platform's data safe and always accessible. Information about Users, Tournaments, and Battles are contained in the data.
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.4}{0.4}{Client Component Diagram}
 
 \paragraph{External Services}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramExternalServices.svg}{0.5}{0.5}{External Services Component Diagram}
 The role of the External Services is to provide the Platform with the functionalities that it needs to work properly. In particular, the E-mail Provider is used to send notifications to Users, while the RMP is used to perform pull requests.            
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramExternalServices.svg}{0.5}{0.5}{External Services Component Diagram}
 \newpage
 
 \subsection{Deployment View}
 \useSvgWithCaption{./Images/deploymentDiagram/deploymentDiagram.svg}{1.0}{1.0}{Deployment Diagram}
 
 %TIER
-CKB, as specified before, once deployed will count a Four Tiers Architecture that reflects and expands the three layers, that logically composes CKB.
-In fact the actual implementation will require more components to manage communication with Users and Platform and to interact with Data modules.
+CAs previously said, when CKB is deployed, it will include a Four Tiers Architecture that both reflects and extends upon the three Layers that rationally make up CKB.
+In fact, additional components will be needed for the implementation in order to handle user and platform interactions as well as data module interaction.
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Client:} Users input data into the Client, which displays responses from the Server and enables Users to navigate and interact with the Platform. In fact this Tier has its corresponding logical layer in the presentation one. 
     Since a thin client only has communication APIs with the server, it transmits the components needed to create the most recent one as well as the necessary data to display the GUI.
