@@ -13,7 +13,7 @@ participant LogInManager as LM
 entity searchManagerInterface as SMI
 participant searchManager as SM
 entity tournamentManagerInterface as TMI
-participant TournamentManager as SM
+participant TournamentManager as TM
 entity notificationManagerInterface as NMI
 participant NotificationManager as NM
 participant Firewall as F
