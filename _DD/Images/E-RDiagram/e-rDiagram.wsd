@@ -1,0 +1,73 @@
+@startuml
+entity Battle {
+    * battle_name
+    * tournament_name
+    --
+    description
+    rmp_repo_link
+}
+
+entity Tournament {
+    * tournament_name
+    --
+    programming_language*
+    description
+    duration
+    subscribe_deadline
+    maximum_number_of_students_per_team
+    minimum_number_of_students_per_team
+    educator_rmp_handle*
+}
+
+entity Team {
+    * name
+    * tournament_name
+    --
+    students*
+}
+
+entity Badge {
+    * name
+    * tournament_name
+    --
+    description
+    image
+    requirements*
+}
+
+entity User {
+    * email
+    --
+    rmp_handle [unique]
+    name
+    surname
+    password
+}
+
+entity Student {
+    --
+    badges*
+}
+
+entity Educator{
+}
+
+entity Score {
+}
+
+entity BattleScore {
+    * battle_name
+    --
+    functional_points
+    timeliness_points
+    quality_points
+    manual_points
+}
+
+entity TournamentScore {
+    * tournament_name
+    --
+    points
+}
+
+@enduml

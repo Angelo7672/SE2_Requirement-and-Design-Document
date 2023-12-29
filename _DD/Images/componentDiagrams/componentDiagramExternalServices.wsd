@@ -2,3 +2,10 @@ component "External Services" #Cyan{
     component RMP
     component "Email Provider"
 }
+
+interface "RMP Interface"
+interface "Email Provider Interface"
+
+RMP -[hidden]- [Email Provider]
+RMP - [RMP Interface]
+[Email Provider] -- [Email Provider Interface]

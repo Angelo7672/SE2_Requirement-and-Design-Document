@@ -2,8 +2,12 @@
 
 component "Web Server" <<subsystem>> #LightBlue{
     component "Web Server Module"
+    component "API Module"
 }
 interface "Web Interface"
+interface "API Interface"
 [Web Interface] - [Web Server Module]
+[API Module] -left- [API Interface]
+[Web Server Module] -[hidden]- [API Module]
 
 @enduml
