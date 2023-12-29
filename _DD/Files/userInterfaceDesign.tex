@@ -1,20 +1,98 @@
-\subsection{User Interface}
-In this section will be presented the user interface design of the application. The design will be presented both by means of diagrams and mockups. The diagrams will be presented in a top-down approach, starting from the main diagram and then going into the details of each sub diagram. After them will be shown the corresponding mockups.
-\useSvgWithCaption{Images/uiDiagrams/dd_drawings-TOTAL.svg}{1.0}{1.0}{Main user interface structure}
-Since it is big and difficult to see, it has been subdivided in sub diagrams:
+
+In this section will be presented the user interface design of the application. The design will be presented both by means of diagrams and mockups. The diagrams will be presented in a top-down approach, starting from the main diagram and then going into the details of each sub diagram. After them will be shown the corresponding mockups. The scope of the diagrams is to give a schematic approach to see what pages shall show and allow users to do, something difficult to show with user interface mockups, while user interface mockups give a possible example on how components inside the diagrams can graphically be managed inside the webpage.\\
+In the diagrams:\\
+\begin{itemize}
+    \item Big titled rectangles represent singular web pages
+    \item Smaller rounded rectangles represent UI components
+    \item Hexagons represent action performed after an event
+    \item Circles represent events; for example a click on a button, or the ending of an action
+\end{itemize} 
+Colors are used to distinguish between different pages or actions, in order to render easier the understanding of the connection between them.\\
+Since it is big and difficult to see, it has been subdivided in sub diagrams.
+\subsection{Complete user interface structure}
+\useSvgWithCaption{Images/uiDiagrams/dd_drawings-TOTAL.svg}{1.0}{1.0}{Main user interface structure diagram}
 \clearpage
-\subsubsection{Welcome, Log in and Sign in pages}
+\subsection{Welcome, Log in and Sign in pages}
+These pages are the once that a user or potential one sees when he first opens the application. Here he can choose to log in or sign in.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-NonUserDef.svg}{.65}{.65}{Welcome, Log in and Sign in pages diagram}
 \clearpage
-\subsubsection{Educator Homepage}
+\begin{table}
+    \begin{tabu}{X[c, .5] X[c, .5]} 
+        \useImg{Images/UI/PNG/loginSignin.png}{.45} &  \\
+        Welcome page & \\
+        & \\
+        \useImg{Images/UI/PNG/signin.png}{.45} & \useImg{Images/UI/PNG/login.png}{.45} \\
+        Sign in page & Login page \\
+    \end{tabu}
+    \caption{Welcoming pages mockups}
+\end{table}
+\clearpage
+\subsection{Educator Homepage}
+This page is the first page an educator sees once logged in. Here he can see the list of tournaments he created, search for a user, and check his profile. Moreover he can create a new tournament by clicking on the "Create Tournament" button.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-EducatorHomePage.svg}{1.0}{1.0}{Educator Homepage diagram}
+\useImgWithCaption{Images/UI/PNG/educatorHomePage.png}{.75}{Educator Homepage mockup}
+\useImgWithCaption{Images/UI/PNG/educatorCreatesTournament.png}{.75}{Educator Homepage with create Tournament form mockup}
 \clearpage
-\subsubsection{Student Homepage}
+\subsection{Student Homepage}
+Similarly to the Educator Homepage, the Student Homepage is the first page a student sees once logged in. Here he can see the list of tournaments he is subscribed to, search for a user, and check his profile. Moreover he can see the list of available tournaments with a specific search form, in which he can search for a tournament, and once selected one, he can see details and subscribe to it.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-StudentHomePage.svg}{.80}{.80}{Student Homepage diagram}
+\useImgWithCaption{Images/UI/PNG/studentHomePage.png}{.75}{Student Homepage mockup}
+\useImgWithCaption{Images/UI/PNG/studentJoinsTournament.png}{.75}{Student Homepage with more Tournament detail and subscription form mockup}
 \clearpage
-\subsubsection{Tournament Detail Page}
+\subsection{Tournament Detail Page and Battle Detail Page}
+Tournament detail page is the page where information about a tournament are shown. It differs significantly between student and educator, and the number of available action varies according to the state of the tournament.\\
+Also the Battle detail page is shown here, since battles are strongly related to tournaments. In the Battle detail page, if the user is an educator, is also shown the form to add a score to the battle of a specific team.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-TournamentDetail.svg}{1.0}{1.0}{Tournament Detail diagram}
 \clearpage
-\subsubsection{User Profile Page}
-\useSvgWithCaption{Images/uiDiagrams/dd_drawings-UserProfilePage.svg}{.65}{.65}{User Profile Page diagram}
+\begin{table}
+    \begin{tabu}{X[c, .5] X[c, .5]} 
+        \useImg{Images/UI/PNG/studentTournamentPage.png}{.45} & \\
+        Tournament Page & \\
+        & \\
+        \useImg{Images/UI/PNG/studentTournamentOpen.png}{.45} & \useImg{Images/UI/PNG/studentTournamentStarted.png}{.45} \\
+        Tournament in OPEN state & Tournament in STARTED state \\
+        & \\
+        \useImg{Images/UI/PNG/studentBattlePage.png}{.45} & \\
+        Tournament in OPEN state & \\
+    \end{tabu}
+    \caption{Tournament pages as seen by students mockups}
+\end{table}
+\begin{table}
+    \begin{tabu}{X[c, .5] X[c, .5]} 
+        \useImg{Images/UI/PNG/educatorTournamentPage.png}{.45} &  \\
+        Tournament Page & \\
+        & \\
+        \useImg{Images/UI/PNG/educatorCreateBadge.png}{.45} & \useImg{Images/UI/PNG/educatorCreateBattle.png}{.45} \\
+        Tournament Page with Badge Creation form & Tournament Page with Battle Creation form\\
+        & \\
+        \useImg{Images/UI/PNG/educatorBattlePage.png}{.45} & \useImg{Images/UI/PNG/educatorAddScorePage.png}{.45} \\
+        Battle detail Page with score leaderboard & Battle detail page with add score form activated\\
+    \end{tabu}
+    \caption{Tournament pages as seen by educators mockups}
+\end{table}
 \clearpage
+\subsection{User Profile Page}
+Pretty simple page where user profile data are shown and, in case of a student, also his badges.\\
+\useSvgWithCaption{Images/uiDiagrams/dd_drawings-UserProfilePage.svg}{.65}{.65}{User Profile Page diagram}
+\begin{table}[h]
+    \begin{tabu}{X[c, .5] X[c, .5]} 
+        \useImg{Images/UI/PNG/studentProfilePage.png}{.45} & \useImg{Images/UI/PNG/educatorProfilePage.png}{.45} \\
+        Tournament Page with Badge Creation form & Tournament Page with Battle Creation form\\
+        & \\
+    \end{tabu}
+    \caption{Tournament pages as seen by educators mockups}
+\end{table}
+\clearpage
+\subsection{Multiple device UI mockups}
+The UI shall adapt to the screen size of the device it is being displayed on. Here are some mockups of how the UI will look on different devices.\\
+\begin{tabu}{X[c]} 
+    \useImg{Images/UI/PNG/iPhoneVariant.png}{.2} \\
+    Smartphone UI mockup \\
+    \\
+    \useImg{Images/UI/PNG/iPadVariant.png}{.45} \\
+    Tablet UI mockup \\
+    \\
+    \useImg{Images/UI/PNG/iMacVariant.png}{.45} \\
+    PC UI mockup \\
+    \\
+\end{tabu}

@@ -23,3 +23,27 @@
         \caption{#4}
     \end{sidewaysfigure}
 }
+
+\newcommand{\useImg}[2]{
+    \IfFileExists{#1}
+    {\includegraphics[width=#2\textwidth]{#1}}
+    {\includesvg[inkscapelatex=false, width=#2\textwidth, height=#2\textheight]{Images/TODO.svg}}
+    
+}
+
+% arg1 = svg file path, arg2 = width and height, arg4 = caption
+\newcommand{\useImgWithCaptionNoCentering}[3]{
+    \begin{figure}[h]
+        \useImg{#1}{#2}
+        \caption{#3}
+    \end{figure}
+}
+
+% arg1 = svg file path, arg2 = width and height, arg4 = caption
+\newcommand{\useImgWithCaption}[3]{
+    \begin{figure}[h]
+        \centering
+        \useImg{#1}{#2}
+        \caption{#3}
+    \end{figure}
+}
