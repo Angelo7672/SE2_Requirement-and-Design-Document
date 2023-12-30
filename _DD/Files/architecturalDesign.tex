@@ -68,8 +68,13 @@ To establish a network connection between the Client and the CKB Server, a Web B
 The Web Browser's job is to route browser requests to the Application Server and get back responses from the Application Server. The Web Server just needs to route requests from and to the Network because you have to assume 
 that it is located in the DMZ. It is composed by two modules:
 \begin{enumerate}[label=$\bullet$]
-    \item \textbf{Web Server Module} This module is in charge of receiving requests from the Client and forwarding them to the Application Server. It also receives responses from the Application Server and forwards them to the Client.
-    \item \textbf{API Module} This module is in charge of providing the Web Server with the APIs that it needs to communicate with the Application Server. QUI VA SPIEGATO COME FUNZIONA L'API, LA RISPOSTA DELLE EMAIL
+    %\item \textbf{Web Server Module} This module is in charge of receiving requests from the Client and forwarding them to the Application Server. It also receives responses from the Application Server and forwards them to the Client.
+    %\item \textbf{API Module} This module is in charge of providing the Web Server with the APIs that it needs to communicate with the Application Server. QUI VA SPIEGATO COME FUNZIONA L'API, LA RISPOSTA DELLE EMAIL
+    \item \textbf{Web Server Module} This is in charge of providing the Web browser of the necessary files to run the Client application. Once loaded this will communicate with the Application Server via the API Manager.
+    \item \textbf{API Manager} This module is in charge of providing an interface to the client to communicate with the Application Tier. 
+    Any kind of communication from the outside world, except for the above one, must pas through this API. 
+    The API implemented here is one of the RESTFul type, as commented here \nameref{parr:restful}.
+    This allows to expose only the needed functionalities to the client, masking the internal logic of the Platform.
 \end{enumerate}
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{0.5}{0.5}{Web Server Component Diagram}
 \newpage
@@ -83,9 +88,9 @@ that it is located in the DMZ. It is composed by two modules:
     \item \textbf{RMP Manager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access 'pullRequests' Interface.
     \item \textbf{Notification Manager} This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
     components' indications, which are expressed through 'sendNotification' Interface.
-    \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular proces that is explained here: \nameref{parr:battleEvaluation}.
-    \item \textbf{Badge Manager} It assigns Badges to Students who can be awarded.
-    QUI VA SPIEGATO COME FUNZIONA L"ENVIROMENT DI ESECUZIONE DEI BADGE
+    \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular process that is explained here: \nameref{parr:battleEvaluation}.
+    \item \textbf{Badge Manager} It assigns Badges to Students who can be awarded. \nameref{parr:badgeEvaluation}
+   
     \item \textbf{Battle Manager} It allows managing Battles, updating the score of each Team.
     \item \textbf{Tournament Manager} It allows managing Tournaments, creating Teams, inviting Students and Educators, creating Battles and Badges, updating the Tournament score.
     \item \textbf{Account Manager} It is in charge of recruiting all information about a single Account, allowing the owner to update the Account with new personal data.
@@ -271,15 +276,15 @@ For each component here are explained functions associated with respective inter
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{void dispatch(String request, Array<String> parameters)} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the 
             parameters. The Dispatcher will call the right Microservice, passing the parameters.
-            \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of an other microservice as discussed in: \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
+            \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of another microservice as discussed in: \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
         \end{enumerate}
 \end{enumerate}
 \subsection{Notable observations}
-\subsubsection{Battle Evaluation}
+\subsubsection{Battle Evaluation} \label{parr:battleEvaluation}
 For the automatic evaluation of the battles is advisable to use an automatic evaluation system based on containers.
 This kind of evauation system is is useful and satisfies different requirements as:
 \begin{itemize}
-    \item \textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophical since it bypasses all security measures placed before.
+    \item \textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophic since it bypasses all security measures placed before.
     \item \textbf{Reusability:} the testing environment, via the use of a suitable script, can be used to test any kind of code in a completely automatic manner
 \end{itemize}
 In order to work well, is needed that all battle repo have a RMP action active, which scope is to alert the platform of any new update to the repo. This will trigger two pushes from the platform one from the Team Repository, the other from the Educator repository. 
@@ -287,10 +292,10 @@ This is done to ensure that Teams don't tamper with the evaluation tests, that a
 After saving everything, a new container is spawned that will have to run the evaluation script from the repository. 
 At the end a special file will be created, that will contain the result of the evaluation, and most importantly the score of the team in that battle to be saved in the database in order to update corresponding tournament and battle scores.
 All of this will be done internally by the Evaluation Manager.
-\subsubsection{Badge Evaluation}
-For the automatic evaluation of the Badges is advisable to define a set of rules with which define the cirteria for the assignment of it.
-Theese criteria will be saved upon badge creation and will be used by the Badge Manager at the end of the tournament to evaluate tho whom assign it.
-The definition of the rules to be used to write the criteria allows to reuse the same evaluation system for different badges with same rules, in a standardized manner without the need of exposing too mutch of the internal logic of the system.
+\subsubsection{Badge Evaluation} \label{parr:badgeEvaluation}
+For the automatic evaluation of the Badges is advisable to define a set of rules with which define the criteria for the assignment of it.
+These criteria will be saved upon badge creation and will be used by the Badge Manager at the end of the tournament to evaluate tho whom assign it.
+The definition of the rules to be used to write the criteria allows to reuse the same evaluation system for different badges with same rules, in a standardized manner without the need of exposing too much of the internal logic of the system.
 
 \subsubsection{Dispatcher Component} \label{parr:dispatcher}
 The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
@@ -300,8 +305,16 @@ The DBMS is connected to the dispatcher also, and communications to it involve t
 This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
 Here follows the sequence diagram of what hereby described. It is to be intended as placed everywhere there is a communication between components in the following sequence diagrams.\\
 \useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
-Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do somenthing in a procedure, and Dispatcher is the dispatcher component.
+Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
 From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
+\subsubsection{External Actors different from the user} 
+This Platform has to interact with RMP and E-mail provider, which are external actors that do not interact with the system via the Web App, but via APIs.
+In fact, RMP repos implement an'action whose scope is to call the Platform's API to notify it of any update to the repository, similarly users use e-mail to respond to notifications sent by the Platform, again via simple buttons present in the notifications that allows to send confirmation or denial answers via the Platform's API.
+Is also useful to denote that the Platform, making use of those two services, behaves as a client for them. This is done via the use of the respective RMP Manager and E-mail Manager components.
+\subsubsection{API and Login}
+Since the only way for the client application to communicate to the Platform is via a RESTFul API, special attention has to be put in the login management.
+The RESTFul API, in fact, has no classical notion of session, so the login information has to be kept by the client application, and sent to the API with every request. To avoid cluttering the diagram from their scopes also this has been omitted.
+
 
 
 \subsection{Selected architectural styles and patterns}
@@ -314,9 +327,8 @@ In the Four-Tier Architecture can be seen also the Model View controller Paradig
 \subsection{Other design Decisions}
 \subsubsection{Relational Database}
 QUI VOGLIAMO METTERE ER?
-\subsubsection{RESTFul API}
+\subsubsection{RESTFul API} \label{parr:restful}
 For this Platform has been thought to use a thin client which interacts with a RESTFul API. This allows for a secure system since the API Tier exposes to the client a very limited set of functionalities. 
 Morover the use of a RESTFul API allows for easy future scalability, since it is possible to replicate services in different machines, and locations wihtout changing the API, nor having problems about keeping track of session data, allowing to implement a truly free load balancer. 
 \subsubsection{Scale-Out}
-SCRITTO CON COPILOT XD
-With Microservices Architecture, the Platform is able to scale-out, in order to manage multiple requests at the same time. In fact, each Microservice is able to run on different machines, and the Platform is able to replicate them in order to avoid failures.
+With Microservices Architecture, the Platform is able to scale-out, in order to manage multiple requests at the same time. In fact, each Microservice is able to run on different machines, and the Platform is able to replicate them in order to avoid failures. And as cited before, if needed, the Platform can be entirely replicated to different locations.
