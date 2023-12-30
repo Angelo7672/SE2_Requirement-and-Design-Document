@@ -95,18 +95,6 @@ VA SPIEGATO COME TUTTI QUESTI SI INTERFACCIANO CON IL DBMS
 \newpage
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
 \newpage
-\subparagraph*{Dispatcher Component} \label{parr:dispatcher}
-The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
-Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
-This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
-The DBMS is connected to the dispatcher also, and communications to it involve the dispatcher too. 
-This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
-Here follows the sequence diagram of what hereby described. It is to be intended as placed everywhere there is a communication between components in the following sequence diagrams.\\
-\useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
-Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do somenthing in a procedure, and Dispatcher is the dispatcher component.
-From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
-
-
 \paragraph{DBMS Server}
 The DBMS server's job is to keep all of the Platform's data safe and always accessible. Information about Users, Tournaments, and Battles are contained in the data.
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.4}{0.4}{Client Component Diagram}
@@ -283,7 +271,7 @@ For each component here are explained functions associated with respective inter
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{void dispatch(String request, Array<String> parameters)} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the 
             parameters. The Dispatcher will call the right Microservice, passing the parameters.
-            \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of an other microservice as discussed above \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
+            \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of an other microservice as discussed in: \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
         \end{enumerate}
 \end{enumerate}
 \subsection{Notable observations}
@@ -299,6 +287,21 @@ This is done to ensure that Teams don't tamper with the evaluation tests, that a
 After saving everything, a new container is spawned that will have to run the evaluation script from the repository. 
 At the end a special file will be created, that will contain the result of the evaluation, and most importantly the score of the team in that battle to be saved in the database in order to update corresponding tournament and battle scores.
 All of this will be done internally by the Evaluation Manager.
+\subsubsection{Badge Evaluation}
+For the automatic evaluation of the Badges is advisable to define a set of rules with which define the cirteria for the assignment of it.
+Theese criteria will be saved upon badge creation and will be used by the Badge Manager at the end of the tournament to evaluate tho whom assign it.
+The definition of the rules to be used to write the criteria allows to reuse the same evaluation system for different badges with same rules, in a standardized manner without the need of exposing too mutch of the internal logic of the system.
+
+\subsubsection{Dispatcher Component} \label{parr:dispatcher}
+The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
+Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
+This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
+The DBMS is connected to the dispatcher also, and communications to it involve the dispatcher too. 
+This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
+Here follows the sequence diagram of what hereby described. It is to be intended as placed everywhere there is a communication between components in the following sequence diagrams.\\
+\useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
+Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do somenthing in a procedure, and Dispatcher is the dispatcher component.
+From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
 
 
 \subsection{Selected architectural styles and patterns}
