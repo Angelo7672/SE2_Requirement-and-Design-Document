@@ -76,7 +76,7 @@ that it is located in the DMZ. It is composed by two modules:
 
 \paragraph{Application Server}
 \begin{enumerate}
-    \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of tthis component will be better shown in the dedicated section: SEKTIONNNN!!!
+    \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of tthis component will be better shown in the dedicated section: \nameref{parr:dispatcher}.
     \item \textbf{Sign In Manager} It is the manager in charge of allow Users to sign in into the Platform through proper interface.
     \item \textbf{Log In Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
     and by other components to verify if an existing User is, in fact, logged in. Finally, the interface allows logging out too.
@@ -96,7 +96,7 @@ VA SPIEGATO COME TUTTI QUESTI SI INTERFACCIANO CON IL DBMS
 \newpage
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
 \newpage
-\subparagraph*{Dispatcher Component}
+\subparagraph*{Dispatcher Component} \label{parr:dispatcher}
 The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
 Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
 This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
@@ -105,7 +105,7 @@ This is done to allow future scalability and flexibility, since the proposed sol
 Here follows the sequence diagram of what hereby described. It is to be intended as placed everywhere there is a communication between components in the following sequence diagrams.\\
 \useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
 Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do somenthing in a procedure, and Dispatcher is the dispatcher component.
-From this the dispatcher interface has also a method \textbf{getData()} to get a reference to a component, necessary to allow components to communicate between each other.\\
+From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
 
 
 \paragraph{DBMS Server}
@@ -284,6 +284,7 @@ For each component here are explained functions associated with respective inter
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{void dispatch(String request, Array<String> parameters)} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the 
             parameters. The Dispatcher will call the right Microservice, passing the parameters.
+            \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of an other microservice as discussed above \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
         \end{enumerate}
 \end{enumerate}
 
