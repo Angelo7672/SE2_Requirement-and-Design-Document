@@ -14,18 +14,20 @@ The Web Browser hosting the Web App should ideally handle client communication. 
 To be used with all types of browsers, CKB User Interface code needs to be written. However, after their kind and privileges, servers would be assigned to protect Users' data, and the Platform's model would change in accordance 
 with the guidelines.\\
 \\
+\subsection*{Microservices Architecture}
 %MICROSERVICES
 The fundamental capability of CKB is the ability to simultaneously manage and conduct multiple Battles, Tournaments, and receive multiple inputs from various clients, based on their type. 
 The server must manage several requests at once, recognizing this through concurrency.
 
-The Microservices architectural approach is one that can be selected. This option, which is supported by the availability of multiple servers, would allow each machine to host multiple service components that are properly 
-replicated even in other machines. These components would each elaborate particular inputs pertaining to a particular topic or collection of related operations that make up a service.
+The Microservices architectural approach is one that can be selected. 
+This option, which is supported by the availability of multiple servers, would allow each machine to host multiple service components that are properly replicated even in other machines. 
+These components would each elaborate particular inputs pertaining to a particular topic or collection of related operations that make up a service.
+Components can also be allocated according to what are the needs of the moment, if the number of requests increases, the number of components can be increased, and vice versa.
 
-The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests from Users redirecting them to the 
-right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and Platform reactivity.
+The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests from Users redirecting them to the right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and Platform reactivity.
 
-The method ensures modularity and improvements by enabling developers and authors to update CKB with new functionalities without altering the User interface in any way. It also allows the Platform to retain data and determine 
-resilience while ensuring appropriate duplication of each component to prevent failures.\\
+The method ensures modularity and improvements by enabling developers and authors to update CKB with new functionalities without altering the User interface in any way. 
+It also allows the Platform to retain data and determine resilience while ensuring appropriate duplication of each component to prevent failures.\\
 \\
 %LAYER
 CKB is thought to be implemented as a Three Layer Architecture:
@@ -74,6 +76,7 @@ that it is located in the DMZ. It is composed by two modules:
 
 \paragraph{Application Server}
 \begin{enumerate}
+    \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of tthis component will be better shown in the dedicated section: SEKTIONNNN!!!
     \item \textbf{Sign In Manager} It is the manager in charge of allow Users to sign in into the Platform through proper interface.
     \item \textbf{Log In Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
     and by other components to verify if an existing User is, in fact, logged in. Finally, the interface allows logging out too.
@@ -93,6 +96,17 @@ VA SPIEGATO COME TUTTI QUESTI SI INTERFACCIANO CON IL DBMS
 \newpage
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
 \newpage
+\subparagraph*{Dispatcher Component}
+The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
+Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
+This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
+The DBMS is connected to the dispatcher also, and communications to it involve the dispatcher too. 
+This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
+Here follows the sequence diagram of what hereby described. It is to be intended as placed everywhere there is a communication between components in the following sequence diagrams.\\
+\useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
+Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do somenthing in a procedure, and Dispatcher is the dispatcher component.
+From this the dispatcher interface has also a method \textbf{getData()} to get a reference to a component, necessary to allow components to communicate between each other.\\
+
 
 \paragraph{DBMS Server}
 The DBMS server's job is to keep all of the Platform's data safe and always accessible. Information about Users, Tournaments, and Battles are contained in the data.
