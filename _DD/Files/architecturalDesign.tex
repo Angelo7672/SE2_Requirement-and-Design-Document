@@ -306,14 +306,17 @@ From this the dispatcher interface has also a method \hyperref[meth:dispGetData]
 
 \subsection{Selected architectural styles and patterns}
 \subsubsection{Four-Tier Architecture}
-Flexibility, scalability and load distribution.
+This kind of architecture as discussed above distinguishes the Platform in four Tiers. 
+This allows to have better code differentiation, so that each Tier has its own responsibility and can be developed independently of the others. 
+Morover allows for a more secure system, since before accessing saved data, any kind of attack shall pass through each tier to reach the last one.
 \subsubsection{Model View Controller}
-SCRITTO CON COPILOT XD
-The MVC pattern is used to separate the data model, the presentation layer and the logic layer. This pattern is used to separate the data model, the presentation layer and the logic layer. The MVC pattern is used to separate the data model, the presentation layer and the logic layer.
+In the Four-Tier Architecture can be seen also the Model View controller Paradigm, where the client is responsible for the pure user interaction with the platform, which is managed by the API Tier followed by the Application tier.
 \subsection{Other design Decisions}
 \subsubsection{Relational Database}
 QUI VOGLIAMO METTERE ER?
-\subsubsection{API}
+\subsubsection{RESTFul API}
+For this Platform has been thought to use a thin client which interacts with a RESTFul API. This allows for a secure system since the API Tier exposes to the client a very limited set of functionalities. 
+Morover the use of a RESTFul API allows for easy future scalability, since it is possible to replicate services in different machines, and locations wihtout changing the API, nor having problems about keeping track of session data, allowing to implement a truly free load balancer. 
 \subsubsection{Scale-Out}
 SCRITTO CON COPILOT XD
 With Microservices Architecture, the Platform is able to scale-out, in order to manage multiple requests at the same time. In fact, each Microservice is able to run on different machines, and the Platform is able to replicate them in order to avoid failures.
