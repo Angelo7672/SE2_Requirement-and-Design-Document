@@ -83,8 +83,7 @@ that it is located in the DMZ. It is composed by two modules:
     \item \textbf{RMP Manager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access 'pullRequests' Interface.
     \item \textbf{Notification Manager} This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
     components' indications, which are expressed through 'sendNotification' Interface.
-    \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score.
-    QUI VA SPIEGATO COME FUNZIONA L"ENVIROMENT DI ESECUZIONE
+    \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular proces that is explained here: \nameref{parr:battleEvaluation}.
     \item \textbf{Badge Manager} It assigns Badges to Students who can be awarded.
     QUI VA SPIEGATO COME FUNZIONA L"ENVIROMENT DI ESECUZIONE DEI BADGE
     \item \textbf{Battle Manager} It allows managing Battles, updating the score of each Team.
@@ -287,6 +286,20 @@ For each component here are explained functions associated with respective inter
             \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of an other microservice as discussed above \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
         \end{enumerate}
 \end{enumerate}
+\subsection{Notable observations}
+\subsubsection{Battle Evaluation}
+For the automatic evaluation of the battles is advisable to use an automatic evaluation system based on containers.
+This kind of evauation system is is useful and satisfies different requirements as:
+\begin{itemize}
+    \item \textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophical since it bypasses all security measures placed before.
+    \item \textbf{Reusability:} the testing environment, via the use of a suitable script, can be used to test any kind of code in a completely automatic manner
+\end{itemize}
+In order to work well, is needed that all battle repo have a RMP action active, which scope is to alert the platform of any new update to the repo. This will trigger two pushes from the platform one from the Team Repository, the other from the Educator repository. 
+This is done to ensure that Teams don't tamper with the evaluation tests, that are saved in the battle repository, while being able to use them for local evaluation. 
+After saving everything, a new container is spawned that will have to run the evaluation script from the repository. 
+At the end a special file will be created, that will contain the result of the evaluation, and most importantly the score of the team in that battle to be saved in the database in order to update corresponding tournament and battle scores.
+All of this will be done internally by the Evaluation Manager.
+
 
 \subsection{Selected architectural styles and patterns}
 \subsubsection{Four-Tier Architecture}
