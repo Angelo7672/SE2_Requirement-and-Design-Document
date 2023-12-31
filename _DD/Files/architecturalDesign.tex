@@ -95,8 +95,8 @@ that it is located in the DMZ. It is composed by two modules:
     \item \textbf{Tournament Manager} It allows managing Tournaments, creating Teams, inviting Students and Educators, creating Battles and Badges, updating the Tournament score.
     \item \textbf{Account Manager} It is in charge of recruiting all information about a single Account, allowing the owner to update the Account with new personal data.
     \item \textbf{Search Manager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
+    \item \textbf{DBMS Manager} It is the component that manages the DBMS, allowing the Platform to perform operations on the DBMS. It directly manages connections to the database, keeping them few allowing to lighten the load to the DBMS without losing any functionality.
 \end{enumerate}
-VA SPIEGATO COME TUTTI QUESTI SI INTERFACCIANO CON IL DBMS
 \newpage
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
 \newpage
@@ -131,9 +131,21 @@ In fact, additional components will be needed for the implementation in order to
     \item \textbf{DBMS Server:} CKB keeps track of both User data and Platform operational data, such as Battle and Tournament records. DBMS is responsible for managing, securing, and storing the data. It permits access to 
     Microservices that need it, and it updates it as needed in compliance with regulations. This Tier is the actual implementation of logic Data Layer and it is protected by a Firewall that filters requests and operations from Application Server. 
 \end{enumerate}
-
-\begin{landscape}
+\clearpage
 \subsection{Runtime View}
+\subsubsection{Introduction to the Runtime View}
+The folloing sequence diagrams are meant to show the interactions between the components of the system.
+But some components are so crucial to the functioning of the system that the interactions are very frequent and would clutter these diagrams, making them of difficult fruition.
+For this reason the following interactions have to be intended as inserted each time there is a suitable communication.
+\paragraph*{Dispatcher Component} \label{parr:dispatcher}
+This interaction is intended as placed everywhere there is a communication between components\\
+\useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
+Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
+\paragraph*{DBMS Manager Component}
+This interaction is intended as placed everywhere there is a communication between component and the DBMS.
+\useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagram.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
+Where DBMS Manager is the component, and MicroserviceA is the component that needs to perform a query to the database.
+\begin{landscape}
 \subsubsection{Sign in}
 \useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.5}{1.5}{Sign In Sequence Diagram}
 
@@ -278,6 +290,10 @@ For each component here are explained functions associated with respective inter
             parameters. The Dispatcher will call the right Microservice, passing the parameters.
             \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of another microservice as discussed in: \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
         \end{enumerate}
+    \item \textbf{DBMS Manager Interface}
+        \begin{enumerate} [label=$\bullet$]
+            \item \textbf{QueryResult query(String query, List<String> args)} The method invoked by a microservice to perform a query to the database. The first parameter is the Query to be precompiled, the second an array of arguments to be inserted in the query.
+    \end{enumerate}
 \end{enumerate}
 \subsection{Notable observations}
 \subsubsection{Battle Evaluation} \label{parr:battleEvaluation}
@@ -303,9 +319,6 @@ Components are assumed to share interfaces between each other but before any kin
 This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
 The DBMS is connected to the dispatcher also, and communications to it involve the dispatcher too. 
 This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
-Here follows the sequence diagram of what hereby described. It is to be intended as placed everywhere there is a communication between components in the following sequence diagrams.\\
-\useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
-Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
 From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
 \subsubsection{External Actors different from the user} 
 This Platform has to interact with RMP and E-mail provider, which are external actors that do not interact with the system via the Web App, but via APIs.
@@ -314,7 +327,13 @@ Is also useful to denote that the Platform, making use of those two services, be
 \subsubsection{API and Login}
 Since the only way for the client application to communicate to the Platform is via a RESTFul API, special attention has to be put in the login management.
 The RESTFul API, in fact, has no classical notion of session, so the login information has to be kept by the client application, and sent to the API with every request. To avoid cluttering the diagram from their scopes also this has been omitted.
-
+\subsubsection{DBMS manager}
+This component is in charge of performing operations to the data tier.
+One of the most heavy operations on the database is the opening and the closing of connections, needed to interact with the components, so if all components were to dynamically open and close connections to the database, the load on the DBMS would be too high, and the system would be slow. 
+Inserting this component allows to keep the number of connections low and keep them more time open, reducing the load on the DBMS while not losing any functionality for other components. 
+So this component is to be intended as a proxy between the DBMS and the other components, that will use it to perform queries to the database, and for each access to the database the following Sequence diagram can be referenced:\\
+\useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagramExtended.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
+Where DBMS Manager is the component, and MicroserviceA is the component that needs to perform a query to the database. 
 
 
 \subsection{Selected architectural styles and patterns}

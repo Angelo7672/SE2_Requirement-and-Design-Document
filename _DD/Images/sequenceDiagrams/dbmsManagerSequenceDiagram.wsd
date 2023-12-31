@@ -1,0 +1,22 @@
+@startuml
+
+participant Microservice as ms
+participant DBMSManager as dm 
+participant DBMS as dbms
+database Database as db
+
+activate db
+activate dbms
+activate dm
+'dm -> dbms : connection.open(connection_data) 
+'dbms -> dm : connection.opened()
+activate ms
+ms -> dm : query(query, args)
+dm -> dbms : query.execute(query, args)
+dbms -> db : execute query
+db --> dbms : result table
+dbms --> dm : query.result()
+dm --> ms : query result
+'deactivate ms
+
+@enduml
