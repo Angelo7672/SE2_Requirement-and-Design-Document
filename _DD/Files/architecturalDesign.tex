@@ -317,7 +317,7 @@ The definition of the rules to be used to write the criteria allows to reuse the
 The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
 Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
 This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
-The DBMS is connected to the dispatcher also, and communications to it involve the dispatcher too. 
+The Dispatcher also manages the DBMS Manager component, better described below, there can be multiple DBMS Managers but is adviseable to keep their lives long and to not to pawn and kill them too frequently. 
 This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
 From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
 \subsubsection{External Actors different from the user} 
