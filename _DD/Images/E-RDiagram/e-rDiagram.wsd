@@ -74,26 +74,25 @@ entity TournamentScore {
     points
 }
 
-'User <|-- Student
 User <|- Educator
 Student --|> User
-'Educator --|> User
 
 Score <|-- BattleScore
 Score <|-- TournamentScore
 
 
-Tournament ||-o{ Battle
-Tournament ||--o{ Badge
+Tournament ||-o{ Battle: composed by
+Tournament ||--o{ Badge: part of
 Team }o-|| Tournament
 
-Student ||-o{ Badge
-Team }o--|| Student
+Student }o-o{ Badge: achieve
+Team }o--|{ Student: composed by
 
-Tournament }o--|{ Educator
+Tournament }o--|{ Educator: involved
 
-BattleScore }o--|| Team
-TournamentScore }o--|| Team
-BattleScore }o--|| Battle
-TournamentScore }o--|| Tournament
+BattleScore }o--|| Team: has
+TournamentScore }o--|| Team: has
+BattleScore }o--|| Battle: has
+TournamentScore }o--|| Tournament: has
+
 @enduml

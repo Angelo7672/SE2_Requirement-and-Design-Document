@@ -346,10 +346,10 @@ Moreover, allows for a more secure system, since before accessing saved data, an
 \subsubsection{Model View Controller}
 In the Four-Tier Architecture can be seen also the Model View controller Paradigm, where the client is responsible for the pure user interaction with the platform, which is managed by the API Tier followed by the Application tier.
 
-\newpage
 \subsection{Other design Decisions}
 \subsubsection{Relational Database}
-\useSvgWithCaption{./Images/E-RDiagram/e-rDiagram.svg}{1.0}{1.0}{E-R Diagram}
+The DBMS chosen for this Platform is a relational database. This choice is due to the fact that the data that the Platform has to store is structured and has a well-defined schema.
+\useSvgWithCaption{./Images/E-RDiagram/e-rDiagram.svg}{0.8}{0.8}{E-R Diagram}
 \textbf{Legend}
 \begin{itemize}
     \item \textbf{|o--} Zero or One
@@ -357,6 +357,7 @@ In the Four-Tier Architecture can be seen also the Model View controller Paradig
     \item \textbf{\}o--} Zero or Many
     \item \textbf{\}|--} One or Many
 \end{itemize}
+\newpage
 
 \subsubsection{RESTFul API} \label{parr:restful}
 For this Platform has been thought to use a thin client which interacts with a RESTFul API. This allows for a secure system since the API Tier exposes to the client a very limited set of functionalities. 
