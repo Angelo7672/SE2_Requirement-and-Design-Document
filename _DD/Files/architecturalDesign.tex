@@ -12,8 +12,8 @@ the Network, the client-server software organization that was chosen is Remote R
 The Web Browser hosting the Web App should ideally handle client communication. It must enable safe and efficient communication with the server via the HTTP and TCP protocols. 
 
 To be used with all types of browsers, CKB User Interface code needs to be written. However, after their kind and privileges, servers would be assigned to protect Users' data, and the Platform's model would change in accordance 
-with the guidelines.\\
-\\
+with the guidelines.
+
 \subsection*{Microservices Architecture}
 %MICROSERVICES
 The fundamental capability of CKB is the ability to simultaneously manage and conduct multiple Battles, Tournaments, and receive multiple inputs from various clients, based on their type. 
@@ -68,11 +68,9 @@ To establish a network connection between the Client and the CKB Server, a Web B
 The Web Browser's job is to route browser requests to the Application Server and get back responses from the Application Server. The Web Server just needs to route requests from and to the Network because you have to assume 
 that it is located in the DMZ. It is composed by two modules:
 \begin{enumerate}[label=$\bullet$]
-    %\item \textbf{Web Server Module} This module is in charge of receiving requests from the Client and forwarding them to the Application Server. It also receives responses from the Application Server and forwards them to the Client.
-    %\item \textbf{API Module} This module is in charge of providing the Web Server with the APIs that it needs to communicate with the Application Server. QUI VA SPIEGATO COME FUNZIONA L'API, LA RISPOSTA DELLE EMAIL
     \item \textbf{Web Server Module} This is in charge of providing the Web browser of the necessary files to run the Client application. Once loaded this will communicate with the Application Server via the API Manager.
     \item \textbf{API Manager} This module is in charge of providing an interface to the client to communicate with the Application Tier. 
-    Any kind of communication from the outside world, except for the above one, must pas through this API. 
+    Any kind of communication from the outside world, except for the above one, must go via this API. 
     The API implemented here is one of the RESTFul type, as commented here \nameref{parr:restful}.
     This allows to expose only the needed functionalities to the client, masking the internal logic of the Platform.
 \end{enumerate}
@@ -81,7 +79,7 @@ that it is located in the DMZ. It is composed by two modules:
 
 \paragraph{Application Server}
 \begin{enumerate}
-    \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of tthis component will be better shown in the dedicated section: \nameref{parr:dispatcher}.
+    \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of this component will be better shown in the dedicated section: \nameref{parr:dispatcher}.
     \item \textbf{Sign In Manager} It is the manager in charge of allow Users to sign in into the Platform through proper interface.
     \item \textbf{Log In Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
     and by other components to verify if an existing User is, in fact, logged in. Finally, the interface allows logging out too.
@@ -90,7 +88,6 @@ that it is located in the DMZ. It is composed by two modules:
     components' indications, which are expressed through 'sendNotification' Interface.
     \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular process that is explained here: \nameref{parr:battleEvaluation}.
     \item \textbf{Badge Manager} It assigns Badges to Students who can be awarded. \nameref{parr:badgeEvaluation}
-   
     \item \textbf{Battle Manager} It allows managing Battles, updating the score of each Team.
     \item \textbf{Tournament Manager} It allows managing Tournaments, creating Teams, inviting Students and Educators, creating Battles and Badges, updating the Tournament score.
     \item \textbf{Account Manager} It is in charge of recruiting all information about a single Account, allowing the owner to update the Account with new personal data.
@@ -101,7 +98,7 @@ that it is located in the DMZ. It is composed by two modules:
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
 \newpage
 \paragraph{DBMS Server}
-The DBMS server's job is to keep all of the Platform's data safe and always accessible. Information about Users, Tournaments, and Battles are contained in the data.
+The DBMS server's job is to keep all of the Platform's data safe and always accessible. Information about Users, Tournaments, Battles and Badges are contained in the data.
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.4}{0.4}{Client Component Diagram}
 
 \paragraph{External Services}
@@ -134,7 +131,7 @@ In fact, additional components will be needed for the implementation in order to
 \clearpage
 \subsection{Runtime View}
 \subsubsection{Introduction to the Runtime View}
-The folloing sequence diagrams are meant to show the interactions between the components of the system.
+The following sequence diagrams are meant to show the interactions between the components of the system.
 But some components are so crucial to the functioning of the system that the interactions are very frequent and would clutter these diagrams, making them of difficult fruition.
 For this reason the following interactions have to be intended as inserted each time there is a suitable communication.
 \paragraph*{Dispatcher Component} \label{parr:dispatcher}
@@ -298,7 +295,7 @@ For each component here are explained functions associated with respective inter
 \subsection{Notable observations}
 \subsubsection{Battle Evaluation} \label{parr:battleEvaluation}
 For the automatic evaluation of the battles is advisable to use an automatic evaluation system based on containers.
-This kind of evauation system is is useful and satisfies different requirements as:
+This kind of evaluation system is useful and satisfies different requirements as:
 \begin{itemize}
     \item \textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophic since it bypasses all security measures placed before.
     \item \textbf{Reusability:} the testing environment, via the use of a suitable script, can be used to test any kind of code in a completely automatic manner
@@ -308,6 +305,7 @@ This is done to ensure that Teams don't tamper with the evaluation tests, that a
 After saving everything, a new container is spawned that will have to run the evaluation script from the repository. 
 At the end a special file will be created, that will contain the result of the evaluation, and most importantly the score of the team in that battle to be saved in the database in order to update corresponding tournament and battle scores.
 All of this will be done internally by the Evaluation Manager.
+
 \subsubsection{Badge Evaluation} \label{parr:badgeEvaluation}
 For the automatic evaluation of the Badges is advisable to define a set of rules with which define the criteria for the assignment of it.
 These criteria will be saved upon badge creation and will be used by the Badge Manager at the end of the tournament to evaluate tho whom assign it.
@@ -317,16 +315,19 @@ The definition of the rules to be used to write the criteria allows to reuse the
 The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
 Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
 This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
-The Dispatcher also manages the DBMS Manager component, better described below, there can be multiple DBMS Managers but is adviseable to keep their lives long and to not to pawn and kill them too frequently. 
+The Dispatcher also manages the DBMS Manager component, better described below, there can be multiple DBMS Managers but is advisable to keep their lives long and to not pawn and kill them too frequently. 
 This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
 From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
-\subsubsection{External Actors different from the user} 
+
+\subsubsection{External Actors different from the User} 
 This Platform has to interact with RMP and E-mail provider, which are external actors that do not interact with the system via the Web App, but via APIs.
-In fact, RMP repos implement an'action whose scope is to call the Platform's API to notify it of any update to the repository, similarly users use e-mail to respond to notifications sent by the Platform, again via simple buttons present in the notifications that allows to send confirmation or denial answers via the Platform's API.
+In fact, RMP repos implement an action whose scope is to call the Platform's API to notify it of any update to the repository, similarly users use e-mail to respond to notifications sent by the Platform, again via simple buttons present in the notifications that allows to send confirmation or denial answers via the Platform's API.
 Is also useful to denote that the Platform, making use of those two services, behaves as a client for them. This is done via the use of the respective RMP Manager and E-mail Manager components.
+
 \subsubsection{API and Login}
 Since the only way for the client application to communicate to the Platform is via a RESTFul API, special attention has to be put in the login management.
 The RESTFul API, in fact, has no classical notion of session, so the login information has to be kept by the client application, and sent to the API with every request. To avoid cluttering the diagram from their scopes also this has been omitted.
+
 \subsubsection{DBMS manager}
 This component is in charge of performing operations to the data tier.
 One of the most heavy operations on the database is the opening and the closing of connections, needed to interact with the components, so if all components were to dynamically open and close connections to the database, the load on the DBMS would be too high, and the system would be slow. 
@@ -340,14 +341,26 @@ Where DBMS Manager is the component, and MicroserviceA is the component that nee
 \subsubsection{Four-Tier Architecture}
 This kind of architecture as discussed above distinguishes the Platform in four Tiers. 
 This allows to have better code differentiation, so that each Tier has its own responsibility and can be developed independently of the others. 
-Morover allows for a more secure system, since before accessing saved data, any kind of attack shall pass through each tier to reach the last one.
+Moreover, allows for a more secure system, since before accessing saved data, any kind of attack shall pass through each tier to reach the last one.
+
 \subsubsection{Model View Controller}
 In the Four-Tier Architecture can be seen also the Model View controller Paradigm, where the client is responsible for the pure user interaction with the platform, which is managed by the API Tier followed by the Application tier.
+
+\newpage
 \subsection{Other design Decisions}
 \subsubsection{Relational Database}
-QUI VOGLIAMO METTERE ER?
+\useSvgWithCaption{./Images/E-RDiagram/e-rDiagram.svg}{1.0}{1.0}{E-R Diagram}
+\textbf{Legend}
+\begin{itemize}
+    \item \textbf{|o--} Zero or One
+    \item \textbf{||--} Exactly One
+    \item \textbf{\}o--} Zero or Many
+    \item \textbf{\}|--} One or Many
+\end{itemize}
+
 \subsubsection{RESTFul API} \label{parr:restful}
 For this Platform has been thought to use a thin client which interacts with a RESTFul API. This allows for a secure system since the API Tier exposes to the client a very limited set of functionalities. 
-Morover the use of a RESTFul API allows for easy future scalability, since it is possible to replicate services in different machines, and locations wihtout changing the API, nor having problems about keeping track of session data, allowing to implement a truly free load balancer. 
+Moreover, the use of a RESTFul API allows for easy future scalability, since it is possible to replicate services in different machines, and locations without changing the API, nor having problems about keeping track of session data, allowing to implement a truly free load balancer. 
+
 \subsubsection{Scale-Out}
 With Microservices Architecture, the Platform is able to scale-out, in order to manage multiple requests at the same time. In fact, each Microservice is able to run on different machines, and the Platform is able to replicate them in order to avoid failures. And as cited before, if needed, the Platform can be entirely replicated to different locations.
