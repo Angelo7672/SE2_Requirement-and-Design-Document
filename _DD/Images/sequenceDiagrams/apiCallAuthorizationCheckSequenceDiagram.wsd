@@ -1,0 +1,25 @@
+@startuml
+
+actor User as U
+participant WebApp as WA 
+participant APIManager as AM
+participant Dispatcher as D
+
+activate D
+activate AM
+activate WA
+WA -> AM : API call with token
+AM -> AM : Check token
+alt valid
+    AM -> D : Dispatch request
+    D -> AM : Response
+    AM -> WA : Response
+    WA -> U : Response
+else invalid
+    AM -> WA : Non authorized error
+    WA -> U : Non authorized error
+end
+deactivate WA
+deactivate AM
+
+@enduml
