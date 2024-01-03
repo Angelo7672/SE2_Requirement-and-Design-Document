@@ -1,6 +1,8 @@
 @startuml
 
-'autonumber
+autonumber
+autoactivate on
+
 'actor User as U
 'participant First_Firewall as FF
 'participant WebServer as WS
@@ -64,33 +66,57 @@
 'deactivate SF
 'deactivate AS
 
-autonumber
 actor User as U
 participant WebServerModule as WS
-participant API
 participant Dispatcher as MD
+entity dispatcherInterface as MDI
 participant SignInManager as SIM
+entity signInInterface as SIMI
 participant NotificationManager as NM
-participant DBMS as D
+entity notificationInterface as NMI
+participant SearchManager as SM
+entity searchInterface as SMI
+participant DBMSManager as DBMSM
+entity dbmsmInterface as DBMSMI
+database DBMS as D
+entity dbmsInterface as DI
+participant EmailProvider as EP
 
-U -> WS : request signIn page
-WS -> U : signIn page
-U -> WS : signIn()
-WS -> MD : signIn()
-MD -> SIM : signIn()
-SIM -> D : checkAccount()
-alt account registered
-    D -> SIM : OK
-    SIM -> NM : sendNotification()
-    NM -> U : send Email
-    U -> U : click link in Email
-    U -> API : call
-    API -> NM : receiveResponse()
-    NM -> SIM : confirmAccount()
-    SIM -> D : insertAccount()
-    D -> D : insertAccount()
-else account already registered
-    D -> SIM : Error : account already registered
+U -> WS: POST /api/signIn
+WS -> MDI: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
+MDI -> MD: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
+MD -> SIMI: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
+SIMI -> SIM: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
+SIM -> SMI: searchUser(e-mail: String, RMPHandle: String): List<User>
+SMI -> SM: searchUser(e-mail: String, RMPHandle: String): List<User>
+SM -> DBMSMI: searchUser(e-mail: String, RMPHandle: String): List<User>
+DBMSMI -> DBMSM: searchUser(e-mail: String, RMPHandle: String): List<User>
+DBMSM -> DI: searchUser(e-mail: String, RMPHandle: String): List<User>
+DI -> D: searchUser(e-mail: String, RMPHandle: String): List<User>
+D --> DBMSM: List<User>
+DBMSM --> SM: List<User>
+SM --> SIM: List<User>
+alt List<User> is NULL
+    SIM -> NMI: sendNotification(email: String,\n message: String)
+    NMI -> NM: sendNotification(email: String,\n message: String)
+    NM -> EP: send email with message
+    EP -> U: email <<confirmation email>>
+    U -> WS: POST /api/confirm
+    WS -> MDI: receiveResponse(token: String,\n email: String)
+    MDI -> MD: receiveResponse(token: String,\n email: String)
+    MD -> NMI: receiveResponse(token: String,\n email: String)
+    NMI -> NM: receiveResponse(token: String,\n email: String)
+    NM -> SIMI: createAccount(email: String)
+    SIMI -> SIM: createAccount(email: String)
+    SIM -> DBMSMI: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
+    DBMSMI -> DBMSM: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
+    DBMSM -> DI: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
+    DI -> D: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
+else List<User> is not NULL
+    SIM --> MDI: Error <<email/RMPHandle already exists>>
+    MDI --> MD: Error <<email/RMPHandle already exists>>
+    MD --> WS: Error <<email/RMPHandle already exists>>
+    WS --> U: Error <<email/RMPHandle already exists>>
 end
 
 @enduml

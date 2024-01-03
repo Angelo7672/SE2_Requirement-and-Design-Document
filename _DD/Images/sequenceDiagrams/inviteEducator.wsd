@@ -1,122 +1,175 @@
 @startuml
 
 autonumber
+autoactivate  on
 
-actor Inviting_Educator as U1
-participant First_Firewall as FF
-participant WebServer as WS
-participant Second_Firewall as SF
-participant Application_Server as AS
-participant Microservices_Dispatcher as MD
-entity logInManagerInterface as LMI
-participant LogInManager as LM
-entity searchManagerInterface as SMI
+'actor Inviting_Educator as U1
+'participant First_Firewall as FF
+'participant WebServer as WS
+'participant Second_Firewall as SF
+'participant Application_Server as AS
+'participant Microservices_Dispatcher as MD
+'entity logInManagerInterface as LMI
+'participant LogInManager as LM
+'entity searchManagerInterface as SMI
+'participant searchManager as SM
+'entity tournamentManagerInterface as TMI
+'participant TournamentManager as TM
+'entity notificationManagerInterface as NMI
+'participant NotificationManager as NM
+'participant Firewall as F
+'participant EmailProvider as EP
+'actor Invited_Educator as U2
+
+
+'activate U1
+'activate FF
+'activate WS
+'activate SF
+'activate AS
+'U1 --> FF: Json(inviteEducator(myemail, emailToInvite, tournamentName))
+'FF-->WS: analizer(socket, Json): Json
+'WS-->SF: verifyLoggedClient(socket)
+'SF-->AS: analizer(socket, Json): Json
+'AS-->MD: parser(Json): response
+'activate MD
+'MD-->LMI: logInManager.isLogged(myemail)
+'activate LMI
+'LMI-->LM: isLogged(myemail)
+'deactivate LMI
+'activate LM
+'alt if Invited Educator and Tournament exists
+'    LM-->MD: True: the User is logged properly and it is an Educator
+'    MD-->SMI: Microdispatcher.searchUser(emailToInvite)
+'    activate SMI
+'    SMI-->SM: searchUser(emailToInvite)
+'    deactivate SMI
+'    activate SM
+'    SM-->MD: List<AccountManager>.count == 1 and AccountManager.type == Educator
+'    deactivate SM
+'    activate SMI
+'    MD-->SMI: Microdispatcher.searchTournament(tournamentName)
+'    SMI-->SM: searchTournament(tournamentName)
+'    deactivate SMI
+'    activate SM
+'    alt Tournament exists
+'        SM --> MD: List<<TournamentManager>>.count == 1
+'        MD --> TMI: TournamentManager.getEducator(emailToInvite)
+'        activate TMI
+'        TMI --> TM: getEducator(emailToInvite)
+'        deactivate TMI
+'        activate TM
+'        alt Invited Educator is not in Tournamemnt
+'            TM --> MD: Invited Educator is not in the Tournament
+'            deactivate TM
+'            MD --> NMI: Microdispatcher.sendNotification(emailToInvite, description)
+'            activate NMI
+'            NMI-->NM: sendNotification(email, description)
+'            deactivate NMI
+'            activate NM
+'            NM->F: sendEmail
+'            deactivate NM
+'            activate F
+'            F->EP: sendEmail
+'            deactivate F
+'            activate EP
+'            EP-->U2: Email <<Invitation sent>>
+'            deactivate EP
+'        else Educator is already in the Tournament
+'            TM --> MD: Invited Educator already is in the Tournament
+'            deactivate TM
+'            MD --> NMI: Microdispatcher.sendNotification(emailToInvite, description)
+'            activate NMI
+'            NMI-->NM: sendNotification(email, description)
+'            deactivate NMI
+'            activate NM
+'            NM->F: sendEmail
+'            deactivate NM
+'            activate F
+'            F->EP: sendEmail
+'            deactivate F
+'            activate EP
+'            EP-->U1: Email <<Invitation NOT sent, Educator is already in the Tournament>>
+'            deactivate EP
+'        end 
+'    else if Tournament does NOT exists or wrong data
+'        SM --> MD: List<<TournamentManager>>.count == 0
+'        deactivate SM
+'        MD-->AS: Invitation NOT send, User NOT logged properly 
+'        AS-->WS: Json(Invitation NOT send)
+'        WS-->U1: Invitation NOT send
+'       end
+'else if Invited Educator does not exist or it is not an Educator
+'    LM-->MD: True: the User is logged properly and it is an Educator
+'    MD-->SMI: Microdispatcher.searchUser(emailToInvite)
+'    SMI-->SM: searchUser(emailToInvite)
+'    activate SM
+'    SM-->MD: List<AccountManager>.count == 0 or AccountManager.type != Educator
+'    deactivate SM
+'    MD-->AS: Invitation NOT send, Invited_Educator does NOT exist
+'    AS-->WS: Json(Invitation NOT send)
+'    WS-->U1: Invitation NOT send
+'else if Inviting Educator not logged
+'    LM-->MD: False: the User is NOT logged properly or it is NOT an Educator
+'    deactivate LM
+'    MD-->AS: Invitation NOT send, User NOT logged properly 
+'    deactivate MD
+'    AS-->WS: Json(Invitation NOT send)
+'    deactivate AS
+'    WS-->U1: Invitation NOT send
+'end 
+
+actor "Inviting Educator" as U1
+participant WebServerModule as WS
+participant Dispatcher as MD
+entity searchInterface as SMI
 participant searchManager as SM
-entity tournamentManagerInterface as TMI
+entity tournamentInterface as TMI
 participant TournamentManager as TM
-entity notificationManagerInterface as NMI
+entity notificationInterface as NMI
 participant NotificationManager as NM
-participant Firewall as F
 participant EmailProvider as EP
-actor Invited_Educator as U2
+actor "Invited Educator" as U2
+entity dbmsmInterface as DBMI
+participant DBMSManager as DBM
+entity dbmsInterface as DBI
+participant DBMS as DB
 
-
-activate U1
-activate FF
-activate WS
-activate SF
-activate AS
-U1 --> FF: Json(inviteEducator(myemail, emailToInvite, tournamentName))
-FF-->WS: analizer(socket, Json): Json
-WS-->SF: verifyLoggedClient(socket)
-SF-->AS: analizer(socket, Json): Json
-AS-->MD: parser(Json): response
-activate MD
-MD-->LMI: logInManager.isLogged(myemail)
-activate LMI
-LMI-->LM: isLogged(myemail)
-deactivate LMI
-activate LM
-alt if Invited Educator and Tournament exists
-    LM-->MD: True: the User is logged properly and it is an Educator
-    MD-->SMI: Microdispatcher.searchUser(emailToInvite)
-    activate SMI
-    SMI-->SM: searchUser(emailToInvite)
-    deactivate SMI
-    activate SM
-    SM-->MD: List<AccountManager>.count == 1 and AccountManager.type == Educator
-    deactivate SM
-    activate SMI
-    MD-->SMI: Microdispatcher.searchTournament(tournamentName)
-    SMI-->SM: searchTournament(tournamentName)
-    deactivate SMI
-    activate SM
-    alt Tournament exists
-        SM --> MD: List<<TournamentManager>>.count == 1
-        MD --> TMI: TournamentManager.getEducator(emailToInvite)
-        activate TMI
-        TMI --> TM: getEducator(emailToInvite)
-        deactivate TMI
-        activate TM
-        alt Invited Educator is not in Tournamemnt
-            TM --> MD: Invited Educator is not in the Tournament
-            deactivate TM
-            MD --> NMI: Microdispatcher.sendNotification(emailToInvite, description)
-            activate NMI
-            NMI-->NM: sendNotification(email, description)
-            deactivate NMI
-            activate NM
-            NM->F: sendEmail
-            deactivate NM
-            activate F
-            F->EP: sendEmail
-            deactivate F
-            activate EP
-            EP-->U2: Email <<Invitation sent>>
-            deactivate EP
-        else Educator is already in the Tournament
-            TM --> MD: Invited Educator already is in the Tournament
-            deactivate TM
-            MD --> NMI: Microdispatcher.sendNotification(emailToInvite, description)
-            activate NMI
-            NMI-->NM: sendNotification(email, description)
-            deactivate NMI
-            activate NM
-            NM->F: sendEmail
-            deactivate NM
-            activate F
-            F->EP: sendEmail
-            deactivate F
-            activate EP
-            EP-->U1: Email <<Invitation NOT sent, Educator is already in the Tournament>>
-            deactivate EP
-        end 
-    else if Tournament does NOT exists or wrong data
-        SM --> MD: List<<TournamentManager>>.count == 0
-        deactivate SM
-        MD-->AS: Invitation NOT send, User NOT logged properly 
-        AS-->WS: Json(Invitation NOT send)
-        WS-->U1: Invitation NOT send
-        end
-else if Invited Educator does not exist or it is not an Educator
-    LM-->MD: True: the User is logged properly and it is an Educator
-    MD-->SMI: Microdispatcher.searchUser(emailToInvite)
-    SMI-->SM: searchUser(emailToInvite)
-    activate SM
-    SM-->MD: List<AccountManager>.count == 0 or AccountManager.type != Educator
-    deactivate SM
-    MD-->AS: Invitation NOT send, Invited_Educator does NOT exist
-    AS-->WS: Json(Invitation NOT send)
-    WS-->U1: Invitation NOT send
-else if Inviting Educator not logged
-    LM-->MD: False: the User is NOT logged properly or it is NOT an Educator
-    deactivate LM
-    MD-->AS: Invitation NOT send, User NOT logged properly 
-    deactivate MD
-    AS-->WS: Json(Invitation NOT send)
-    deactivate AS
-    WS-->U1: Invitation NOT send
-end 
-
+U1 -> WS: POST /api\n/inviteEducator
+WS -> MD: addEducator(email: String,\n tournamentName: String): Void
+MD -> TMI: addEducator(email: String,\n tournamentName: String): Void
+TMI -> TM: addEducator(email: String,\n tournamentName: String): Void
+TM -> SMI: searchUser(email: String):\n List<User>
+SMI -> SM: searchUser(email: String):\n List<User>
+SM -> DBMI: searchUser(email: String):\n List<User>
+DBMI -> DBM: searchUser(email: String):\n List<User>
+DBM -> DBI: searchUser(email: String):\n List<User>
+DBI -> DB: searchUser(email: String):\n List<User>
+DB --> DBI: List<User>
+DBI --> DBM: List<User>
+DBM --> DBMI: List<User>
+DBMI --> SM: List<User>
+SM --> SMI: List<User>
+SMI --> TM: List<User>
+alt List<User> is not NULL and Educator is not just in the Tournament
+    TM -> NMI: sendNotification(email: String,\n description: String): Void
+    NMI -> NM: sendNotification(email: String,\n description: String): Void
+    NM -> EP: send Email with description to email
+    EP -> U2: Email <<Invitation sent>>
+    alt Educator accepts Invitation
+        U2 -> WS: POST /api\n/confirm
+        WS -> MD: confirm(token: String,\nemail: String): Void
+        MD -> NMI: receiveResponse(token: String,\nemail: String): Void
+        NMI -> NM: receiveResponse(token: String,\nemail: String): Void
+        NM -> TMI: joinEducator(email: String,\n tournamentName: String): Void
+        TMI -> TM: joinEducator(email: String,\n tournamentName: String): Void
+    else Educator refuses Invitation
+    end
+else List<User> is NULL or Educator is just in the Tournament
+    TM -> NMI: sendNotification(email: String,\n description: String): Void
+    NMI -> NM: sendNotification(email: String,\n description: String): Void
+    NM -> EP: send Email with description to email
+    EP -> U1: Email <<Invitation NOT sent, error occurred>>
+end
 
 @enduml

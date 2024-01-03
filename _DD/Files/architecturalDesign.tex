@@ -301,21 +301,21 @@ For each component here are explained functions associated with respective inter
 \end{enumerate}
 \subsection{Platform API specification}
 In this section will be proposed the specification of the Platform API, that will be used by the Web App to communicate with the Platform.
-For convenience this API is shown divided in three parts: fisrtly the part dedicated to the Web App, secondly the one dedicated to the E-Mail confirmations, thirdly the one dedicated to the RMP actions.
+For convenience this API is shown divided in three parts: firstly the part dedicated to the Web App, secondly the one dedicated to the E-Mail confirmations, thirdly the one dedicated to the RMP actions.
 \subsubsection{Web App API}
 \begin{itemize}
     \item \textbf{POST /api/signIn} This call allows a User to sign in into the Platform. The body of the request must contain the following fields: Name, Surname, Email, Password, RMP Handle, UserType. It returns the confirmation of successful sign in, or an error message.
     \item \textbf{POST /api/logIn} This call allows a User to log in into the Platform. The body of the request must contain the following fields: Email, Password. It returns the confirmation of successful log in with the session token, or an error message.
 \end{itemize}
-All of the following have a common argument, that is the User session token. This token is used to authenticate the User and to check if he has the right to perform the call. So all of the following calls are valid if and only if the User is logged in.
+All of the following have a common argument, that is the User session token. This token is used to authenticate the User and to check if he has the right to perform the call. So all the following calls are valid if and only if the User is logged in.
 \begin{itemize}
     \item \textbf{GET /api/search} This call allows a user to search for other Users or Tournaments. The body of the request must contain the following fields: SearchType, SearchParameters. It returns the list of Users or Tournaments that match the search parameters.
-    \item \textbf{GET /api/userProfile} This call allows a user to get all data that the Platform has about an user. The body of the request must contain the following fields: Email. It returns the user public data, and, in the case of Students, also the list of badges.
+    \item \textbf{GET /api/userProfile} This call allows a user to get all data that the Platform has about a user. The body of the request must contain the following fields: Email. It returns the user public data, and, in the case of Students, also the list of badges.
     \item \textbf{GET /api/tournamentData} This call allows a user to get all data that the Platform has about a Tournament. The body of the request must contain the following fields: TournamentName. It returns the Tournament data.
     \item \textbf{POST /api/createTournament} This call allows an Educator to create a Tournament. The body of the request must contain the following fields: TournamentName, TournamentDescription, TournamentLanguage, TournamentMaxTeamSize, SubscriptionDeadline, TournamentDuration. It returns the confirmation of successful creation, or an error message.
     \item \textbf{POST /api/joinTournament} This call allows a Student to join a Tournament. The body of the request must contain the following fields: Tournament, TeamName. It returns the confirmation of successful join, or an error message.
-    \item \textbf{POST /api/inviteStudent} This call allows a Student to invite an other stuent to his team. The body of the request must contain the following fields: Tournament, TeamName, StudentEmail. It returns the confirmation of successful invitation, or an error message.
-    \item \textbf{POST /api/inviteEducator} This call allows an Educator to invite an other Educator to his Tournament. The body of the request must contain the following fields: Tournament, EducatorEmail. It returns the confirmation of successful invitation, or an error message.
+    \item \textbf{POST /api/inviteStudent} This call allows a Student to invite another student to his team. The body of the request must contain the following fields: Tournament, TeamName, StudentEmail. It returns the confirmation of successful invitation, or an error message.
+    \item \textbf{POST /api/inviteEducator} This call allows an Educator to invite another Educator to his Tournament. The body of the request must contain the following fields: Tournament, EducatorEmail. It returns the confirmation of successful invitation, or an error message.
     \item \textbf{POST /api/createBadge} This call allows an Educator to create a new badge in the context of a tournament. The body of the request must contain the following fields: Tournament, BadgeName, BadgeDescription, BadgeCriteria. It returns the confirmation of successful creation, or an error message.
     \item \textbf{POST /api/createBattle} This call allows an Educator to create a new Battle in the context of a tournament. The body of the request must contain the following fields: Tournament, BattleName, BattleDescription, BattleRMPRepo. It returns the confirmation of successful creation, or an error message.
     \item \textbf{GET /api/getBattleData} This call allows a user to get all data that the Platform has about a Battle. The body of the request must contain the following fields: Tournament, BattleName. It returns the Battle data, including the Team Scoreboard.
@@ -334,10 +334,10 @@ All of the following have a common argument, that is the User session token. Thi
 \subsection{Notable observations}
 \subsubsection{Authorization Management}
 The management of the validity of certain API calls is done via the use of Tokens. These tokens are considered as of three types:
-\textbf{User Session Token} This token is used to authenticate the User and to check if he has the right to perform the call. This is generated after a successful login and is valid for the whole session, or until the User logs out. It contains informations about the User, such as e-mail and role.
+\textbf{User Session Token} This token is used to authenticate the User and to check if he has the right to perform the call. This is generated after a successful login and is valid for the whole session, or until the User logs out. It contains information about the User, such as e-mail and role.
 \textbf{Confirmation Token} This token is used to confirm the validity of a certain action, such as the confirmation of an e-mail or the confirmation of an invitation. This is generated when is requested a confirmation action from the user. It contains the e-mail of the User and the type of confirmation.
-\textbf{Validity Token} This token is used by the platfrom to understand of the request to evaluate some code is legitimate or not. Once registering the repo to the platform, this token is generated and saved in the repo. It contains the Tournament end date, the Battle.
-All of the above tokens have to be encripted to enshure their security and autenticity.
+\textbf{Validity Token} This token is used by the platform to understand of the request to evaluate some code is legitimate or not. Once registering the repo to the platform, this token is generated and saved in the repo. It contains the Tournament end date, the Battle.
+All the above tokens have to be encrypted to ensure their security and authenticity.
 \subsubsection{Battle Evaluation} \label{parr:battleEvaluation}
 For the automatic evaluation of the battles is advisable to use an automatic evaluation system based on containers.
 This kind of evaluation system is useful and satisfies different requirements as:
