@@ -66,11 +66,9 @@ To establish a network connection between the Client and the CKB Server, a Web B
 
 \paragraph{Web Server}
 The Web Browser's job is to route browser requests to the Application Server and get back responses from the Application Server. The Web Server just needs to route requests from and to the Network because you have to assume 
-that it is located in the DMZ. It is composed by two modules:
+that it is located in the DMZ. It is composed of the module:
 \begin{enumerate}[label=$\bullet$]
-    \item \textbf{Web Server Module} This is in charge of providing the Web browser of the necessary files to run the Client application. Once loaded this will communicate with the Application Server via the API Manager.
-    \item \textbf{API Manager} This module is in charge of providing an interface to the client to communicate with the Application Tier. 
-    Any kind of communication from the outside world, except for the above one, must go via this API. 
+    \item \textbf{Web Server Module} This is in charge of providing the Web browser of the necessary files to run the Client and an interface to the client to communicate with the Application Tier.  
     The API implemented here is one of the RESTFul type, as commented here \nameref{parr:restful}.
     This allows to expose only the needed functionalities to the client, masking the internal logic of the Platform.
 \end{enumerate}
@@ -142,8 +140,8 @@ Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a
 This interaction is intended as placed everywhere there is a communication between component and the DBMS.
 \useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagram.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
 Where DBMS Manager is the component, and MicroserviceA is the component that needs to perform a query to the database.
-\paragraph*{API call authorization check}
-This interaction is intended as placed everywhere there is a communication between an external component, or client and the API manager.
+\paragraph*{API call authorization check} \label{reff:authcheck}
+This interaction is intended as placed everywhere there is a communication between an external component, or client and the Web server module.
 \useSvgWithCaption{./Images/sequenceDiagrams/apiCallAuthorizationCheckSequenceDiagram.svg}{.70}{.70}{API call authorization check Sequence Diagram}
 Where the API call is any call as described above, and request is any action the Platform has to perform as result of that call.
 
@@ -333,18 +331,17 @@ All of the following have a common argument, that is the User session token. Thi
 
 \subsection{Notable observations}
 \subsubsection{Authorization Management}
-The management of the validity of certain API calls is done via the use of Tokens. These tokens are considered as of three types:
-\textbf{User Session Token} This token is used to authenticate the User and to check if he has the right to perform the call. This is generated after a successful login and is valid for the whole session, or until the User logs out. It contains information about the User, such as e-mail and role.
-\textbf{Confirmation Token} This token is used to confirm the validity of a certain action, such as the confirmation of an e-mail or the confirmation of an invitation. This is generated when is requested a confirmation action from the user. It contains the e-mail of the User and the type of confirmation.
-\textbf{Validity Token} This token is used by the platform to understand of the request to evaluate some code is legitimate or not. Once registering the repo to the platform, this token is generated and saved in the repo. It contains the Tournament end date, the Battle.
-All the above tokens have to be encrypted to ensure their security and authenticity.
+The management of the validity of certain API calls is done via the use of Tokens. These tokens are considered as of three types:\\
+\textbf{User Session Token} This token is used to authenticate the User and to check if he has the right to perform the call. This is generated after a successful login and is valid for the whole session, or until the User logs out. It contains information about the User, such as e-mail and role. \\
+\textbf{Confirmation Token} This token is used to confirm the validity of a certain action, such as the confirmation of an e-mail or the confirmation of an invitation. This is generated when is requested a confirmation action from the user. It contains the e-mail of the User and the type of confirmation. \\
+\textbf{Validity Token} This token is used by the platform to understand of the request to evaluate some code is legitimate or not. Once registering the repo to the platform, this token is generated and saved in the repo. It contains the Tournament end date, the Battle. \\
+All of the above tokens have to be encrypted to ensure their security and authenticity.
+In the Runtime View is shown the corresponding sequence diagram for the authorization check of an API call: \nameref{reff:authcheck}
 \subsubsection{Battle Evaluation} \label{parr:battleEvaluation}
 For the automatic evaluation of the battles is advisable to use an automatic evaluation system based on containers.
-This kind of evaluation system is useful and satisfies different requirements as:
-\begin{itemize}
-    \item \textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophic since it bypasses all security measures placed before.
-    \item \textbf{Reusability:} the testing environment, via the use of a suitable script, can be used to test any kind of code in a completely automatic manner
-\end{itemize}
+This kind of evaluation system is useful and satisfies different requirements as:\\
+\textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophic since it bypasses all security measures placed before.\\
+\textbf{Reusability:} the testing environment, via the use of a suitable script, can be used to test any kind of code in a completely automatic manner.\\
 In order to work well, is needed that all battle repo have a RMP action active, which scope is to alert the platform of any new update to the repo. This will trigger two pushes from the platform one from the Team Repository, the other from the Educator repository. 
 This is done to ensure that Teams don't tamper with the evaluation tests, that are saved in the battle repository, while being able to use them for local evaluation. 
 After saving everything, a new container is spawned that will have to run the evaluation script from the repository. 
@@ -368,10 +365,6 @@ From this the dispatcher interface has also a method \hyperref[meth:dispGetData]
 This Platform has to interact with RMP and E-mail provider, which are external actors that do not interact with the system via the Web App, but via APIs.
 In fact, RMP repos implement an action whose scope is to call the Platform's API to notify it of any update to the repository, similarly users use e-mail to respond to notifications sent by the Platform, again via simple buttons present in the notifications that allows to send confirmation or denial answers via the Platform's API.
 Is also useful to denote that the Platform, making use of those two services, behaves as a client for them. This is done via the use of the respective RMP Manager and E-mail Manager components.
-
-\subsubsection{API and Login}
-Since the only way for the client application to communicate to the Platform is via a RESTFul API, special attention has to be put in the login management.
-The RESTFul API, in fact, has no classical notion of session, so the login information has to be kept by the client application, and sent to the API with every request. To avoid cluttering the diagram from their scopes also this has been omitted.
 
 \subsubsection{DBMS manager}
 This component is in charge of performing operations to the data tier.
