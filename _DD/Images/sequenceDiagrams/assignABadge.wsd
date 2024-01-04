@@ -4,80 +4,50 @@ autonumber
 
 actor Student as U
 participant emailProvider as EP
-participant Firewall as F
-participant NotificationManager as NM
-entity notificationManagerInterface as NMI
-participant Microservices_Dispatcher as MD
-entity AccountManagerInterface as AMI
-participant AccountManager as AM
-entity SearchManagerInterface as SMI
-participant SearchManager as SM
+participant TournamentManager as TM
 participant BadgeManager as BM
-entity badgeManagerInterface as BMI
 participant EvaluationManager as EM
-entity RMPManagerInterface as RMI
 participant RMPManager as RMP
-entity notificationManagerInterface as NMI
 participant NotificationManager as NM
-participant Firewall as F
-participant EmailProvider as EP
+participant StudentManager as SM
+participant DBMSManager as DB
 
-activate RMP
-RMP-->EM: new code available
-activate EM
-activate RMI
-EM --> RMI: RMP.pullRequest(repo)
-RMI -->RMP: pullRequest(String repo)
-deactivate RMI
-RMP --> EM: Code file
-deactivate RMP
-EM --> EM: evaluate Code
-activate EM
-deactivate EM
-EM --> BMI: BadgeManager.verifyCriteria(testResults, emails)
-activate BMI
-BMI --> BM: verifyCriteria(testResults, emails)
-deactivate BMI
-alt testResults meet criterias
-activate BM
-alt if Badge is assigned
-    BM --> EM: True: Badge is assigned
-    deactivate BM
-    EM --> MD: MicroserviceDispatcher.assignBadge(this, repo)
-    activate MD
-    MD --> SMI: MicroserviceDispatcher.searchUser(repo)
-    activate SMI
-    SMI --> SM: searchUser(repo)
-    deactivate SMI
-    activate SM
-    SM --> MD: AccountManager
-    deactivate SM
-    MD --> AMI: AccountManager.assignBadge(BadgeManager)
-    activate AMI
-    AMI --> AM: assignBadge(BadgeManager)
-    deactivate AMI
-    activate AM
-    AM --> MD: True: Badge is successfully assigned
-    MD --> NMI: MicroserviceDispatcher.sendNotification(List<String> emails, description)
-    activate NMI
-    NMI --> NM: sendNotification(List<String> emails, description)
-    deactivate NMI
-    activate NM
-    NM --> F: send email
-    deactivate NM
-    activate F
-    F --> EP: send email
-    deactivate F
-    activate EP
-    EP --> U: receive email
-    deactivate EP
-else Badge is already assigned to the Student
-    AM --> MD: False: Badge is not assigned 
-    deactivate AM
-else testResults do NOt meet criterias
-    BM --> EM: False: Badge is NOT assigned
-    deactivate MD
+activate DB
+activate TM
+activate EP
+TM -> TM: tournamentEnded()
+loop for each Badge
+    TM -> BM: evaluateCriteria(Badge)
+    activate BM
+    BM -> EM: evaluateCriterium(Crterium, Tournament)
+    activate EM
+    alt if necessary, for each Team repo
+        EM -> RMP: pull(repo)
+        activate RMP
+        RMP --> EM: code
+        deactivate RMP
+    end
+    EM --> BM: eligibleStudents
     deactivate EM
+    alt if eligibleStudents is not empty
+        loop for each eligible student
+            BM -> SM: assignBadge(Student, Badge)
+            activate SM
+            SM -> DB: query(assignBadge, student, badge)
+            DB --> SM: success
+            SM --> BM: success
+            deactivate SM
+            BM -> NM: sendNotification(Student, Details)
+            activate NM
+            NM -> EP: sendEmail(Student, Details)
+            deactivate NM
+            EP -> U: receiveEmail
+        end
+    end
+    deactivate BM
 end
+deactivate TM
+deactivate DB
+deactivate EP
 
 @enduml

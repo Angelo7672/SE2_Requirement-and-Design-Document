@@ -1,5 +1,13 @@
 @startuml
 
+actor Educator as U
+participant WebServer as WS
+participant TournamentManager
+
+
+
+
+
 autonumber
 actor Educator as U
 participant First_Firewall as FF
