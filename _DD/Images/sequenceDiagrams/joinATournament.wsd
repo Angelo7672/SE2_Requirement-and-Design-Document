@@ -1,126 +1,82 @@
 @startuml
 
-'autonumber
-'actor Educator as U
-'participant First_Firewall as FF
-'participant WebServer as WS
-'participant Second_Firewall as SF
-'participant Application_Server as AS
-'participant Microservices_Dispatcher as MD
-'entity tournamentManagerInterface as TMI
-'participant TournamentManager as TM
-'entity logInManagerInterface as LMI
-'participant LogInManager as LM
-'entity notificationManagerInterface as NMI
-'participant NotificationManager as NM
-'participant Firewall as F
-'participant EmailProvider as EP
-
-'activate U
-'activate FF
-'activate WS
-'activate SF
-'activate AS
-'U-->FF: joinATournament(Json(email, Team))
-'FF-->WS: analizer(socket, Json): Json
-'WS-->SF: verifyLoggedClient(socket)
-'SF-->AS: analizer(socket, Json): Json
-'AS-->MD: parser(Json): response
-'activate MD
-'MD-->LMI: logInManager.isLogged(email)
-'activate LMI
-'activate LM
-'LMI-->LM: isLogged(email)
-'deactivate LMI
-'alt if Tournament joined successful
-'    LM-->MD: True: the User is logged properly and he/she is an Educator
-'    activate TMI
-'    MD-->TMI: TournamentManager.joinTournament(email, Team)
-'    TMI-->TM: joinTournament(email, Team)
-'    deactivate TMI
-'    activate TM
-'    TM-->MD: True: Tournament is joined
-'    deactivate TM
-'    deactivate TM
-'    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
-'    activate NMI
-'    NMI-->NM: sendNotification(email, description)
-'    deactivate NMI
-'    activate NM
-'    NM->F: sendEmail
-'    deactivate NM
-'    activate F
-'    F->EP: sendEmail
-'    deactivate F
-'    activate EP
-'    EP-->U: Email <<Tournament joined>>
-'    deactivate EP
-'    MD-->AS: Tournament joined
-'    AS-->WS: Json(Tournament joined)
-'    WS-->U: Tournament successfully joined
-'else  Tournament already joined or Team does not exists
-'    LM-->MD: True: the User is logged properly and it is a Student
-'    MD-->TMI: TournamentManager.joinTournament(email, Team)
-'    TMI-->TM: joinTournament(email, Team)
-'    activate TM
-'    TM-->MD: False: Tournament already joined
-'    deactivate TMI
-'    deactivate TM
-'    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
-'    activate NMI
-'    NMI-->NM: sendNotification(email, description)
-'    deactivate NMI
-'    activate NM
-'    NM->F: sendEmail
-'    deactivate NM
-'    activate F
-'    F->EP: sendEmail
-'    deactivate F
-'    activate EP
-'    EP-->U: Email <<Tournament already joined>>
-'    deactivate EP
-'    activate TM
-'    TM-->MD: False: Tournament is already joined/Team doen not exists
-'    deactivate TM
-'    MD-->AS: Tournament already joined/Team doen not exists
-'    AS-->WS: Json(Tournament already joined/Team doen not exists)
-'    WS-->U: Tournament already joined/Team doen not exists
-'else User is not a Student or is not logged
-'    LM-->MD: False: the User is not logged properly or he/she is not an Educator
-'    deactivate LM
-'    MD-->AS: Tournament NOT joined, User NOT logged properly 
-'    deactivate MD
-'    AS-->WS: Json(Tournament NOT joined)
-'    WS-->U: Tournament NOT joined
-'end
-'deactivate U
-'deactivate FF
-'deactivate WS
-'deactivate SF
-'deactivate AS
-
 autonumber
+
 actor Student as S
+participant EmailProvider as EP
 participant WebServerModule as WS
+participant Controller as C
 participant Dispatcher as MD
 participant TournamentManager as TM
 participant NotificationManager as NM
-participant EmailProvider as EP
-participant DBMS as D
+participant DBMSManager as DBMSM
 
-S -> WS: click on Tournament
-WS -> S: Tournament page
-S -> WS: click on Join
-alt if subscription deadline is not passed
-    WS -> MD: joinTournament()
-    MD -> TM: joinTournament()
-    TM -> TM: createTeam()
-    TM -> TM: joinStudent()
-    TM -> D: insertTeam()
-    TM -> NM: sendNotification()
-    NM -> EP: sendEmail
-else subscription deadline is passed
-    WS -> S: subscription deadline is passed
+activate S
+S -> WS: GET /api/tournamentData
+activate WS
+WS -> C: getTournamentData(tournament:\n String): Tournament
+activate C
+C -> MD: getTournamentData(tournament:\n String): Tournament
+activate MD
+MD -> DBMSM: getTournamentData(tournament: String): Tournament
+activate DBMSM
+DBMSM --> MD: Tournament
+deactivate DBMSM
+MD --> C: Tournament
+deactivate MD
+C --> WS: Tournament
+deactivate C
+WS --> S: Tournament
+deactivate WS
+S -> WS: POST /api/joinTournament
+activate WS
+WS -> C: createTeam(tournament: String,\n email: String,\n team: String): Tournament Page
+activate C
+C -> MD: createTeam(tournament: String,\n email: String,\n team: String): Tournament Page
+activate MD
+MD -> TM: createTeam(tournament: String,\n email: String,\n team: String): Tournament Page
+activate TM
+TM -> DBMSM: searchTeamTournament(team: String,\n tournament: String): Team
+activate DBMSM
+DBMSM --> TM: Team
+deactivate DBMSM
+alt if Team is NULL
+    TM -> DBMSM: createTeam(tournament: String,\n team: String): Void
+    activate DBMSM
+    DBMSM -> DBMSM: Insert\nteam in\ntournament
+    DBMSM --> TM: OK
+    deactivate DBMSM
+    TM -> DBMSM: addStudentToTeam(tournament: String,\n team: String, email: String): Void
+    activate DBMSM
+    DBMSM -> DBMSM: Insert\nstudent in\nteam
+    DBMSM --> TM: OK
+    deactivate DBMSM
+    TM -> NM: sendNotification(email: String,\n text: String): Void
+    activate NM
+    NM -> EP: email with text
+    deactivate NM
+    activate EP
+    EP -> S: email\n <<subscritpion confirmation>>
+    deactivate EP
+    TM --> MD: Tournament Page
+    deactivate TM
+    MD --> C: Tournament Page
+    deactivate MD
+    C --> WS: Tournament Page
+    deactivate C
+    WS --> S: Tournament Page
+    deactivate WS
+else if Team is NOT NULL
+    TM -> MD: Exception: Team already exists
+    activate MD
+    MD -> C: Exception: Team already exists
+    deactivate MD
+    activate C
+    C -> WS: Exception: Team already exists
+    deactivate C
+    activate WS
+    WS -> S: Exception: Team already exists
+    deactivate WS
 end
 
 @enduml

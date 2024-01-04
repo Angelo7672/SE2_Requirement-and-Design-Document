@@ -1,122 +1,68 @@
 @startuml
 
 autonumber
-autoactivate on
-
-'actor User as U
-'participant First_Firewall as FF
-'participant WebServer as WS
-'participant Second_Firewall as SF
-'participant Application_Server as AS
-'participant Microservices_Dispatcher as MD
-'entity signInInterface as SII
-'participant SignInManager as SIM
-'participant SearchManager as SM
-'participant AccountManager as AM
-'participant DBMS as D
-
-'activate U
-'activate FF
-'activate WS
-'activate SF
-'activate AS
-'U-->FF: signIn(Json(Name, Surname, e-mail, password, yearOfBirth, RMPHandler))
-'FF-->WS: analizer(socket, Json): Json
-'WS-->SF: activeClientAdd(socket)
-'SF-->AS: analizer(socket, Json): Json
-'AS-->MD: parser(Json): response
-'activate MD
-'MD-->SII: signInManager.signIn(Name, Surname, e-mail, password, yearOfBirth, RMPHandler)
-'activate SII
-'SII-->SIM: signIn(Name, Surname, e-mail, password, yearOfBirth, RMPHandler)
-'deactivate SII
-'activate SIM
-'SIM-->SM: searchUser(Name, Surname, e-mail, yearOfBirth): List<Account>
-'activate SM
-'alt new account 
-'    SM-->D: searchQuery
-'    activate D
-'    D-->SM: Response
-'    deactivate D
-'    SM-->SIM: List.count == 0 <<Account not found>>
-'    SIM-->AM: createAccount(Name, Surname, e-mail, password, yearOfBirth, RMPHandler)
-'    activate AM
-'    deactivate AM
-'    SIM-->MD: Response
-'    MD-->AS: Response
-'    AS-->WS: Json(Response)
-'    WS-->U: Information of successful operation
-'else account exists yet or account with same repo
-'    SM-->D: searchQuery
-'    activate D
-'    D-->SM: Response
-'    deactivate D
-'    SM-->SIM: List.count > 0 <<Account already exists or account with same repo found>>
-'    deactivate SM
-'    SIM-->MD: Error: account already exists
-'    deactivate SIM
-'    MD-->AS: Error: account already exists
-'    deactivate MD
-'    AS-->WS: Json(Error: account already exists)
-'    WS-->U: Information of Unsuccessful operation: account already exists
-'end
-'deactivate U
-'deactivate FF
-'deactivate WS
-'deactivate SF
-'deactivate AS
 
 actor User as U
-participant WebServerModule as WS
-participant Dispatcher as MD
-entity dispatcherInterface as MDI
-participant SignInManager as SIM
-entity signInInterface as SIMI
-participant NotificationManager as NM
-entity notificationInterface as NMI
-participant SearchManager as SM
-entity searchInterface as SMI
-participant DBMSManager as DBMSM
-entity dbmsmInterface as DBMSMI
-database DBMS as D
-entity dbmsInterface as DI
 participant EmailProvider as EP
+participant WebServerModule as WS
+participant Controller as C
+participant Dispatcher as MD
+participant SignInManager as SIM
+participant NotificationManager as NM
+participant DBMSManager as DBMSM
 
+activate U
 U -> WS: POST /api/signIn
-WS -> MDI: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
-MDI -> MD: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
-MD -> SIMI: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
-SIMI -> SIM: signIn(Name: String, Surname: String,\n e-mail: String, password: String,\n RMPHandle: String)
-SIM -> SMI: searchUser(e-mail: String, RMPHandle: String): List<User>
-SMI -> SM: searchUser(e-mail: String, RMPHandle: String): List<User>
-SM -> DBMSMI: searchUser(e-mail: String, RMPHandle: String): List<User>
-DBMSMI -> DBMSM: searchUser(e-mail: String, RMPHandle: String): List<User>
-DBMSM -> DI: searchUser(e-mail: String, RMPHandle: String): List<User>
-DI -> D: searchUser(e-mail: String, RMPHandle: String): List<User>
-D --> DBMSM: List<User>
-DBMSM --> SM: List<User>
-SM --> SIM: List<User>
+activate WS
+WS -> C: signIn(name: String, surname: String,\n e-mail: String, password: String,\n rmpHandle: String): Void
+deactivate WS
+activate C
+C -> MD: signIn(name: String, surname: String,\n e-mail: String, password: String,\n rmpHandle: String): Void
+deactivate C
+activate MD
+MD -> SIM: signIn(name: String, surname: String,\n e-mail: String, password: String,\n rmpHandle: String): Void
+deactivate MD
+activate SIM
+SIM -> DBMSM: searchUser(e-mail: String,\n rmpHandle: String): List<User>
+activate DBMSM
+DBMSM --> SIM: List<User>
+deactivate DBMSM
 alt List<User> is NULL
-    SIM -> NMI: sendNotification(email: String,\n message: String)
-    NMI -> NM: sendNotification(email: String,\n message: String)
-    NM -> EP: send email with message
+    SIM -> NM: sendNotification(email: String,\n text: String): Void
+    deactivate SIM
+    activate NM
+    NM -> EP: send email with text
+    deactivate NM
+    activate EP
     EP -> U: email <<confirmation email>>
+    deactivate EP
     U -> WS: POST /api/confirm
-    WS -> MDI: receiveResponse(token: String,\n email: String)
-    MDI -> MD: receiveResponse(token: String,\n email: String)
-    MD -> NMI: receiveResponse(token: String,\n email: String)
-    NMI -> NM: receiveResponse(token: String,\n email: String)
-    NM -> SIMI: createAccount(email: String)
-    SIMI -> SIM: createAccount(email: String)
-    SIM -> DBMSMI: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
-    DBMSMI -> DBMSM: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
-    DBMSM -> DI: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
-    DI -> D: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
+    activate WS
+    WS -> C: receiveResponse(token: String,\n email: String)
+    deactivate WS
+    activate C
+    C -> MD: receiveResponse(token: String,\n email: String)
+    deactivate C
+    activate MD
+    MD -> NM: receiveResponse(token: String,\n email: String)
+    deactivate MD
+    activate NM
+    NM -> SIM: createAccount(email: String)
+    deactivate NM
+    activate SIM
+    SIM -> DBMSM: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
+    deactivate SIM
+    activate DBMSM
+    DBMSM -> DBMSM: insert\n new User
+    deactivate DBMSM
 else List<User> is not NULL
-    SIM --> MDI: Error <<email/RMPHandle already exists>>
-    MDI --> MD: Error <<email/RMPHandle already exists>>
-    MD --> WS: Error <<email/RMPHandle already exists>>
-    WS --> U: Error <<email/RMPHandle already exists>>
+    SIM --> C: Exception: email/RMPHandle already exists
+    activate C
+    C --> WS: Exception: email/RMPHandle already exists
+    deactivate C
+    activate WS
+    WS --> U: Exception: email/RMPHandle already exists
+    deactivate WS
 end
 
 @enduml

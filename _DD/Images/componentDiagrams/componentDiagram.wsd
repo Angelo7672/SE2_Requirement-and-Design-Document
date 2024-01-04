@@ -10,24 +10,42 @@ component "Web Server" as w <<subsystem>> #LightBlue{
 
 interface "Web Interface"
 
-'[Web Browser] --> [Web Interface]
-'[Web Interface] - [Web Server Module]
+[Web Browser] -- [Web Interface]
+[Web Interface] - [Web Server Module]
 
 component "Application Server" as AppServer <<subsystem>> #LightGreen{
-    component "Sign In Manager"
-    component "Log In Manager"
-    component "RMP Manager"
-    component "Notification Manager"
-    component "Evaluation Manager"
-    component "Badge Manager"
-    component "Battle Manager"
-    component "Tournament Manager"
-    component "Account Manager"
-    component "Search Manager"
-    component "Dispatcher"
-    component "DBMS Manager"
     component "Controller"
+    component "Dispatcher"
+    'component "Sign In Manager"
+    'component "Log In Manager"
+    'component "RMP Manager"
+    'component "Notification Manager"
+    'component "Evaluation Manager"
+    'component "Badge Manager"
+    'component "Battle Manager"
+    'component "Tournament Manager"
+    'component "Account Manager"
+    'component "Search Manager"
+    
+    'component "DBMS Manager"
+
+    interface "Dispatcher Interface"
+    'interface "Sign In Interface"
+    'interface "Log In Interface"
+    'interface "RMP Interface"
+    'interface "Notification Interface"
+    'interface "Evaluation Interface"
+    'interface "Badge Interface"
+    'interface "Battle Interface"
+    'interface "Tournament Interface"
+    'interface "Account Interface"
+    'interface "Search Interface"
+    'interface "DBMSM Interface"
+    
+    [Dispatcher Interface] - [Dispatcher]
 }
+[Controller] -[hidden] [Dispatcher]
+
 '[Sign In Manager] -[hidden]- [Log In Manager]
 '[Log In Manager] -[hidden]- [RMP Manager]
 '[RMP Manager] -[hidden]- [Notification Manager]
@@ -40,31 +58,14 @@ component "Application Server" as AppServer <<subsystem>> #LightGreen{
 '[Account Manager] -[hidden]- [Search Manager]
 '[DBMS Manager] -[hidden]- [Sign In Manager]
 
-interface "Sign In Interface"
-'[Sign In Interface] - [Sign In Manager]
-interface "Log In Interface"
-'[Log In Interface] - [Log In Manager]
-interface "RMP Interface"
-'[RMP Interface] - [RMP Manager]
-interface "Notification Interface"
-'[Notification Interface] - [Notification Manager]
-interface "Evaluation Interface"
-'[Evaluation Interface] - [Evaluation Manager]
-interface "Badge Interface"
-'[Badge Interface] - [Badge Manager]
-interface "Battle Interface"
-'[Battle Interface] - [Battle Manager]
-interface "Tournament Interface"
-'[Tournament Interface] - [Tournament Manager]
-interface "Account Interface"
-'[Account Interface] - [Account Manager]
-interface "Search Interface"
-'[Search Interface] - [Search Manager]
-interface "Dispatcher Interface"
-'[Dispatcher] - [Dispatcher Interface]
-interface "DBMSM Interface"
-'[DBMSM Interface] - [DBMS Manager]
 interface "Controller Interface"
+[Controller Interface] -[hidden] AppServer
+[Controller Interface] - [Controller]
+[Controller] - [Dispatcher Interface]
+
+
+
+
 
 '[Sign In Interface] -- [Log In Interface]
 '[Log In Interface] -- [RMP Interface]
@@ -79,7 +80,7 @@ interface "Controller Interface"
 '[DBMSM Interface] -- [Sign In Interface]
 
 
-'[Web Server Module] -> [Dispatcher Interface]
+[Web Server Module] -> [Controller Interface]
 
 component "DBMS Server" as d <<subsystem>> #Violet{
     component DBMS
@@ -95,7 +96,7 @@ component "External Services" as es #Cyan{
     component RMP
     component "Email Provider"
 }
-'RMP -[hidden]- [Email Provider]
+RMP -[hidden]- [Email Provider]
 
 
 '[Email Provider] <- [Notification Interface]

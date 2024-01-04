@@ -1,100 +1,54 @@
 @startuml
 
-'autonumber
-'actor User as U
-'participant First_Firewall as FF
-'participant WebServer as WS
-'participant Second_Firewall as SF
-'participant Application_Server as AS
-'participant Microservices_Dispatcher as MD
-'entity logInInterface as LII
-'participant LogInManager as LIM
-'participant SearchManager as SM
-'participant DBMS as D
-
-'activate U
-'activate FF
-'activate WS
-'activate SF
-'activate AS
-'U-->FF: logIn(Json( e-mail, password))
-'FF-->WS: analizer(socket, Json): Json
-'WS-->SF: activeClientAdd(socket)
-'SF-->AS: analizer(socket, Json): Json
-'AS-->MD: parser(Json): response
-'activate MD
-'MD-->LII: logInManager.logIn(e-mail, password)
-'activate LII
-'LII-->LIM: logIn(e-mail, password)
-'deactivate LII
-'activate LIM
-'LIM-->SM: searchUser(e-mail, password): List<Account>
-'activate SM
-'alt accont exists
-'    SM-->D: searchQuery
-'    activate D
-'    D-->SM: Response
-'    deactivate D
-'    alt if password correct
-'        SM-->LIM: List.count > 0 <<Account found>> and exists Account.password == this.password
-'        LIM-->MD: True: account exists and password is correct
-'        MD-->AS: access granted
-'        AS-->WS: Json(access granted)
-'        WS-->U: Information of successed operation
-'    else password NOT correct
-'        SM-->D: searchQuery
-'        activate D
-'        D-->SM: Response
-'        deactivate D
-'        SM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
-'        LIM-->MD: False: account does not exists or password is correct
-'        MD-->AS: access denied
-'        AS-->WS: Json(access denied)
-'        WS-->U: Information of Unsuccessful operation
-'    end
-'else account does not exists
-'    SM-->D: searchQuery
-'    activate D
-'    D-->SM: Response
-'    deactivate D
-'    SM-->LIM: List.count > 0 <<Account found>> and exists Account.password != this.password
-'    LIM-->MD: False: account does not exists or password is correct
-'    MD-->AS: access denied
-'    AS-->WS: Json(access denied)
-'    WS-->U: Information of Unsuccessful operation
-'end
-'deactivate U
-'deactivate FF
-'deactivate WS
-'deactivate SF
-'deactivate AS
-
 autonumber
-actor User as U
-participant WebServer as WS
-participant Dispatcher as MD
-participant LogInManager as LIM
-participant AccountManager as AM
-participant DBMS as D
 
-U -> WS: request login page
-WS -> U: login page
-U -> WS: login() 
-WS -> MD: login()
-MD -> LIM: login()
-LIM -> AM: login()
-AM -> D: login
-alt account exists
-    D -> AM: account
-    AM -> LIM: account
-    LIM -> MD: account
-    MD -> WS: account
-    WS -> U: account
-else account does not exists
-    D -> AM: Error
-    AM -> LIM: Error
-    LIM -> MD: Error
-    MD -> WS: Error
-    WS -> U: Error
+actor User as U
+participant WebServerModule as WS
+participant Controller as C
+participant Dispatcher as MD
+participant LoginManager as LM
+participant AccountManager as AM
+participant DBMSManager as DBMSM
+
+activate U
+U -> WS: POST /api/logIn
+activate WS
+WS -> C: logIn(email: String,\n password: String): Session
+activate C
+C -> MD: logIn(email: String,\n password: String): Session
+activate MD
+MD -> LM: logIn(email: String,\n password: String): Session
+activate LM
+LM -> DBMSM: searchUser(email: String,\npassword: String): User
+activate DBMSM
+DBMSM --> LM: User
+deactivate DBMSM
+alt if User is not NULL
+    LM -> AM: createSession(user: User): Session
+    activate AM
+    AM --> LM: Session
+    deactivate AM
+    LM --> MD: Session
+    deactivate LM
+    MD --> C: Session
+    deactivate MD
+    C --> WS: Session
+    deactivate C
+    WS --> U: User homepage
+    deactivate WS
+    deactivate U
+else if User is NULL
+    LM --> MD: Exception: Invalid email or password
+    activate MD
+    MD --> C: Exception: Invalid email or password
+    deactivate MD
+    activate C
+    C --> WS: Exception: Invalid email or password
+    deactivate C
+    activate WS
+    WS --> U: Exception: Invalid email or password
+    deactivate WS
 end
+
+
 @enduml

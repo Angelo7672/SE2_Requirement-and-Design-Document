@@ -77,6 +77,8 @@ that it is located in the DMZ. It is composed of the module:
 
 \paragraph{Application Server}
 \begin{enumerate}
+    \item \textbf{Controller} The Controller is the component that manages the requests from the Web Server. It is invoked by the Web Server, which provides the request and the parameters. The Controller will interface with the 
+    Dispatcher to re-route the request to the right Microservice.
     \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of this component will be better shown in the dedicated section: \nameref{parr:dispatcher}.
     \item \textbf{Sign In Manager} It is the manager in charge of allow Users to sign in into the Platform through proper interface.
     \item \textbf{Log In Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
