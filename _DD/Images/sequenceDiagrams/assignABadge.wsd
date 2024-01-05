@@ -9,7 +9,7 @@ participant BadgeManager as BM
 participant EvaluationManager as EM
 participant RMPManager as RMP
 participant NotificationManager as NM
-participant StudentManager as SM
+participant AccountManager as AM
 participant DBMSManager as DB
 
 activate DB
@@ -22,24 +22,26 @@ loop for each Badge
     BM -> EM: evaluateCriterium(Crterium, Tournament)
     activate EM
     alt if necessary, for each Team repo
-        EM -> RMP: pull(repo)
+        EM -> RMP: pull(repoLink: String): Array<File>
         activate RMP
-        RMP --> EM: code
+        RMP --> EM: File Code
         deactivate RMP
     end
     EM --> BM: eligibleStudents
     deactivate EM
     alt if eligibleStudents is not empty
         loop for each eligible student
-            BM -> SM: assignBadge(Student, Badge)
-            activate SM
-            SM -> DB: query(assignBadge, student, badge)
-            DB --> SM: success
-            SM --> BM: success
-            deactivate SM
-            BM -> NM: sendNotification(Student, Details)
+            BM -> AM: assignBadge(Student: String, Badge: BadgeManager): void
+            activate AM
+            AM -> DB: query(query: String, args: List<String>: [assignBadge, student, badge]): QueryResult
+            DB --> AM: success
+            AM --> BM: success
+            deactivate AM
+            BM -> NM: sendNotification(email: String, text: String): Boolean
             activate NM
-            NM -> EP: sendEmail(Student, Details)
+            NM -> EP: sendNotification(email: String, text: String): Boolean
+            EP-->NM: True (email sent)
+            NM-->BM: True (email sent)
             deactivate NM
             EP -> U: receiveEmail
         end

@@ -1,7 +1,7 @@
 @startuml
 
 autonumber
-participant Somewhere as C
+participant GenericComponent as C
 participant MicroserviceA as A
 participant Dispatcher as D
 participant MicroserviceB as B

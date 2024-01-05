@@ -1,90 +1,29 @@
 @startuml
 
-actor Educator as U
-participant WebServer as WS
-participant TournamentManager
-
-
-
-
-
 autonumber
 actor Educator as U
-participant First_Firewall as FF
-participant WebServer as WS
-participant Second_Firewall as SF
-participant Application_Server as AS
-participant Microservices_Dispatcher as MD
+participant WebServerModule as WS
+participant Controller as C
 participant BadgeManager as BM
-entity logInManagerInterface as LMI
-participant LogInManager as LM
-entity notificationManagerInterface as NMI
 participant NotificationManager as NM
-participant Firewall as F
 participant EmailProvider as EP
 
 activate U
-activate FF
+U->WS: POST /api/createBadge
 activate WS
-activate SF
-activate AS
-U-->FF: createABadge(Json(Name, Image, criterias, email))
-FF-->WS: analizer(socket, Json): Json
-WS-->SF: verifyLoggedClient(socket)
-SF-->AS: analizer(socket, Json): Json
-AS-->MD: parser(Json): response
-activate MD
-MD-->LMI: logInManager.isLogged(email)
-activate LMI
-activate LM
-LMI-->LM: isLogged(email)
-deactivate LMI
-alt if Badge is created
-    LM-->MD: True: the User is logged properly and he/she is an Educator
-    MD-->BM: MicroserviceDispatcher.createBadge(Json(Name, Image, criterias, email))
-    activate BM
-    BM-->MD: True: Badge is created
-    deactivate BM
-    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
-    activate NMI
-    NMI-->NM: sendNotification(email, description)
-    deactivate NMI
-    activate NM
-    NM->F: sendEmail
-    deactivate NM
-    activate F
-    F->EP: sendEmail
-    deactivate F
-    activate EP
-    EP-->U: Email <<Badge successfully created>>
-    deactivate EP
-else  script not correct or Badge already exists
-    LM-->MD: True: the User is logged properly and it is an Educator
-    MD-->AS: Badge not created, Badge already exists
-    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
-    activate NMI
-    NMI-->NM: sendNotification(email, description)
-    deactivate NMI
-    activate NM
-    NM->F: sendEmail
-    deactivate NM
-    activate F
-    F->EP: sendEmail
-    deactivate F
-    activate EP
-    EP-->U: Email <<Badge NOT created>>
-    deactivate EP
-else User is not an Educator or is not logged
-    LM-->MD: False: the User is not logged properly or he/she is not an Educator
-    deactivate LM
-    MD-->AS: Badge NOT created, User NOT logged properly 
-    deactivate MD
-    AS-->WS: Json(Badge NOT created)
-    WS-->U: Badge NOT created
-end
-deactivate U
-deactivate FF
+WS->C: createBadge(badgeData): Boolean
+activate C
+C->BM: createBadge(badgeData): Boolean
+BM-->C: True (badge created)
+C-->WS: True (badge created)
 deactivate WS
-deactivate SF
-deactivate AS
+C->NM: sendNotification(email: String, text: String):Boolean
+activate NM
+NM->EP:send email
+activate EP
+NM-->C: True (email successfully sent)
+deactivate NM
+deactivate C
+EP->U: reads email
+
 @enduml

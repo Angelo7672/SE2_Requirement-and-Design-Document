@@ -4,29 +4,29 @@ CKB is conceptualized from the ground basis as a Client-Server Platform. In fact
 with CKB.
 \useSvgWithCaption{./Images/overviewDiagrams/clientServerParadigm.svg}{0.35}{0.35}{Client-Server paradigm}
 \\
-The main logic is hosted in the server that manages all the functionalities of CKB, instead the client is only a graphic representation for the User.
+The main logic is hosted in the server that manages all the functionalities of CKB, while the client is only a graphic representation for the User.
 
-Because the client, acting as a thin client, only displays the GUI to the User in order to expose the Platform's services and functionalities with their corresponding interfaces that it obtains by communicating with the Server through 
-the Network, the client-server software organization that was chosen is Remote Representation.
+Because the client, constructed based on its thin version, only displays the GUI to the User in order to expose the Platform's services and functionalities with their corresponding interfaces that it obtains by communicating with the Server through 
+the Network. In fact the client-server software organization that was chosen is Remote Representation.
 
 The Web Browser hosting the Web App should ideally handle client communication. It must enable safe and efficient communication with the server via the HTTP and TCP protocols. 
 
-To be used with all types of browsers, CKB User Interface code needs to be written. However, after their kind and privileges, servers would be assigned to protect Users' data, and the Platform's model would change in accordance 
+To be used with all types of browsers, CKB User Interface code needs to be written properly. However, after their kind and privileges, servers would be assigned to protect Users' data, and the Platform's model would change in accordance 
 with the guidelines.
 
-\subsection*{Microservices Architecture}
+\subsection{Microservices Architecture}
 %MICROSERVICES
-The fundamental capability of CKB is the ability to simultaneously manage and conduct multiple Battles, Tournaments, and receive multiple inputs from various clients, based on their type. 
+One of the fundamental skills of CKB is the ability to simultaneously manage and conduct multiple Battles, Tournaments, and receive multiple inputs from various clients, based on their type. 
 The server must manage several requests at once, recognizing this through concurrency.
 
 The Microservices architectural approach is one that can be selected. 
-This option, which is supported by the availability of multiple servers, would allow each machine to host multiple service components that are properly replicated even in other machines. 
+This option, which is supported by the availability of multiple servers, would allow each machine to host multiple service components that are properly replicated even in other computers. 
 These components would each elaborate particular inputs pertaining to a particular topic or collection of related operations that make up a service.
 Components can also be allocated according to what are the needs of the moment, if the number of requests increases, the number of components can be increased, and vice versa.
 
-The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests from Users redirecting them to the right Microservice. This architecture guarantees concurrency, modularity, witch positively affects maintenance, and Platform reactivity.
+The concept would include DBMS services, provided thought proper APIs, as long as communication ones and the dispatcher itself, that would account all requests from Users redirecting them to the right Microservice. This architecture guarantees concurrency, modularity, which positively affects maintenance, and Platform reactivity.
 
-The method ensures modularity and improvements by enabling developers and authors to update CKB with new functionalities without altering the User interface in any way. 
+The method ensures scalability and improvements by enabling developers and authors to update CKB with new functionalities without altering the User interface in any way. 
 It also allows the Platform to retain data and determine resilience while ensuring appropriate duplication of each component to prevent failures.\\
 \\
 %LAYER
@@ -40,7 +40,7 @@ CKB is thought to be implemented as a Three Layer Architecture:
 %TIER
 CKB, once realized, would be a Four Tier Application:
 \begin{enumerate}
-    \item \textbf{Client:} The task assigned to this Tier is to gather input from users—both Educators and Students—and report their instructions into the system. It functions as a GUI.
+    \item \textbf{Client:} The task assigned to this Tier is to gather input from Users—both Educators and Students—and report their instructions into the system. It functions as a GUI.
     \item \textbf{Web Server:} It counts the parts assigned to create a secure connection between the Application Server and the Clients, which are the major actors. Web Server is outfitted with 
     suitable firewalls and a Demilitarized Zone (DMZ) to ensure the security and integrity of Application Server data.
     \item \textbf{Application Server:} It houses the elements that make up the Platform itself, the modules that carry out the primary needs and objectives outlined in RASD. This Tier can be 
@@ -65,8 +65,7 @@ To establish a network connection between the Client and the CKB Server, a Web B
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramClient.svg}{0.3}{0.3}{Client Component Diagram}
 
 \paragraph{Web Server}
-The Web Browser's job is to route browser requests to the Application Server and get back responses from the Application Server. The Web Server just needs to route requests from and to the Network because you have to assume 
-that it is located in the DMZ. It is composed of the module:
+The Web Browser's job is to route browser requests to the Application Server and get back responses from the Application Server. The Web Server just needs to route requests from and to the Network, a result of being located in the DMZ. It is composed of the following module:
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Web Server Module} This is in charge of providing the Web browser of the necessary files to run the Client and an interface to the client to communicate with the Application Tier.  
     The API implemented here is one of the RESTFul type, as commented here \nameref{parr:restful}.
@@ -89,7 +88,7 @@ that it is located in the DMZ. It is composed of the module:
     \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular process that is explained here: \nameref{parr:battleEvaluation}.
     \item \textbf{Badge Manager} It assigns Badges to Students who can be awarded. \nameref{parr:badgeEvaluation}
     \item \textbf{Battle Manager} It allows managing Battles, updating the score of each Team.
-    \item \textbf{Tournament Manager} It allows managing Tournaments, creating Teams, inviting Students and Educators, creating Battles and Badges, updating the Tournament score.
+    \item \textbf{Tournament Manager} It allows to manage Tournaments, create Teams, invite Students and Educators, create Battles and Badges, update the Tournament score.
     \item \textbf{Account Manager} It is in charge of recruiting all information about a single Account, allowing the owner to update the Account with new personal data.
     \item \textbf{Search Manager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
     \item \textbf{DBMS Manager} It is the component that manages the DBMS, allowing the Platform to perform operations on the DBMS. It directly manages connections to the database, keeping them few allowing to lighten the load to the DBMS without losing any functionality.
@@ -111,12 +110,11 @@ The role of the External Services is to provide the Platform with the functional
 
 %TIER
 As previously said, when CKB is deployed, it will include a Four Tiers Architecture that both reflects and extends upon the three Layers that rationally make up CKB.
-In fact, additional components will be needed for the implementation in order to handle user and platform interactions as well as data module interaction.
+In fact, additional components will be needed for the implementation in order to handle User and Platform interactions as well as data module interaction.
 \begin{enumerate}[label=$\bullet$]
     \item \textbf{Client:} Users input data into the Client, which displays responses from the Server and enables Users to navigate and interact with the Platform. In fact this Tier has its corresponding logical layer in the presentation one. 
     Since a thin client only has communication APIs with the server, it transmits the components needed to create the most recent one as well as the necessary data to display the GUI.
-    The appropriate Student and Educator variants make up the User visualizing interface, representing, as specified before, the actual presentation layer; differences between them 
-    are only at this architectural level unimportant to the operation of the system.
+    The appropriate Student and Educator variants make up the User visualizing interface, representing, as specified before, the actual presentation layer; differences between them exist exclusively at the architectural level, which is irrelevant to the operation of the system. However, this is true for other aspects of CKB functioning.
     \item \textbf{Web Server:} The primary entry point to the Platform is through the Web Server. It takes into account the interfaces that provide system access, the firewalls, the DMZ, and the module assigned to communicate with 
     clients. In particular input from Clients, once achieved the Server, enter into the DMZ and as first step pass thought a first firewall that analyzes them to verify the provenience of the same. If it is granted them access, Web Server registers Client that sent it, parsing the content of the request, evaluating in addition their correctness. 
     Furthermore, Web Server it is responsible for providing clients with information that updates the GUI and reflects changes made to the Platform. Web Server and Application Server are divided by a second firewall which role is to avoid undesired access to the actual model. Between Students, Educators, 
@@ -135,17 +133,17 @@ The following sequence diagrams are meant to show the interactions between the c
 But some components are so crucial to the functioning of the system that the interactions are very frequent and would clutter these diagrams, making them of difficult fruition.
 For this reason the following interactions have to be intended as inserted each time there is a suitable communication.
 \paragraph*{Dispatcher Component} \label{parr:dispatcher}
-This interaction is intended as placed everywhere there is a communication between components\\
+The interaction shown below, occurs any time components wants to communicate each other.\\
+Where MicroserviceA and MicroserviceB are two generic components, GenericComponent is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
 \useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
-Where MicroserviceA and MicroserviceB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
 \paragraph*{DBMS Manager Component}
-This interaction is intended as placed everywhere there is a communication between component and the DBMS.
+The interaction, here reported, is intended as placed any time there is a communication between this Manager and the DBMS.
+Microservice is the component that needs to perform a query to the database, while the component mediates it to the DBMS.
 \useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagram.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
-Where DBMS Manager is the component, and MicroserviceA is the component that needs to perform a query to the database.
 \paragraph*{API call authorization check} \label{reff:authcheck}
-This interaction is intended as placed everywhere there is a communication between an external component, or client and the Web server module.
+Any time would be needed a communication between an external component, or client and the Web server module, it will happen as described below.
+Where the API call can be of any kind within the context described, request is any action the Platform has to perform as result of that call.
 \useSvgWithCaption{./Images/sequenceDiagrams/apiCallAuthorizationCheckSequenceDiagram.svg}{.70}{.70}{API call authorization check Sequence Diagram}
-Where the API call is any call as described above, and request is any action the Platform has to perform as result of that call.
 
 
 %\begin{landscape}
@@ -207,7 +205,7 @@ Where the API call is any call as described above, and request is any action the
 
 \clearpage
 \subsubsection{User searches for Users}
-\useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.5}{1.5}{User searches for Users Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/UserSearchesForUsers.svg}{1.5}{1.5}{User searches for Users Sequence Diagram}
 
 \clearpage
 \subsubsection{Student searches for Tournaments}
@@ -228,15 +226,15 @@ For each component here are explained functions associated with respective inter
             \end{enumerate}
     \item \textbf{LogInManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean logIn(String email, String password)} When a user requests to enter CKB, whether they are registered, the manager is notified via this method. A Boolean value is returned as a result of the 
+            \item \textbf{Boolean logIn(String email, String password)} When a User requests to enter CKB, whether they are registered, the manager is notified via this method. A Boolean value is returned as a result of the 
             invocation, informing the client whether the action was successful or unsuccessful based on the correctness of the account's existence parameters.
-            \item \textbf{Boolean logOut(String email)} In order to log out form the system is needed as input the email of the User to discard from Users that are currently interacting with the Platform. A Boolean value communicates 
+            \item \textbf{Boolean logOut(String email)} In order to log out from the system, is needed as input the email of the User to discard from the ones that are currently interacting with the Platform. A Boolean value communicates 
             the outcome.
             %\item \textbf{Boolean isLogged(String email)} Through this method, providing the email, the caller is able to know is the User who asks for the operation is actually logged in.
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Array<File> pullRequest(String repoLink)} In order to perform a Pull request to the right RMP repo by RMPManager, the component through the here described method, asks for the repo as a parameter. The return 
+            \item \textbf{Array<File> pullRequest(String repoLink)} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return 
             value is the code pulled from the repo itself.
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
@@ -255,9 +253,9 @@ For each component here are explained functions associated with respective inter
         \begin{enumerate}[label=$\bullet$]
         \item \textbf{void createTeam(String myEmail, Array<String> emails, String Team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails 
         of other Students to invite, and the name of the Team. This method will interface with NotificationManager to send the invitation to the other Students. 
-        \item \textbf{void joinStudentTournament(String email, String Team)} This method add a Student with the given email to the Team with the given name.
-        \item \textbf{void joinEducatorTournament(String email)} This method add an Educator with the given email to the Tournament.
-        \item \textbf{void addEducator(String email)} This method send an invitation to the Educator with the given email to join the Tournament. This method will interface with NotificationManager to send the invitation to the Educator.
+        \item \textbf{void joinStudentTournament(String email, String Team)} This method address a Student with the given email to the Team with the given name.
+        \item \textbf{void joinEducatorTournament(String email)} This method adds an Educator with the given email to the Tournament.
+        \item \textbf{void addEducator(String email)} This method sends an invitation to the Educator with the given email to join the Tournament. This method will interface with NotificationManager to send the invitation to the Educator.
         \item \textbf{void updateTournamentScore(String Team, Int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
         \item \textbf{Boolean addNewBattle(String name, String overview, String rmpRepo, Array<Int> evaluationParameters)} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
         the RMP link from which Students will fork the repo and an array containing the evaluation parameter (eg. evaluationParameters[0] <- 25, evaluationParameters[1] <- 25, evaluationParameters[2] <- 25, evaluationParameters[3] <- 25,
@@ -273,14 +271,14 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname, String rmpHandle)} To search one or more Users SearchManager, thought the here presented method requires the email or name or surname
+            \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname, String rmpHandle)} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname
             of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criteria. Many overrides of the function will be present to perform the search based on just the available values.
-            \item \textbf{Array<TournamentManager> searchTournament(String tournamentName, Array<String> properties)} To search one or more Tournaments SearchManager, thought the here presented method requires the name of the Tournament 
+            \item \textbf{Array<TournamentManager> searchTournament(String tournamentName, Array<String> properties)} To search one or more Tournaments SearchManager, throught searchTournament requires the name of the Tournament 
             to search and the properties of it (eg. properties[0] <- "Java", properties[1] <- "minimum 2 Students"). The return value is the list of the Tournaments' TournamentManagers of the ones who matched the criteria.
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean verifyCriteria(File test, String email)} BadgeManager is invoked thought this method to verify if some tests results meet criteria to assign a Badge to a specific User. If the answer is True, the Badge
+            \item \textbf{Boolean verifyCriteria(File test, String email)} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to a specific User. If the answer is True, the Badge
             is assigned.
         \end{enumerate}
     \item \textbf{EvaluationManager Interface}
@@ -296,7 +294,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{DBMS Manager Interface}
         \begin{enumerate} [label=$\bullet$]
-            \item \textbf{QueryResult query(String query, List<String> args)} The method invoked by a microservice to perform a query to the database. The first parameter is the Query to be precompiled, the second an array of arguments to be inserted in the query.
+            \item \textbf{QueryResult query(String query, List<String> args)} The method is invoked by a microservice to perform a query to the database. The first parameter is the Query to be precompiled, the second an array of arguments to be inserted in the query.
     \end{enumerate}
 \end{enumerate}
 \subsection{Platform API specification}
@@ -307,24 +305,24 @@ For convenience this API is shown divided in three parts: firstly the part dedic
     \item \textbf{POST /api/signIn} This call allows a User to sign in into the Platform. The body of the request must contain the following fields: Name, Surname, Email, Password, RMP Handle, UserType. It returns the confirmation of successful sign in, or an error message.
     \item \textbf{POST /api/logIn} This call allows a User to log in into the Platform. The body of the request must contain the following fields: Email, Password. It returns the confirmation of successful log in with the session token, or an error message.
 \end{itemize}
-All of the following have a common argument, that is the User session token. This token is used to authenticate the User and to check if he has the right to perform the call. So all the following calls are valid if and only if the User is logged in.
+All of the following have a common argument, that is the User session token. This token is used to authenticate the User and to check if he/she has the right to perform the call. So all the following calls are valid if and only if the User is logged in.
 \begin{itemize}
-    \item \textbf{GET /api/search} This call allows a user to search for other Users or Tournaments. The body of the request must contain the following fields: SearchType, SearchParameters. It returns the list of Users or Tournaments that match the search parameters.
-    \item \textbf{GET /api/userProfile} This call allows a user to get all data that the Platform has about a user. The body of the request must contain the following fields: Email. It returns the user public data, and, in the case of Students, also the list of badges.
-    \item \textbf{GET /api/tournamentData} This call allows a user to get all data that the Platform has about a Tournament. The body of the request must contain the following fields: TournamentName. It returns the Tournament data.
+    \item \textbf{GET /api/search} This call allows a User to search for other Users or Tournaments. The body of the request must contain the following fields: SearchType, SearchParameters. It returns the list of Users or Tournaments that match the search parameters.
+    \item \textbf{GET /api/UserProfile} This call allows a User to get all data that the Platform has about a User. The body of the request must contain the following fields: Email. It returns the User public data, and, in the case of Students, also the list of Badges.
+    \item \textbf{GET /api/tournamentData} This call allows a User to get all data that the Platform has about a Tournament. The body of the request must contain the following fields: TournamentName. It returns the Tournament data.
     \item \textbf{POST /api/createTournament} This call allows an Educator to create a Tournament. The body of the request must contain the following fields: TournamentName, TournamentDescription, TournamentLanguage, TournamentMaxTeamSize, SubscriptionDeadline, TournamentDuration. It returns the confirmation of successful creation, or an error message.
     \item \textbf{POST /api/joinTournament} This call allows a Student to join a Tournament. The body of the request must contain the following fields: Tournament, TeamName. It returns the confirmation of successful join, or an error message.
     \item \textbf{POST /api/inviteStudent} This call allows a Student to invite another student to his team. The body of the request must contain the following fields: Tournament, TeamName, StudentEmail. It returns the confirmation of successful invitation, or an error message.
     \item \textbf{POST /api/inviteEducator} This call allows an Educator to invite another Educator to his Tournament. The body of the request must contain the following fields: Tournament, EducatorEmail. It returns the confirmation of successful invitation, or an error message.
-    \item \textbf{POST /api/createBadge} This call allows an Educator to create a new badge in the context of a tournament. The body of the request must contain the following fields: Tournament, BadgeName, BadgeDescription, BadgeCriteria. It returns the confirmation of successful creation, or an error message.
-    \item \textbf{POST /api/createBattle} This call allows an Educator to create a new Battle in the context of a tournament. The body of the request must contain the following fields: Tournament, BattleName, BattleDescription, BattleRMPRepo. It returns the confirmation of successful creation, or an error message.
-    \item \textbf{GET /api/getBattleData} This call allows a user to get all data that the Platform has about a Battle. The body of the request must contain the following fields: Tournament, BattleName. It returns the Battle data, including the Team Scoreboard.
+    \item \textbf{POST /api/createBadge} This call allows an Educator to create a new Badge in the context of a Tournament. The body of the request must contain the following fields: Tournament, BadgeName, BadgeDescription, BadgeCriteria. It returns the confirmation of successful creation, or an error message.
+    \item \textbf{POST /api/createBattle} This call allows an Educator to create a new Battle in the context of a Tournament. The body of the request must contain the following fields: Tournament, BattleName, BattleDescription, BattleRMPRepo. It returns the confirmation of successful creation, or an error message.
+    \item \textbf{GET /api/getBattleData} This call allows a User to get all data that the Platform has about a Battle. The body of the request must contain the following fields: Tournament, BattleName. It returns the Battle data, including the Team Scoreboard.
     \item \textbf{POST /api/addScore} This call allows an Educator to assign a custom score to a Team in a Battle. The body of the request must contain the following fields: Tournament, BattleName, TeamName, Score. It returns the confirmation of successful assignment, or an error message.
 \end{itemize}
 
 \subsubsection{E-mail API}
 \begin{itemize}
-    \item \textbf{POST /api/confirm} This call allows a user to confirm the request. The request can be: e-mail confirmation and invitation confirmation The body of the request must contain the following fields: Email, ConfirmationToken. It returns the confirmation of successful confirmation, or an error message.
+    \item \textbf{POST /api/confirm} This call allows a User to confirm the request. The request can be: e-mail confirmation and invitation confirmation. The body of the request must contain the following fields: Email, ConfirmationToken. It returns the confirmation of successful confirmation, or an error message.
 \end{itemize}
 \subsubsection{RMP Action API}
 \begin{itemize}
@@ -335,44 +333,44 @@ All of the following have a common argument, that is the User session token. Thi
 \subsubsection{Authorization Management}
 The management of the validity of certain API calls is done via the use of Tokens. These tokens are considered as of three types:\\
 \textbf{User Session Token} This token is used to authenticate the User and to check if he has the right to perform the call. This is generated after a successful login and is valid for the whole session, or until the User logs out. It contains information about the User, such as e-mail and role. \\
-\textbf{Confirmation Token} This token is used to confirm the validity of a certain action, such as the confirmation of an e-mail or the confirmation of an invitation. This is generated when is requested a confirmation action from the user. It contains the e-mail of the User and the type of confirmation. \\
-\textbf{Validity Token} This token is used by the platform to understand of the request to evaluate some code is legitimate or not. Once registering the repo to the platform, this token is generated and saved in the repo. It contains the Tournament end date, the Battle. \\
+\textbf{Confirmation Token} This token is used to confirm the validity of a certain action, such as the confirmation of an e-mail or the confirmation of an invitation. This is generated when is requested a confirmation action from the User. It contains the e-mail of the User and the type of confirmation. \\
+\textbf{Validity Token} This token is used by the Platform to understand if the request to evaluate some code is legitimate or not. Once registering the repo to the Platform, this token is generated and saved in the repo. It contains the Tournament end date, the Battle. \\
 All of the above tokens have to be encrypted to ensure their security and authenticity.
 In the Runtime View is shown the corresponding sequence diagram for the authorization check of an API call: \nameref{reff:authcheck}
 \subsubsection{Battle Evaluation} \label{parr:battleEvaluation}
-For the automatic evaluation of the battles is advisable to use an automatic evaluation system based on containers.
-This kind of evaluation system is useful and satisfies different requirements as:\\
+For the automatic evaluation of the Battles is advisable to use an automatic evaluation system based on containers.
+This kind of evaluation system is useful and satisfies different requirements such as:\\
 \textbf{Security:} the testing environment is isolated and has no access to the rest of the application. A vulnerability at this component would be catastrophic since it bypasses all security measures placed before.\\
 \textbf{Reusability:} the testing environment, via the use of a suitable script, can be used to test any kind of code in a completely automatic manner.\\
-In order to work well, is needed that all battle repo have a RMP action active, which scope is to alert the platform of any new update to the repo. This will trigger two pushes from the platform one from the Team Repository, the other from the Educator repository. 
-This is done to ensure that Teams don't tamper with the evaluation tests, that are saved in the battle repository, while being able to use them for local evaluation. 
+In order to work well, is needed that all Battles repos have a RMP action active, which scope is to alert the Platform of any new update of the repo. This will trigger two pushes from the Platform, one from the Team Repository, the other from the Educator repository. 
+This is done to ensure that Teams don't tamper with the evaluation tests, that are saved in the Battle repository, while being able to use them for local evaluation. 
 After saving everything, a new container is spawned that will have to run the evaluation script from the repository. 
-At the end a special file will be created, that will contain the result of the evaluation, and most importantly the score of the team in that battle to be saved in the database in order to update corresponding tournament and battle scores.
+At the end a special file will be created, that will contain the result of the evaluation, and most importantly the score of the team in that Battle to be saved in the database in order to update corresponding Tournament and Battle scores.
 All of this will be done internally by the Evaluation Manager.
 
 \subsubsection{Badge Evaluation} \label{parr:badgeEvaluation}
 For the automatic evaluation of the Badges is advisable to define a set of rules with which define the criteria for the assignment of it.
-These criteria will be saved upon badge creation and will be used by the Badge Manager at the end of the tournament to evaluate tho whom assign it.
-The definition of the rules to be used to write the criteria allows to reuse the same evaluation system for different badges with same rules, in a standardized manner without the need of exposing too much of the internal logic of the system.
+These criteria will be saved upon badge creation and will be used by the Badge Manager at the end of the Tournament to evaluate tho whom assign it.
+The definition of the rules to be used to write the criteria allows to reuse the same evaluation system for different Badges with same rules, in a standardized manner without the need of exposing too much of the internal logic of the system.
 
 \subsubsection{Dispatcher Component} \label{parr:dispatcher}
-The dispatcher is the backbone of the whole microservice architecture, it manages load balancing, routing and communication between components and if necessay pawn or kill instances of components. 
-Components are assumed to share interfaces between each other but before any kind of communication, need they need to call the dispatcher, who will give the component a valid reference to an instance of a component suitable to receive the request.
-This allows the dispatcher to do load balancing, which it can decide which component make the request go to, and consequently which components replicate.
-The Dispatcher also manages the DBMS Manager component, better described below, there can be multiple DBMS Managers but is advisable to keep their lives long and to not pawn and kill them too frequently. 
+The dispatcher is the backbone of the whole Microservice Architecture, beacuse it manages load balancing, routing and communication between components and if necessay spawn or kill instances of components. 
+Components are assumed to share interfaces between each other but before any kind of communication, they need to call the dispatcher, who will provide them with valid reference to an instance of a component suitable to receive the request.
+This allows the dispatcher to do load balancing, so it can decide which instance make the request go to, and consequently which components replicate.
+The Dispatcher also manages the DBMS Manager component that will be better described below. There can be multiple DBMS Managers occurrences but is advisable to keep their lives long and to not spawn and kill them too frequently. 
 This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
 From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
 
 \subsubsection{External Actors different from the User} 
 This Platform has to interact with RMP and E-mail provider, which are external actors that do not interact with the system via the Web App, but via APIs.
-In fact, RMP repos implement an action whose scope is to call the Platform's API to notify it of any update to the repository, similarly users use e-mail to respond to notifications sent by the Platform, again via simple buttons present in the notifications that allows to send confirmation or denial answers via the Platform's API.
+In fact, RMP repos implement an action whose scope is to call the Platform's API to notify it of any update to the repository, similarly Users use e-mail to respond to notifications sent by the Platform, again via simple buttons present in the notifications that allows to send confirmation or denial answers via the Platform's API.
 Is also useful to denote that the Platform, making use of those two services, behaves as a client for them. This is done via the use of the respective RMP Manager and E-mail Manager components.
 
 \subsubsection{DBMS manager}
 This component is in charge of performing operations to the data tier.
-One of the most heavy operations on the database is the opening and the closing of connections, needed to interact with the components, so if all components were to dynamically open and close connections to the database, the load on the DBMS would be too high, and the system would be slow. 
-Inserting this component allows to keep the number of connections low and keep them more time open, reducing the load on the DBMS while not losing any functionality for other components. 
-So this component is to be intended as a proxy between the DBMS and the other components, that will use it to perform queries to the database, and for each access to the database the following Sequence diagram can be referenced:\\
+One of the most heavy actions on the database is the opening and the closing of connections, needed to interact with the components, so if all of them were to dynamically open and close connections to the database, the load on the DBMS would be too high, and the system would be slow. 
+Inserting this manager allows to keep the number of connections low and keep them more time open, reducing the load on the DBMS while not losing any functionality for other modules. 
+So DBMS manager is to be intended as a proxy between the DBMS and the other components, that will use it to perform queries to the database, and for each access to the database the following Sequence diagram can be referenced:\\
 \useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagramExtended.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
 Where DBMS Manager is the component, and MicroserviceA is the component that needs to perform a query to the database. 
 
@@ -384,7 +382,7 @@ This allows to have better code differentiation, so that each Tier has its own r
 Moreover, allows for a more secure system, since before accessing saved data, any kind of attack shall pass through each tier to reach the last one.
 
 \subsubsection{Model View Controller}
-In the Four-Tier Architecture can be seen also the Model View controller Paradigm, where the client is responsible for the pure user interaction with the platform, which is managed by the API Tier followed by the Application tier.
+In the Four-Tier Architecture can be seen also the Model View controller Paradigm, where the client is responsible for the pure User interaction with the Platform, which is managed by the API Tier followed by the Application tier.
 
 \subsection{Other design Decisions}
 \subsubsection{Relational Database}
