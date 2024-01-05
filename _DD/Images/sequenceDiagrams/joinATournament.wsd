@@ -30,6 +30,11 @@ activate C
 C -> TM: createTeam(team: Team, student: Student): Tournament Page
 activate TM
 TM -> DBMSM: query(query: String, args: List<String>): QueryResult
+note right
+    check if 
+    team already
+    exists
+end note
 activate DBMSM
 DBMSM --> TM: QueryResult
 deactivate DBMSM

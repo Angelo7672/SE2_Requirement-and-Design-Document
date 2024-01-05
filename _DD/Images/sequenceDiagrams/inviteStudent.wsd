@@ -24,45 +24,63 @@ activate TM
 TM -> DBMS: query(query: String, args: List<String>): QueryResult
 activate DBMS
 note right
-    check if Student 
-    is already in 
-    the Tournament
+    check if 
+    Student exists
 end note
 DBMS --> TM: QueryResult
 deactivate DBMS
 alt QueryResult is not NULL
-    TM -> NM: sendNotification(notification: Notification): Void
-    deactivate TM
-    activate NM
-    NM -> EP: send email with text
-    deactivate NM
-    activate EP
-    EP -> U2: Email <<Invitation sent>>
-    deactivate EP
-    activate U2
-    alt Student accepts Invitation
-        U2 -> WS: POST /api/confirm
-        deactivate U2
-        activate WS
-        WS -> C: receiveResponse(response: Response): Void
-        deactivate WS
-        activate C
-        C -> NM: receiveResponse(response: Response): Void
-        deactivate C
-        activate NM
-        NM -> TM: joinStudentTournament(student: Student,\n team: Team): Void
-        deactivate NM
-        activate TM
-        TM -> DBMS: query(query: String, args: List<String>): QueryResult
-        note right
-            add Student 
-            to Team
-        end note
-        activate DBMS
-        DBMS --> TM: QueryResult
-        deactivate DBMS
+    TM -> DBMS: query(query: String, args: List<String>): QueryResult
+    activate DBMS
+    note right
+        check if Student 
+        is already in 
+        the Tournament
+    end note
+    DBMS --> TM: QueryResult
+    deactivate DBMS
+    alt QueryResult NULL
+        TM -> NM: sendNotification(notification: Notification): Void
         deactivate TM
-    else Student refuses Invitation
+        activate NM
+        NM -> EP: send email with text
+        deactivate NM
+        activate EP
+        EP -> U2: Email <<Invitation sent>>
+        deactivate EP
+        activate U2
+        alt Student accepts Invitation
+            U2 -> WS: POST /api/confirm
+            deactivate U2
+            activate WS
+            WS -> C: receiveResponse(response: Response): Void
+            deactivate WS
+            activate C
+            C -> NM: receiveResponse(response: Response): Void
+            deactivate C
+            activate NM
+            NM -> TM: joinStudentTournament(student: Student,\n team: Team): Void
+            deactivate NM
+            activate TM
+            TM -> DBMS: query(query: String, args: List<String>): QueryResult
+            note right
+                add Student 
+                to Team
+            end note
+            activate DBMS
+            DBMS --> TM: QueryResult
+            deactivate DBMS
+            deactivate TM
+        else Student refuses Invitation
+        end
+    else QueryResult is NOT NULL
+        TM -> NM: sendNotification(notification: Notification): Void
+        activate NM
+        NM -> EP: send email with text
+        deactivate NM
+        activate EP
+        EP -> U1: Email <<Invitation NOT sent,\n error occurred>>
+        deactivate EP
     end
 else QueryResult is NULL
     TM -> NM: sendNotification(notification: Notification): Void
@@ -71,7 +89,7 @@ else QueryResult is NULL
     deactivate NM
     activate EP
     EP -> U1: Email <<Invitation NOT sent,\n error occurred>>
-    deactivate EP
+     deactivate EP
 end
 
 @enduml

@@ -18,6 +18,12 @@ activate C
 C -> SIM: signIn(signInData: SignInData): Void
 activate SIM
 SIM -> DBMSM: query(query: String, args: List<String>): QueryResult
+note right
+    check if 
+    credentials
+    are not 
+    already used
+end note
 activate DBMSM
 DBMSM --> SIM: QueryResult
 deactivate DBMSM

@@ -148,24 +148,44 @@ Where the API call can be of any kind within the context described, request is a
 
 %\begin{landscape}
 \clearpage
-\subsubsection{Sign in}
+\subsubsection{User signs in to the Platform}
 \useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.0}{1.0}{Sign In Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when a User signs in into the Platform.\\
+After determining that the user's credentials are valid, SignInManager displays to the user a page instructing them to confirm the operation by clicking the button on the email they received.\\
+The User is registered and able to log in to the Platform following the confirmation.
 
 \clearpage
-\subsubsection{Log in}
+\subsubsection{User logs in to the Platform}
 \useSvgWithCaption{./Images/sequenceDiagrams/logIn.svg}{.90}{.90}{Log In Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when a User logs in into the Platform.\\
+The LogInManager checks if the User's credentials are correct, and if so, it generates a session token and sends it to the Web Server.\\
+If the credentials are not correct, the User is notified and the process ends.\\
 
 \clearpage
-\subsubsection{Join a Tournament}
+\subsubsection{Student subscribes to Tournament}
 \useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.0}{1.0}{Join a Tournament Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when a Student subscribes to a Tournament.\\
+First the Student searches for the Tournament they want to join, then they click on the "subscribe" button.\\
+The TournamentManager first checks if the Team already exists, and if not, it creates it. We assume that a Student that is already subscribed to a Tournament, when he/she visits the Tournament page, he/she doesn't see the "subscribe" 
+button, but just see the name of his/her Team, for this reason it is not checked if a Student is already subscribed to the Tournament.\\
+Then the TournamentManager adds the Student to the new Team and email him/her to notify the subscription.\\
+If the Team name already exists, the inviting Student is notified and the process ends.\\
 
 \clearpage
-\subsubsection{Invite Educator}
+\subsubsection{Educator invites other Educator to co-manage Tournament}
 \useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.4}{1.4}{Invite an Educator Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when an Educator invites another Educator to co-manage a Tournament.\\
+First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator.\\
+If the invited Educator click on the "accept" button, the TournamentManager adds the Educator to the Tournament.\\
+If the invited Educator provided doesn't exist or he/she is just in the Tournament, the Educator is notified and the process ends.\\
 
 \clearpage
-\subsubsection{Invite Student}
+\subsubsection{Student invites other Student to participate in the Tournament as a Team}
 \useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.5}{1.5}{Invite a Student Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team.\\
+First the TournamentManager checks if the invited Student exists. Then it checks if the invited Student is already subscribed to the Tournament, and if not, it sends an invitation to the Student.\\
+If the invited Student click on the "accept" button, the TournamentManager adds the Student to the Team.\\
+If the invited Student provided doesn't exist or he/she is just in another, the User is notified and the process ends.\\
 
 \clearpage
 \subsubsection{Receive Educator Invitation}

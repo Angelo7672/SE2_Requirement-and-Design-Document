@@ -17,6 +17,11 @@ activate C
 C -> LM: logIn(logInData: LogInData): Session
 activate LM
 LM -> DBMSM: query(query: String, args: List<String>): QueryResult
+note right
+    check if email 
+    and password 
+    match
+end note
 activate DBMSM
 DBMSM --> LM: QueryResult
 deactivate DBMSM
