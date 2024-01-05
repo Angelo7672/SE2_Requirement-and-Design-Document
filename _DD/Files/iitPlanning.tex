@@ -7,7 +7,7 @@ Each component of this layer has to be tested independently, then once they are 
 \subsection{Application Logic Layer}
 Given the chosen architecture, this Layer needs a more detailed plan. Among Microservices can be identified some dependencies shown in the following graph:
 
-\useSvgWithCaption{}{}{}{}
+%\useSvgWithCaption{}{}{}{}
 
 Given the internal structure of this Layer, all Microservices depend on the Dispatcher. This is a Key component, since each communciation between Microservices is mediated by it, so it has to be implemented first.\\
 Then can be implemented the DBMSManager, that can be chosen as secon most important component thanks to its interaction with the Data Layer. Then starting from it and following with a bottom-up approach, other Microservices can be implemented.\\
