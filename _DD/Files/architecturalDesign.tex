@@ -133,15 +133,15 @@ The following sequence diagrams are meant to show the interactions between the c
 But some components are so crucial to the functioning of the system that the interactions are very frequent and would clutter these diagrams, making them of difficult fruition.
 For this reason the following interactions have to be intended as inserted each time there is a suitable communication.
 \paragraph*{Dispatcher Component} \label{parr:dispatcher}
-The interaction shown below, occurs any time components wants to communicate each other.\\
-Where MicroserviceA and MicroserviceB are two generic components, GenericComponent is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
+This interaction is intended as placed everywhere there is a communication between components\\
+Where ComponentA and ComponentB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
 \useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
 \paragraph*{DBMS Manager Component}
 The interaction, here reported, is intended as placed any time there is a communication between this Manager and the DBMS.
 Microservice is the component that needs to perform a query to the database, while the component mediates it to the DBMS.
 \useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagram.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
 \paragraph*{API call authorization check} \label{reff:authcheck}
-Any time would be needed a communication between an external component, or client and the Web server module, it will happen as described below.
+Any time would be needed a communication between an external service, or client and the Web server module, it will happen as described below.
 Where the API call can be of any kind within the context described, request is any action the Platform has to perform as result of that call.
 \useSvgWithCaption{./Images/sequenceDiagrams/apiCallAuthorizationCheckSequenceDiagram.svg}{.70}{.70}{API call authorization check Sequence Diagram}
 
@@ -183,9 +183,9 @@ Where the API call can be of any kind within the context described, request is a
 \subsubsection{Create a Battle}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.5}{1.5}{Create a Battle Sequence Diagram}
 
-\clearpage
-\subsubsection{Join a Battle}
-\useSvgWithCaption{./Images/sequenceDiagrams/joinABattle.svg}{1.4}{1.4}{Join a Battle Sequence Diagram}
+%\clearpage
+%\subsubsection{Join a Battle}
+%\useSvgWithCaption{./Images/sequenceDiagrams/joinABattle.svg}{1.4}{1.4}{Join a Battle Sequence Diagram}
 
 \clearpage
 \subsubsection{Create a Badge}
@@ -300,7 +300,7 @@ For each component here are explained functions associated with respective inter
 \subsection{Platform API specification}
 In this section will be proposed the specification of the Platform API, that will be used by the Web App to communicate with the Platform.
 For convenience this API is shown divided in three parts: firstly the part dedicated to the Web App, secondly the one dedicated to the E-Mail confirmations, thirdly the one dedicated to the RMP actions.
-\subsubsection{Web App API}
+\subsubsection{Web App API} \label{reff:apicalls}
 \begin{itemize}
     \item \textbf{POST /api/signIn} This call allows a User to sign in into the Platform. The body of the request must contain the following fields: Name, Surname, Email, Password, RMP Handle, UserType. It returns the confirmation of successful sign in, or an error message.
     \item \textbf{POST /api/logIn} This call allows a User to log in into the Platform. The body of the request must contain the following fields: Email, Password. It returns the confirmation of successful log in with the session token, or an error message.

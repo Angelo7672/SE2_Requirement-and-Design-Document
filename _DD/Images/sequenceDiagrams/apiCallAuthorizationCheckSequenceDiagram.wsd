@@ -2,16 +2,17 @@
 
 actor User as U
 participant WebApp as WA 
-participant APIManager as AM
-participant Dispatcher as D
+participant "Web Server Manager" as AM
+participant Controller as D
 
+U -> WA: triggers event event
 activate D
 activate AM
 activate WA
 WA -> AM : API call with token
 AM -> AM : Check token
 alt valid
-    AM -> D : Dispatch request
+    AM -> D : Interface call
     D -> AM : Response
     AM -> WA : Response
     WA -> U : Response

@@ -1,5 +1,7 @@
 @startuml
 
+' NEW
+autonumber
 actor "Invited Educator" as E
 participant "Email Provider" as EM
 participant "Web Server Module" as WS
@@ -16,7 +18,7 @@ alt click on the confirmation link
     activate C
     C -> TM: confirmEducatorInvitation(Tournament: string, Educator: string)
     activate TM
-    TM -> DB: addTournamentManager(Tournament: string, Educator: string)
+    TM -> DB: query(Query: string, Tournament: string, Educator: string)
 end
 
 @enduml
