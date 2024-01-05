@@ -1,7 +1,0 @@
-@startuml
-
-component Client <<subsystem>> #Red{
-    component "Web Browser"
-}
-
-@enduml

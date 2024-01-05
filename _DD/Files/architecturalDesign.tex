@@ -53,10 +53,11 @@ CKB, once realized, would be a Four Tier Application:
 \subsection{Component View}
 \subsubsection{Microservices Architecture}
 CKB's Application Layer is based on Microservices, that constitutes components in the system's architecture.
-\useSvgWithCaption{./Images/componentDiagrams/microserviceArchitecture.svg}{0.88}{0.88}{Microservices Architecture}
+\useSvgWithCaption{./Images/componentDiagrams/microserviceArchitecture.svg}{1}{1}{Microservices Architecture}
 \newpage
 \subsubsection{Component Diagrams}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagram.svg}{0.81}{0.81}{Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagram.svg}{1}{1}{Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramTooSimplified.svg}{1}{1}{Simplified Component Diagram}
 \newpage
 
 \paragraph{Client}
@@ -71,7 +72,7 @@ The Web Browser's job is to route browser requests to the Application Server and
     The API implemented here is one of the RESTFul type, as commented here \nameref{parr:restful}.
     This allows to expose only the needed functionalities to the client, masking the internal logic of the Platform.
 \end{enumerate}
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{0.5}{0.5}{Web Server Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{0.3}{0.3}{Web Server Component Diagram}
 \newpage
 
 \paragraph{Application Server}
@@ -94,15 +95,15 @@ The Web Browser's job is to route browser requests to the Application Server and
     \item \textbf{DBMS Manager} It is the component that manages the DBMS, allowing the Platform to perform operations on the DBMS. It directly manages connections to the database, keeping them few allowing to lighten the load to the DBMS without losing any functionality.
 \end{enumerate}
 \newpage
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{0.73}{0.73}{Application Server Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{1}{1}{Application Server Component Diagram}
 \newpage
 \paragraph{DBMS Server}
 The DBMS server's job is to keep all of the Platform's data safe and always accessible. Information about Users, Tournaments, Battles and Badges are contained in the data.
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.4}{0.4}{Client Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramDBMSServer.svg}{0.3}{0.3}{Client Component Diagram}
 
 \paragraph{External Services}
 The role of the External Services is to provide the Platform with the functionalities that it needs to work properly. In particular, the E-mail Provider is used to send notifications to Users, while the RMP is used to perform pull requests.            
-\useSvgWithCaption{./Images/componentDiagrams/componentDiagramExternalServices.svg}{0.5}{0.5}{External Services Component Diagram}
+\useSvgWithCaption{./Images/componentDiagrams/componentDiagramExternalServices.svg}{0.3}{0.3}{External Services Component Diagram}
 \newpage
 
 \subsection{Deployment View}
@@ -146,7 +147,8 @@ Where the API call can be of any kind within the context described, request is a
 \useSvgWithCaption{./Images/sequenceDiagrams/apiCallAuthorizationCheckSequenceDiagram.svg}{.70}{.70}{API call authorization check Sequence Diagram}
 
 
-%\begin{landscape}
+\begin{landscape}
+
 \clearpage
 \subsubsection{User signs in to the Platform}
 \useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.0}{1.0}{Sign In Sequence Diagram}
@@ -174,7 +176,7 @@ If the Team name already exists, the inviting Student is notified and the proces
 
 \clearpage
 \subsubsection{Educator invites other Educator to co-manage Tournament}
-\useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.4}{1.4}{Invite an Educator Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.0}{1.0}{Invite an Educator Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when an Educator invites another Educator to co-manage a Tournament.\\
 First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator. The Tournament's existence is not
 checked and assumed true because the Tournament name is not provided by the User, but it is automatically added.\\
@@ -183,7 +185,7 @@ If the invited Educator provided doesn't exist or he/she is just in the Tourname
 
 \clearpage
 \subsubsection{Student invites other Student to participate in the Tournament as a Team}
-\useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.5}{1.5}{Invite a Student Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.0}{1.0}{Invite a Student Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team. The Tournament's existence is not checked and assumed true because the Tournament name (inserted
 in the Team object) is not provided by the User, but it is automatically added.\\
 First the TournamentManager checks if the invited Student exists. Then it checks if the invited Student is already subscribed to the Tournament, and if not, it sends an invitation to the Student.\\
@@ -192,19 +194,19 @@ If the invited Student provided doesn't exist or he/she is just in another, the 
 
 \clearpage
 \subsubsection{Receive Educator Invitation}
-\useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.5}{1.5}{Receive an Educator invitation Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.0}{1.0}{Receive an Educator invitation Sequence Diagram}
 
 \clearpage
 \subsubsection{Receive Student Invitation}
-\useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.5}{1.5}{Receive a Student Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.0}{1.0}{Receive a Student Sequence Diagram}
 
 \clearpage
 \subsubsection{Create a Tournament}
-\useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.5}{1.5}{Create a Tournament Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.0}{1.0}{Create a Tournament Sequence Diagram}
 
 \clearpage
 \subsubsection{Create a Battle}
-\useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.5}{1.5}{Create a Battle Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.0}{1.0}{Create a Battle Sequence Diagram}
 
 %\clearpage
 %\subsubsection{Join a Battle}
@@ -212,29 +214,29 @@ If the invited Student provided doesn't exist or he/she is just in another, the 
 
 \clearpage
 \subsubsection{Create a Badge}
-\useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.5}{1.5}{Create a Badge Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.0}{1.0}{Create a Badge Sequence Diagram}
 
 \clearpage
 \subsubsection{Assign a Badge}
-\useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.5}{1.5}{Assign a Badge Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.0}{1.0}{Assign a Badge Sequence Diagram}
 
 \clearpage
 \subsubsection{Evaluate Code}
-\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.5}{1.5}{Evaluate Code Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.0}{1.0}{Evaluate Code Sequence Diagram}
 
 \clearpage
 \subsubsection{Educator Manual Evaluate Code}
-\useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.5}{1.5}{Educator Manual Evaluate Code Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.0}{1.0}{Educator Manual Evaluate Code Sequence Diagram}
 
 \clearpage
 \subsubsection{User searches for Users}
-\useSvgWithCaption{./Images/sequenceDiagrams/UserSearchesForUsers.svg}{1.5}{1.5}{User searches for Users Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.0}{1.0}{User searches for Users Sequence Diagram}
 
 \clearpage
 \subsubsection{Student searches for Tournaments}
-\useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.5}{1.5}{Student searches for Tournaments Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.0}{1.0}{Student searches for Tournaments Sequence Diagram}
 %\restoregeometry
-%\end{landscape}
+\end{landscape}
 \clearpage
 
 \subsection{Component Interfaces}

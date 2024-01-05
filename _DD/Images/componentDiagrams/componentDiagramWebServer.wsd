@@ -1,9 +1,0 @@
-@startuml
-
-component "Web Server" <<subsystem>> #LightBlue{
-    component "Web Server Module"
-}
-interface "Web Interface"
-[Web Interface] - [Web Server Module]
-
-@enduml
