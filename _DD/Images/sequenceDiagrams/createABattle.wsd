@@ -1,91 +1,51 @@
 @startuml
 
+'NEW:w
 autonumber
-actor Educator as U
-participant First_Firewall as FF
-participant WebServer as WS
-participant Second_Firewall as SF
-participant Application_Server as AS
-participant Microservices_Dispatcher as MD
-entity tournamentManagerInterface as TMI
+actor Educator as E
+participant "RMP Platform" as RMP
+participant "Email Provider" as EM 
+participant "Web Server Module" as WS
+participant Controller as C
 participant TournamentManager as TM
-participant BattleManager as BM
-entity logInManagerInterface as LMI
-participant LogInManager as LM
-entity notificationManagerInterface as NMI
 participant NotificationManager as NM
-participant Firewall as F
-participant EmailProvider as EP
+participant DBMSManager as DB 
 
-activate U
-activate FF
+E -> RMP: create new repository
+activate RMP
+RMP --> E
+deactivate RMP
+E -> WS: /POST/createBattle
 activate WS
-activate SF
-activate AS
-U-->FF: createABattle(Json(Name, overview, RMP, evaluationMode, email, tournamentName))
-FF-->WS: analizer(socket, Json): Json
-WS-->SF: verifyLoggedClient(socket)
-SF-->AS: analizer(socket, Json): Json
-AS-->MD: parser(Json): response
-activate MD
-MD-->LMI: logInManager.isLogged(email)
-activate LMI
-LMI-->LM: isLogged(email)
-deactivate LMI
-activate LM
-alt if Battle is created
-    LM-->MD: True: the User is logged properly and he/she is an Educator
-    MD-->TMI: MicroserviceDispatcher.addBattle(Name,overview, RMP, evaluationMode, email)
-    activate TMI
-    TMI-->TM: addBattle(Name,overview, RMP, evaluationMode, email)
-    deactivate TMI
-    activate TM
-    TD-->BM: MicroserviceDispatcher.createBattle(Name,overview, RMP, evaluationMode, email)
-    activate BM
-    BM-->TM: True: Battle is created
-    deactivate BM
-    TM-->MD: True: Battle is created
-    deactivate TM
-    MD-->NMI: MicroserviceDispatcher.sendNotification(email, description)
-    activate NMI
-    NMI-->NM: sendNotification(email, description)
-    deactivate NMI
+WS -> C: createBattle(battleData: battleData)
+activate C
+C -> TM: addNewBattle(battleData: battleData)
+activate TM
+alt right Tournament state
+    TM -> DB: query(Query: string, battleData)
+    activate DB
+    DB --> TM: ok
+    deactivate DB
+    TM -> NM: sendNotification(Email: string, Text: text)
     activate NM
-    NM->F: sendEmail
+    NM -> EM: send email
+    activate EM
+    EM -> E: receive email
+    deactivate EM
+    NM --> TM: ok
     deactivate NM
-    activate F
-    F->EP: sendEmail
-    deactivate F
-    activate EP
-    EP-->U: Email <<Battle successfully created>>
-    deactivate EP
-else  data provided are incorrect or Battle already exists
-    LM-->MD: True: the User is logged properly and it is an Educator
-    MD-->NMI: MicroserviceDispatcher.sendNotification(List<String> emails, description)
-    activate NMI
-    NMI-->NM: sendNotification(List<String> emails, description)
-    deactivate NMI
+    TM --> C: ok
+    C --> WS: ok
+    deactivate C
+    WS -> E: Battle detail page
+    deactivate WS
+else tournament state is wrong 
+    TM -> NM: sendNotification(Email: string, Text: string)
     activate NM
-    NM->F: sendEmail
+    NM -> EM: send email
     deactivate NM
-    activate F
-    F->EP: sendEmail
-    deactivate F
-    activate EP
-    EP-->U: Email <<Battle not created, already exists>>
-    deactivate EP
-else User is not an Educator or is not logged
-    LM-->MD: False: the User is not logged properly or he/she is not an Educator
-    deactivate LM
-    MD-->AS: Battle NOT created, User NOT logged properly 
-    deactivate MD
-    AS-->WS: Json(Battle NOT created)
-    deactivate AS
-    WS-->U: Battle NOT created
+    activate EM
+    EM -> E: receive email
+    deactivate EM
 end
-deactivate U
-deactivate FF
-deactivate WS
-deactivate SF
-deactivate AS
 @enduml
