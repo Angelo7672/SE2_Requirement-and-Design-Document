@@ -1,7 +1,5 @@
 @startuml
 
-
-
 actor InvitedEducator as UB
 actor InvitingEducator as UA
 participant EmailProvider as E
@@ -9,15 +7,7 @@ participant CKBWebApp as A
 entity CKBPlatform as P
 
 activate UA
-UA -> A: clicks on "collaborate" button
-activate A
-A -> P: adding an Educator
-activate P
-P --> A: form to fill
-deactivate P
-UA <-- A: shows a form to fill 
-deactivate A
-UA -> A: submit the form
+UA -> A: insert the email of the\nInvitedEducator and clicks on "invite" button
 deactivate UA
 activate A
 A -> P: sends the Email of Educator to invite

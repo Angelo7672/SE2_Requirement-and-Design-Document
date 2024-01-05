@@ -1,22 +1,34 @@
 @startuml
 
-skinparam linetype polyline
-class microserviceDispatcher{}
-interface logInManager{
-    + logIn(String email, String password): Boolean
-    + logOut(String email): Boolean
-    + isLogged(String email): Boolean
+'skinparam linetype polyline
+
+interface controller{
+    + signIn(signInData: SignInData): Page
+    + receiveResponse(response: Response): Void
+    + logIn(logInData: LogInData): Session
+    + getTournamentData(tournament: Tournament): Tournament
+    + createTeam(team: Team, student: Student): Tournament Page
+    + addEducator(educator: Educator, tournament: Tournament): Void
+    + addStudent(student: Student, team: Team): Void
 }
+
+interface logInManager{
+    + logIn(logInData: LogInData): Session
+    '+ logOut(String email): Boolean
+    '+ isLogged(String email): Boolean
+}
+
 interface signInManager{
-    + signIn(String name, String surname, String email, String password): AccountManager
-    + signOut(String email): Boolean
+    + signIn(signInData: SignInData): Void
+    + createAccount(email: String): Void
 }
 interface RMPManager{
     + pullRequest(String repo): String
 }
-interface evaluationManager
+interface evaluationManager{}
 interface notificationManager{
-    + sendNotification(String email, String description): Boolean
+    + sendNotification(notification: Notification): Void
+    + receiveResponse(response: Response): Void
 }
 interface badgeManager
 interface battleManager{
@@ -24,10 +36,12 @@ interface battleManager{
     + updateBattleScore(String team, int score): void
 }
 interface tournamentManager{
-    + inviteEducator(String myEmail, String emailToInvite): void
-    + createTeam(String myEmail, Array<String> emails, String team): Boolean
-    + joinStudentTournament(String email, String team): Boolean
-    + joinEducatorTournament(String email): Boolean
+    + getTournamentData(tournament: Tournament): Tournament
+    + createTeam(team: Team, student: Student): Tournament Page
+    + addStudent(student: Student, team: Team): Void
+    + joinStudentTournament(student: Student, team: Team): Void
+    + joinEducatorTournament(educator: Educator, tournament: Tournament): Void
+    + addEducator(educator: Educator, tournament: Tournament): Void
     + updateTournamentScore(String team, int score): void
 }
 interface searchManager{
@@ -35,36 +49,35 @@ interface searchManager{
     + searchTournament(String tournamentName): Array<TournamentManager>
 }
 interface accountManager{
-    + deleteAccount(): Boolean
-    + updateAccount(String name, String surname, String email, String repo): void
+    + createSession(user: User): Session
+    '+ updateAccount(String name, String surname, String email, String repo): void
 }
 
-hide microserviceDispatcher circle
-hide logInManager circle
-hide signInManager circle
-hide RMPManager circle
-hide evaluationManager circle
-hide notificationManager circle
-hide badgeManager circle
-hide battleManager circle
-hide tournamentManager circle
-hide searchManager circle
-hide accountManager circle
+interface dispatcher{
+    + dispatch(request: String, parameters: Array<String>): Void
+    + getData(microserviceName: String): MicroserviceData
+}
 
-microserviceDispatcher ---> signInManager: signIn, signOut
-microserviceDispatcher ---> logInManager: logIn, logOut
-microserviceDispatcher ---> accountManager: updateAccount
-microserviceDispatcher ---> tournamentManager: inviteEducator, createTeam, joinStudentTournament, joinEducatorTournament
-microserviceDispatcher ---> battleManager: joinBattle
-signInManager ---> accountManager: deleteAccount
-logInManager ---> searchManager: searchUser
-tournamentManager ---> logInManager: isLogged
-tournamentManager ---> notificationManager: sendNotification
-battleManager ---> logInManager: isLogged
-battleManager ---> notificationManager: sendNotification
-evaluationManager ---> battleManager: updateBattleScore
-evaluationManager ---> tournamentManager: updateTournamentScore
-RMPManager <--- evaluationManager: pullRequest
+interface DBMSManager{
+    + query(query: String, args: List<String>): QueryResult
+}
+
+
+
+'microserviceDispatcher ---> signInManager: signIn, signOut
+'microserviceDispatcher ---> logInManager: logIn, logOut
+'microserviceDispatcher ---> accountManager: updateAccount
+'microserviceDispatcher ---> tournamentManager: inviteEducator, createTeam, joinStudentTournament, joinEducatorTournament
+'microserviceDispatcher ---> battleManager: joinBattle
+'signInManager ---> accountManager: deleteAccount
+'logInManager ---> searchManager: searchUser
+'tournamentManager ---> logInManager: isLogged
+'tournamentManager ---> notificationManager: sendNotification
+'battleManager ---> logInManager: isLogged
+'battleManager ---> notificationManager: sendNotification
+'evaluationManager ---> battleManager: updateBattleScore
+'evaluationManager ---> tournamentManager: updateTournamentScore
+'RMPManager <--- evaluationManager: pullRequest
 
 
 

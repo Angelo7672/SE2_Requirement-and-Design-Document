@@ -247,6 +247,7 @@ For each component here are explained functions associated with respective inter
                 \item \textbf{signIn(signInData: SignInData): Page}
                 \item \textbf{receiveResponse(response: Response): Void}
                 \item \textbf{logIn(logInData: LogInData): Session}
+                \item \textbf{getTournamentData(tournament: Tournament): Tournament}
                 \item \textbf{createTeam(team: Team, student: Student): Tournament Page}
                 \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void}
                 \item \textbf{addStudent(student: Student, team: Team): Void}
@@ -326,13 +327,13 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{Dispatcher Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{void dispatch(String request, Array<String> parameters)} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the 
+            \item \textbf{dispatch(request: String, parameters: Array<String>): Void} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the 
             parameters. The Dispatcher will call the right Microservice, passing the parameters.
-            \item \textbf{MicroserviceData getData(String microserviceName)} \label{meth:dispGetData}The method is invoked by a microservice to know the data of another microservice as discussed in: \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
+            \item \textbf{getData(microserviceName: String): MicroserviceData} \label{meth:dispGetData}The method is invoked by a microservice to know the data of another microservice as discussed in: \nameref{parr:dispatcher}. The parameter is the name of the microservice that is requesting the data.
         \end{enumerate}
     \item \textbf{DBMS Manager Interface}
         \begin{enumerate} [label=$\bullet$]
-            \item \textbf{QueryResult query(String query, List<String> args)} The method is invoked by a microservice to perform a query to the database. The first parameter is the Query to be precompiled, the second an array of arguments to be inserted in the query.
+            \item \textbf{query(query: String, args: List<String>): QueryResult} The method is invoked by a microservice to perform a query to the database. The first parameter is the Query to be precompiled, the second an array of arguments to be inserted in the query.
     \end{enumerate}
 \end{enumerate}
 \subsection{Platform API specification}

@@ -8,12 +8,10 @@
             Tournament is in the right state to invite User\\
         \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}
-            1& Inviting User clicks on "collaborate" button\\
-            2& System shows inviting User a form to fill with the email of the User he/she wants to invite\\
-            3& Inviting User clicks submit button\\
-            4& System sends invite e-mail notification to invited User\\
-            5& Invited User clicks on "Accept" button to accept invitation\\
-            6& Invited User clicks on "Decline" button to decline invitation, or ignores it\\
+            1& Inviting User insert the Invited User email and clicks on "invite" button\\
+            2& System sends invite e-mail notification to invited User\\
+            3& Invited User clicks on "Accept" button to accept invitation\\
+            4& Invited User clicks on "Decline" button to decline invitation, or ignores it\\
         \end{tabu} \\
         Exit Condition & If invited User accepts invitation, invited User can collaborate with inviting one, else as nothing happened\\
         Exception & \begin{tabu}{@{}X}
@@ -55,7 +53,7 @@
         Actors & Inviting Student, invited Student\\ 
         Entry Condition & \begin{tabu}{@{}X}
             Same as \nameref{uc:uc4} \\
-            Inviting Student is part of a team subscribed to a Tournament \\ 
+            Inviting Student is part of a team subscribed to a Tournament\\ 
             Tournament is in "ONLINE" state\\
         \end{tabu} \\
         Event Flow & \begin{tabu}{X X[50]}

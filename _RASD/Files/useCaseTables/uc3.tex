@@ -3,24 +3,23 @@
     \begin{tabu}{|X[.2]|X|} \hline \everyrow{\hline}
         Name & Student subscribes to Tournament\\ 
         Actors & Student \\ 
-        Entry Condition & Tournament is in "ONLINE" state\\ 
+        Entry Condition & Tournament is in "ONLINE" state and Student is logged in to the Platform\\ 
         Event Flow & \begin{tabu}{X X[50]}
-            1& Student logs in to the Platform\\
-            2& Student is in its home page and is presented with a list of available Tournaments\\
-            3& Student scrolls through the list of available Tournaments\\
-            4& Student can ask to see more Tournaments via the "See more" button\\
-            5& Student clicks on Tournament entry to see Tournament details\\
-            6& Student clicks again on Tournament if not interested to hide details\\
-            7& Student clicks on "subscribe" button to subscribe to Tournament\\
-            8& Platform registers Tournament subscription\\
-            9& Platform creates new Team for that Student\\
-            10& Platform requests to insert the Team's name\\
-            11& Student inserts the Team's name\\
-            12& Platform sends confirmation e-mail to Student\\
-            13& Platform gives visual feedback on web page of effective subscription\\
+            1& Student is in its home page and is presented with a list of available Tournaments\\
+            2& Student scrolls through the list of available Tournaments\\
+            3& Student can ask to see more Tournaments via the "See more" button\\
+            4& Student clicks on Tournament entry to see Tournament details\\
+            5& Student clicks again on Tournament if not interested to hide details\\
+            6& Student inserts the Team's name and clicks on "subscribe" button to subscribe to Tournament\\
+            7& Platform registers Tournament subscription\\
+            8& Platform creates new Team for that Student\\
+            9& Platform sends confirmation e-mail to Student\\
+            10& Platform gives visual feedback on web page of effective subscription\\
         \end{tabu} \\
         Exit Condition & Student is subscribed to Tournament and knows it\\
-        Exception & Subscription deadline is passed, Student cannot subscribe to Tournament\\
+        Exception & Subscription deadline is passed, Student cannot subscribe to Tournament.
+
+                    If a Student is already subscribed to a Tournament, he/she cannot click "subscribe" button.\\ 
         \specialReqLabel & - \\ 
     \end{tabu}
     \tableEntryByLabel{uc:uc3}

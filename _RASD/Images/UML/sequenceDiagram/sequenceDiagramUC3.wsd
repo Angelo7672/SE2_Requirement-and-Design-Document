@@ -7,19 +7,9 @@ entity CKBPlatform as P
 participant EmailProvider as E
 
 activate S
-S->A: login
-activate A
-A->P: login
-activate P
-A<---P: Student's homepage
-deactivate P
-note left
-    the home page includes Tournament list
-end note
-S<---A: Student's home page
-deactivate A
-S->S: scroll available Tournaments
+S->S: scroll available Tournaments in Student's homepage
 note right
+    the home page includes Tournament list and
     the web app caches Tournaments list
 end note
 S->A: clicks the "See more" Button
@@ -40,38 +30,29 @@ alt if not interested
     activate A
     S<---A: hide Tournament details
     deactivate A
-else if interested
-    S->A: clicks on "Subscribe" button
+else if interested, Subscription deadline is not passed and the Student is not already subscribed
+    S->A: insert the Team's name and\nclicks on "subscribe" button
     activate A
     A->P: subscription request
     activate P
-
-    alt if Subscription deadline is passed
-        P--->A: error message
-        deactivate P
-        S<--A: error message
-        deactivate A
-    else if Subscription deadline is not passed
-        activate P
+    P->P: check if the Team's name is already taken
+    alt if the Team's name is not already taken
         P->P: creates Team for that Student
-        P--->A: insert the Team's name
-        deactivate P
-        activate A
-        A--->S: insert the Team's name
-        deactivate A
-        S->A: submit the Team's name
-        activate A
-        A->P: submit the Team's name
-        activate P
         P->E: sends confirmation Email to the Student
         activate E
         A<---P: gives feedback of effective subscription
-         deactivate P
+        deactivate P
         E->S: delivers Email to the Student
         deactivate E
         S<---A: gives visual feedback of effective subscription
         deactivate A
         deactivate S
+    else if the Team's name is already taken
+        P->A: gives feedback of Team's name already taken
+        activate A
+        A->S: gives feedback of Team's name already taken
+        deactivate P
+        deactivate A
     end
 end
 @enduml
