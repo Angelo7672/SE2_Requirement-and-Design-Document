@@ -1,58 +1,22 @@
 @startuml
 
-autonumber
-actor Invited_Educator as U
-participant First_Firewall as FF
-participant WebServer as WS
-participant Second_Firewall as SF
-participant Application_Server as AS
-participant Microservices_Dispatcher as MD
-entity logInManagerInterface as LMI
-participant LogInManager as LM
-entity searchManagerInterface as SMI
-participant searchManager as SM
-entity tourmanetManagerInterface as TMI
-participant TournamentManager as TM
-participant EmailProvider as EP
+actor "Invited Educator" as E
+participant "Email Provider" as EM
+participant "Web Server Module" as WS
+participant Controller as C
+participant "Torunament Manager" as TM 
+participant "DBMS Manager" as DB
 
-activate U
-activate FF
-activate WS
-activate SF
-activate AS
-EP --> U: Email: Invitation to collaborate
-alt Invited Educator accepts invitation
-    note left
-        If Invited Educator 
-        declines nothing happens
-    end note
-    U --> FF: Json(joinEducatorTournament(email, tournamentName))
-    WS-->SF: verifyLoggedClient(socket)
-    SF-->AS: analizer(socket, Json): Json
-    AS-->MD: parser(Json): response
-    activate MD
-    MD-->LMI: logInManager.isLogged(myemail)
-    activate LMI
-    LMI-->LM: isLogged(myemail) 
-    note right
-        if Educator is not logged it will be required log in procedure
-    end note
-    deactivate LMI
-    activate LM
-    LM-->MD: True: the User is logged properly and it is an Educator
-    deactivate LM
-    activate SMI
-    MD-->SMI: Microdispatcher.searchTournament(tournamentName)
-    SMI-->SM: searchTournament(tournamentName)
-    deactivate SMI
-    activate SM
-    SM --> MD: TournamentManager
-    deactivate SM
-    MD --> TMI: MicroserviceDispatcher.TouranmentManager.joinEducatorTournament(email)
-    activate TMI
-    TMI --> TM: TouranmentManager.joinEducatorTournament(email)
+TM -> EM: send email with link
+EM -> E: read email
+alt click on the confirmation link
+    E -> WS: POST /api/confirm
+    activate WS
+    WS -> C: confirmEducatorInvitation(Tournament: string, Educator: string)
+    activate C
+    C -> TM: confirmEducatorInvitation(Tournament: string, Educator: string)
     activate TM
-    TM --> MD: True: Educator joined successfully
-    deactivate TM  
+    TM -> DB: addTournamentManager(Tournament: string, Educator: string)
 end
+
 @enduml
