@@ -89,7 +89,7 @@ else QueryResult is NULL
     deactivate NM
     activate EP
     EP -> U1: Email <<Invitation NOT sent,\n error occurred>>
-     deactivate EP
+    deactivate EP
 end
 
 @enduml

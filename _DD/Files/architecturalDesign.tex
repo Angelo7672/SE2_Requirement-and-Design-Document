@@ -167,7 +167,8 @@ If the credentials are not correct, the User is notified and the process ends.\\
 This sequence diagram shows the interactions between the components of the system when a Student subscribes to a Tournament.\\
 First the Student searches for the Tournament they want to join, then they click on the "subscribe" button.\\
 The TournamentManager first checks if the Team already exists, and if not, it creates it. We assume that a Student that is already subscribed to a Tournament, when he/she visits the Tournament page, he/she doesn't see the "subscribe" 
-button, but just see the name of his/her Team, for this reason it is not checked if a Student is already subscribed to the Tournament.\\
+button, but just see the name of his/her Team, for this reason it is not checked if a Student is already subscribed to the Tournament. In other, because the Student's information and the Tournament's information are not provided by the 
+User, but they are automatically inserted, Student and Tournament existence is not checked but assumed true.\\
 Then the TournamentManager adds the Student to the new Team and email him/her to notify the subscription.\\
 If the Team name already exists, the inviting Student is notified and the process ends.\\
 
@@ -175,14 +176,16 @@ If the Team name already exists, the inviting Student is notified and the proces
 \subsubsection{Educator invites other Educator to co-manage Tournament}
 \useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.4}{1.4}{Invite an Educator Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when an Educator invites another Educator to co-manage a Tournament.\\
-First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator.\\
+First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator. The Tournament's existence is not
+checked and assumed true because the Tournament name is not provided by the User, but it is automatically added.\\
 If the invited Educator click on the "accept" button, the TournamentManager adds the Educator to the Tournament.\\
 If the invited Educator provided doesn't exist or he/she is just in the Tournament, the Educator is notified and the process ends.\\
 
 \clearpage
 \subsubsection{Student invites other Student to participate in the Tournament as a Team}
 \useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.5}{1.5}{Invite a Student Sequence Diagram}
-This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team.\\
+This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team. The Tournament's existence is not checked and assumed true because the Tournament name (inserted
+in the Team object) is not provided by the User, but it is automatically added.\\
 First the TournamentManager checks if the invited Student exists. Then it checks if the invited Student is already subscribed to the Tournament, and if not, it sends an invitation to the Student.\\
 If the invited Student click on the "accept" button, the TournamentManager adds the Student to the Team.\\
 If the invited Student provided doesn't exist or he/she is just in another, the User is notified and the process ends.\\
@@ -239,17 +242,26 @@ If the invited Student provided doesn't exist or he/she is just in another, the 
 For each component here are explained functions associated with respective interfaces.
 %DA VERIFICARE SE INSERIRE ANCHE I GETTER
 \begin{enumerate}
+    \item \textbf{Controller Interface}
+            \begin{enumerate}[label=$\bullet$]
+                \item \textbf{signIn(signInData: SignInData): Page}
+                \item \textbf{receiveResponse(response: Response): Void}
+                \item \textbf{logIn(logInData: LogInData): Session}
+                \item \textbf{createTeam(team: Team, student: Student): Tournament Page}
+                \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void}
+                \item \textbf{addStudent(student: Student, team: Team): Void}
+            \end{enumerate}
     \item \textbf{SignInManager Interface} 
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{AccountManager signIn(String name, String surname, String email, String password, String rmpHandle)} This method allows User to register to the Platform providing name, email, password and a RMP handle. 
-                The return is a Manager for that specific Account created.
+                \item \textbf{signIn(signInData: SignInData): Void} This method allows User to register to the Platform providing name, email, password and a RMP handle. All the information are contained in the SignInData object.
+                \item \textbf{createAccount(email: String): Void} This method create the account for the new User, providing the email. The other information are provided by the User in the signIn method.
             \end{enumerate}
     \item \textbf{LogInManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean logIn(String email, String password)} When a User requests to enter CKB, whether they are registered, the manager is notified via this method. A Boolean value is returned as a result of the 
-            invocation, informing the client whether the action was successful or unsuccessful based on the correctness of the account's existence parameters.
-            \item \textbf{Boolean logOut(String email)} In order to log out from the system, is needed as input the email of the User to discard from the ones that are currently interacting with the Platform. A Boolean value communicates 
-            the outcome.
+            \item \textbf{logIn(logInData: LogInData): Session} This method allows User to log in into the Platform providing email and password. All the information are contained in the LogInData object. The return value is a Session,
+            from it the User can operate as himself/herself on the Platform.
+            %\item \textbf{Boolean logOut(String email)} In order to log out from the system, is needed as input the email of the User to discard from the ones that are currently interacting with the Platform. A Boolean value communicates 
+            %the outcome.
             %\item \textbf{Boolean isLogged(String email)} Through this method, providing the email, the caller is able to know is the User who asks for the operation is actually logged in.
         \end{enumerate}
     \item \textbf{RMPManager Interface}
@@ -259,11 +271,9 @@ For each component here are explained functions associated with respective inter
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean sendNotification(String email, String text)} The only parameters required are the recipient email address and the content of the notification. The method reports a Boolean value to report the status 
-            of the operation.
-            \item \textbf{void receiveResponse(Int request, Boolean response, Array<String> info)} The method is invoked to provide the User's answer. The 'request' parameter is an integer that identifies the type of request 
-            (eg: 0 <- join a Team, 1 <- add Educator to a Tournament), the 'response' parameter is a Boolean value that indicates whether the User has accepted or not and the 'info' Array contains the information about the response 
-            and its content is different for each type of response (eg. "join to a Team": info[0] <- Student's email, info[1] <- Team, info[2] <- Tournament).
+            \item \textbf{sendNotification(notification: Notification): Void} The method is invoked to send a notification to a User. The notification object contains the information about the notification to send and the content
+            message.
+            \item \textbf{receiveResponse(response: Response): Void} The method is invoked to provide the User's answer. The response object contains the information about the User's answer, with the corresponding ConfirmationToken.
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -271,22 +281,30 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
-        \item \textbf{void createTeam(String myEmail, Array<String> emails, String Team)} The creation of the Team is deputed to this method. As input parameters are necessary the email of the User who invites others, list of emails 
-        of other Students to invite, and the name of the Team. This method will interface with NotificationManager to send the invitation to the other Students. 
-        \item \textbf{void joinStudentTournament(String email, String Team)} This method address a Student with the given email to the Team with the given name.
-        \item \textbf{void joinEducatorTournament(String email)} This method adds an Educator with the given email to the Tournament.
-        \item \textbf{void addEducator(String email)} This method sends an invitation to the Educator with the given email to join the Tournament. This method will interface with NotificationManager to send the invitation to the Educator.
-        \item \textbf{void updateTournamentScore(String Team, Int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
-        \item \textbf{Boolean addNewBattle(String name, String overview, String rmpRepo, Array<Int> evaluationParameters)} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
-        the RMP link from which Students will fork the repo and an array containing the evaluation parameter (eg. evaluationParameters[0] <- 25, evaluationParameters[1] <- 25, evaluationParameters[2] <- 25, evaluationParameters[3] <- 25,
-        respectively for Functional, Timeliness, Quality and Manual).
-        \item \textbf{void addNewBadge(String name, String description, File criteria, File photo)} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
-        and a photo.
+            \item \textbf{getTournamentData(tournament: Tournament): Tournament} The method is invoked to get all data that the Platform has about a Tournament. The tournament object contains the information about the Tournament that 
+            is requested.
+            \item \textbf{createTeam(team: Team, student: Student): Tournament Page} The creation of the Team is deputed to this method. The team object contains the Team's name, but also the Tournament's name in which the Team wants to subscribe. 
+            The student object contains the Student's information, which is the creator of the Team. The return value is the Tournament's page that shows the Tournament page of the Team.
+            \item \textbf{addStudent(student: Student, team: Team): Void} This method allows a Student to invite another Student to join a Team. The student object contains the information about the Student that is inviting, while the team
+            object contains the information about the Team in which the Student is inviting and the Tournament's name in which the Team is.
+            \item \textbf{joinStudentTournament(student: Student, team: Team): Void} This method allows a Student to join a Tournament in a Team. The student object contains the Student's information, which is the one who wants to join 
+            the Tournament and the team object contains the Team's name, but also the Tournament's name in which the Student wants to subscribe.
+            \item \textbf{joinEducatorTournament(educator: Educator, tournament: Tournament): Void} This method adds an Educator with the given email to the Tournament. The educator object contains the information about the Educator
+            that is joining, while the tournament object contains the information about the Tournament in which the Educator is joining.
+            \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void} This method allows an Educator to invite another Educator to co-manage a Tournament. The educator object contains the information about the Educator
+            that is inviting, while the tournament object contains the information about the Tournament in which the Educator is inviting.
+            \item \textbf{void updateTournamentScore(String Team, Int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
+            \item \textbf{Boolean addNewBattle(String name, String overview, String rmpRepo, Array<Int> evaluationParameters)} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
+            the RMP link from which Students will fork the repo and an array containing the evaluation parameter (eg. evaluationParameters[0] <- 25, evaluationParameters[1] <- 25, evaluationParameters[2] <- 25, evaluationParameters[3] <- 25,
+            respectively for Functional, Timeliness, Quality and Manual).
+            \item \textbf{void addNewBadge(String name, String description, File criteria, File photo)} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
+            and a photo.
         \end{enumerate}
     \item \textbf{AccountManage Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{void updateAccount(String name, String surname, String email, String rmpHandle)} updateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo 
-            through which he/she would be identified in the system.
+            \item \textbf{createSession(user: User): Session} The method is invoked to create a new session for the User. The User object contains the information about the User that is logging in and requesting the session.
+            %\item \textbf{void updateAccount(String name, String surname, String email, String rmpHandle)} updateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo 
+            %through which he/she would be identified in the system.
             \item \textbf{void assignBadge(BadgeManager badge)} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
@@ -331,7 +349,7 @@ All of the following have a common argument, that is the User session token. Thi
     \item \textbf{GET /api/UserProfile} This call allows a User to get all data that the Platform has about a User. The body of the request must contain the following fields: Email. It returns the User public data, and, in the case of Students, also the list of Badges.
     \item \textbf{GET /api/tournamentData} This call allows a User to get all data that the Platform has about a Tournament. The body of the request must contain the following fields: TournamentName. It returns the Tournament data.
     \item \textbf{POST /api/createTournament} This call allows an Educator to create a Tournament. The body of the request must contain the following fields: TournamentName, TournamentDescription, TournamentLanguage, TournamentMaxTeamSize, SubscriptionDeadline, TournamentDuration. It returns the confirmation of successful creation, or an error message.
-    \item \textbf{POST /api/joinTournament} This call allows a Student to join a Tournament. The body of the request must contain the following fields: Tournament, TeamName. It returns the confirmation of successful join, or an error message.
+    \item \textbf{POST /api/joinTournament} This call allows a Student to join a Tournament. The body of the request must contain the following fields: Tournament, Team, Student. It returns the confirmation of successful join, or an error message.
     \item \textbf{POST /api/inviteStudent} This call allows a Student to invite another student to his team. The body of the request must contain the following fields: Tournament, TeamName, StudentEmail. It returns the confirmation of successful invitation, or an error message.
     \item \textbf{POST /api/inviteEducator} This call allows an Educator to invite another Educator to his Tournament. The body of the request must contain the following fields: Tournament, EducatorEmail. It returns the confirmation of successful invitation, or an error message.
     \item \textbf{POST /api/createBadge} This call allows an Educator to create a new Badge in the context of a Tournament. The body of the request must contain the following fields: Tournament, BadgeName, BadgeDescription, BadgeCriteria. It returns the confirmation of successful creation, or an error message.
