@@ -179,7 +179,6 @@ If the Team name already exists, the inviting Student is notified and the proces
 This sequence diagram shows the interactions between the components of the system when an Educator invites another Educator to co-manage a Tournament.\\
 First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator. The Tournament's existence is not
 checked and assumed true because the Tournament name is not provided by the User, but it is automatically added.\\
-If the invited Educator click on the "accept" button, the TournamentManager adds the Educator to the Tournament.\\
 If the invited Educator provided doesn't exist or he/she is just in the Tournament, the Educator is notified and the process ends.\\
 
 \clearpage
@@ -188,16 +187,19 @@ If the invited Educator provided doesn't exist or he/she is just in the Tourname
 This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team. The Tournament's existence is not checked and assumed true because the Tournament name (inserted
 in the Team object) is not provided by the User, but it is automatically added.\\
 First the TournamentManager checks if the invited Student exists. Then it checks if the invited Student is already subscribed to the Tournament, and if not, it sends an invitation to the Student.\\
-If the invited Student click on the "accept" button, the TournamentManager adds the Student to the Team.\\
 If the invited Student provided doesn't exist or he/she is just in another, the User is notified and the process ends.\\
 
 \clearpage
 \subsubsection{Receive Educator Invitation}
 \useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.4}{1.4}{Receive an Educator invitation Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when an Educator receives an invitation to co-manage a Tournament.\\
+If the invited Educator click on the "accept" button, the TournamentManager adds the Educator to the Tournament.\\
 
 \clearpage
 \subsubsection{Receive Student Invitation}
 \useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.4}{1.4}{Receive a Student Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when a Student receives an invitation to join a Team.\\
+If the invited Student click on the "accept" button, the TournamentManager adds the Student to the Team.\\
 
 \clearpage
 \subsubsection{Create a Tournament}

@@ -1,24 +1,39 @@
 @startuml
 
-' NEW
 autonumber
-actor "Invited Educator" as E
-participant "Email Provider" as EM
-participant "Web Server Module" as WS
-participant Controller as C
-participant "Torunament Manager" as TM 
-participant "DBMS Manager" as DB
 
-TM -> EM: send email with link
-EM -> E: read email
-alt click on the confirmation link
-    E -> WS: POST /api/confirm
+actor "Invited Educator" as U2
+participant EmailProvider as EP
+participant WebServerModule as WS
+participant Controller as C
+participant TournamentManager as TM
+participant NotificationManager as NM
+participant DBMSManager as DBMS
+
+activate U2
+alt Educator accepts Invitation
+    U2 -> WS: POST /api/confirm
+    deactivate U2
     activate WS
-    WS -> C: confirmEducatorInvitation(Tournament: string, Educator: string)
+    WS -> C: receiveResponse(response: Response): Void
+    deactivate WS
     activate C
-    C -> TM: confirmEducatorInvitation(Tournament: string, Educator: string)
+    C -> NM: receiveResponse(response: Response): Void
+    deactivate C
+    activate NM
+    NM -> TM: joinEducator(educator: Educator,\n tournament: Tournament): Void
+    deactivate NM
     activate TM
-    TM -> DB: query(Query: string, Tournament: string, Educator: string)
+    TM -> DBMS: query(query: String, args: List<String>): QueryResult
+    activate DBMS
+    note right
+        add Educator 
+        to Tournament
+    end note
+    DBMS --> TM: QueryResult
+    deactivate DBMS
+    deactivate TM
+else Educator refuses Invitation
 end
 
 @enduml

@@ -48,31 +48,6 @@ alt QueryResult NULL
         activate EP
         EP -> U2: Email <<Invitation sent>>
         deactivate EP
-        activate U2
-        alt Educator accepts Invitation
-            U2 -> WS: POST /api/confirm
-            deactivate U2
-            activate WS
-            WS -> C: receiveResponse(response: Response): Void
-            deactivate WS
-            activate C
-            C -> NM: receiveResponse(response: Response): Void
-            deactivate C
-            activate NM
-            NM -> TM: joinEducator(educator: Educator,\n tournament: Tournament): Void
-            deactivate NM
-            activate TM
-            TM -> DBMS: query(query: String, args: List<String>): QueryResult
-            activate DBMS
-            note right
-                add Educator 
-                to Tournament
-            end note
-            DBMS --> TM: QueryResult
-            deactivate DBMS
-            deactivate TM
-        else Educator refuses Invitation
-        end
     else QueryResult is NOT NULL
         TM -> NM: sendNotification(notification: Notification): Void
         activate NM
