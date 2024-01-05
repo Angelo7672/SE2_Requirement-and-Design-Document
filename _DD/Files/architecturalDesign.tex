@@ -151,21 +151,21 @@ Where the API call can be of any kind within the context described, request is a
 
 \clearpage
 \subsubsection{User signs in to the Platform}
-\useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.0}{1.0}{Sign In Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.3}{1.3}{Sign In Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a User signs in into the Platform.\\
 After determining that the user's credentials are valid, SignInManager displays to the user a page instructing them to confirm the operation by clicking the button on the email they received.\\
 The User is registered and able to log in to the Platform following the confirmation.
 
 \clearpage
 \subsubsection{User logs in to the Platform}
-\useSvgWithCaption{./Images/sequenceDiagrams/logIn.svg}{.90}{.90}{Log In Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/logIn.svg}{1.4}{1.4}{Log In Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a User logs in into the Platform.\\
 The LogInManager checks if the User's credentials are correct, and if so, it generates a session token and sends it to the Web Server.\\
 If the credentials are not correct, the User is notified and the process ends.\\
 
 \clearpage
 \subsubsection{Student subscribes to Tournament}
-\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.0}{1.0}{Join a Tournament Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.4}{1.4}{Join a Tournament Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student subscribes to a Tournament.\\
 First the Student searches for the Tournament they want to join, then they click on the "subscribe" button.\\
 The TournamentManager first checks if the Team already exists, and if not, it creates it. We assume that a Student that is already subscribed to a Tournament, when he/she visits the Tournament page, he/she doesn't see the "subscribe" 
@@ -176,7 +176,7 @@ If the Team name already exists, the inviting Student is notified and the proces
 
 \clearpage
 \subsubsection{Educator invites other Educator to co-manage Tournament}
-\useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.0}{1.0}{Invite an Educator Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.4}{1.4}{Invite an Educator Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when an Educator invites another Educator to co-manage a Tournament.\\
 First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator. The Tournament's existence is not
 checked and assumed true because the Tournament name is not provided by the User, but it is automatically added.\\
@@ -185,7 +185,7 @@ If the invited Educator provided doesn't exist or he/she is just in the Tourname
 
 \clearpage
 \subsubsection{Student invites other Student to participate in the Tournament as a Team}
-\useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.0}{1.0}{Invite a Student Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.4}{1.4}{Invite a Student Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team. The Tournament's existence is not checked and assumed true because the Tournament name (inserted
 in the Team object) is not provided by the User, but it is automatically added.\\
 First the TournamentManager checks if the invited Student exists. Then it checks if the invited Student is already subscribed to the Tournament, and if not, it sends an invitation to the Student.\\
@@ -194,19 +194,19 @@ If the invited Student provided doesn't exist or he/she is just in another, the 
 
 \clearpage
 \subsubsection{Receive Educator Invitation}
-\useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.0}{1.0}{Receive an Educator invitation Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.4}{1.4}{Receive an Educator invitation Sequence Diagram}
 
 \clearpage
 \subsubsection{Receive Student Invitation}
-\useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.0}{1.0}{Receive a Student Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.4}{1.4}{Receive a Student Sequence Diagram}
 
 \clearpage
 \subsubsection{Create a Tournament}
-\useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.0}{1.0}{Create a Tournament Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.4}{1.4}{Create a Tournament Sequence Diagram}
 
 \clearpage
 \subsubsection{Create a Battle}
-\useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.0}{1.0}{Create a Battle Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.4}{1.4}{Create a Battle Sequence Diagram}
 
 %\clearpage
 %\subsubsection{Join a Battle}
@@ -214,27 +214,27 @@ If the invited Student provided doesn't exist or he/she is just in another, the 
 
 \clearpage
 \subsubsection{Create a Badge}
-\useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.0}{1.0}{Create a Badge Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.4}{1.4}{Create a Badge Sequence Diagram}
 
 \clearpage
 \subsubsection{Assign a Badge}
-\useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.0}{1.0}{Assign a Badge Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.4}{1.4}{Assign a Badge Sequence Diagram}
 
 \clearpage
 \subsubsection{Evaluate Code}
-\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.0}{1.0}{Evaluate Code Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.4}{1.4}{Evaluate Code Sequence Diagram}
 
 \clearpage
 \subsubsection{Educator Manual Evaluate Code}
-\useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.0}{1.0}{Educator Manual Evaluate Code Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.4}{1.4}{Educator Manual Evaluate Code Sequence Diagram}
 
 \clearpage
 \subsubsection{User searches for Users}
-\useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.0}{1.0}{User searches for Users Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.4}{1.4}{User searches for Users Sequence Diagram}
 
 \clearpage
 \subsubsection{Student searches for Tournaments}
-\useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.0}{1.0}{Student searches for Tournaments Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.4}{1.4}{Student searches for Tournaments Sequence Diagram}
 %\restoregeometry
 \end{landscape}
 \clearpage
