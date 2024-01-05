@@ -1,18 +1,14 @@
 @startuml
 
 autonumber
-participant Somewhere as C
-participant MicroserviceA as A
+participant ComponentA as A
 participant Dispatcher as D
-participant MicroserviceB as B
+participant ComponentB as B
 
 activate A
 activate B
-activate C
 activate D
 
-C --> A: Some call of some procedure
-deactivate C
 A -> D: getData(microserviceName: string)
 D --> A: microserviceData: microserviceData
 A -> B: interfaceCall
