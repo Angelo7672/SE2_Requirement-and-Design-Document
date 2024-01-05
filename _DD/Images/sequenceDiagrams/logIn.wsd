@@ -5,7 +5,6 @@ autonumber
 actor User as U
 participant WebServerModule as WS
 participant Controller as C
-participant Dispatcher as MD
 participant LoginManager as LM
 participant AccountManager as AM
 participant DBMSManager as DBMSM
@@ -13,35 +12,28 @@ participant DBMSManager as DBMSM
 activate U
 U -> WS: POST /api/logIn
 activate WS
-WS -> C: logIn(email: String,\n password: String): Session
+WS -> C: logIn(logInData: LogInData): Session
 activate C
-C -> MD: logIn(email: String,\n password: String): Session
-activate MD
-MD -> LM: logIn(email: String,\n password: String): Session
+C -> LM: logIn(logInData: LogInData): Session
 activate LM
-LM -> DBMSM: searchUser(email: String,\npassword: String): User
+LM -> DBMSM: query(query: String, args: List<String>): QueryResult
 activate DBMSM
-DBMSM --> LM: User
+DBMSM --> LM: QueryResult
 deactivate DBMSM
-alt if User is not NULL
+alt if QueryResult is not NULL
     LM -> AM: createSession(user: User): Session
     activate AM
     AM --> LM: Session
     deactivate AM
-    LM --> MD: Session
+    LM --> C: Session
     deactivate LM
-    MD --> C: Session
-    deactivate MD
     C --> WS: Session
     deactivate C
     WS --> U: User homepage
     deactivate WS
     deactivate U
-else if User is NULL
-    LM --> MD: Exception: Invalid email or password
-    activate MD
-    MD --> C: Exception: Invalid email or password
-    deactivate MD
+else if QueryResult is NULL
+    LM --> C: Exception: Invalid email or password
     activate C
     C --> WS: Exception: Invalid email or password
     deactivate C
@@ -49,6 +41,5 @@ else if User is NULL
     WS --> U: Exception: Invalid email or password
     deactivate WS
 end
-
 
 @enduml

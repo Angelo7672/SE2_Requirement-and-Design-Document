@@ -6,7 +6,6 @@ actor User as U
 participant EmailProvider as EP
 participant WebServerModule as WS
 participant Controller as C
-participant Dispatcher as MD
 participant SignInManager as SIM
 participant NotificationManager as NM
 participant DBMSManager as DBMSM
@@ -14,23 +13,23 @@ participant DBMSManager as DBMSM
 activate U
 U -> WS: POST /api/signIn
 activate WS
-WS -> C: signIn(name: String, surname: String,\n e-mail: String, password: String,\n rmpHandle: String): Void
-deactivate WS
+WS -> C: signIn(signInData: SignInData): Page
 activate C
-C -> MD: signIn(name: String, surname: String,\n e-mail: String, password: String,\n rmpHandle: String): Void
-deactivate C
-activate MD
-MD -> SIM: signIn(name: String, surname: String,\n e-mail: String, password: String,\n rmpHandle: String): Void
-deactivate MD
+C -> SIM: signIn(signInData: SignInData): Void
 activate SIM
-SIM -> DBMSM: searchUser(e-mail: String,\n rmpHandle: String): List<User>
+SIM -> DBMSM: query(query: String, args: List<String>): QueryResult
 activate DBMSM
-DBMSM --> SIM: List<User>
+DBMSM --> SIM: QueryResult
 deactivate DBMSM
-alt List<User> is NULL
-    SIM -> NM: sendNotification(email: String,\n text: String): Void
-    deactivate SIM
+alt QueryResult is NULL
+    SIM -> NM: sendNotification(notification: Notification): Void
     activate NM
+    SIM --> C: Page
+    deactivate SIM
+    C --> WS: Page
+    deactivate C
+    WS --> U: Page: <<confirmation mail sent>>
+    deactivate WS
     NM -> EP: send email with text
     deactivate NM
     activate EP
@@ -38,24 +37,21 @@ alt List<User> is NULL
     deactivate EP
     U -> WS: POST /api/confirm
     activate WS
-    WS -> C: receiveResponse(token: String,\n email: String)
+    WS -> C: receiveResponse(response: Response): Void
     deactivate WS
     activate C
-    C -> MD: receiveResponse(token: String,\n email: String)
+    C -> NM: receiveResponse(response: Response): Void
     deactivate C
-    activate MD
-    MD -> NM: receiveResponse(token: String,\n email: String)
-    deactivate MD
     activate NM
-    NM -> SIM: createAccount(email: String)
+    NM -> SIM: createAccount(email: String): Void
     deactivate NM
     activate SIM
-    SIM -> DBMSM: createAccount(Name: String, Surname: String,\nemail: String, password: String,\n RMPHandle: String)
-    deactivate SIM
+    SIM -> DBMSM: query(query: String, args: List<String>): QueryResult
     activate DBMSM
-    DBMSM -> DBMSM: insert\n new User
+    DBMSM --> SIM: QueryResult
     deactivate DBMSM
-else List<User> is not NULL
+    deactivate SIM
+else QueryResult is not NULL
     SIM --> C: Exception: email/RMPHandle already exists
     activate C
     C --> WS: Exception: email/RMPHandle already exists

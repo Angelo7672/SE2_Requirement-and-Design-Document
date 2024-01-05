@@ -6,7 +6,6 @@ actor Student as S
 participant EmailProvider as EP
 participant WebServerModule as WS
 participant Controller as C
-participant Dispatcher as MD
 participant TournamentManager as TM
 participant NotificationManager as NM
 participant DBMSManager as DBMSM
@@ -14,63 +13,61 @@ participant DBMSManager as DBMSM
 activate S
 S -> WS: GET /api/tournamentData
 activate WS
-WS -> C: getTournamentData(tournament:\n String): Tournament
+WS -> C: getTournamentData(\ntournament: Tournament): Tournament
 activate C
-C -> MD: getTournamentData(tournament:\n String): Tournament
-activate MD
-MD -> DBMSM: getTournamentData(tournament: String): Tournament
+C -> DBMSM: query(query: String, args: List<String>): QueryResult
 activate DBMSM
-DBMSM --> MD: Tournament
+DBMSM --> C: QueryResult
 deactivate DBMSM
-MD --> C: Tournament
-deactivate MD
 C --> WS: Tournament
 deactivate C
 WS --> S: Tournament
 deactivate WS
 S -> WS: POST /api/joinTournament
 activate WS
-WS -> C: createTeam(tournament: String,\n email: String,\n team: String): Tournament Page
+WS -> C: createTeam(team: Team, student: Student): Tournament Page
 activate C
-C -> MD: createTeam(tournament: String,\n email: String,\n team: String): Tournament Page
-activate MD
-MD -> TM: createTeam(tournament: String,\n email: String,\n team: String): Tournament Page
+C -> TM: createTeam(team: Team, student: Student): Tournament Page
 activate TM
-TM -> DBMSM: searchTeamTournament(team: String,\n tournament: String): Team
+TM -> DBMSM: query(query: String, args: List<String>): QueryResult
 activate DBMSM
-DBMSM --> TM: Team
+DBMSM --> TM: QueryResult
 deactivate DBMSM
-alt if Team is NULL
-    TM -> DBMSM: createTeam(tournament: String,\n team: String): Void
+alt if QueryResult is NULL
+    TM -> DBMSM: query(query: String, args: List<String>): QueryResult
     activate DBMSM
-    DBMSM -> DBMSM: Insert\nteam in\ntournament
-    DBMSM --> TM: OK
+    note right
+        team is 
+        inserted in 
+        the tournament 
+    end note
+    DBMSM --> TM: QueryResult
     deactivate DBMSM
-    TM -> DBMSM: addStudentToTeam(tournament: String,\n team: String, email: String): Void
+    TM -> TM: joinStudentTournament(student: Student, team: Team): Void
+    TM -> DBMSM: query(query: String, args: List<String>): QueryResult
     activate DBMSM
-    DBMSM -> DBMSM: Insert\nstudent in\nteam
-    DBMSM --> TM: OK
+    note right
+        student is 
+        inserted in 
+        the team 
+    end note
+    DBMSM --> TM: QueryResult
     deactivate DBMSM
-    TM -> NM: sendNotification(email: String,\n text: String): Void
+    TM -> NM: sendNotification(\nnotification: Notification): Void
     activate NM
     NM -> EP: email with text
     deactivate NM
     activate EP
     EP -> S: email\n <<subscritpion confirmation>>
     deactivate EP
-    TM --> MD: Tournament Page
+    TM --> C: Tournament Page
     deactivate TM
-    MD --> C: Tournament Page
-    deactivate MD
     C --> WS: Tournament Page
     deactivate C
     WS --> S: Tournament Page
     deactivate WS
 else if Team is NOT NULL
-    TM -> MD: Exception: Team already exists
-    activate MD
-    MD -> C: Exception: Team already exists
-    deactivate MD
+    TM -> C: Exception: Team already exists
     activate C
     C -> WS: Exception: Team already exists
     deactivate C
