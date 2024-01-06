@@ -7,17 +7,27 @@ participant WebServerModule as WS
 participant Controller as C
 participant searchManager as SM
 participant TournamentManager as TM
-
+participant DBMSManager as DBMS
 
 U->WS: POST /api/addScore
+activate U
 activate WS
-WS->C: updateTournamentScore(Team: String, Score: int, tournamentName: String): void
+WS->C: updateTournamentScore(searchQuery:String): void
 activate C
-C->SM: searchTournament(tournamentName: String, properties: Array<String>): Array<TournamentManager>
+C->SM: searchTournament(searchQuery:String): Array<TournamentData>
 activate SM
-SM-->C: Array<TournamentManager>
+SM-->C: Array<TournamentData>
 deactivate SM
 C-> TM: updateTournamentScore(Team: String, Score, int): void
+activate TM
+TM->DBMS: query(query: String, args: List<String>): QueryResults
+activate DBMS
+DBMS-->TM: QueryResults
+deactivate TM
+C->WS: New Score
+WS->U: User page updated with new Score
+deactivate WS
+deactivate U
 deactivate C
 
 @enduml
