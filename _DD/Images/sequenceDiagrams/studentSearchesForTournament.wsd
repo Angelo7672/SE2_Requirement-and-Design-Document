@@ -10,9 +10,9 @@ participant DBMSMangaer as DBMS
 
 activate U
 U->WS: GET /api/search
-WS->C: searchTournament(tournamentName: String, properties: Array<String>): Array<tournamentManager>
+WS->C: searchTournament(searchQuery: String): Array<tournamentData>
 activate WS 
-C->SM: searchTournament(tournamentName: String, properties: Array<String>): Array<tournamentManager>
+C->SM: searchTournament(searchQuery: String): Array<tournamentData>
 activate C
 SM->DBMS: query(query: String, args List<String>): QueryResult
 activate SM

@@ -2,22 +2,46 @@
 
 autonumber
 
+actor User as U
+participant WebSeverModule as WS
 participant EvaluationManager as EM
 participant BattleManager as BM
 participant TournamentManager as TM
 participant RMPManager as RMP
+participant DBMSManager as DBMS
+
+'query di tournament e battle e RMP, WS mostra i risultati
 
 activate RMP
 RMP -> EM: newCodeAvailable(repo: Repo): Void
 activate EM
 EM -> RMP: pullRequest(repo: Repo): Array<File>
+RMP->DBMS: query(query: String, args: List<String>): QueryResults
+activate DBMS
+DBMS-->RMP: QueryResults
+deactivate DBMS
 RMP --> EM: Array<File>
 deactivate RMP
 EM -> EM: evaluate code
 EM -> BM: updateBattleScore(team: Team, score: Score): Void
 deactivate EM
-activate BM
+EM -> BM: updateBattleScore(team: Team, score: Score): Void
+activate TM
+TM->DBMS: query(query: String, args: List<String>): QueryResults
+activate DBMS
+DBMS-->TM: QueryResults
+deactivate DBMS
+deactivate TM
 BM -> TM: updateTournamentScore(team: Team, score: Score): Void
+activate BM
+BM->DBMS: query(query: String, args: List<String>): QueryResults
+activate DBMS
+DBMS-->BM: QueryResults
+deactivate DBMS
 deactivate BM
-
+EM->WS: New Scores
+activate WS
+WS->U: User page updated with Scores
+deactivate WS
+deactivate EM
 @enduml

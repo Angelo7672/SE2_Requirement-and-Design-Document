@@ -10,9 +10,9 @@ participant DBMSMangaer as DBMS
 
 activate U
 U->WS: GET /api/search
-WS->C: searchUser(email: String, name: String, surname: String, rmpHandle: String): Array<AccountManager>
+WS->C: searchUser(searchQuery: String): Array<UserData>
 activate WS 
-C->SM: searchUser(email: String, name: String, surname: String, rmpHandle: String): Array<AccountManager>
+C->SM: searchUser(searchQuery: String): Array<UserData>
 activate C
 SM->DBMS: query(query: String, args List<String>): QueryResult
 activate SM

@@ -273,7 +273,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Array<File> pullRequest(String repoLink)} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return 
+            \item \textbf{pullRequest(String repoLink): Array<File>} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return 
             value is the code pulled from the repo itself.
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
@@ -284,7 +284,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{void updateBattleScore(Int score, String Team)} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value. The Team's name is required too.
+            \item \textbf{updateBattleScore(Int score, String Team): Void} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value. The Team's name is required too.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -301,10 +301,10 @@ For each component here are explained functions associated with respective inter
             \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void} This method allows an Educator to invite another Educator to co-manage a Tournament. The educator object contains the information about the Educator
             that is inviting, while the tournament object contains the information about the Tournament in which the Educator is inviting.
             \item \textbf{void updateTournamentScore(String Team, Int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
-            \item \textbf{Boolean addNewBattle(String name, String overview, String rmpRepo, Array<Int> evaluationParameters)} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
+            \item \textbf{addNewBattle(String name, String overview, String rmpRepo, Array<Int> evaluationParameters): Boolean} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
             the RMP link from which Students will fork the repo and an array containing the evaluation parameter (eg. evaluationParameters[0] <- 25, evaluationParameters[1] <- 25, evaluationParameters[2] <- 25, evaluationParameters[3] <- 25,
             respectively for Functional, Timeliness, Quality and Manual).
-            \item \textbf{void addNewBadge(String name, String description, File criteria, File photo)} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
+            \item \textbf{addNewBadge(String name, String description, File criteria, File photo): Void} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
             and a photo.
         \end{enumerate}
     \item \textbf{AccountManage Interface} 
@@ -312,13 +312,13 @@ For each component here are explained functions associated with respective inter
             \item \textbf{createSession(user: User): Session} The method is invoked to create a new session for the User. The User object contains the information about the User that is logging in and requesting the session.
             %\item \textbf{void updateAccount(String name, String surname, String email, String rmpHandle)} updateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo 
             %through which he/she would be identified in the system.
-            \item \textbf{void assignBadge(BadgeManager badge)} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
+            \item \textbf{assignBadge(BadgeManager badge): Void} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Array<AccountManager> searchUser(String email, String name, String surname, String rmpHandle)} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname
+            \item \textbf{searchUser(String email, String name, String surname, String rmpHandle): Array<AccountData>} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname
             of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criteria. Many overrides of the function will be present to perform the search based on just the available values.
-            \item \textbf{Array<TournamentManager> searchTournament(String tournamentName, Array<String> properties)} To search one or more Tournaments SearchManager, throught searchTournament requires the name of the Tournament 
+            \item \textbf{searchTournament(String tournamentName, Array<String> properties): Array<TournamentData> } To search one or more Tournaments SearchManager, throught searchTournament requires the name of the Tournament 
             to search and the properties of it (eg. properties[0] <- "Java", properties[1] <- "minimum 2 Students"). The return value is the list of the Tournaments' TournamentManagers of the ones who matched the criteria.
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
@@ -328,7 +328,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{EvaluationManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Int autoEvaluation(File code, File Test, Array<Int> evaluationParameters)} The method allows to evaluate the code provided as input, basing on the evaluation parameters. Both the code and the test files are
+            \item \textbf{autoEvaluation(File code, File Test, Array<Int> evaluationParameters): Int} The method allows to evaluate the code provided as input, basing on the evaluation parameters. Both the code and the test files are
             required. The return value is the score of the code.
         \end{enumerate}
     \item \textbf{Dispatcher Interface}

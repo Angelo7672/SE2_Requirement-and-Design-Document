@@ -7,8 +7,10 @@ participant WebServerModule as WS
 participant Controller as C
 participant BattleManager as BM
 participant TournamentManager as TM
+participant DBMSManager as DBMS
 
 U->WS: POST /api/addScore
+activate U
 activate WS
 WS->C: updateBattleScore(team: Team, battle: Battle, score: Integer): Void
 activate C
