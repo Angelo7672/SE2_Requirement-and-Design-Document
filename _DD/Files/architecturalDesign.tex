@@ -144,7 +144,9 @@ Microservice is the component that needs to perform a query to the database, whi
 Any time would be needed a communication between an external service, or client and the Web server module, it will happen as described below.
 Where the API call can be of any kind within the context described, request is any action the Platform has to perform as result of that call.
 \useSvgWithCaption{./Images/sequenceDiagrams/apiCallAuthorizationCheckSequenceDiagram.svg}{.70}{.70}{API call authorization check Sequence Diagram}
-
+\paragraph*{Exception handling}
+Some methods at the occurrence of certain conditions, can throw an exception. The error is propagated to the caller, which can handle it in the way it prefers. The exceptions represented in the sequence diagrams are used by the platform to notify
+to the User that something went wrong. The exceptions are not always represented in the sequence diagrams, but only when they are relevant to the understanding of the diagram.
 
 \begin{landscape}
 
@@ -267,9 +269,6 @@ For each component here are explained functions associated with respective inter
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{logIn(logInData: LogInData): Session} This method allows User to log in into the Platform providing email and password. All the information are contained in the LogInData object. The return value is a Session,
             from it the User can operate as himself/herself on the Platform.
-            %\item \textbf{Boolean logOut(String email)} In order to log out from the system, is needed as input the email of the User to discard from the ones that are currently interacting with the Platform. A Boolean value communicates 
-            %the outcome.
-            %\item \textbf{Boolean isLogged(String email)} Through this method, providing the email, the caller is able to know is the User who asks for the operation is actually logged in.
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -310,8 +309,6 @@ For each component here are explained functions associated with respective inter
     \item \textbf{AccountManage Interface} 
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{createSession(user: User): Session} The method is invoked to create a new session for the User. The User object contains the information about the User that is logging in and requesting the session.
-            %\item \textbf{void updateAccount(String name, String surname, String email, String rmpHandle)} updateAccount is the function used by the User to update its personal information, providing new name, surname, email or repo 
-            %through which he/she would be identified in the system.
             \item \textbf{assignBadge(BadgeManager badge): Void} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
@@ -426,7 +423,16 @@ This allows to have better code differentiation, so that each Tier has its own r
 Moreover, allows for a more secure system, since before accessing saved data, any kind of attack shall pass through each tier to reach the last one.
 
 \subsubsection{Model View Controller}
-In the Four-Tier Architecture can be seen also the Model View controller Paradigm, where the client is responsible for the pure User interaction with the Platform, which is managed by the API Tier followed by the Application tier.
+A popular software design pattern for creating user interfaces, model-view-controller, or MVC, splits the associated program logic into three interconnected parts. This is done in order to keep information presented to and accepted 
+from the user separate from internal representations of that information.
+\begin{itemize}
+    \item \textbf{Model} It is the core of the application, it is the part that manages the data, logic and rules of the application. It receives the input from the Controller and updates the View. The module that belongs to this component
+    are all the Managers of the Application Server and the DBMS.
+    \item \textbf{View} It is the part that manages the user interface, it receives the input from the Controller and shows the result to the User. The module that belongs to this component is the Web Server that elaborate the graphical
+    elements and send them to the Web App of the Client.
+    \item \textbf{Controller} It is the part that manages the interaction between the Model and the View. It receives the input from the View and sends it to the Model, then it receives the result from the Model and sends it to the View.
+    The module that belongs to this component is the Controller of the Application Server.
+\end{itemize}
 
 \subsection{Other design Decisions}
 \subsubsection{Relational Database}
@@ -439,7 +445,6 @@ The DBMS chosen for this Platform is a relational database. This choice is due t
     \item \textbf{\}o--} Zero or Many
     \item \textbf{\}|--} One or Many
 \end{itemize}
-\newpage
 
 \subsubsection{RESTFul API} \label{parr:restful}
 For this Platform has been thought to use a thin client which interacts with a RESTFul API. This allows for a secure system since the API Tier exposes to the client a very limited set of functionalities. 
