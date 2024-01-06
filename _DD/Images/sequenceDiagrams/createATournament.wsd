@@ -22,15 +22,15 @@ C -> TM: createTournament(TournamentData: TournamentData): Boolean
 activate TM
 TM -> DB: query(Query: String, args: List<String>): QueryResult
 activate DB
-DB -> TM: QueryResult
+DB --> TM: QueryResult
 deactivate DB
 TM -> NM: sendNotification(Notification: Notification): Void
 activate NM
-TM -> C: True (Tournament created)
+TM --> C: True (Tournament created)
 deactivate TM
-C -> WS: True (Tournament created)
+C --> WS: True (Tournament created)
 deactivate C
-WS -> E: Tournament Detail Page
+WS --> E: Tournament Detail Page
 loop for each student
 NM -> EM: send Email
 deactivate NM

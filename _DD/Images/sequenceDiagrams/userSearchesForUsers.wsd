@@ -10,16 +10,18 @@ participant DBMSMangaer as DBMS
 
 activate U
 U->WS: GET /api/search
+activate WS
 WS->C: searchUser(searchQuery: String): Array<UserData>
-activate WS 
+activate C 
 C->SM: searchUser(searchQuery: String): Array<UserData>
-activate C
-SM->DBMS: query(query: String, args List<String>): QueryResult
 activate SM
+SM->DBMS: query(query: String, args List<String>): QueryResult
+activate DBMS
 DBMS-->SM: QueryResult
-SM-->C: Array<accountManager>
+deactivate DBMS
+SM-->C: Array<UserData>
 deactivate SM
-C-->WS:Array<accountManager>
+C-->WS:Array<UserData>
 deactivate C
 WS->U: read Users information
 

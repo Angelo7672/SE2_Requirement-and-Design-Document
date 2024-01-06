@@ -12,21 +12,20 @@ participant DBMSManager as DBMS
 activate U
 U->WS: POST /api/addScore
 activate WS
-WS->C: updateBattleScore(team: Team, battle: Battle,\nscore: Integer): Void
+WS->C: updateBattleScore(team: Team, battle: BattleData,\nscore: Score): Boolean
 activate C
-C->BM: updateBattleScore(team: Team, battle: Battle,\nscore: Integer): Void
+C->BM: updateBattleScore(team: Team, battle: BattleData,\nscore: Score): Boolean
 activate BM
 BM->DBMS: query(query: String, args: List<String>): QueryResult
 activate DBMS
 DBMS-->BM: QueryResult
 deactivate DBMS
-BM->TM: updateTournamentScore(team: Team,\nscore: Integer): Void
+BM->TM: updateTournamentScore(team: Team,\nscore: Score): Void
 activate TM
 TM->DBMS: query(query: String, args: List<String>): QueryResult
 activate DBMS
 DBMS-->TM: QueryResult
 deactivate DBMS
-TM-->BM: True (score updated)
 deactivate TM
 BM-->C: True (score updated)
 deactivate BM

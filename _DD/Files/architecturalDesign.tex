@@ -258,7 +258,7 @@ For each component here are explained functions associated with respective inter
             \end{enumerate}
     \item \textbf{SignInManager Interface} 
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{signIn(signInData: SignInData): Void} This method allows User to register to the Platform providing name, email, password and a RMP handle. All the information are contained in the SignInData object.
+                \item \textbf{signIn(signInData: SignInData): Boolean} This method allows User to register to the Platform providing name, email, password and a RMP handle. All the information are contained in the SignInData object.
                 \item \textbf{createAccount(email: String): Void} This method create the account for the new User, providing the email. The other information are provided by the User in the signIn method.
             \end{enumerate}
     \item \textbf{LogInManager Interface}
@@ -268,7 +268,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{pullRequest(String repoLink): Array<File>} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return 
+            \item \textbf{pullRequest(repositoryLink: String): Array<File>} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return 
             value is the code pulled from the repo itself.
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
@@ -279,7 +279,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{updateBattleScore(Int score, String Team): Void} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value. The Team's name is required too.
+            \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Void} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value. The Team's name is required too.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -295,17 +295,17 @@ For each component here are explained functions associated with respective inter
             that is joining, while the tournament object contains the information about the Tournament in which the Educator is joining.
             \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void} This method allows an Educator to invite another Educator to co-manage a Tournament. The educator object contains the information about the Educator
             that is inviting, while the tournament object contains the information about the Tournament in which the Educator is inviting.
-            \item \textbf{void updateTournamentScore(String Team, Int score)} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
-            \item \textbf{addNewBattle(String name, String overview, String rmpRepo, Array<Int> evaluationParameters): Boolean} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
+            \item \textbf{updateTournamentScore(team: Team, score: Score): Void} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
+            \item \textbf{addNewBattle(battleData: BattleData): Boolean} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
             the RMP link from which Students will fork the repo and an array containing the evaluation parameter (eg. evaluationParameters[0] <- 25, evaluationParameters[1] <- 25, evaluationParameters[2] <- 25, evaluationParameters[3] <- 25,
             respectively for Functional, Timeliness, Quality and Manual).
-            \item \textbf{addNewBadge(String name, String description, File criteria, File photo): Void} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
+            \item \textbf{addNewBadge(badgeData: BadgeData): Void} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
             and a photo.
         \end{enumerate}
-    \item \textbf{AccountManage Interface} 
+    \item \textbf{AccountManager Interface} 
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{createSession(user: User): Session} The method is invoked to create a new session for the User. The User object contains the information about the User that is logging in and requesting the session.
-            \item \textbf{assignBadge(BadgeManager badge): Void} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
+            \item \textbf{assignBadge(student: StudentData, badge: BadgeData): Boolean} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
@@ -316,13 +316,14 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean verifyCriteria(File test, String email)} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to a specific User. If the answer is True, the Badge
+            \item \textbf{Boolean evluateCriteria(badge: BadgeData, tournament: TournamentData): Void} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to a specific User. If the answer is True, the Badge
             is assigned.
         \end{enumerate}
     \item \textbf{EvaluationManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{autoEvaluation(File code, File Test, Array<Int> evaluationParameters): Int} The method allows to evaluate the code provided as input, basing on the evaluation parameters. Both the code and the test files are
+            \item \textbf{newCodeAvailable(repository: RepositoryData): Void} The method allows to evaluate the code provided as input, basing on the evaluation parameters. Both the code and the test files are
             required. The return value is the score of the code.
+            \item \textbf{evaluateCriterium(criterium: Criterium, tournament: TournamentData): List<String>} The method allows to evaluate the criterium on the tournament data, considering, if necessary, also student's code. The return value is the list of the Students' RMP handles that meet the criterium.
         \end{enumerate}
     \item \textbf{Dispatcher Interface}
         \begin{enumerate}[label=$\bullet$]

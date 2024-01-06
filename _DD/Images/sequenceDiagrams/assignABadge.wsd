@@ -18,12 +18,15 @@ participant DBMSManager as DB
 activate DB
 activate TM
 activate EP
-TM -> TM: tournamentEnded()
+TM -> TM:  
+note right 
+End of tournament event
+end note
 loop for each Badge
-    TM -> BM: evaluateCriteria(badge: BadgeData, tournament: TournamentData): List<String>
+    TM -> BM: evaluateCriteria(badge: BadgeData, tournament: TournamentData): Void
     deactivate TM
     activate BM
-    BM -> EM: evaluateCriterium(Crterium: criterium, tournament: TournamentData)
+    BM -> EM: evaluateCriterium(Crterium: criterium, tournament: TournamentData): List<String>
     activate EM
     alt if necessary, for each Team repo
         EM -> RMP: pull(repoLink: String): Array<File>
@@ -35,11 +38,11 @@ loop for each Badge
     deactivate EM
     alt if eligible Student RMP handle list is not empty
         loop for each eligible student
-            BM -> AM: assignBadge(Student: String, Badge: BadgeManager): void
+            BM -> AM: assignBadge(Student: studentData, Badge: BadgeData): Boolean
             activate AM
             AM -> DB: query(query: String, args: List<String>): QueryResult
-            DB --> AM: success
-            AM --> BM: success
+            DB --> AM: Success
+            AM --> BM: True (Badge assignment registered)
             deactivate AM
             BM -> NM: sendNotification(email: String, text: String): Void
             activate NM

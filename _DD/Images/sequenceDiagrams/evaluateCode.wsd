@@ -7,16 +7,17 @@ participant BattleManager as BM
 participant TournamentManager as TM
 participant RMPManager as RMP
 participant DBMSManager as DBMS
+participant RMP as rmpExt
 
 
 activate RMP
-RMP -> EM: newCodeAvailable(repo: Repo): Void
+RMP -> EM: newCodeAvailable(repository: RepositoryData): Void
 activate EM
-EM -> RMP: pullRequest(repo: Repo): Array<File>
-RMP->DBMS: query(query: String, args: List<String>): QueryResults
-activate DBMS
-DBMS-->RMP: QueryResults
-deactivate DBMS
+EM -> RMP: pullRequest(repositoryLink: String): Array<File>
+RMP->rmpExt: pull repository
+activate rmpExt
+rmpExt-->RMP: Repository
+deactivate rmpExt
 RMP --> EM: Array<File>
 deactivate RMP
 EM -> EM: evaluate code
