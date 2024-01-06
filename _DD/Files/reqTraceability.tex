@@ -20,15 +20,15 @@ In the following table are reported the requirements and the components that imp
 \subsection{Non functional reuirements traceablility}
 Thepresented design of the platform allows to satisfy the non functional requirements pointed in the RASD. In particular:
 \subsubsection{Reliability and Availability and Maintainability}
-One of the advantges of usign a microservice architectre is that the platfrom has a intrinsically high level of reliablilty and Availability. 
-In fact, this kind of architecture allows for replication of services, this allows that issues to one instance of them can be promptly solved by an other one serving the same feature. 
-Moreover, although has been presented as all hosted on the same server, the application subsiystem, structured in this way, can be easily on a distributed system, allowing for a higher level of reliability and availability.
-Finally use of a microservice architecture allows for a high level of maintainability, since the system is composed of many small services, that can be easily modified, updated or replaced without affecting the rest of the systeccm.\\
+One of the advantges of using a microservice architecture is that the platform has an intrinsically high level of reliablilty and availability. 
+In fact, this kind of architecture allows for replication of services: this allows that issues to one instance of them can be promptly solved by an other one serving the same feature. 
+Moreover, although has been presented as all hosted on the same server, the application subsystem, structured in this way, can be easily distributed, allowing for a higher level of reliability and availability.
+Finally the use of a microservice architecture allows for a high level of maintainability, since the system is composed of many small services, that can be easily modified, updated or replaced without affecting the rest of the system.\\
 \subsubsection{Security}
 The Security of the system is guaranteed thanks the partitioning of the network in three subnetworks, where the once nearest ot the internet are olso the onse that contain the less sensible data and application logic. Infact the use of the Demilitaized zone to host the Web Server, is the best solution to keep high both security and availability, since it masks the internal logic from the hostilities from the Internet.\\ 
-An other possible point of attack could be the testing od user created code, since the testing environment, if badly implemented, could allow for the execution of malicious code bypassing all firewall protection directily inside the application logic. 
-To avoid this, has already been described the use of containers for testing purposes.
+An other possible point of attack could be the testing of user created code, since the testing environment, if badly implemented, could allow for the execution of malicious code bypassing all protection directily inside the application logic. 
+Has already been described the use of containers for testing purposes, to avoid this.
 \subsubsection{Portability}
-Since the application is developed as a Web Application, it can be accessed via a Browser, which is a kind of software that is available for almost all kinds of computers capagle of some software development. 
+Since the application is developed as a Web Application, it can be accessed via a Browser, which is a kind of software that is available for almost all kinds of computers capable of some software development. 
 Morevover, this nature of the platform, allows for easy integration with smartphone and tablet systems, which, even if not capable of software development, can be used anyways for interfacing with the platform.
-The use of the RMP allow also for users not to be forsed to use allway the same computer for participating to tournaments, since they can access to their code from the internet.
+The use of the RMP allows for users not to be forced to use allways the same computer for participating to tournaments, since they can access to their code and their standings from the internet.
