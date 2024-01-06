@@ -8,15 +8,16 @@ participant TournamentManager as TM
 participant RMPManager as RMP
 
 activate RMP
-RMP -> EM: new code available
+RMP -> EM: newCodeAvailable(repo: Repo): Void
 activate EM
-EM -> RMP: pullRequest(repo): Array<File>
+EM -> RMP: pullRequest(repo: Repo): Array<File>
 RMP --> EM: Array<File>
 deactivate RMP
 EM -> EM: evaluate code
-activate EM
+EM -> BM: updateBattleScore(team: Team, score: Score): Void
 deactivate EM
-EM -> TM: updateTournamentScore(Team, Score): void
-EM -> BM: updateBattleScore(Team, Score): void
-deactivate EM
+activate BM
+BM -> TM: updateTournamentScore(team: Team, score: Score): Void
+deactivate BM
+
 @enduml

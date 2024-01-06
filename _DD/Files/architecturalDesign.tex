@@ -399,12 +399,12 @@ These criteria will be saved upon badge creation and will be used by the Badge M
 The definition of the rules to be used to write the criteria allows to reuse the same evaluation system for different Badges with same rules, in a standardized manner without the need of exposing too much of the internal logic of the system.
 
 \subsubsection{Dispatcher Component} \label{parr:dispatcher}
-The dispatcher is the backbone of the whole Microservice Architecture, beacuse it manages load balancing, routing and communication between components and if necessay spawn or kill instances of components. 
+The dispatcher is the backbone of the whole Microservice Architecture, because it manages load balancing, routing and communication between components and if necessay spawn or kill instances of components. 
 Components are assumed to share interfaces between each other but before any kind of communication, they need to call the dispatcher, who will provide them with valid reference to an instance of a component suitable to receive the request.
 This allows the dispatcher to do load balancing, so it can decide which instance make the request go to, and consequently which components replicate.
 The Dispatcher also manages the DBMS Manager component that will be better described below. There can be multiple DBMS Managers occurrences but is advisable to keep their lives long and to not spawn and kill them too frequently. 
 This is done to allow future scalability and flexibility, since the proposed solution involves the use of only one DBMS and one Database, but, if necessary, in future can be expanded without changing anything in the architecture.
-From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.\\
+From this the dispatcher interface has also a method \hyperref[meth:dispGetData]{\textbf{getData()}} to get a reference to a component, necessary to allow components to communicate between each other.
 
 \subsubsection{External Actors different from the User} 
 This Platform has to interact with RMP and E-mail provider, which are external actors that do not interact with the system via the Web App, but via APIs.
@@ -418,7 +418,6 @@ Inserting this manager allows to keep the number of connections low and keep the
 So DBMS manager is to be intended as a proxy between the DBMS and the other components, that will use it to perform queries to the database, and for each access to the database the following Sequence diagram can be referenced:\\
 \useSvgWithCaption{./Images/sequenceDiagrams/dbmsManagerSequenceDiagramExtended.svg}{.70}{.70}{DBMS Manager Sequence Diagram}
 Where DBMS Manager is the component, and MicroserviceA is the component that needs to perform a query to the database. 
-
 
 \subsection{Selected architectural styles and patterns}
 \subsubsection{Four-Tier Architecture}

@@ -13,7 +13,7 @@ participant DBMSManager as DBMSM
 activate U
 U -> WS: POST /api/signIn
 activate WS
-WS -> C: signIn(signInData: SignInData): Page
+WS -> C: signIn(signInData: SignInData): Void
 activate C
 C -> SIM: signIn(signInData: SignInData): Void
 activate SIM
@@ -30,9 +30,9 @@ deactivate DBMSM
 alt QueryResult is NULL
     SIM -> NM: sendNotification(notification: Notification): Void
     activate NM
-    SIM --> C: Page
+    SIM --> C: True (confirmation mail sent)
     deactivate SIM
-    C --> WS: Page
+    C --> WS: True (confirmation mail sent)
     deactivate C
     WS --> U: Page: <<confirmation mail sent>>
     deactivate WS

@@ -5,19 +5,23 @@ autonumber
 actor Educator as U
 participant WebServerModule as WS
 participant Controller as C
-participant searchManager as SM
+participant BattleManager as BM
 participant TournamentManager as TM
-
 
 U->WS: POST /api/addScore
 activate WS
-WS->C: updateTournamentScore(Team: String, Score: int, tournamentName: String): void
+WS->C: updateBattleScore(team: Team, battle: Battle, score: Integer): Void
 activate C
-C->SM: searchTournament(tournamentName: String, properties: Array<String>): Array<TournamentManager>
-activate SM
-SM-->C: Array<TournamentManager>
-deactivate SM
-C-> TM: updateTournamentScore(Team: String, Score, int): void
+C->BM: updateBattleScore(team: Team, battle: Battle, score: Integer): Void
+activate BM
+BM->TM: updateTournamentScore(team: Team, score: Integer): Void
+activate TM
+TM-->BM: True (score updated)
+deactivate TM
+BM-->C: True (score updated)
+deactivate BM
+C-->WS: True (score updated)
 deactivate C
+WS-->U: Battle Page with new score
 
 @enduml

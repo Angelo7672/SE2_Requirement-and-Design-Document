@@ -13,21 +13,21 @@ participant DBMSManager as DBMSM
 activate S
 S -> WS: GET /api/tournamentData
 activate WS
-WS -> C: getTournamentData(\ntournament: Tournament): Tournament
+WS -> C: getTournamentData(\ntournament: Tournament): TournamentData
 activate C
 C -> DBMSM: query(query: String, args: List<String>): QueryResult
 activate DBMSM
 DBMSM --> C: QueryResult
 deactivate DBMSM
-C --> WS: Tournament
+C --> WS: TournamentData
 deactivate C
-WS --> S: Tournament
+WS --> S: Tournament Page
 deactivate WS
 S -> WS: POST /api/joinTournament
 activate WS
-WS -> C: createTeam(team: Team, student: Student): Tournament Page
+WS -> C: createTeam(team: Team, student: Student): Void
 activate C
-C -> TM: createTeam(team: Team, student: Student): Tournament Page
+C -> TM: createTeam(team: Team, student: Student): Void
 activate TM
 TM -> DBMSM: query(query: String, args: List<String>): QueryResult
 note right
@@ -65,9 +65,9 @@ alt if QueryResult is NULL
     activate EP
     EP -> S: email\n <<subscritpion confirmation>>
     deactivate EP
-    TM --> C: Tournament Page
+    TM --> C: True (team created)
     deactivate TM
-    C --> WS: Tournament Page
+    C --> WS: True (team created)
     deactivate C
     WS --> S: Tournament Page
     deactivate WS

@@ -1,9 +1,9 @@
 Following the idea of the Three Layers architecture, also the implementation of the platform can be grossly divided in three main chunks.
-Theese parts interact with each other thanks to the use of interfaces, this allows to implement them independently and simultaneously. So the first step is to implement rigourously their definition, specifying how messages are composed and how they are exchanged between the components.\\
+These parts interact with each other thanks to the use of interfaces, this allows to implement them independently and simultaneously. So the first step is to implement rigorously their definition, specifying how messages are composed and how they are exchanged between the components.\\
 
 \subsection{Data Layer}
 The Data Layer comprises database implementation and the implementation of the interfaces that allow the Application Layer to interact with it.\\
-Each component of this layer has to be tested independently, then once they are all implemented, can be integrated and tested together, using also Drivers that emulate the behaviour of the Application Logic Layer.\\
+Each component of this layer has to be tested independently, then once they are all implemented, can be integrated and tested together, using also Drivers that emulate the behavior of the Application Logic Layer.\\
 \subsection{Application Logic Layer}
 Given the chosen architecture, this Layer needs a more detailed plan. Among Microservices can be identified some dependencies shown in the following graph:
 
@@ -12,11 +12,11 @@ Given the chosen architecture, this Layer needs a more detailed plan. Among Micr
 Given the internal structure of this Layer, all Microservices depend on the Dispatcher. This is a Key component, since each communciation between Microservices is mediated by it, so it has to be implemented first.\\
 Then can be implemented the DBMSManager and the RMPManger, these are the second most important components since they are used by a variety of others. Then starting from them the dependency graph can be followed from bottom to the top, until reaching the Controller Component.\\
 Each component has to be subjected to unit testing, then can be integrated first with the Dispatcher and then with other components. Unit testing can be done by means of necessary Stubs and Drivers, needed to mimic interactions with other components.\\
-After Unit Testing, Integration testing can be done on the layer as a whole, checking that iteractions follow the desired behavior without generating any side effects.\\
-Given the fact that the Dispatcher is the component that does load balancing, components have to be stressed for proving that the Dispatcher is able to allocate more resources, and the dispatcher itself has to be tested with an high ammount of similar requests to check if it manages them equally among resources.\\
+After Unit Testing, Integration testing can be done on the layer as a whole, checking that interactions follow the desired behavior without generating any side effects.\\
+Given the fact that the Dispatcher is the component that does load balancing, components have to be stressed for proving that the Dispatcher is able to allocate more resources, and the dispatcher itself has to be tested with a high amount of similar requests to check if it manages them equally among resources.\\
 
 \subsection{External Logic Layer}
-The External Logic Layer is comprised of the implementation of the Web Server, The API, the Web App that runs on client's browser, the RMP action and the confirmation links; so mainly all the logic needed to interact with the Platform.\\
+The External Logic Layer comprises the implementation of the Web Server, The API, the Web App that runs on client's browser, the RMP action and the confirmation links; so mainly all the logic needed to interact with the Platform.\\
 This part is formed by fewer components than other Layers, but the complexity of each one is higher. Here follows the dependency graph of the components:
 \useSvgWithCaption{Images/implementationPlan/dependenciesInExternalLayer.svg}{.5}{.5}{External logic Layer Dependency Graph}
 Can be noticed how the Web Server component, having the job of connecting the Application Logic to Presentation Level is the most critical Layer, and has to be implemented first. In fact it contains all logic needed to manage the API calls and forward them to the Application Logic.\\
@@ -25,4 +25,4 @@ Given the Nature of this layer, Each component needs to be tested via Unit testi
 
 \subsection{Integration of the Layers}
 Thanks the use of the necessary Drivers and Stubs, each Layer, once implemented, can be tested independently. 
-Then once all Layers are implemented and tested, the system can be integrated and tested as a whole, via means of test accounts, which job is to firstly test if functionalities work, secondly to test edge cases and possible issues that can arise during production.\\
+Then, once all Layers are implemented and tested, the system can be integrated and tested as a whole, via means of test accounts, which job is to firstly test if functionalities work, secondly to test edge cases and possible issues that can arise during production.\\
