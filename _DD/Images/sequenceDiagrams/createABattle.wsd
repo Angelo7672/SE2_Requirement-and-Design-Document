@@ -18,9 +18,9 @@ RMP --> E
 deactivate RMP
 E -> WS: /POST/createBattle
 activate WS
-WS -> C: createBattle(battleData: battleData)
+WS -> C: createBattle(battleData: battleData): Boolean
 activate C
-C -> TM: addNewBattle(battleData: battleData)
+C -> TM: addNewBattle(battleData: battleData): Boolean
 activate TM
 alt right Tournament state
     TM -> DB: query(Query: string, args: List<String>): QueryResult
