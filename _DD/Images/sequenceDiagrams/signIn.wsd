@@ -13,9 +13,9 @@ participant DBMSManager as DBMSM
 activate U
 U -> WS: POST /api/signIn
 activate WS
-WS -> C: signIn(signInData: SignInData): Void
+WS -> C: signIn(signInData: SignInData): Boolean
 activate C
-C -> SIM: signIn(signInData: SignInData): Void
+C -> SIM: signIn(signInData: SignInData): Boolean
 activate SIM
 SIM -> DBMSM: query(query: String, args: List<String>): QueryResult
 note right

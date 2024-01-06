@@ -21,16 +21,16 @@ deactivate rmpExt
 RMP --> EM: Array<File>
 deactivate RMP
 EM -> EM: evaluate code
-EM -> BM: updateBattleScore(team: Team, score: Score): Void
-deactivate EM
+EM -> BM: updateBattleScore(team: Team, score: Score): Boolean
 activate BM
 BM->DBMS: query(query: String, args: List<String>): QueryResults
 activate DBMS
 DBMS-->BM: QueryResults
 deactivate DBMS
 BM -> TM: updateTournamentScore(team: Team, score: Score): Void
-deactivate BM
 activate TM
+BM --> EM: True (Battle Score updated)
+deactivate BM
 TM->DBMS: query(query: String, args: List<String>): QueryResults
 activate DBMS
 DBMS-->TM: QueryResults

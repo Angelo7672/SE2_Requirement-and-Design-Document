@@ -21,7 +21,7 @@ alt Educator accepts Invitation
     C -> NM: receiveResponse(response: Response): Void
     deactivate C
     activate NM
-    NM -> TM: joinEducator(educator: Educator,\n tournament: Tournament): Void
+    NM -> TM: joinEducatorTournament(educator: Educator,\n tournament: Tournament): Void
     deactivate NM
     activate TM
     TM -> DBMS: query(query: String, args: List<String>): QueryResult

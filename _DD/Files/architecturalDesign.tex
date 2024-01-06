@@ -133,7 +133,7 @@ The following sequence diagrams are meant to show the interactions between the c
 But some components are so crucial to the functioning of the system that the interactions are very frequent and would clutter these diagrams, making them of difficult fruition.
 For this reason the following interactions have to be intended as inserted each time there is a suitable communication.
 \paragraph*{Dispatcher Component} \label{parr:dispatcher}
-This interaction is intended as placed everywhere there is a communication between components\\
+This interaction is intended as placed everywhere there is a communication between components.\\
 Where ComponentA and ComponentB are two generic components, Somewhere is a microservice, or Web Server or API manager or any component that triggers MicroserviceA to do something in a procedure, and Dispatcher is the dispatcher component.
 \useSvgWithCaption{./Images/sequenceDiagrams/dispatcherSequenceDiagram.svg}{.70}{.70}{Dispatcher Sequence Diagram}
 \paragraph*{DBMS Manager Component}
@@ -218,17 +218,21 @@ If the invited Student click on the "accept" button, the TournamentManager adds 
 \clearpage
 \subsubsection{Assign a Badge}
 \useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.5}{1.5}{Assign a Badge Sequence Diagram}
-This sequence diagram shows the interacions between components of the system when the tournament ends and assigns Badges.
-The Tournament manager delegates the evaluation fo the badge criteria to the Badge Manager, who makin use of the Evaluation manager, finds eligible students to assign the badge.
-After that assigns it and notifies them via the Notificaiton Manager.
+This sequence diagram shows the interactions between components of the system when the tournament ends and assigns Badges.
+The Tournament manager delegates the evaluation of the badge criteria to the Badge Manager, who making use of the Evaluation manager, finds eligible students to assign the badge.
+After that assigns it and notifies them via the Notification Manager.
 
 \clearpage
 \subsubsection{Evaluate Code}
 \useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.5}{1.5}{Evaluate Code Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when the Tournament Manager evaluates the code of a Team.\\
+The Tournament Score is updated when the Battle Score has been updated.\\
 
 \clearpage
 \subsubsection{Educator Manual Evaluate Code}
 \useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.5}{1.5}{Educator Manual Evaluate Code Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when an Educator manually evaluates the code of a Team.\\
+The Tournament Score is updated when the Battle Score has been updated.\\
 
 \clearpage
 \subsubsection{User searches for Users}
@@ -248,7 +252,7 @@ For each component here are explained functions associated with respective inter
 \begin{enumerate}
     \item \textbf{Controller Interface}
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{signIn(signInData: SignInData): Void}
+                \item \textbf{signIn(signInData: SignInData): Boolean}
                 \item \textbf{receiveResponse(response: Response): Void}
                 \item \textbf{logIn(logInData: LogInData): Session}
                 \item \textbf{getTournamentData(tournament: Tournament): TournamentData}
