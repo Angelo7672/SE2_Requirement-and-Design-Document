@@ -7,9 +7,12 @@ participant emailProvider as EP
 participant TournamentManager as TM
 participant BadgeManager as BM
 participant EvaluationManager as EM
+
+participant AccountManager as AM
+
+
 participant RMPManager as RMP
 participant NotificationManager as NM
-participant AccountManager as AM
 participant DBMSManager as DB
 
 activate DB
@@ -17,9 +20,10 @@ activate TM
 activate EP
 TM -> TM: tournamentEnded()
 loop for each Badge
-    TM -> BM: evaluateCriteria(Badge)
+    TM -> BM: evaluateCriteria(badge: BadgeData, tournament: TournamentData): List<String>
+    deactivate TM
     activate BM
-    BM -> EM: evaluateCriterium(Crterium, Tournament)
+    BM -> EM: evaluateCriterium(Crterium: criterium, tournament: TournamentData)
     activate EM
     alt if necessary, for each Team repo
         EM -> RMP: pull(repoLink: String): Array<File>
@@ -27,23 +31,21 @@ loop for each Badge
         RMP --> EM: File Code
         deactivate RMP
     end
-    EM --> BM: eligibleStudents
+    EM --> BM: eligible Student RMP Handles
     deactivate EM
-    alt if eligibleStudents is not empty
+    alt if eligible Student RMP handle list is not empty
         loop for each eligible student
             BM -> AM: assignBadge(Student: String, Badge: BadgeManager): void
             activate AM
-            AM -> DB: query(query: String, args: List<String>: [assignBadge, student, badge]): QueryResult
+            AM -> DB: query(query: String, args: List<String>): QueryResult
             DB --> AM: success
             AM --> BM: success
             deactivate AM
-            BM -> NM: sendNotification(email: String, text: String): Boolean
+            BM -> NM: sendNotification(email: String, text: String): Void
             activate NM
-            NM -> EP: sendNotification(email: String, text: String): Boolean
-            EP-->NM: True (email sent)
-            NM-->BM: True (email sent)
+            NM -> EP: send email
             deactivate NM
-            EP -> U: receiveEmail
+            EP -> U: receive email
         end
     end
     deactivate BM

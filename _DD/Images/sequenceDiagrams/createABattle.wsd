@@ -11,6 +11,7 @@ participant TournamentManager as TM
 participant NotificationManager as NM
 participant DBMSManager as DB 
 
+activate E
 E -> RMP: create new repository
 activate RMP
 RMP --> E
@@ -22,25 +23,25 @@ activate C
 C -> TM: addNewBattle(battleData: battleData)
 activate TM
 alt right Tournament state
-    TM -> DB: query(Query: string, battleData)
+    TM -> DB: query(Query: string, args: List<String>): QueryResult
     activate DB
-    DB --> TM: ok
+    DB --> TM: QueryResult
     deactivate DB
-    TM -> NM: sendNotification(Email: string, Text: text)
+    TM -> NM: sendNotification(Notification: Notification): Void
     activate NM
     NM -> EM: send email
+    deactivate NM
     activate EM
     EM -> E: receive email
     deactivate EM
-    NM --> TM: ok
-    deactivate NM
-    TM --> C: ok
-    C --> WS: ok
+    TM --> C: True (Battle Created)
+    C --> WS: True (Battle Created)
     deactivate C
     WS -> E: Battle detail page
     deactivate WS
 else tournament state is wrong 
-    TM -> NM: sendNotification(Email: string, Text: string)
+    TM -> NM: sendNotification(Notification: Notification): Void
+    deactivate TM
     activate NM
     NM -> EM: send email
     deactivate NM

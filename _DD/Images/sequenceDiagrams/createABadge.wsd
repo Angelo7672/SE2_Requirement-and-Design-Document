@@ -2,28 +2,44 @@
 
 autonumber
 actor Educator as U
+participant EmailProvider as EP
 participant WebServerModule as WS
 participant Controller as C
-participant BadgeManager as BM
+participant TournamentManager as BM
 participant NotificationManager as NM
-participant EmailProvider as EP
+participant DBMSManager as DB
 
 activate U
 U->WS: POST /api/createBadge
 activate WS
-WS->C: createBadge(badgeData): Boolean
+WS->C: createBadge(badgeData: BadgeData): Boolean
 activate C
-C->BM: createBadge(badgeData): Boolean
+C->BM: addNewBadge(badgeData: BadgeData): Boolean
+activate BM
+alt right Tournament state
+BM -> DB: query(query: String, args: List<String>): QueryResult
+activate DB
+DB-->BM: QueryResult
+deactivate DB
 BM-->C: True (badge created)
 C-->WS: True (badge created)
+deactivate C
+WS -> U: show badge
 deactivate WS
-C->NM: sendNotification(email: String, text: String):Boolean
+BM->NM: sendNotification(Notification: Notification): Void
 activate NM
 NM->EP:send email
-activate EP
-NM-->C: True (email successfully sent)
 deactivate NM
-deactivate C
+activate EP
 EP->U: reads email
+else Tournament state is wrong
+    BM -> NM: sendNotification(Notification: Notification): Void
+    deactivate BM
+    activate NM
+    NM -> EP: send email
+    deactivate NM
+    EP -> U: reads email
+    deactivate EP
+end
 
 @enduml

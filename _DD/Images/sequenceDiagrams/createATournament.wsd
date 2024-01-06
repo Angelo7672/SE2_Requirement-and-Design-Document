@@ -11,23 +11,24 @@ participant TournamentManager as TM
 participant NotificationManager as NM
 participant DBMSManager as DB
 
+activate E
 activate WS
 E -> WS: get form
 WS -> E: show form
 E -> WS: POST /api/createTournament
-WS -> C: createTournament(TournamentData: TournamentData)
+WS -> C: createTournament(TournamentData: TournamentData): Boolean
 activate C
-C -> TM: createTournament(TournamentData: TournamentData)
+C -> TM: createTournament(TournamentData: TournamentData): Boolean
 activate TM
-TM -> DB: query(Query: string, TournamentData: TournamentData)
+TM -> DB: query(Query: String, args: List<String>): QueryResult
 activate DB
-DB -> TM: ok
+DB -> TM: QueryResult
 deactivate DB
-TM -> NM: sendTournamentNotification(TournamentData: TournamentData)
+TM -> NM: sendNotification(Notification: Notification): Void
 activate NM
-TM -> C: ok
+TM -> C: True (Tournament created)
 deactivate TM
-C -> WS: ok
+C -> WS: True (Tournament created)
 deactivate C
 WS -> E: Tournament Detail Page
 loop for each student
