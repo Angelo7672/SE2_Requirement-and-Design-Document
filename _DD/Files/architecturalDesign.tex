@@ -211,10 +211,6 @@ If the invited Student click on the "accept" button, the TournamentManager adds 
 \subsubsection{Create a Battle}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.5}{1.5}{Create a Battle Sequence Diagram}
 
-%\clearpage
-%\subsubsection{Join a Battle}
-%\useSvgWithCaption{./Images/sequenceDiagrams/joinABattle.svg}{1.4}{1.4}{Join a Battle Sequence Diagram}
-
 \clearpage
 \subsubsection{Create a Badge}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.5}{1.5}{Create a Badge Sequence Diagram}
@@ -252,10 +248,10 @@ For each component here are explained functions associated with respective inter
 \begin{enumerate}
     \item \textbf{Controller Interface}
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{signIn(signInData: SignInData): Page}
+                \item \textbf{signIn(signInData: SignInData): Void}
                 \item \textbf{receiveResponse(response: Response): Void}
                 \item \textbf{logIn(logInData: LogInData): Session}
-                \item \textbf{getTournamentData(tournament: Tournament): Tournament}
+                \item \textbf{getTournamentData(tournament: Tournament): TournamentData}
                 \item \textbf{createTeam(team: Team, student: Student): Tournament Page}
                 \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void}
                 \item \textbf{addStudent(student: Student, team: Team): Void}
@@ -287,7 +283,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{getTournamentData(tournament: Tournament): Tournament} The method is invoked to get all data that the Platform has about a Tournament. The tournament object contains the information about the Tournament that 
+            \item \textbf{getTournamentData(tournament: Tournament): TournamentData} The method is invoked to get all data that the Platform has about a Tournament. The tournament object contains the information about the Tournament that 
             is requested.
             \item \textbf{createTeam(team: Team, student: Student): Tournament Page} The creation of the Team is deputed to this method. The team object contains the Team's name, but also the Tournament's name in which the Team wants to subscribe. 
             The student object contains the Student's information, which is the creator of the Team. The return value is the Tournament's page that shows the Tournament page of the Team.

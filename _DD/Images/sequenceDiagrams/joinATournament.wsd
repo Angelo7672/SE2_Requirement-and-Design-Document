@@ -15,10 +15,14 @@ S -> WS: GET /api/tournamentData
 activate WS
 WS -> C: getTournamentData(\ntournament: Tournament): TournamentData
 activate C
-C -> DBMSM: query(query: String, args: List<String>): QueryResult
+C -> TM: getTournamentData(\ntournament: Tournament): TournamentData
+activate TM
+TM -> DBMSM: query(query: String, args: List<String>): QueryResult
 activate DBMSM
-DBMSM --> C: QueryResult
+DBMSM --> TM: QueryResult
 deactivate DBMSM
+TM --> C: TournamentData
+deactivate TM
 C --> WS: TournamentData
 deactivate C
 WS --> S: Tournament Page
