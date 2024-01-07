@@ -3,25 +3,34 @@
 autonumber
 
 participant EvaluationManager as EM
+participant Controller as C
 participant BattleManager as BM
+participant WebSeverModule as WS
 participant TournamentManager as TM
-participant RMPManager as RMP
+participant RMPManager as RMPM
 participant DBMSManager as DBMS
-participant RMP as rmpExt
-
+participant RMP as RMP
 
 activate RMP
-RMP -> EM: newCodeAvailable(repository: RepositoryData): Void
-activate EM
-EM -> RMP: pullRequest(repositoryLink: String): Array<File>
-RMP->rmpExt: pull repository
-activate rmpExt
-rmpExt-->RMP: Repository
-deactivate rmpExt
-RMP --> EM: Array<File>
+RMP -> WS: POST /api/updateScore
 deactivate RMP
+activate WS
+WS -> C: newCodeAvailable(repository: RepositoryData): Void
+deactivate WS
+activate C
+C -> EM: newCodeAvailable(repository: RepositoryData): Void
+deactivate C
+activate EM
+EM -> RMPM: pullRequest(repositoryLink: String): Array<File>
+activate RMPM
+RMPM->RMP: pull repository
+activate RMP
+RMP-->RMPM: Repository
+deactivate RMP
+RMPM --> EM: Array<File>
+deactivate RMPM
 EM -> EM: evaluate code
-EM -> BM: updateBattleScore(team: Team, score: Score): Boolean
+EM -> BM: updateBattleScore(team: Team, battle: Battle, score: Score): Boolean
 activate BM
 BM->DBMS: query(query: String, args: List<String>): QueryResults
 activate DBMS
@@ -30,6 +39,7 @@ deactivate DBMS
 BM -> TM: updateTournamentScore(team: Team, score: Score): Void
 activate TM
 BM --> EM: True (Battle Score updated)
+deactivate EM
 deactivate BM
 TM->DBMS: query(query: String, args: List<String>): QueryResults
 activate DBMS

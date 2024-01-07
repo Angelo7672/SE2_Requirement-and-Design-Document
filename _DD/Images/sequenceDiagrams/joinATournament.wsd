@@ -25,13 +25,13 @@ TM --> C: TournamentData
 deactivate TM
 C --> WS: TournamentData
 deactivate C
-WS --> S: Tournament Page
+WS --> S: Tournament Element
 deactivate WS
 S -> WS: POST /api/joinTournament
 activate WS
-WS -> C: createTeam(team: Team, student: Student): Void
+WS -> C: createTeam(team: Team, student: Student): Boolean
 activate C
-C -> TM: createTeam(team: Team, student: Student): Void
+C -> TM: createTeam(team: Team, student: Student): Boolean
 activate TM
 TM -> DBMSM: query(query: String, args: List<String>): QueryResult
 note right
