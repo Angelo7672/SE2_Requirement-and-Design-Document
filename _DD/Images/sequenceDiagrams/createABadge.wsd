@@ -12,7 +12,7 @@ participant DBMSManager as DB
 activate U
 U->WS: POST /api/createBadge
 activate WS
-WS->C: createBadge(badgeData: BadgeData): Boolean
+WS->C: addNewBadge(badgeData: BadgeData): Boolean
 activate C
 C->BM: addNewBadge(badgeData: BadgeData): Boolean
 activate BM

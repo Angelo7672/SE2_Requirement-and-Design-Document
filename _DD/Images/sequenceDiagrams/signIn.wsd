@@ -43,10 +43,10 @@ alt QueryResult is NULL
     deactivate EP
     U -> WS: POST /api/confirm
     activate WS
-    WS -> C: receiveResponse(response: Response): Boolean
+    WS -> C: receiveResponse(response: Response): Void
     deactivate WS
     activate C
-    C -> NM: receiveResponse(response: Response): Boolean
+    C -> NM: receiveResponse(response: Response): Void
     deactivate C
     activate NM
     NM -> SIM: createAccount(email: String): Void

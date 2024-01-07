@@ -4,7 +4,7 @@ autonumber
 actor User as U
 participant WebServerModule as WS
 participant Controller as C
-participant AccountManager as AM
+participant BattleManager as AM
 participant DBMSMangaer as DBMS
 
 activate U

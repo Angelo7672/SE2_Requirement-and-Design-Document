@@ -16,66 +16,58 @@ Since it is big and difficult to see, it has been subdivided in sub diagrams.
 These pages are the once that a user or potential one sees when he/she first opens the application. Here he/she can choose to log in or sign in.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-NonUserDef.svg}{.65}{.65}{Welcome, Log in and Sign in pages diagram}
 \clearpage
-\begin{table}
-    \begin{tabu}{X[c, .5] X[c, .5]} 
-        \useImg{Images/UI/PNG/loginSignin.png}{.45} &  \\
-        Welcome page & \\
-        & \\
-        \useImg{Images/UI/PNG/signin.png}{.45} & \useImg{Images/UI/PNG/login.png}{.45} \\
-        Sign in page & Login page \\
-    \end{tabu}
-    \caption{Welcoming pages mockups}
-\end{table}
+\useSvgWithCaption{Images/UI/SVG/loginSignin.svg}{.90}{.90}{Welcome page}
+\useSvgWithCaption{Images/UI/SVG/signInPage.svg}{.90}{.90}{Sign in page} 
+\useSvgWithCaption{Images/UI/SVG/logInPage.svg}{.90}{.90}{Log in page} 
 \clearpage
 \subsection{Educator Homepage}
 This page is the first page an Educator sees once logged in. Here he/she can see the list of Tournaments he created, search for a user, and check his profile. Moreover he/she can create a new Tournament by clicking on the "Create Tournament" button.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-EducatorHomePage.svg}{1.0}{1.0}{Educator Homepage diagram}
 \newpage
-\useImgWithCaption{Images/UI/PNG/educatorHomePage.png}{.75}{Educator Homepage mockup}
-\useImgWithCaption{Images/UI/PNG/educatorCreatesTournament.png}{.75}{Educator Homepage with create Tournament form mockup}
+\useSvgWithCaption{Images/UI/SVG/educatorHomePage.svg}{.75}{.75}{Educator Homepage mockup}
+\useSvgWithCaption{Images/UI/SVG/educatorCreatesTournament.svg}{.75}{.75}{Educator Homepage with create Tournament form mockup}
 \clearpage
 \subsection{Student Homepage}
 Similarly to the Educator Homepage, the Student Homepage is the first page a Student sees once logged in. Here he/she can see the list of Tournaments he/she is subscribed to, search for a user, and check his/her profile. Moreover, the Student can see the list of available Tournaments with a specific search form, in which it is possible to search for a Tournament, and once selected one, see details and subscribe to it.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-StudentHomePage.svg}{.80}{.80}{Student Homepage diagram}
-\useImgWithCaption{Images/UI/PNG/studentHomePage.png}{.75}{Student Homepage mockup}
-\useImgWithCaption{Images/UI/PNG/studentJoinsTournament.png}{.75}{Student Homepage with more Tournament detail and subscription form mockup}
+\useSvgWithCaption{Images/UI/SVG/studentHomePage.svg}{.75}{.75}{Student Homepage mockup}
+\useSvgWithCaption{Images/UI/SVG/studentJoinsTournament.svg}{.75}{.75}{Student Homepage with more Tournament detail and subscription form mockup}
 \clearpage
 \subsection{Tournament Detail Page and Battle Detail Page}
 Tournament detail page displayes information about a Tournament. It differs significantly between Student and Educator, and the number of available actions varies according to the state of the Tournament.\\
 Also the Battle detail page is shown here, since Battles are strongly related to Tournaments. In the Battle detail page, if the user is an Educator, is also presented the form to add a score to the Battle of a specific Team.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-TournamentDetail.svg}{1.0}{1.0}{Tournament Detail diagram}
 \clearpage
-\useImgWithCaption{Images/UI/PNG/studentTournamentPage.png}{.5}{Student Homepage mockup}
-\useImgWithCaption{Images/UI/PNG/studentTournamentPageStarted.png}{.5}{Student Homepage mockup}
-\useImgWithCaption{Images/UI/PNG/studentBattlePage.png}{.5}{Student Homepage mockup}
-\begin{table}
-    \begin{tabu}{X[c, .5] X[c, .5]} 
-        \useImg{Images/UI/PNG/educatorTournamentPage.png}{.45} &  \\
-        Tournament Page & \\
-        & \\
-        \useImg{Images/UI/PNG/educatorCreateBadge.png}{.45} & \useImg{Images/UI/PNG/educatorCreateBattle.png}{.45} \\
-        Tournament Page with Badge Creation form & Tournament Page with Battle Creation form\\
-        & \\
-        \useImg{Images/UI/PNG/educatorBattlePage.png}{.45} & \useImg{Images/UI/PNG/educatorAddScorePage.png}{.45} \\
-        Battle detail Page with score leaderboard & Battle detail page with add score form activated\\
-    \end{tabu}
-    \caption{Tournament pages as seen by Educators mockups}
-\end{table}
+\useSvgWithCaption{Images/UI/SVG/studentTournamentPage.svg}{.90}{.90}{Tournament just started page mockup}
+\useSvgWithCaption{Images/UI/SVG/studentTournamentPageStarted.svg}{.90}{.90}{Standard Tournament page mockup}
+\useSvgWithCaption{Images/UI/SVG/studentBattlePage.svg}{.90}{.90}{Battle page mockup}
+
+\useSvgWithCaption{Images/UI/SVG/educatorTournamentPage.svg}{.90}{.90}{Educator Tournament Page mockup}
+\useSvgWithCaption{Images/UI/SVG/educatorCreateBadge.svg}{.90}{.90}{Educator Create Badge Page mockup}
+\useSvgWithCaption{Images/UI/SVG//educatorCreateBattle.svg}{.90}{.90}{Educator Create Battle Page mockup} 
+\clearpage
+\useSvgWithCaption{Images/UI/SVG/educatorBattlePage.svg}{.90}{.90}{Educator Battle detail Page with score leaderboard mockup}
+\useSvgWithCaption{Images/UI/SVG/educatorAddScorePage.svg}{.90}{.90}{Battle detail page with add score form activated mockup} 
 \clearpage
 \subsection{User Profile Page}
 Pretty simple page where user profile data are shown and, in case of a Student, also his/her badges.\\
 \useSvgWithCaption{Images/uiDiagrams/dd_drawings-UserProfilePage.svg}{.65}{.65}{User Profile Page diagram}
+\useSvgWithCaption{Images/UI/SVG/searchUser.svg}{.90}{.90}{Profile Page within a searchUser Context}
 \clearpage
 \subsection{Multiple device UI mockups}
 The UI shall adapt to the screen size of the device it is being displayed on. Here are some mockups of how the UI will look on different devices.\\
-\begin{tabu}{X[c]} 
-    \useImg{Images/UI/PNG/iPhoneVariant.png}{.2} \\
-    Smartphone UI mockup \\
-    \\
-    \useImg{Images/UI/PNG/iPadVariant.png}{.45} \\
-    Tablet UI mockup \\
-    \\
-    \useImg{Images/UI/PNG/iMacVariant.png}{.45} \\
-    PC UI mockup \\
-    \\
-\end{tabu}
+
+\useSvgWithCaption{Images/UI/SVG/iPhoneVariant.svg}{.20}{.20}{Smartphone UI mockup}
+\useSvgWithCaption{Images/UI/SVG/iPadVariant.svg}{.45}{.45}{Tablet UI mockup}
+\useSvgWithCaption{Images/UI/SVG/iMacVariant.svg}{.45}{.45}{PC UI mockup} 
+%\begin{tabu}{X[c]} 
+%    \useImg{Images/UI/PNG/iPhoneVariant.png}{.2} \\
+%    Smartphone UI mockup \\
+%    \\
+%    \useImg{Images/UI/PNG/iPadVariant.png}{.45} \\
+%    Tablet UI mockup \\
+%    \\
+%    \useImg{Images/UI/PNG/iMacVariant.png}{.45} \\
+%    PC UI mockup \\
+%    \\
+%\end{tabu}

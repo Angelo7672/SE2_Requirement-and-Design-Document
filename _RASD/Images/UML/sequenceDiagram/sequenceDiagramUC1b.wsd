@@ -24,15 +24,7 @@ Platform --> App: sign in page
 deactivate Platform
 App --> Bob: sign in page
 deactivate App
-Bob -> App: select educator
-activate App
-App -> Platform: request educator sign in page
-activate Platform
-Platform --> App: educator sign in page
-deactivate Platform
-App --> Bob: educator sign in page
-deactivate App
-Bob -> App: give name, surname, password, e-mail
+Bob -> App: give name, surname, password, e-mail, RMPHandle, Educator Role
 activate App
 App -> Platform: sign in name, surname, password, password, e-mail
 activate Platform

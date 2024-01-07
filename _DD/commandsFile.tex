@@ -132,6 +132,12 @@
 \input{util/highlight}
 \input{util/abbrev}
 \input{util/svg_wrapper.tex}
-\include{pdflscape}
+\input{util/table_rerefences.tex}
 
+%\include{pdflscape}
+
+
+% patch reference title
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 \date{}

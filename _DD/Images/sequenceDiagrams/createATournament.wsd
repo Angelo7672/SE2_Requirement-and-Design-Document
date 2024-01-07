@@ -7,8 +7,8 @@ actor Student as S
 participant EmailProvider as EM
 participant "Web Server Module" as WS
 participant Controller as C
-participant TournamentManager as TM
 participant NotificationManager as NM
+participant TournamentManager as TM
 participant DBMSManager as DB
 
 activate E
@@ -31,6 +31,11 @@ deactivate TM
 C --> WS: True (Tournament created)
 deactivate C
 WS --> E: Tournament Detail Page
+NM -> DB: query(Query: String, args: List<String>): QueryResult
+note right of DB: get all\nstudent\nemails
+activate DB
+DB --> NM: QueryResult
+deactivate DB
 loop for each student
 NM -> EM: send Email
 deactivate NM

@@ -29,9 +29,9 @@ loop for each Badge
     BM -> EM: evaluateCriterium(Crterium: criterium, tournament: TournamentData): List<String>
     activate EM
     alt if necessary, for each Team repo
-        EM -> RMP: pull(repoLink: String): Array<File>
+        EM -> RMP: pullRequest(repoLink: String): Array<File>
         activate RMP
-        RMP --> EM: File Code
+        RMP --> EM: Repository Files
         deactivate RMP
     end
     EM --> BM: eligible Student RMP Handles
@@ -44,7 +44,7 @@ loop for each Badge
             DB --> AM: Success
             AM --> BM: True (Badge assignment registered)
             deactivate AM
-            BM -> NM: sendNotification(email: String, text: String): Void
+            BM -> NM: sendNotification(notification: Notification): Void
             activate NM
             NM -> EP: send email
             deactivate NM
