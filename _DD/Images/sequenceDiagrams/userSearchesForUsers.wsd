@@ -5,8 +5,8 @@ actor Student as U
 participant searchManager as SM
 participant WebServerModule as WS
 participant Controller as C
-participant searchMangaer as SM
-participant DBMSMangaer as DBMS
+participant searchManager as SM
+participant DBMSManager as DBMS
 
 activate U
 U->WS: GET /api/search

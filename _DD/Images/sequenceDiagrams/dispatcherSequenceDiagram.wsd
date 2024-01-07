@@ -1,8 +1,7 @@
 @startuml
 
 autonumber
-participant GenericComponent as C
-participant CompoentA as A
+participant ComponentA as A
 participant Dispatcher as D
 participant ComponentB as B
 

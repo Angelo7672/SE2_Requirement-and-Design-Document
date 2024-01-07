@@ -166,7 +166,7 @@ If the credentials are not correct, the User is notified and the process ends.
 
 \clearpage
 \subsubsection{Student subscribes to Tournament} \label{sq:4}
-\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.27}{1.27}{Join a Tournament Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.23}{1.23}{Join a Tournament Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student subscribes to a Tournament.\\
 First the Student searches for the Tournament they want to join, then they click on the "subscribe" button.\\
 The TournamentManager first checks if the Team already exists, and if not, it creates it. We assume that a Student that is already subscribed to a Tournament, when he/she visits the Tournament page, he/she doesn't see the "subscribe" 
@@ -337,11 +337,11 @@ For each component here are explained functions associated with respective inter
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{searchUser(searchQuery: String): Array<UserData>} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname or RMP handle of the User to search and returns the list of the Students'/Educators' data of the ones who matched the criteria.
-            \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> } To search one or more Tournaments, SearchManager, throught the method presented here requires the name of the Tournament or its properties to search and returns the list of the Tournaments' data of the ones who matched the criteria.
+            \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> } To search one or more Tournaments, SearchManager, through the method presented here requires the name of the Tournament or its properties to search and returns the list of the Tournaments' data of the ones who matched the criteria.
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{evluateCriteria(badge: BadgeData, tournament: TournamentData): Void} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to all eligible Students.
+            \item \textbf{evaluateCriteria(badge: BadgeData, tournament: TournamentData): Void} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to all eligible Students.
         \end{enumerate}
     \item \textbf{EvaluationManager Interface}
         \begin{enumerate}[label=$\bullet$]

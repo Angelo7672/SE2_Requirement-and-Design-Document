@@ -1,87 +1,136 @@
 @startuml
 
-'skinparam linetype polyline
+skinparam linetype polyline
 
-interface controller{
-    + signIn(signInData: SignInData): Page
+interface controllerInterface{
+    + signIn(signInData: SignInData): Boolean
+    + createAccount(email: String): Void
     + receiveResponse(response: Response): Void
     + logIn(logInData: LogInData): Session
-    + getTournamentData(tournament: Tournament): Tournament
-    + createTeam(team: Team, student: Student): Tournament Page
+    + getTournamentData(tournament: Tournament): TournamentData
+    + createTeam(team: Team, student: Student): Boolean
     + addEducator(educator: Educator, tournament: Tournament): Void
     + addStudent(student: Student, team: Team): Void
+    + updateBattleScore(team: Team, battle: Battle, score: Score): Boolean
+    + joinStudentTournament(student: Student, team: Team): Void
+    + addNewBattle(battleData: BattleData): Boolean
+    + addNewBadge(badgeData: BadgeData): Boolean
+    + searchUser(searchQuery: String): Array<UserData>
+    + searchTournament(searchQuery: String): Array<TournamentData>
+    + newCodeAvailable(repository: RepositoryData): Void
+    + getBattleData(battle: BattleData): BattleData
+    + getUserData(user: UserData): UserData
+    + createTournament(tournamentData: TournamentData): Boolean
+    + newCodeAvailable(repository: RepositoryData): Void
 }
 
-interface logInManager{
+interface logInManagerInterface{
     + logIn(logInData: LogInData): Session
-    '+ logOut(String email): Boolean
-    '+ isLogged(String email): Boolean
 }
 
-interface signInManager{
-    + signIn(signInData: SignInData): Void
+interface signInManagerInterface{
+    + signIn(signInData: SignInData): Boolean
     + createAccount(email: String): Void
 }
-interface RMPManager{
-    + pullRequest(String repo): String
+
+interface RMPManagerInterface{
+    + pullRequest(repositoryLink: String): Array<File>
 }
-interface evaluationManager{}
-interface notificationManager{
-    + sendNotification(notification: Notification): Void
+
+interface evaluationManagerInterface{
+    + newCodeAvailable(repository: RepositoryData): Void
+    + evaluateCriterium(criterium: Criterium, tournament: TournamentData): List<String>
+}
+
+interface notificationManagerInterface{
+    + sendNotification(notification: Notification): Void 
     + receiveResponse(response: Response): Void
 }
-interface badgeManager
-interface battleManager{
-    + joinBattle(String email, String team): Boolean
-    + updateBattleScore(String team, int score): void
+
+interface badgeManagerInterface{
+    + evaluateCriteria(badge: BadgeData, tournament: TournamentData): Void
 }
-interface tournamentManager{
-    + getTournamentData(tournament: Tournament): Tournament
-    + createTeam(team: Team, student: Student): Tournament Page
+
+interface battleManagerInterface{
+    + updateBattleScore(team: Team, battle: Battle, score: Score): Boolean
+    + getBattleData(battle: BattleData): BattleData
+}
+
+interface tournamentManagerInterface{
+    + getTournamentData(tournament: Tournament): TournamentData
+    + createTeam(team: Team, student: Student): Boolean
     + addStudent(student: Student, team: Team): Void
     + joinStudentTournament(student: Student, team: Team): Void
     + joinEducatorTournament(educator: Educator, tournament: Tournament): Void
     + addEducator(educator: Educator, tournament: Tournament): Void
-    + updateTournamentScore(String team, int score): void
-}
-interface searchManager{
-    + searchUser(String email, String name, String surname):Array<AccountManager>
-    + searchTournament(String tournamentName): Array<TournamentManager>
-}
-interface accountManager{
-    + createSession(user: User): Session
-    '+ updateAccount(String name, String surname, String email, String repo): void
+    + updateTournamentScore(team: Team, score: Score): Void
+    + addNewBattle(battleData: BattleData): Boolean
+    + addNewBadge(badgeData: BadgeData): Boolean
+    + createTournament(tournamentData: TournamentData): Boolean
 }
 
-interface dispatcher{
+interface searchManagerInterface{
+    + searchUser(searchQuery: String): Array<UserData>
+    + searchTournament(searchQuery: String): Array<TournamentData>
+}
+
+interface accountManagerInterface{
+    + createSession(user: User): Session
+    + assignBadge(student: StudentData, badge: BadgeData): Boolean
+    + getUserData(user: UserData): UserData
+}
+
+interface dispatcherInterface{
     + dispatch(request: String, parameters: Array<String>): Void
     + getData(microserviceName: String): MicroserviceData
 }
 
-interface DBMSManager{
+interface DBMSManagerInterface{
     + query(query: String, args: List<String>): QueryResult
 }
 
+evaluationManagerInterface -[hidden]down- dispatcherInterface
+signInManagerInterface -[hidden]up- logInManagerInterface
+logInManagerInterface -[hidden]right- accountManagerInterface
+notificationManagerInterface -[hidden]down- tournamentManagerInterface
+controllerInterface -[hidden]up- badgeManagerInterface
+evaluationManagerInterface -[hidden]right- controllerInterface
+evaluationManagerInterface -[hidden]up- RMPManagerInterface
+evaluationManagerInterface -[hidden]down- battleManagerInterface
+controllerInterface -[hidden]right- searchManagerInterface
 
+controllerInterface -> signInManagerInterface
+signInManagerInterface -> DBMSManagerInterface
+signInManagerInterface --> notificationManagerInterface
+controllerInterface --> notificationManagerInterface
+notificationManagerInterface --> signInManagerInterface
 
-'microserviceDispatcher ---> signInManager: signIn, signOut
-'microserviceDispatcher ---> logInManager: logIn, logOut
-'microserviceDispatcher ---> accountManager: updateAccount
-'microserviceDispatcher ---> tournamentManager: inviteEducator, createTeam, joinStudentTournament, joinEducatorTournament
-'microserviceDispatcher ---> battleManager: joinBattle
-'signInManager ---> accountManager: deleteAccount
-'logInManager ---> searchManager: searchUser
-'tournamentManager ---> logInManager: isLogged
-'tournamentManager ---> notificationManager: sendNotification
-'battleManager ---> logInManager: isLogged
-'battleManager ---> notificationManager: sendNotification
-'evaluationManager ---> battleManager: updateBattleScore
-'evaluationManager ---> tournamentManager: updateTournamentScore
-'RMPManager <--- evaluationManager: pullRequest
+logInManagerInterface <- controllerInterface
+logInManagerInterface -> DBMSManagerInterface
+logInManagerInterface -> accountManagerInterface
 
+tournamentManagerInterface <- controllerInterface
+tournamentManagerInterface --> notificationManagerInterface
+tournamentManagerInterface <-- notificationManagerInterface
+tournamentManagerInterface --> DBMSManagerInterface
 
+badgeManagerInterface <-- controllerInterface
+badgeManagerInterface --> evaluationManagerInterface
+evaluationManagerInterface --> RMPManagerInterface
+badgeManagerInterface -> accountManagerInterface
+badgeManagerInterface --> notificationManagerInterface
+accountManagerInterface --> DBMSManagerInterface
 
+evaluationManagerInterface <- controllerInterface
+evaluationManagerInterface --> battleManagerInterface
+battleManagerInterface --> DBMSManagerInterface
+tournamentManagerInterface <-down- battleManagerInterface
 
+controllerInterface --> battleManagerInterface
 
+controllerInterface -> searchManagerInterface
+searchManagerInterface --> DBMSManagerInterface
+
+accountManagerInterface <- controllerInterface
 
 @enduml
