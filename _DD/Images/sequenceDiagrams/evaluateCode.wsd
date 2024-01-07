@@ -24,6 +24,20 @@ activate EM
 EM -> RMPM: pullRequest(repositoryLink: String): Array<File>
 activate RMPM
 RMPM->RMP: pull repository
+note left
+    code from Team's repo
+end note
+activate RMP
+RMP-->RMPM: Repository
+deactivate RMP
+RMPM --> EM: Array<File>
+deactivate RMPM
+EM -> RMPM: pullRequest(repositoryLink: String): Array<File>
+activate RMPM
+RMPM->RMP: pull repository
+note left
+    test from Educator's repo
+end note
 activate RMP
 RMP-->RMPM: Repository
 deactivate RMP
