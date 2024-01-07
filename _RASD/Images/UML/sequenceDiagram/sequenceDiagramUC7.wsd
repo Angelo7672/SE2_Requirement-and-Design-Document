@@ -20,7 +20,7 @@ activate A
 A -> P: sends Badge creation form compiled
 deactivate A
 activate P
-P -> P: checks requirements script correctness
+P -> P: check assignment criteria
 
 alt if script is not correct
     P -> EP: sends Email to inform of unsuccessful operation

@@ -12,11 +12,12 @@
             1& RMP call CKB's API to notify Platform of an update to repository\\
             2& Platform checks the repository link and recognize the Team\\
             3& Platform pulls the code from repository\\
-            4& Platform creates new test environment instance\\
-            5& Platform inserts Team code inside newly created test environment\\
-            6& Platform runs automatic tests inside environment\\
-            7& Test ends with a new Battle score which gets assigned to corresponding Team\\
-            8& Platform updates Team's Tournament score\\
+            4& Platform pulls the code from the educator repository\\
+            5& Platform creates new test environment instance\\
+            6& Platform inserts Team and Educator code inside newly created test environment\\
+            7& Platform runs automatic tests inside environment\\
+            8& Test ends with a new Battle score which gets assigned to corresponding Team\\
+            9& Platform updates Team's Tournament score\\
         \end{tabu} \\
         Exit Condition & Users are able to see newly created score inside Battle leaderboards\\
         Exception & Repository is not associated to any Team of the Tournament: tests are not run\\
@@ -24,5 +25,5 @@
     \end{tabu}
     \tableEntryByLabel{uc:uc9}
 \end{center}
-\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC9.svg}{0.53}{0.53}{UC9 Sequence Diagram - Team gets code awarded}
+\useSvgWithCaption{Images/UML/sequenceDiagram/sequenceDiagramUC9.svg}{0.450}{0.45}{UC9 Sequence Diagram - Team gets code awarded}
 \clearpage

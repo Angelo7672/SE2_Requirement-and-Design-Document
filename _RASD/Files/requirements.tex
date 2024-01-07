@@ -52,8 +52,14 @@ Here follow Use Case tables followed by respective sequence diagrams, to be foll
 \input{Files/useCaseTables/useCaseTables}
 \subsection{Evaluation Requirements} \label{req:eval}
 The Platform perform two types of evaluation: the Battle evaluation and the Badge Evaluation. 
-The first one is performed automatically by the platform itself, is based on a testing environment set inside the Repository, useful for students to test their code before uploading it, that during evaluation gets overwritten with the code from the repository created by the educator to avoid cheating.
-The second one is also performed automatically, but only at the end of a tournament. It is based on some assignment criteria that have to be standard to the platform, and well-defined for the educator to rightly assign the badges.
+\subsubsection{Battle Evaluation}
+This Evaluation is performed automatically by the platform itself.
+The RMP Action signals the Platform of a new code update, which then proceeds to pull student's code and to pull also educator's code. This double pull is done to prevent students to tamper with tests, by keeping students code from the student's repository and merging it with educator's code from educator's repository.
+Once tests are finished, these return a value that is used as the score of the team in that battle. Finally, the shortly obtained score is used to update tournament score.
+\subsubsection{Badge Evaluation}
+This Evaluation is performed automatically by the platform once the Tournament reaches "OFFLINE" state. 
+Badges can have assignment criteria based on factors different from once based purely on code (like maximum amount of commit, or maximum amount of points scored in a single battle).
+This brings the necessity to define syntactic rules so that the Educator can easily write them, and the platform can easily evaluate them.
 
 \subsection{Performance Requirements}
 The Platform, that can be described as a Web App, has to be able to manage multiple Users requests, constantly update rankings for related Tournaments, perform tests on provided code and assign related Score, all at the same time. 
