@@ -74,24 +74,24 @@ The Web Browser's job is to route browser requests to the Application Server and
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramWebServer.svg}{0.3}{0.3}{Web Server Component Diagram}
 \newpage
 
-\paragraph{Application Server}
+\paragraph[Component]{Application Server} \label{cmp:cmp}
 \begin{enumerate}
     \item \textbf{Controller} The Controller is the component that manages the requests from the Web Server. It is invoked by the Web Server, which provides the request and the parameters. The Controller will interface with the 
     Dispatcher to re-route the request to the right Microservice.
     \item \textbf{Dispatcher} The Dispatcher is the component that routes the requests to the right Microservice. It is invoked by the Web Server, which provides the request and the parameters. The Dispatcher will call the right Microservice, passing the parameters. The functionality of this component will be better shown in the dedicated section: \nameref{parr:dispatcher}.
-    \item \textbf{Sign In Manager} It is the manager in charge of allow Users to sign in into the Platform through proper interface.
-    \item \textbf{Log In Manager} This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
+    \item \textbf{Sign In Manager} \label{cmp:sim} It is the manager in charge of allow Users to sign in into the Platform through proper interface.
+    \item \textbf{Log In Manager} \label{cmp:lim}This module is the access door to CKB's Platform. It memorizes all Users which are currently interacting with the system. The component exposes a 'logIn' Interface used by the User to log in 
     and by other components to verify if an existing User is, in fact, logged in. Finally, the interface allows logging out too.
-    \item \textbf{RMP Manager} The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access 'pullRequests' Interface.
-    \item \textbf{Notification Manager} This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
+    \item \textbf{RMP Manager} \label{cmp:rmpm}The manager allows the Platform to perform pull requests from corresponding repos, acting as a Client in face of RMP. It is used by Evaluation Manager which access 'pullRequests' Interface.
+    \item \textbf{Notification Manager} \label{cmp:nm}This component manages particular notifications to be sent to Users, communicating with E-mail provider, which performs as a Server for this module. Requests are sent on other 
     components' indications, which are expressed through 'sendNotification' Interface.
-    \item \textbf{Evaluation Manager} It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular process that is explained here: \nameref{parr:battleEvaluation}.
-    \item \textbf{Badge Manager} It assigns Badges to Students who can be awarded. \nameref{parr:badgeEvaluation}
-    \item \textbf{Battle Manager} It allows managing Battles, updating the score of each Team.
-    \item \textbf{Tournament Manager} It allows to manage Tournaments, create Teams, invite Students and Educators, create Battles and Badges, update the Tournament score.
-    \item \textbf{Account Manager} It is in charge of recruiting all information about a single Account, allowing the owner to update the Account with new personal data.
-    \item \textbf{Search Manager} It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
-    \item \textbf{DBMS Manager} It is the component that manages the DBMS, allowing the Platform to perform operations on the DBMS. It directly manages connections to the database, keeping them few allowing to lighten the load to the DBMS without losing any functionality.
+    \item \textbf{Evaluation Manager} \label{cmp:em}It is in charge of running test cases for every code file submitted by each Team. Basing on given parameters it would assign the corresponding Score. This is done automatically via a particular process that is explained here: \nameref{parr:battleEvaluation}.
+    \item \textbf{Badge Manager} \label{cmp:btm}It assigns Badges to Students who can be awarded. \nameref{parr:badgeEvaluation}
+    \item \textbf{Battle Manager} \label{cmp:bam}It allows managing Battles, updating the score of each Team.
+    \item \textbf{Tournament Manager} \label{cmp:tm}It allows to manage Tournaments, create Teams, invite Students and Educators, create Battles and Badges, update the Tournament score.
+    \item \textbf{Account Manager} \label{cmp:am}It is in charge of recruiting all information about a single Account, allowing the owner to update the Account with new personal data.
+    \item \textbf{Search Manager} \label{cmp:sm}It performs all searches of Users and Tournaments within the Platform. It organizes the data properly from results got by DBMS and makes them available via its interface.
+    \item \textbf{DBMS Manager} \label{cmp:dbmsm}It is the component that manages the DBMS, allowing the Platform to perform operations on the DBMS. It directly manages connections to the database, keeping them few allowing to lighten the load to the DBMS without losing any functionality.
 \end{enumerate}
 \newpage
 \useSvgWithCaption{./Images/componentDiagrams/componentDiagramApplicationServer.svg}{1}{1}{Application Server Component Diagram}
@@ -151,21 +151,21 @@ to the User that something went wrong. The exceptions are not always represented
 \begin{landscape}
 
 \clearpage
-\subsubsection{User signs in to the Platform}
+\subsubsection{User signs in to the Platform} \label{sq:2}
 \useSvgWithCaption{./Images/sequenceDiagrams/signIn.svg}{1.5}{1.5}{Sign In Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a User signs in into the Platform.\\
 After determining that the user's credentials are valid, SignInManager displays to the user a page instructing them to confirm the operation by clicking the button on the email they received.\\
 The User is registered and able to log in to the Platform following the confirmation.
 
 \clearpage
-\subsubsection{User logs in to the Platform}
+\subsubsection{User logs in to the Platform} \label{sq:3}
 \useSvgWithCaption{./Images/sequenceDiagrams/logIn.svg}{1.45}{1.45}{Log In Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a User logs in into the Platform.\\
 The LogInManager checks if the User's credentials are correct, and if so, it generates a session token and sends it to the Web Server.\\
 If the credentials are not correct, the User is notified and the process ends.
 
 \clearpage
-\subsubsection{Student subscribes to Tournament}
+\subsubsection{Student subscribes to Tournament} \label{sq:4}
 \useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.27}{1.27}{Join a Tournament Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student subscribes to a Tournament.\\
 First the Student searches for the Tournament they want to join, then they click on the "subscribe" button.\\
@@ -176,7 +176,7 @@ Then the TournamentManager adds the Student to the new Team and email him/her to
 If the Team name already exists, the inviting Student is notified and the process ends.\\
 
 \clearpage
-\subsubsection{Educator invites other Educator to co-manage Tournament}
+\subsubsection{Educator invites other Educator to co-manage Tournament} \label{sq:5}
 \useSvgWithCaption{./Images/sequenceDiagrams/inviteEducator.svg}{1.5}{1.5}{Invite an Educator Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when an Educator invites another Educator to co-manage a Tournament.\\
 First the TournamentManager checks if the invited Educator exists. Then it checks if the invited Educator is already involved in the Tournament, and if not, it sends an invitation to the Educator. The Tournament's existence is not
@@ -184,7 +184,7 @@ checked and assumed true because the Tournament name is not provided by the User
 If the invited Educator provided doesn't exist or he/she is just in the Tournament, the Educator is notified and the process ends.\\
 
 \clearpage
-\subsubsection{Student invites other Student to participate in the Tournament as a Team}
+\subsubsection{Student invites other Student to participate in the Tournament as a Team} \label{sq:6}
 \useSvgWithCaption{./Images/sequenceDiagrams/inviteStudent.svg}{1.5}{1.5}{Invite a Student Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student invites another Student to join his/her Team. The Tournament's existence is not checked and assumed true because the Tournament name (inserted
 in the Team object) is not provided by the User, but it is automatically added.\\
@@ -192,58 +192,58 @@ First the TournamentManager checks if the invited Student exists. Then it checks
 If the invited Student provided doesn't exist or he/she is just in another, the User is notified and the process ends.\\
 
 \clearpage
-\subsubsection{Receive Educator Invitation}
+\subsubsection{Receive Educator Invitation} \label{sq:7}
 \useSvgWithCaption{./Images/sequenceDiagrams/receiveEducatorInvitation.svg}{1.5}{1.5}{Receive an Educator invitation Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when an Educator receives an invitation to co-manage a Tournament.\\
 If the invited Educator click on the "accept" button, the TournamentManager adds the Educator to the Tournament.\\
 
 \clearpage
-\subsubsection{Receive Student Invitation}
+\subsubsection{Receive Student Invitation} \label{sq:8}
 \useSvgWithCaption{./Images/sequenceDiagrams/receiveStudentInvitation.svg}{1.5}{1.5}{Receive a Student Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student receives an invitation to join a Team.\\
 If the invited Student click on the "accept" button, the TournamentManager adds the Student to the Team.\\
 
 \clearpage
-\subsubsection{Create a Tournament}
+\subsubsection{Create a Tournament} \label{sq:9}
 \useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.5}{1.5}{Create a Tournament Sequence Diagram}
 
 \clearpage
-\subsubsection{Create a Battle}
+\subsubsection{Create a Battle}     \label{sq:10}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.5}{1.5}{Create a Battle Sequence Diagram}
 
 \clearpage
-\subsubsection{Create a Badge}
+\subsubsection{Create a Badge}    \label{sq:11}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.5}{1.5}{Create a Badge Sequence Diagram}
 
 \clearpage
-\subsubsection{Assign a Badge}
+\subsubsection{Assign a Badge}   \label{sq:12}
 \useSvgWithCaption{./Images/sequenceDiagrams/assignABadge.svg}{1.5}{1.5}{Assign a Badge Sequence Diagram}
 This sequence diagram shows the interactions between components of the system when the tournament ends and assigns Badges.
 The Tournament manager delegates the evaluation of the badge criteria to the Badge Manager, who making use of the Evaluation manager, finds eligible students to assign the badge.
 After that assigns it and notifies them via the Notification Manager.
 
 \clearpage
-\subsubsection{Evaluate Code}
+\subsubsection{Evaluate Code} \label{sq:13}
 \useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.5}{1.5}{Evaluate Code Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when the Tournament Manager evaluates the code of a Team.\\
 The Tournament Score is updated when the Battle Score has been updated.\\
 
 \clearpage
-\subsubsection{Educator Manual Evaluate Code}
+\subsubsection{Educator Manual Evaluate Code} \label{sq:14}
 \useSvgWithCaption{./Images/sequenceDiagrams/updateTournamentScoreEducator.svg}{1.5}{1.5}{Educator Manual Evaluate Code Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when an Educator manually evaluates the code of a Team.\\
 The Tournament Score is updated when the Battle Score has been updated.\\
 
 \clearpage
-\subsubsection{User searches for Users}
+\subsubsection{User searches for Users}     \label{sq:15}
 \useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.5}{1.5}{User searches for Users Sequence Diagram}
 
 \clearpage
-\subsubsection{Student searches for Tournaments}
+\subsubsection{Student searches for Tournaments}    \label{sq:16}
 \useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.5}{1.5}{Student searches for Tournaments Sequence Diagram}
 %\restoregeometry
 \clearpage
-\subsubsection{Simple getters of Battle and Student Data}
+\subsubsection{Simple getters of Battle and Student Data}   \label{sq:17}
 \useSvgWithCaption{./Images/sequenceDiagrams/simplegetUserData.svg}{1.1}{1.1}{User data getter Sequence diagram}
 \useSvgWithCaption{./Images/sequenceDiagrams/simplegetBattleData.svg}{1.1}{1.1}{Battle data Sequence diagram}
 \end{landscape}
@@ -392,7 +392,7 @@ All of the following have a common argument, that is the User session token. Thi
     \item \textbf{POST /api/updateScore} This call allows the Platform to perform a pull request from a RMP repo with the objective to evaluate the code. The body of the request must contain the following fields: RepoLink, ValidyToken. It returns the confirmation of successful call, or error to be displayed in the Actions panel of the RMP.
 \end{itemize}
 
-\subsection(API - Controller mapping) \nameref{reff:apimap}
+\subsection{API - Controller mapping} \label{reff:apimap}
 \begin{center}
     \begin{tabu}{|X[.5]|X[.5]|} \hline \everyrow{\hline}
         API & Controller Interface \\
