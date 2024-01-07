@@ -206,10 +206,13 @@ If the invited Student click on the "accept" button, the TournamentManager adds 
 \clearpage
 \subsubsection{Create a Tournament} \label{sq:9}
 \useSvgWithCaption{./Images/sequenceDiagrams/createATournament.svg}{1.5}{1.5}{Create a Tournament Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when an Educator creates a Tournament.\\
+After the creation the NotificationManager asks the DBMS manager the email of all the Students to notify them about the new Tournament.\\
 
 \clearpage
 \subsubsection{Create a Battle}     \label{sq:10}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABattle.svg}{1.5}{1.5}{Create a Battle Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when an Educator creates a Battle.\\
 
 \clearpage
 \subsubsection{Create a Badge}    \label{sq:11}
@@ -237,11 +240,13 @@ The Tournament Score is updated when the Battle Score has been updated.\\
 \clearpage
 \subsubsection{User searches for Users}     \label{sq:15}
 \useSvgWithCaption{./Images/sequenceDiagrams/userSearchesForUsers.svg}{1.5}{1.5}{User searches for Users Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when a User searches for Users.\\
 
 \clearpage
 \subsubsection{Student searches for Tournaments}    \label{sq:16}
 \useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.5}{1.5}{Student searches for Tournaments Sequence Diagram}
-%\restoregeometry
+This sequence diagram shows the interactions between the components of the system when a Student searches for Tournaments.\\
+
 \clearpage
 \subsubsection{Simple getters of Battle and Student Data}   \label{sq:17}
 \useSvgWithCaption{./Images/sequenceDiagrams/simplegetUserData.svg}{1.1}{1.1}{User data getter Sequence diagram}
@@ -252,31 +257,32 @@ The Tournament Score is updated when the Battle Score has been updated.\\
 \subsection{Component Interfaces}
 \useSvgWithCaption{./Images/componentInterface/componentInterface.svg}{1.0}{1.0}{Component Interfaces Diagram} 
 For each component here are explained functions associated with respective interfaces.
-%DA VERIFICARE SE INSERIRE ANCHE I GETTER
 \begin{enumerate}
     \item \textbf{Controller Interface}
-    \item This Component serves as a bridge between the Web Server and the Dispatcher. It allows for the Web Server to have only one interface to communicate with the Application Server, masking any possible deployment or implementative change to the latter.
+    This Component serves as a bridge between the Web Server and the Dispatcher. It allows for the Web Server to have only one interface to communicate with the Application Server, masking any possible deployment or implementation change to the latter.
     Given the role, it implements no logic, and its methods have all the same signature as the ones implemented in the microservices, which are the ones that contain the actual logic. 
     Mapping between the API and this interface is given in the following section: \nameref{reff:apimap}.\\
     For this reason here follows only the list of the methods implemented by the Controller, while the description of the logic is provided in the corresponding microservice.
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{signIn(signInData: SignInData): Page}
+                \item \textbf{signIn(signInData: SignInData): Boolean}
                 \item \textbf{createAccount(email: String): Void}
                 \item \textbf{receiveResponse(response: Response): Void}
                 \item \textbf{logIn(logInData: LogInData): Session}
                 \item \textbf{getTournamentData(tournament: Tournament): TournamentData}
-                \item \textbf{createTeam(team: Team, student: Student): Tournament Page}
+                \item \textbf{createTeam(team: Team, student: Student): Boolean}
                 \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void}
                 \item \textbf{addStudent(student: Student, team: Team): Void}
-                \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Void}
+                \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Boolean}
                 \item \textbf{joinStudentTournament(student: Student, team: Team): Void}
                 \item \textbf{addNewBattle(battleData: BattleData): Boolean}
-                \item \textbf{addNewBadge(badgeData: BadgeData): Void}
+                \item \textbf{addNewBadge(badgeData: BadgeData): Boolean}
                 \item \textbf{searchUser(searchQuery: String): Array<UserData>}
-                \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> }
+                \item \textbf{searchTournament(searchQuery: String): Array<TournamentData>}
                 \item \textbf{newCodeAvailable(repository: RepositoryData): Void}
                 \item \textbf{getBattleData(battle: BattleData): BattleData}
                 \item \textbf{getUserData(user: UserData): UserData}
+                \item \textbf{createTournament(tournamentData: TournamentData): Boolean}
+                \item \textbf{newCodeAvailable(repository: RepositoryData): Void}
             \end{enumerate}
     \item \textbf{SignInManager Interface} 
             \begin{enumerate}[label=$\bullet$]
@@ -290,8 +296,7 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{RMPManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{pullRequest(repositoryLink: String): Array<File>} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return 
-            value is the code pulled from the repo itself.
+            \item \textbf{pullRequest(repositoryLink: String): Array<File>} In order to perform a Pull request to the right RMP repo by RMPManager, the component, through the method described here, asks for the repo as a parameter. The return value is the code pulled from the repo itself.
         \end{enumerate} 
     \item \textbf{NotificationManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -301,15 +306,15 @@ For each component here are explained functions associated with respective inter
         \end{enumerate}
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Void} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value. The Team's name is required too.
+            \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Boolean} The method is invoked to update the Battle's score. The team object contains the Team's name, but also the Tournament's name in which the Team is. The battle object contains the Battle's information, which is the one that has to be updated. The score object contains the integer value of the score. The return value is a Boolean that confirms the update of the Battle's score.
             \item \textbf{getBattleData(battle: BattleData): BattleData} The method is invoked to get all data that the Platform has about a Battle. The battle object contains enough information about the Battle that is requested, to be able to find the right one.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{getTournamentData(tournament: Tournament): TournamentData} The method is invoked to get all data that the Platform has about a Tournament. The tournament object contains the information about the Tournament that 
             is requested.
-            \item \textbf{createTeam(team: Team, student: Student): Tournament Page} The creation of the Team is deputed to this method. The team object contains the Team's name, but also the Tournament's name in which the Team wants to subscribe. 
-            The student object contains the Student's information, which is the creator of the Team. The return value is the Tournament's page that shows the Tournament page of the Team.
+            \item \textbf{createTeam(team: Team, student: Student): Boolean} The creation of the Team is deputed to this method. The team object contains the Team's name, but also the Tournament's name in which the Team wants to subscribe. 
+            The student object contains the Student's information, which is the creator of the Team. The return value is a Boolean that confirms the creation of the Team.
             \item \textbf{addStudent(student: Student, team: Team): Void} This method allows a Student to invite another Student to join a Team. The student object contains the information about the Student that is inviting, while the team
             object contains the information about the Team in which the Student is inviting and the Tournament's name in which the Team is.
             \item \textbf{joinStudentTournament(student: Student, team: Team): Void} This method allows a Student to join a Tournament in a Team. The student object contains the Student's information, which is the one who wants to join 
@@ -318,30 +323,25 @@ For each component here are explained functions associated with respective inter
             that is joining, while the tournament object contains the information about the Tournament in which the Educator is joining.
             \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void} This method allows an Educator to invite another Educator to co-manage a Tournament. The educator object contains the information about the Educator
             that is inviting, while the tournament object contains the information about the Tournament in which the Educator is inviting.
-            \item \textbf{updateTournamentScore(team: Team, score: Score): Void} The Score of the Tournament has to be updated via this function, that requires the name of the Team and the integer value of the score.
-            \item \textbf{addNewBattle(battleData: BattleData): Boolean} The method allows to add a new Battle to the current Tournament. It would be required the name of the Battle, 
-            the RMP link from which Students will fork the repo and an array containing the evaluation parameter (eg. evaluationParameters[0] <- 25, evaluationParameters[1] <- 25, evaluationParameters[2] <- 25, evaluationParameters[3] <- 25,
-            respectively for Functional, Timeliness, Quality and Manual).
-            \item \textbf{addNewBadge(badgeData: BadgeData): Void} The method allows to add a new Badge to the current Tournament. It would be required the name of the Badge, a description, the criteria 
-            and a photo.
+            \item \textbf{updateTournamentScore(team: Team, score: Score): Void} The Score of the Tournament has to be updated via this function. The team object contains the Team's name, but also the Tournament's name in which the Team is. The score object contains the integer value of the score.
+            \item \textbf{addNewBattle(battleData: BattleData): Boolean} The method allows to add a new Battle to the current Tournament. It would be required the Battle's information comprised with evaluation criteria. The return value is a Boolean that confirms the creation of the Battle.
+            \item \textbf{addNewBadge(badgeData: BadgeData): Boolean} The method allows to add a new Badge to the current Tournament. It would be required the Badge's information comprised with assignment criteria. The return value is a Boolean that confirms the creation of the Badge.
+            \item \textbf{createTournament(tournamentData: TournamentData): Boolean} The method allows to create a new Tournament. It would be required the Tournament's information and the return is a Boolean that confirms the creation of the Tournament.
         \end{enumerate}
     \item \textbf{AccountManager Interface} 
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{createSession(user: User): Session} The method is invoked to create a new session for the User. The User object contains the information about the User that is logging in and requesting the session.
-            \item \textbf{assignBadge(student: StudentData, badge: BadgeData): Boolean} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
+            \item \textbf{assignBadge(student: StudentData, badge: BadgeData): Boolean} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager. The return value is a Boolean that confirms the assignment of the Badge.
             \item \textbf{getUserData(user: UserData): UserData} The method is invoked to get all data that the Platform has about a User. The user object contains enough information about the User to get the right one.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{searchUser(searchQuery: String): Array<UserData>} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname
-            of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criteria. Many overrides of the function will be present to perform the search based on just the available values.
-            \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> } To search one or more Tournaments SearchManager, throught searchTournament requires the name of the Tournament 
-            to search and the properties of it (eg. properties[0] <- "Java", properties[1] <- "minimum 2 Students"). The return value is the list of the Tournaments' TournamentManagers of the ones who matched the criteria.
+            \item \textbf{searchUser(searchQuery: String): Array<UserData>} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname or RMP handle of the User to search and returns the list of the Students'/Educators' data of the ones who matched the criteria.
+            \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> } To search one or more Tournaments, SearchManager, throught the method presented here requires the name of the Tournament or its properties to search and returns the list of the Tournaments' data of the ones who matched the criteria.
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{Boolean evluateCriteria(badge: BadgeData, tournament: TournamentData): Void} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to a specific User. If the answer is True, the Badge
-            is assigned.
+            \item \textbf{evluateCriteria(badge: BadgeData, tournament: TournamentData): Void} BadgeManager is invoked via this method to verify if some tests results meet criteria to assign a Badge to all eligible Students.
         \end{enumerate}
     \item \textbf{EvaluationManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -405,8 +405,8 @@ All of the following have a common argument, that is the User session token. Thi
         POST /api/joinTournament & createTeam\\
         POST /api/inviteStudent & inviteStudent\\
         POST /api/inviteEducator & inviteEducator\\
-        POST /api/createBadge & createBadge\\
-        POST /api/createBattle & createBattle\\
+        POST /api/createBadge & addNewBadge\\
+        POST /api/createBattle & addNewBattle\\
         GET /api/getBattleData & getBattleData\\
         POST /api/addScore & updateBattleScore\\
         POST /api/confirm & receiveResponse\\
