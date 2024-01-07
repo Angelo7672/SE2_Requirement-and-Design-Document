@@ -1,6 +1,6 @@
 @startuml
 
-'skinparam linetype polyline
+skinparam linetype polyline
 
 interface controllerInterface{
     + signIn(signInData: SignInData): Boolean
@@ -80,22 +80,24 @@ interface accountManagerInterface{
     + getUserData(user: UserData): UserData
 }
 
-'interface dispatcherInterface{
-'    + dispatch(request: String, parameters: Array<String>): Void
-'    + getData(microserviceName: String): MicroserviceData
-'}
+interface dispatcherInterface{
+    + dispatch(request: String, parameters: Array<String>): Void
+    + getData(microserviceName: String): MicroserviceData
+}
 
 interface DBMSManagerInterface{
     + query(query: String, args: List<String>): QueryResult
 }
 
-'controllerInterface -[hidden]down- dispatcherInterface
+evaluationManagerInterface -[hidden]down- dispatcherInterface
 signInManagerInterface -[hidden]up- logInManagerInterface
 logInManagerInterface -[hidden]right- accountManagerInterface
 notificationManagerInterface -[hidden]down- tournamentManagerInterface
 controllerInterface -[hidden]up- badgeManagerInterface
 evaluationManagerInterface -[hidden]right- controllerInterface
 evaluationManagerInterface -[hidden]up- RMPManagerInterface
+evaluationManagerInterface -[hidden]down- battleManagerInterface
+controllerInterface -[hidden]right- searchManagerInterface
 
 controllerInterface -> signInManagerInterface
 signInManagerInterface -> DBMSManagerInterface
@@ -110,7 +112,7 @@ logInManagerInterface -> accountManagerInterface
 tournamentManagerInterface <- controllerInterface
 tournamentManagerInterface --> notificationManagerInterface
 tournamentManagerInterface <-- notificationManagerInterface
-'tournamentManagerInterface -up-> DBMSManagerInterface
+tournamentManagerInterface --> DBMSManagerInterface
 
 badgeManagerInterface <-- controllerInterface
 badgeManagerInterface --> evaluationManagerInterface
@@ -119,7 +121,16 @@ badgeManagerInterface -> accountManagerInterface
 badgeManagerInterface --> notificationManagerInterface
 accountManagerInterface --> DBMSManagerInterface
 
+evaluationManagerInterface <- controllerInterface
+evaluationManagerInterface --> battleManagerInterface
+battleManagerInterface --> DBMSManagerInterface
+tournamentManagerInterface <-down- battleManagerInterface
 
+controllerInterface --> battleManagerInterface
 
+controllerInterface -> searchManagerInterface
+searchManagerInterface --> DBMSManagerInterface
+
+accountManagerInterface <- controllerInterface
 
 @enduml
