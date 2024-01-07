@@ -217,6 +217,7 @@ This sequence diagram shows the interactions between the components of the syste
 \clearpage
 \subsubsection{Create a Badge}    \label{sq:11}
 \useSvgWithCaption{./Images/sequenceDiagrams/createABadge.svg}{1.5}{1.5}{Create a Badge Sequence Diagram}
+This sequence diagram shows the interactions between the components of the system when an Educator creates a Badge.\\
 
 \clearpage
 \subsubsection{Assign a Badge}   \label{sq:12}
@@ -227,10 +228,10 @@ After that assigns it and notifies them via the Notification Manager.
 
 \clearpage
 \subsubsection{Evaluate Code} \label{sq:13}
-\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.5}{1.5}{Evaluate Code Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/evaluateCode.svg}{1.4}{1.4}{Evaluate Code Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when the Tournament Manager evaluates the code of a Team.\\
 The Evaluation Manager requires two different repo: the one of the Team for the code and the one of the Educator for the tests in order to avoid that Students tamper them.\\
-The Tournament Score is updated when the Battle Score has been updated.\\
+The Tournament Score is updated when the Battle Score has been updated.
 
 \clearpage
 \subsubsection{Educator Manual Evaluate Code} \label{sq:14}
@@ -252,11 +253,13 @@ This sequence diagram shows the interactions between the components of the syste
 \subsubsection{Simple getters of Battle and Student Data}   \label{sq:17}
 \useSvgWithCaption{./Images/sequenceDiagrams/simplegetUserData.svg}{1.1}{1.1}{User data getter Sequence diagram}
 \useSvgWithCaption{./Images/sequenceDiagrams/simplegetBattleData.svg}{1.1}{1.1}{Battle data Sequence diagram}
-\end{landscape}
+
 \clearpage
 
 \subsection{Component Interfaces}
-\useSvgWithCaption{./Images/componentInterface/componentInterface.svg}{1.0}{1.0}{Component Interfaces Diagram} 
+\useSvgWithCaption{./Images/componentInterface/componentInterface.svg}{1.30}{1.30}{Component Interfaces Diagram} 
+\end{landscape}
+\clearpage
 For each component here are explained functions associated with respective interfaces.
 \begin{enumerate}
     \item \textbf{Controller Interface}
@@ -394,6 +397,7 @@ All of the following have a common argument, that is the User session token. Thi
 \end{itemize}
 
 \subsection{API - Controller mapping} \label{reff:apimap}
+\begin{table}[H]
 \begin{center}
     \begin{tabu}{|X[.5]|X[.5]|} \hline \everyrow{\hline}
         API & Controller Interface \\
@@ -414,6 +418,8 @@ All of the following have a common argument, that is the User session token. Thi
         POST /api/updateScore & newCodeAvailable\\
     \end{tabu}
 \end{center}
+\caption{API - Controller mapping}
+\end{table}
 
 \subsection{Notable observations}
 \subsubsection{Authorization Management}
