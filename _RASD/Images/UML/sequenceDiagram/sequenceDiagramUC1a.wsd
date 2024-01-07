@@ -24,15 +24,7 @@ Platform --> App: sign in page
 deactivate Platform
 App --> Alice: sign in page
 deactivate App
-Alice -> App: select student
-activate App
-App -> Platform: request student sign in page
-activate Platform
-Platform --> App: student sign in page
-deactivate Platform
-App --> Alice: student sign in page
-deactivate App
-Alice -> App: give name, surname, password, e-mail and RMP handle
+Alice -> App: give name, surname, password, e-mail, RMP handle, Student Role
 activate App
 App -> Platform: sign in name, surname, password, e-mail and RMP handle
 activate Platform
