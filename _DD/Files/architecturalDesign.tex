@@ -166,7 +166,7 @@ If the credentials are not correct, the User is notified and the process ends.
 
 \clearpage
 \subsubsection{Student subscribes to Tournament}
-\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.35}{1.35}{Join a Tournament Sequence Diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/joinATournament.svg}{1.27}{1.27}{Join a Tournament Sequence Diagram}
 This sequence diagram shows the interactions between the components of the system when a Student subscribes to a Tournament.\\
 First the Student searches for the Tournament they want to join, then they click on the "subscribe" button.\\
 The TournamentManager first checks if the Team already exists, and if not, it creates it. We assume that a Student that is already subscribed to a Tournament, when he/she visits the Tournament page, he/she doesn't see the "subscribe" 
@@ -242,6 +242,10 @@ The Tournament Score is updated when the Battle Score has been updated.\\
 \subsubsection{Student searches for Tournaments}
 \useSvgWithCaption{./Images/sequenceDiagrams/studentSearchesForTournament.svg}{1.5}{1.5}{Student searches for Tournaments Sequence Diagram}
 %\restoregeometry
+\clearpage
+\subsubsection{Simple getters of Battle and Student Data}
+\useSvgWithCaption{./Images/sequenceDiagrams/simplegetUserData.svg}{1.1}{1.1}{User data getter Sequence diagram}
+\useSvgWithCaption{./Images/sequenceDiagrams/simplegetBattleData.svg}{1.1}{1.1}{Battle data Sequence diagram}
 \end{landscape}
 \clearpage
 
@@ -251,14 +255,28 @@ For each component here are explained functions associated with respective inter
 %DA VERIFICARE SE INSERIRE ANCHE I GETTER
 \begin{enumerate}
     \item \textbf{Controller Interface}
+    \item This Component serves as a bridge between the Web Server and the Dispatcher. It allows for the Web Server to have only one interface to communicate with the Application Server, masking any possible deployment or implementative change to the latter.
+    Given the role, it implements no logic, and its methods have all the same signature as the ones implemented in the microservices, which are the ones that contain the actual logic. 
+    Mapping between the API and this interface is given in the following section: \nameref{reff:apimap}.\\
+    For this reason here follows only the list of the methods implemented by the Controller, while the description of the logic is provided in the corresponding microservice.
             \begin{enumerate}[label=$\bullet$]
-                \item \textbf{signIn(signInData: SignInData): Boolean}
+                \item \textbf{signIn(signInData: SignInData): Page}
+                \item \textbf{createAccount(email: String): Void}
                 \item \textbf{receiveResponse(response: Response): Void}
                 \item \textbf{logIn(logInData: LogInData): Session}
                 \item \textbf{getTournamentData(tournament: Tournament): TournamentData}
                 \item \textbf{createTeam(team: Team, student: Student): Tournament Page}
                 \item \textbf{addEducator(educator: Educator, tournament: Tournament): Void}
                 \item \textbf{addStudent(student: Student, team: Team): Void}
+                \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Void}
+                \item \textbf{joinStudentTournament(student: Student, team: Team): Void}
+                \item \textbf{addNewBattle(battleData: BattleData): Boolean}
+                \item \textbf{addNewBadge(badgeData: BadgeData): Void}
+                \item \textbf{searchUser(searchQuery: String): Array<UserData>}
+                \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> }
+                \item \textbf{newCodeAvailable(repository: RepositoryData): Void}
+                \item \textbf{getBattleData(battle: BattleData): BattleData}
+                \item \textbf{getUserData(user: UserData): UserData}
             \end{enumerate}
     \item \textbf{SignInManager Interface} 
             \begin{enumerate}[label=$\bullet$]
@@ -284,6 +302,7 @@ For each component here are explained functions associated with respective inter
     \item \textbf{BattleManager Interface}
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{updateBattleScore(team: Team, battle: Battle, score: Score): Void} The score of a Team is updated, via this method's invocation, providing the actual Score, which is an integer value. The Team's name is required too.
+            \item \textbf{getBattleData(battle: BattleData): BattleData} The method is invoked to get all data that the Platform has about a Battle. The battle object contains enough information about the Battle that is requested, to be able to find the right one.
         \end{enumerate}
     \item \textbf{TournamentManager Interface}
         \begin{enumerate}[label=$\bullet$]
@@ -310,12 +329,13 @@ For each component here are explained functions associated with respective inter
         \begin{enumerate}[label=$\bullet$]
             \item \textbf{createSession(user: User): Session} The method is invoked to create a new session for the User. The User object contains the information about the User that is logging in and requesting the session.
             \item \textbf{assignBadge(student: StudentData, badge: BadgeData): Boolean} Via this function is assigned a Badge to the Student, providing the corresponding BadgeManager.
+            \item \textbf{getUserData(user: UserData): UserData} The method is invoked to get all data that the Platform has about a User. The user object contains enough information about the User to get the right one.
         \end{enumerate}
     \item \textbf{SearchManager Interface} 
         \begin{enumerate}[label=$\bullet$]
-            \item \textbf{searchUser(String email, String name, String surname, String rmpHandle): Array<AccountData>} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname
+            \item \textbf{searchUser(searchQuery: String): Array<UserData>} To search one or more Users, SearchManager, throught the method presented here requires the email or name or surname
             of the User to search and returns the list of the Students'/Educators' AccountManagers of the ones who matched the criteria. Many overrides of the function will be present to perform the search based on just the available values.
-            \item \textbf{searchTournament(String tournamentName, Array<String> properties): Array<TournamentData> } To search one or more Tournaments SearchManager, throught searchTournament requires the name of the Tournament 
+            \item \textbf{searchTournament(searchQuery: String): Array<TournamentData> } To search one or more Tournaments SearchManager, throught searchTournament requires the name of the Tournament 
             to search and the properties of it (eg. properties[0] <- "Java", properties[1] <- "minimum 2 Students"). The return value is the list of the Tournaments' TournamentManagers of the ones who matched the criteria.
         \end{enumerate}
     \item \textbf{BadgeManager Interface}
@@ -371,6 +391,28 @@ All of the following have a common argument, that is the User session token. Thi
 \begin{itemize}
     \item \textbf{POST /api/updateScore} This call allows the Platform to perform a pull request from a RMP repo with the objective to evaluate the code. The body of the request must contain the following fields: RepoLink, ValidyToken. It returns the confirmation of successful call, or error to be displayed in the Actions panel of the RMP.
 \end{itemize}
+
+\subsection(API - Controller mapping) \nameref{reff:apimap}
+\begin{center}
+    \begin{tabu}{|X[.5]|X[.5]|} \hline \everyrow{\hline}
+        API & Controller Interface \\
+        POST /api/logIn & login\\
+        POST /api/signIn & signIn\\
+        GET /api/search & searchUser, searchTournament\\
+        GET /api/UserProfile & getUserProfile\\
+        GET /api/tournamentData & getTournamentData\\
+        POST /api/createTournament & createTournament\\
+        POST /api/joinTournament & createTeam\\
+        POST /api/inviteStudent & inviteStudent\\
+        POST /api/inviteEducator & inviteEducator\\
+        POST /api/createBadge & createBadge\\
+        POST /api/createBattle & createBattle\\
+        GET /api/getBattleData & getBattleData\\
+        POST /api/addScore & updateBattleScore\\
+        POST /api/confirm & receiveResponse\\
+        POST /api/updateScore & newCodeAvailable\\
+    \end{tabu}
+\end{center}
 
 \subsection{Notable observations}
 \subsubsection{Authorization Management}

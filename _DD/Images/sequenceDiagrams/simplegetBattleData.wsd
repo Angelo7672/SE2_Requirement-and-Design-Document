@@ -1,0 +1,29 @@
+@startuml
+
+autonumber
+actor User as U
+participant WebServerModule as WS
+participant Controller as C
+participant AccountManager as AM
+participant DBMSMangaer as DBMS
+
+activate U
+U->WS: GET /api/getBattleData
+activate WS
+WS->C: getBattleData(battleData: BattleData): BattleData
+activate C 
+C->AM: getUserData(battleData: BattleData): BattleData
+activate AM
+AM->DBMS: query(query: String, args List<String>): QueryResult
+activate DBMS
+DBMS-->AM: QueryResult
+deactivate DBMS
+AM-->C: BattleData
+deactivate AM
+C-->WS: BattleData
+deactivate C
+WS->U: show battle detail page
+
+
+
+@enduml

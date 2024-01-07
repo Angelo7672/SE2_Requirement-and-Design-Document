@@ -1,0 +1,29 @@
+@startuml
+
+autonumber
+actor User as U
+participant WebServerModule as WS
+participant Controller as C
+participant AccountManager as AM
+participant DBMSMangaer as DBMS
+
+activate U
+U->WS: GET /api/UserProfile
+activate WS
+WS->C: getUserData(userData: UserData): UserData
+activate C 
+C->AM: getUserData(userData: UserData): UserData
+activate AM
+AM->DBMS: query(query: String, args List<String>): QueryResult
+activate DBMS
+DBMS-->AM: QueryResult
+deactivate DBMS
+AM-->C: UserData
+deactivate AM
+C-->WS: UserData
+deactivate C
+WS->U: show user detail page
+
+
+
+@enduml
