@@ -1,6 +1,6 @@
-# Requirement Specification and Design Document Project
+# Requirement Specification and Design Project
 
-This Project was part of the final examination of the course of "Software Engineering 2" of the Master in Computer Science and Engineering held at Politecnico di Milano (AY 2023-2024).
+This Project was part of the final examination of the course of "Software Engineering 2" of the Master in Computer Science and Engineering held at Politecnico di Milano (A.Y. 2023-2024).
 
 **Authors**: Angelo Attivissimo, Isaia Belardinelli, Carlo Chiodaroli
 
